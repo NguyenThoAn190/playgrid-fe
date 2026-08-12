@@ -1,0 +1,26 @@
+{
+  "admin": {
+    "title": "PlayGrid Admin",
+    "portal_version": "Super Admin Portal v1.0",
+    "nav": {
+      "user_management": "Quản lý người dùng",
+      "revenue_transactions": "Doanh thu & Giao dịch",
+      "system_status": "Trạng thái hệ thống"
+    },
+    "header": {
+      "title": "Hệ thống Quản trị viên",
+      "subtitle": "Tổng quan số liệu và quản lý toàn bộ nền tảng PlayGrid",
+      "search_placeholder": "Tìm kiếm người dùng, đơn hàng..."
+    },
+    "metrics": {
+      "total_users": "Tổng người dùng",
+      "new_users_weekly": "+340 người dùng mới tuần này",
+      "pro_members": "Thành viên PRO",
+      "conversion_rate": "14.6% Tỷ lệ chuyển đổi",
+      "monthly_revenue": "Doanh thu tháng này",
+      "mom_growth": "↑ +18.5% MoM",
+      "server_uptime": "Uptime máy chủ",
+      "system_healthy": "Tất cả hệ thống ổn định"
+    }
+  }
+}

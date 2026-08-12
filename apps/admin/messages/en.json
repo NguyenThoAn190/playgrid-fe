@@ -1,0 +1,26 @@
+{
+  "admin": {
+    "title": "PlayGrid Admin",
+    "portal_version": "Super Admin Portal v1.0",
+    "nav": {
+      "user_management": "User Management",
+      "revenue_transactions": "Revenue & Transactions",
+      "system_status": "System Health"
+    },
+    "header": {
+      "title": "Admin Console",
+      "subtitle": "Platform metrics overview and management for PlayGrid",
+      "search_placeholder": "Search users, orders..."
+    },
+    "metrics": {
+      "total_users": "Total Users",
+      "new_users_weekly": "+340 new users this week",
+      "pro_members": "PRO Members",
+      "conversion_rate": "14.6% Conversion rate",
+      "monthly_revenue": "Monthly Revenue",
+      "mom_growth": "↑ +18.5% MoM",
+      "server_uptime": "Server Uptime",
+      "system_healthy": "All systems operational"
+    }
+  }
+}

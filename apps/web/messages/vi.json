@@ -1,0 +1,220 @@
+{
+  "common": {
+    "view_all": "Xem tất cả",
+    "scroll_left": "Cuộn sang trái",
+    "scroll_right": "Cuộn sang phải",
+    "per_hour": "/giờ"
+  },
+  "navbar": {
+    "logo_label": "PlayGrid - Trang chủ",
+    "nav_label": "Điều hướng chính",
+    "mobile_nav_label": "Menu di động",
+    "mobile_menu_label": "Menu điều hướng",
+    "submenu_label": "Menu con",
+    "open_menu": "Mở menu",
+    "close_menu": "Đóng menu",
+    "notifications": "Thông báo",
+    "messages": "Tin nhắn",
+    "search": "Tìm kiếm",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "home": "Trang chủ",
+    "explore": "Khám phá",
+    "events": "Sự kiện",
+    "booking": "Đặt sân",
+    "courts": "Sân bãi",
+    "clubs": "Câu lạc bộ",
+    "activities": "Hoạt động",
+    "tournaments": "Giải đấu",
+    "blog": "Blog & Tin tức",
+    "create_new": "Tạo mới",
+    "create_post": "Tạo bài viết",
+    "profile": "Cá nhân",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất",
+    "language": "Ngôn ngữ",
+    "lang_vi": "Tiếng Việt",
+    "lang_en": "Tiếng Anh",
+    "dark_mode": "Chế độ giao diện"
+  },
+  "home": {
+    "hero": {
+      "badge": "Chào mừng đến với PlayGrid",
+      "greeting_morning": "Chào buổi sáng! 🌅",
+      "greeting_afternoon": "Chào buổi chiều! ☀️",
+      "greeting_evening": "Chào buổi tối! 🌙",
+      "title": "Kết nối đam mê thể thao & Tham gia giao lưu",
+      "subtitle": "Ghép đội chơi cầu lông, pickleball, tìm kiếm đối thủ và tham gia các hoạt động thể thao xung quanh bạn chỉ với vài cú nhấp.",
+      "watch_video": "Xem video giới thiệu",
+      "book_now": "Khám phá ngay",
+      "find_players": "Tìm người chơi",
+      "search_sport_label": "BẠN MUỐN CHƠI GÌ?",
+      "search_location_label": "Ở ĐÂU?",
+      "search_time_label": "KHI NÀO?",
+      "search_sport_all": "Tất cả môn",
+      "search_location_default": "Vị trí của bạn",
+      "search_time_today": "Hôm nay",
+      "search_time_tomorrow": "Ngày mai",
+      "search_time_weekend": "Cuối tuần này",
+      "search_btn": "Tìm kiếm",
+      "sports": {
+        "all": "Tất cả môn",
+        "badminton": "Cầu lông",
+        "pickleball": "Pickleball",
+        "football": "Bóng đá",
+        "basketball": "Bóng rổ",
+        "tennis": "Tennis"
+      },
+      "graphic": {
+        "court_status": "Sân trống 18:00 - 20:00",
+        "location": "Khang An Court • Thủ Đức",
+        "new_activity": "Kèo cầu lông mới",
+        "activity_info": "Sân ABC • 19:00 Hôm nay",
+        "players_needed": "Cần 2 người"
+      }
+    },
+    "featured_courts": {
+      "title": "Sân gần bạn"
+    },
+    "find_players": {
+      "title": "Tìm người chơi cùng"
+    },
+    "tournaments": {
+      "title": "Giải đấu & Sự kiện"
+    },
+    "featured_clubs": {
+      "title": "Câu lạc bộ nổi bật"
+    },
+    "featured_blogs": {
+      "title": "Kỹ năng nổi bật"
+    },
+    "leaderboard": {
+      "title": "Bảng xếp hạng",
+      "view_full": "Xem bảng xếp hạng đầy đủ",
+      "sports": {
+        "badminton": "Cầu lông",
+        "pickleball": "Pickleball",
+        "tennis": "Tennis",
+        "football": "Bóng đá",
+        "basketball": "Bóng rổ"
+      },
+      "categories": {
+        "men_singles": "Đơn nam",
+        "women_singles": "Đơn nữ",
+        "men_doubles": "Đôi nam",
+        "women_doubles": "Đôi nữ",
+        "mixed_doubles": "Đôi nam nữ"
+      },
+      "highlight": {
+        "achievements": "Thành tích",
+        "tournaments_joined": "Giải đấu đã tham gia",
+        "win_rate": "Tỷ lệ thắng",
+        "view_details": "Xem chi tiết",
+        "pts": "điểm"
+      },
+      "cta": {
+        "title": "Cải thiện thứ hạng",
+        "subtitle": "Tham gia giải đấu để tích điểm và nâng cao thứ hạng của bạn.",
+        "join_now": "Tham gia ngay"
+      }
+    },
+    "community": {
+      "title": "Cộng đồng PlayGrid",
+      "badge": "Nổi bật hôm nay",
+      "view_all": "Khám phá cộng đồng",
+      "create_post": "Tạo bài viết",
+      "categories": {
+        "all": "Tất cả hot",
+        "badminton": "Cầu lông",
+        "pickleball": "Pickleball",
+        "tennis": "Tennis",
+        "tips": "Kinh nghiệm",
+        "moments": "Khoảnh khắc"
+      },
+      "actions": {
+        "like": "Thích",
+        "comment": "Bình luận",
+        "share": "Chia sẻ",
+        "save": "Lưu"
+      }
+    },
+    "explore_sports": {
+      "title": "Khám phá các bộ môn trên PlayGrid",
+      "subtitle": "Tìm kiếm giải đấu, câu lạc bộ và cộng đồng cho bộ môn yêu thích của bạn",
+      "view_all": "Xem tất cả bộ môn",
+      "courts_count": "{count} sân bãi",
+      "matches_count": "{count} trận đấu",
+      "explore_btn": "Khám phá"
+    }
+  },
+  "court_card": {
+    "book_btn": "Đặt sân",
+    "price_per_hour": "đ/giờ"
+  },
+  "find_player_card": {
+    "status_available": "Còn chỗ",
+    "status_starting_soon": "Sắp bắt đầu",
+    "status_full": "Hết chỗ",
+    "level": "Trình",
+    "players_count": "{joined} / {max} người",
+    "view_details": "Xem chi tiết",
+    "join_btn": "Đăng ký",
+    "date_today": "Hôm nay",
+    "date_tomorrow": "Ngày mai"
+  },
+  "auth_page": {
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "password": "Mật khẩu",
+    "confirm_password": "Xác nhận mật khẩu",
+    "email": "Email",
+    "username": "Tên người dùng",
+    "forgot_password": "Quên mật khẩu?",
+    "reset_password": "Đặt lại mật khẩu",
+    "send_reset_link": "Gửi liên kết đặt lại",
+    "back_to_login": "Quay lại đăng nhập",
+    "login_with_google": "Đăng nhập với Google",
+    "login_with_facebook": "Đăng nhập với Facebook",
+    "register_now": "Đăng ký ngay",
+    "have_account": "Đã có tài khoản?",
+    "dont_have_account": "Chưa có tài khoản?",
+    "terms_and_conditions": "Tôi đồng ý với các Điều khoản và Điều kiện",
+    "privacy_policy": "Chính sách bảo mật",
+    "invalid_email": "Email không hợp lệ",
+    "password_mismatch": "Mật khẩu không khớp",
+    "required_field": "Trường này là bắt buộc",
+    "weak_password": "Mật khẩu quá yếu",
+    "user_not_found": "Không tìm thấy người dùng"
+  },
+  "footer": {
+    "pwa": {
+      "badge": "Tải ứng dụng PlayGrid",
+      "title": "Cài app PlayGrid tức thì",
+      "subtitle": "Thêm vào màn hình chính chỉ trong 1s – Không cần App Store, không nặng máy",
+      "install_btn": "Cài app ngay",
+      "installed_btn": "Đã có app",
+      "installed_info": "Ứng dụng PlayGrid đã sẵn sàng! Bạn có thể chọn 'Thêm vào màn hình chính' trên menu trình duyệt để dùng app ngay lập tức."
+    },
+    "newsletter": {
+      "badge": "Cộng đồng thể thao PlayGrid",
+      "title": "Sẵn sàng tham gia & nhận thông báo trận đấu mới nhất?",
+      "subtitle": "Cập nhật các giải đấu phong trào, tin tức cầu lông, pickleball và cơ hội ghép kèo giao lưu mỗi ngày.",
+      "placeholder": "Nhập email của bạn...",
+      "btn": "Đăng ký",
+      "success": "Cảm ơn bạn đã đăng ký nhận tin từ PlayGrid!"
+    },
+    "brand": {
+      "description": "Nền tảng thể thao hàng đầu giúp kết nối đam mê, tìm kiếm đối thủ, ghép đội giao lưu và tham gia các giải đấu phong trào dễ dàng.",
+      "address": "TP. Hồ Chí Minh & Hà Nội, Việt Nam"
+    },
+    "col2": {
+      "title": "Khám phá & Giao lưu"
+    },
+    "col3": {
+      "title": "Cộng đồng & CLB"
+    },
+    "col4": {
+      "title": "Hỗ trợ"
+    }
+  }
+}

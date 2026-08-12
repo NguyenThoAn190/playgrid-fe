@@ -1,0 +1,29 @@
+{
+  "dashboard": {
+    "title": "User Dashboard",
+    "nav": {
+      "overview": "Tổng quan",
+      "subscription": "Gói đăng ký",
+      "activity": "Thống kê hoạt động",
+      "settings": "Cài đặt"
+    },
+    "account": {
+      "pro_plan": "Tài khoản PRO",
+      "active": "Đang hoạt động"
+    },
+    "header": {
+      "welcome": "Chào mừng trở lại!",
+      "subtitle": "Bảng điều khiển dành cho thành viên VIP / Trả phí",
+      "pro_badge": "PRO Active",
+      "upgrade": "Nâng cấp gói"
+    },
+    "stats": {
+      "court_bookings": "Số lượt đặt sân",
+      "bookings_growth": "↑ +12% so với tháng trước",
+      "total_savings": "Tổng tiền tiết kiệm (PRO)",
+      "vip_perks": "Ưu đãi thành viên VIP",
+      "reward_points": "Điểm thưởng tích lũy",
+      "redeem_voucher": "Đổi voucher ưu đãi"
+    }
+  }
+}

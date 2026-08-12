@@ -1,0 +1,220 @@
+{
+  "common": {
+    "view_all": "View all",
+    "scroll_left": "Scroll left",
+    "scroll_right": "Scroll right",
+    "per_hour": "/hr"
+  },
+  "navbar": {
+    "logo_label": "PlayGrid - Home",
+    "nav_label": "Main navigation",
+    "mobile_nav_label": "Mobile menu",
+    "mobile_menu_label": "Navigation menu",
+    "submenu_label": "Submenu",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "search": "Search",
+    "login": "Log in",
+    "register": "Sign up",
+    "home": "Home",
+    "explore": "Explore",
+    "events": "Events",
+    "booking": "Book a court",
+    "courts": "Courts",
+    "clubs": "Clubs",
+    "activities": "Activities",
+    "tournaments": "Tournaments",
+    "blog": "Blog & News",
+    "create_new": "Create new",
+    "create_post": "Create post",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out",
+    "language": "Language",
+    "lang_vi": "Vietnamese",
+    "lang_en": "English",
+    "dark_mode": "Theme"
+  },
+  "home": {
+    "hero": {
+      "badge": "Welcome to PlayGrid",
+      "greeting_morning": "Good Morning! 🌅",
+      "greeting_afternoon": "Good Afternoon! ☀️",
+      "greeting_evening": "Good Evening! 🌙",
+      "title": "Connect your sports passion & Join activities",
+      "subtitle": "Match team players for badminton, pickleball and join sports activities around you in just a few clicks.",
+      "watch_video": "Watch Intro Video",
+      "book_now": "Explore Now",
+      "find_players": "Find Players",
+      "search_sport_label": "WHAT DO YOU WANT TO PLAY?",
+      "search_location_label": "WHERE?",
+      "search_time_label": "WHEN?",
+      "search_sport_all": "All sports",
+      "search_location_default": "Your location",
+      "search_time_today": "Today",
+      "search_time_tomorrow": "Tomorrow",
+      "search_time_weekend": "This weekend",
+      "search_btn": "Search",
+      "sports": {
+        "all": "All sports",
+        "badminton": "Badminton",
+        "pickleball": "Pickleball",
+        "football": "Football",
+        "basketball": "Basketball",
+        "tennis": "Tennis"
+      },
+      "graphic": {
+        "court_status": "Courts available 18:00 - 20:00",
+        "location": "Khang An Court • Thu Duc",
+        "new_activity": "New Badminton Match",
+        "activity_info": "ABC Court • 19:00 Today",
+        "players_needed": "Need 2 players"
+      }
+    },
+    "featured_courts": {
+      "title": "Courts near you"
+    },
+    "find_players": {
+      "title": "Find players"
+    },
+    "tournaments": {
+      "title": "Tournaments & Events"
+    },
+    "featured_clubs": {
+      "title": "Featured Clubs"
+    },
+    "featured_blogs": {
+      "title": "Featured Skills & Articles"
+    },
+    "leaderboard": {
+      "title": "Leaderboard",
+      "view_full": "View full leaderboard",
+      "sports": {
+        "badminton": "Badminton",
+        "pickleball": "Pickleball",
+        "tennis": "Tennis",
+        "football": "Football",
+        "basketball": "Basketball"
+      },
+      "categories": {
+        "men_singles": "Men's Singles",
+        "women_singles": "Women's Singles",
+        "men_doubles": "Men's Doubles",
+        "women_doubles": "Women's Doubles",
+        "mixed_doubles": "Mixed Doubles"
+      },
+      "highlight": {
+        "achievements": "Achievements",
+        "tournaments_joined": "Tournaments joined",
+        "win_rate": "Win rate",
+        "view_details": "View details",
+        "pts": "pts"
+      },
+      "cta": {
+        "title": "Improve ranking",
+        "subtitle": "Join tournaments to earn points and raise your ranking.",
+        "join_now": "Join now"
+      }
+    },
+    "community": {
+      "title": "PlayGrid Community",
+      "badge": "Trending Today",
+      "view_all": "Explore community",
+      "create_post": "Create post",
+      "categories": {
+        "all": "All Trending",
+        "badminton": "Badminton",
+        "pickleball": "Pickleball",
+        "tennis": "Tennis",
+        "tips": "Tips & Guides",
+        "moments": "Moments"
+      },
+      "actions": {
+        "like": "Like",
+        "comment": "Comment",
+        "share": "Share",
+        "save": "Save"
+      }
+    },
+    "explore_sports": {
+      "title": "Explore sports on PlayGrid",
+      "subtitle": "Find tournaments, clubs and communities for your favorite sports",
+      "view_all": "View all sports",
+      "courts_count": "{count} courts",
+      "matches_count": "{count} matches",
+      "explore_btn": "Explore"
+    }
+  },
+  "court_card": {
+    "book_btn": "Book court",
+    "price_per_hour": "VND/hr"
+  },
+  "find_player_card": {
+    "status_available": "Available",
+    "status_starting_soon": "Starting Soon",
+    "status_full": "Full",
+    "level": "Level",
+    "players_count": "{joined} / {max} players",
+    "view_details": "View details",
+    "join_btn": "Join now",
+    "date_today": "Today",
+    "date_tomorrow": "Tomorrow"
+  },
+  "auth_page": {
+    "login": "Log in",
+    "register": "Sign up",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "email": "Email",
+    "username": "Username",
+    "forgot_password": "Forgot password?",
+    "reset_password": "Reset password",
+    "send_reset_link": "Send reset link",
+    "back_to_login": "Back to login",
+    "login_with_google": "Log in with Google",
+    "login_with_facebook": "Log in with Facebook",
+    "register_now": "Sign up now",
+    "have_account": "Already have an account?",
+    "dont_have_account": "Don't have an account?",
+    "terms_and_conditions": "I agree to Terms & Conditions",
+    "privacy_policy": "Privacy Policy",
+    "invalid_email": "Invalid email",
+    "password_mismatch": "Password mismatch",
+    "required_field": "This field is required",
+    "weak_password": "Weak password",
+    "user_not_found": "User not found"
+  },
+  "footer": {
+    "pwa": {
+      "badge": "PlayGrid Mobile App",
+      "title": "Install PlayGrid App instantly",
+      "subtitle": "Add to Home Screen in 1s – No App Store needed, zero storage space",
+      "install_btn": "Get App Now",
+      "installed_btn": "Installed",
+      "installed_info": "PlayGrid App is ready! You can select 'Add to Home Screen' from your browser menu to use the app immediately."
+    },
+    "newsletter": {
+      "badge": "PlayGrid Sports Community",
+      "title": "Ready to join & receive latest match updates?",
+      "subtitle": "Get updates on tournaments, badminton & pickleball news, and match opportunities every day.",
+      "placeholder": "Enter your email...",
+      "btn": "Subscribe",
+      "success": "Thank you for subscribing to PlayGrid!"
+    },
+    "brand": {
+      "description": "Leading sports platform connecting players, finding opponents, matching teams and joining tournaments easily.",
+      "address": "Ho Chi Minh City & Hanoi, Vietnam"
+    },
+    "col2": {
+      "title": "Explore & Match"
+    },
+    "col3": {
+      "title": "Community & Clubs"
+    },
+    "col4": {
+      "title": "Support"
+    }
+  }
+}

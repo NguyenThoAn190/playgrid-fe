@@ -1,0 +1,29 @@
+{
+  "dashboard": {
+    "title": "User Dashboard",
+    "nav": {
+      "overview": "Overview",
+      "subscription": "Subscription",
+      "activity": "Activity Stats",
+      "settings": "Settings"
+    },
+    "account": {
+      "pro_plan": "PRO Account",
+      "active": "Active"
+    },
+    "header": {
+      "welcome": "Welcome back!",
+      "subtitle": "Dashboard for VIP & Premium members",
+      "pro_badge": "PRO Active",
+      "upgrade": "Upgrade Plan"
+    },
+    "stats": {
+      "court_bookings": "Court Bookings",
+      "bookings_growth": "↑ +12% vs last month",
+      "total_savings": "Total Savings (PRO)",
+      "vip_perks": "VIP Member Benefits",
+      "reward_points": "Reward Points",
+      "redeem_voucher": "Redeem Vouchers"
+    }
+  }
+}
