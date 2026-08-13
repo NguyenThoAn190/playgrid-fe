@@ -42,6 +42,8 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
           alt={court.name}
           fill
           unoptimized
+          loading="eager"
+          suppressHydrationWarning
           onError={() => setImgSrc(FALLBACK_COURT_IMAGE)}
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
           className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
@@ -66,33 +68,29 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
       {/* Court Content Details */}
       <div className="p-2.5 sm:p-4 space-y-1.5 sm:space-y-2 flex flex-col justify-between flex-1">
         <div className="space-y-1.5 sm:space-y-2">
-          {/* Row 1: Title & Top-right Distance */}
-          <div className="flex items-start justify-between gap-1 sm:gap-2">
-            <Link href={`/courts/${court.id}`} className="block flex-1 min-w-0">
-              <h3 className="font-bold text-xs sm:text-base text-foreground line-clamp-1 group-hover:text-[#0052FF] dark:group-hover:text-blue-400 transition-colors">
-                {court.name}
-              </h3>
-            </Link>
-            <div className="flex items-center gap-0.5 sm:gap-1 text-[10px] sm:text-[11px] text-muted-foreground shrink-0 mt-0.5">
-              <MapPin className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-muted-foreground/70" />
-              <span>{court.distance}</span>
-            </div>
-          </div>
+          {/* Row 1: Title */}
+          <Link href={`/venue/${court.id}`} className="block w-full">
+            <h3 className="font-bold text-xs sm:text-base text-foreground line-clamp-1 group-hover:text-[#0052FF] dark:group-hover:text-blue-400 transition-colors">
+              {court.name}
+            </h3>
+          </Link>
 
           {/* Sports Tag Badges */}
           {court.sports && court.sports.length > 0 && (
             <div className="flex flex-wrap items-center gap-1 pt-0.5">
-              {court.sports.map((sport) => {
-                const sportTheme = getSportColor(sport);
-                return (
-                  <span
-                    key={sport}
-                    className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-semibold ${sportTheme.tagBg}`}
-                  >
-                    {sport}
-                  </span>
-                );
-              })}
+              {court.sports
+                .filter((sport) => sport !== "Cầu lông" && sport !== "Pickleball")
+                .map((sport) => {
+                  const sportTheme = getSportColor(sport);
+                  return (
+                    <span
+                      key={sport}
+                      className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-semibold ${sportTheme.tagBg}`}
+                    >
+                      {sport}
+                    </span>
+                  );
+                })}
             </div>
           )}
 
@@ -125,7 +123,7 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
           </div>
 
           {/* Action Button: Đặt sân */}
-          <Link href={`/courts/${court.id}`} className="shrink-0">
+          <Link href={`/venue/${court.id}`} className="shrink-0">
             <Button
               variant="outline"
               size="sm"

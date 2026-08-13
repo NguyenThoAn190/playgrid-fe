@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Crown } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 type SportKey = "badminton" | "pickleball";
@@ -144,8 +144,9 @@ export function FeaturedLeaderboardSection() {
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            {getT("title", "Bảng xếp hạng")}
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+            <Crown className="w-5 h-5 text-amber-500 shrink-0" />
+            <span>{getT("title", "Bảng xếp hạng")}</span>
           </h2>
 
           <Link

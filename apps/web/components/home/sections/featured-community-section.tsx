@@ -126,8 +126,9 @@ export function FeaturedCommunitySection() {
 
         {/* Header Row */}
         <div className="flex items-center justify-between">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            {getT("title", "Cộng đồng PlayGrid")}
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+            <MessageSquare className="w-5 h-5 text-emerald-500 shrink-0" />
+            <span>{getT("title", "Cộng đồng PlayGrid")}</span>
           </h2>
 
           <Link

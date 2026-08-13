@@ -1,61 +1,203 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { Link } from "@/i18n/navigation";
-import { Users, Clock, MapPin, Zap, ArrowRight, UserPlus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Users, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { FindPlayerCard, ActivityData } from "@/components/activities/find-player-card";
 
 export interface SportMatchesSectionProps {
   sportName?: string;
 }
 
-const BADMINTON_MATCHES = [
+const BADMINTON_MATCHES: ActivityData[] = [
   {
     id: "match-1",
     title: "Giao lưu Cầu lông Đôi Nam Nữ - Sân Khang An",
-    hostName: "Nguyễn Văn Hùng",
-    hostAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
-    skillLevel: "Trung bình (Intermediate)",
-    location: "Sân Cầu Lông Khang An, Thủ Đức",
-    time: "19:00 - 21:00 • Tối nay",
-    neededSlots: 2,
-    costPerPerson: "45.000đ/người",
-    statusBadge: "Cần 2 người",
     sport: "Cầu lông",
+    statusBadge: "Cần 2 người",
+    statusType: "available",
+    level: "Trung bình (Intermediate)",
+    price: "45.000đ",
+    date: "Hôm nay",
+    time: "19:00 - 21:00",
+    location: "Sân Cầu Lông Khang An, Thủ Đức",
+    imageUrl: "/images/activities/badminton-banner.png",
+    joinedCount: 2,
+    maxCount: 4,
+    participants: [
+      { id: "u1", name: "Nguyễn Văn Hùng", avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" },
+      { id: "u2", name: "Trần Anh Tuấn", avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" },
+    ],
   },
   {
     id: "match-2",
     title: "Kèo Cầu lông Đôi Nam - Cọ xát nâng cao tay nghề",
-    hostName: "Trần Anh Tuấn",
-    hostAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
-    skillLevel: "Khá - Giỏi (Advanced)",
-    location: "Sân VNB Sports Center, Tân Bình",
-    time: "20:00 - 22:00 • Tối nay",
-    neededSlots: 1,
-    costPerPerson: "50.000đ/người",
-    statusBadge: "Còn 1 slot",
     sport: "Cầu lông",
+    statusBadge: "Còn 1 slot",
+    statusType: "available",
+    level: "Khá - Giỏi (Advanced)",
+    price: "50.000đ",
+    date: "Hôm nay",
+    time: "20:00 - 22:00",
+    location: "Sân VNB Sports Center, Tân Bình",
+    imageUrl: "/images/activities/badminton-banner.png",
+    joinedCount: 3,
+    maxCount: 4,
+    participants: [
+      { id: "u2", name: "Trần Anh Tuấn", avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" },
+      { id: "u3", name: "Lê Minh Khoa", avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" },
+      { id: "u4", name: "Phạm Quốc Bảo", avatarUrl: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=100&auto=format&fit=crop&q=80" },
+    ],
   },
   {
     id: "match-3",
     title: "Giao lưu Vui Vẻ - Nhận người mới tập chơi",
-    hostName: "Lê Minh Khoa",
-    hostAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
-    skillLevel: "Mới chơi (Beginner)",
-    location: "Sân Cầu Lông Phú Thọ, Q.11",
-    time: "18:00 - 20:00 • Tối mai",
-    neededSlots: 3,
-    costPerPerson: "40.000đ/người",
-    statusBadge: "Cần 3 người",
     sport: "Cầu lông",
+    statusBadge: "Cần 3 người",
+    statusType: "available",
+    level: "Mới chơi (Beginner)",
+    price: "40.000đ",
+    date: "Ngày mai",
+    time: "18:00 - 20:00",
+    location: "Sân Cầu Lông Phú Thọ, Q.11",
+    imageUrl: "/images/explore_sports/gridy-badminton.avif",
+    joinedCount: 1,
+    maxCount: 4,
+    participants: [
+      { id: "u3", name: "Lê Minh Khoa", avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" },
+    ],
+  },
+];
+
+const PICKLEBALL_MATCHES: ActivityData[] = [
+  {
+    id: "match-pb-1",
+    title: "Giao lưu Pickleball Đôi Nam Nữ - Sân Quận 2",
+    sport: "Pickleball",
+    statusBadge: "Cần 2 người",
+    statusType: "available",
+    level: "Trình 3.0 - 3.5",
+    price: "60.000đ",
+    date: "Hôm nay",
+    time: "19:00 - 21:00",
+    location: "Pickleball Club Quận 2",
+    imageUrl: "/images/activities/pickleball-banner.png",
+    joinedCount: 2,
+    maxCount: 4,
+    participants: [
+      { id: "u4", name: "Trịnh Linh Giang", avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" },
+      { id: "u5", name: "Sophia Huỳnh", avatarUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&auto=format&fit=crop&q=80" },
+    ],
+  },
+  {
+    id: "match-pb-2",
+    title: "Kèo Pickleball Cọ Xát Nâng Cao - Sân Khang An",
+    sport: "Pickleball",
+    statusBadge: "Còn 1 slot",
+    statusType: "available",
+    level: "Trình 3.5+",
+    price: "70.000đ",
+    date: "Hôm nay",
+    time: "20:00 - 22:00",
+    location: "Sân Pickleball Khang An, Thủ Đức",
+    imageUrl: "/images/explore_sports/gridy-pickleball.avif",
+    joinedCount: 3,
+    maxCount: 4,
+    participants: [
+      { id: "u6", name: "Huỳnh Chí Khương", avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" },
+      { id: "u7", name: "Trần Thanh Trúc", avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" },
+      { id: "u8", name: "Phạm Minh Đạt", avatarUrl: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=100&auto=format&fit=crop&q=80" },
+    ],
+  },
+  {
+    id: "match-pb-3",
+    title: "Giao lưu Vui Vẻ - Hướng dẫn newbie mới tập chơi",
+    sport: "Pickleball",
+    statusBadge: "Cần 3 người",
+    statusType: "available",
+    level: "Mới chơi (2.0 - 2.5)",
+    price: "50.000đ",
+    date: "Ngày mai",
+    time: "18:00 - 20:00",
+    location: "Sài Gòn Pickleball Arena, Q.7",
+    imageUrl: "/images/activities/pickleball-banner.png",
+    joinedCount: 1,
+    maxCount: 4,
+    participants: [
+      { id: "u6", name: "Huỳnh Chí Khương", avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" },
+    ],
   },
 ];
 
 export function SportMatchesSection({ sportName = "Cầu Lông" }: SportMatchesSectionProps) {
+  const isPickleball = sportName.toLowerCase().includes("pickleball");
+  const rawMatches = isPickleball ? PICKLEBALL_MATCHES : BADMINTON_MATCHES;
+
+  const matches = rawMatches.map((m) => ({
+    ...m,
+    sport: sportName,
+  }));
+
+  const infiniteMatches = [...matches, ...matches, ...matches];
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const isResettingRef = useRef(false);
+
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const singleSetWidth = container.scrollWidth / 3;
+      container.scrollLeft = singleSetWidth;
+    }
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    if (isResettingRef.current || !scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const singleSetWidth = container.scrollWidth / 3;
+
+    if (container.scrollLeft >= singleSetWidth * 2) {
+      isResettingRef.current = true;
+      container.scrollLeft -= singleSetWidth;
+      setTimeout(() => {
+        isResettingRef.current = false;
+      }, 50);
+    } else if (container.scrollLeft <= 20) {
+      isResettingRef.current = true;
+      container.scrollLeft += singleSetWidth;
+      setTimeout(() => {
+        isResettingRef.current = false;
+      }, 50);
+    }
+  }, []);
+
+  const scroll = useCallback((direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const cardWidth = container.firstElementChild?.clientWidth || 300;
+      const gap = 12;
+      const scrollAmount = cardWidth + gap;
+
+      if (direction === "right") {
+        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      } else {
+        container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      scroll("right");
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [isHovered, scroll]);
+
   return (
-    <section id="matches" className="w-full py-8 sm:py-12 bg-background text-foreground transition-colors border-b border-border/40 scroll-mt-24">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-6">
+    <section id="matches" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden border-b border-border/40 scroll-mt-24">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -77,76 +219,53 @@ export function SportMatchesSection({ sportName = "Cầu Lông" }: SportMatchesS
           </Link>
         </div>
 
-        {/* Matchmaking Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {BADMINTON_MATCHES.map((match) => (
-            <div
-              key={match.id}
-              className="group relative rounded-2xl bg-card border border-border/70 p-5 shadow-xs hover:shadow-md hover:border-amber-500/50 transition-all duration-300 flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                {/* Top Badge & Host info */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Image
-                      src={match.hostAvatar}
-                      alt={match.hostName}
-                      width={32}
-                      height={32}
-                      className="rounded-full object-cover border border-border shrink-0"
-                    />
-                    <span className="text-xs font-semibold text-foreground truncate">{match.hostName}</span>
-                  </div>
+        {/* Matchmaking Cards Slider */}
+        <div
+          className="relative group/carousel"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={() => setIsHovered(true)}
+          onTouchEnd={() => setIsHovered(false)}
+        >
+          {/* Left Navigation Arrow */}
+          <button
+            type="button"
+            onClick={() => scroll("left")}
+            aria-label="Scroll left"
+            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
 
-                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-                    {match.statusBadge}
-                  </span>
-                </div>
-
-                {/* Match Title */}
-                <h3 className="font-bold text-sm sm:text-base text-foreground group-hover:text-amber-500 transition-colors line-clamp-2">
-                  {match.title}
-                </h3>
-
-                {/* Details */}
-                <div className="space-y-1.5 text-xs text-muted-foreground pt-1">
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                    <span>{match.time}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-blue-500 shrink-0" />
-                    <span className="truncate">{match.location}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Zap className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-                    <span>Trình độ: <strong className="text-foreground">{match.skillLevel}</strong></span>
-                  </div>
-                </div>
+          {/* Continuous Infinite Horizontal Scroll List */}
+          <div
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1"
+          >
+            {infiniteMatches.map((activity, index) => (
+              <div
+                key={`${activity.id}-infinite-${index}`}
+                className="w-[80vw] sm:w-[calc((100%-12px)/2)] lg:w-[calc((100%-24px)/3)] shrink-0 snap-start"
+              >
+                <FindPlayerCard activity={activity} className="h-full" />
               </div>
+            ))}
+          </div>
 
-              {/* Cost & Join Action */}
-              <div className="pt-4 mt-4 border-t border-border/40 flex items-center justify-between">
-                <div>
-                  <span className="text-xs text-muted-foreground block">Chi phí chia sòng</span>
-                  <span className="text-sm font-extrabold text-amber-600 dark:text-amber-400">
-                    {match.costPerPerson}
-                  </span>
-                </div>
-
-                <Link href={`/activities/${match.id}`}>
-                  <Button className="rounded-xl font-bold text-xs px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-xs hover:opacity-95 cursor-pointer">
-                    <UserPlus className="w-3.5 h-3.5 mr-1" />
-                    Tham gia
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          ))}
+          {/* Right Navigation Arrow */}
+          <button
+            type="button"
+            onClick={() => scroll("right")}
+            aria-label="Scroll right"
+            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100 sm:opacity-100"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
         </div>
       </div>
     </section>
   );
 }
+
+

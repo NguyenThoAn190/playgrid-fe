@@ -15,7 +15,7 @@ export default function BadmintonPage() {
       <SportSubNav currentSport="badminton" />
 
       {/* Sport Hero Banner & Real-time Stats */}
-      <SportHero sportName="Cầu Lông" />
+      <SportHero sportName="Cầu Lông" heroImage="/images/badminton/herobanner/gridy-badminton.avif" />
 
       {/* Badminton Courts Finder Grid */}
       <SportCourtsGrid sportName="Cầu Lông" />

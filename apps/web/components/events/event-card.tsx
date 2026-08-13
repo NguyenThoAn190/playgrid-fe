@@ -58,6 +58,7 @@ export function EventCard({ event, className = "" }: EventCardProps) {
             src={event.imageUrl}
             alt={event.title}
             fill
+            suppressHydrationWarning
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             unoptimized
           />

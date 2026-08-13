@@ -27,6 +27,9 @@
     "activities": "Hoạt động",
     "tournaments": "Giải đấu",
     "blog": "Blog & Tin tức",
+    "about": "Về chúng tôi",
+    "pricing": "Bảng giá",
+    "contact": "Liên hệ",
     "create_new": "Tạo mới",
     "create_post": "Tạo bài viết",
     "profile": "Cá nhân",
@@ -215,6 +218,112 @@
     },
     "col4": {
       "title": "Hỗ trợ"
+    }
+  },
+  "badminton_venue": {
+    "search_placeholder": "Tìm kiếm theo tên sân cầu lông...",
+    "filter_btn": "Bộ lọc",
+    "map_view": "Bản đồ",
+    "list_view": "Danh sách",
+    "show_on_map": "Hiển thị trên bản đồ",
+    "map_title": "Bản Đồ Sân Cầu Lông Trực Quan",
+    "map_desc": "Hiển thị vị trí trực quan của các sân cầu lông trên bản đồ.",
+    "map_sidebar_title": "Danh sách khu vực",
+    "filter_title": "Chọn lọc theo:",
+    "reset_filter": "Đặt lại",
+    "district_title": "Khu vực / Quận",
+    "price_title": "Ngân sách của bạn (mỗi giờ)",
+    "rating_title": "Đánh giá sao",
+    "amenities_title": "Tiện ích sân bãi",
+    "type_title": "Loại hình sân",
+    "all": "Tất cả",
+    "found_prefix": "Tìm thấy",
+    "found_suffix": "sân cầu lông",
+    "empty_title": "Không tìm thấy sân cầu lông phù hợp",
+    "empty_desc": "Thử bỏ bớt một số tiêu chí lọc hoặc bấm nút bên dưới để xem toàn bộ danh sách sân.",
+    "reset_all": "Đặt lại bộ lọc",
+    "sort": {
+      "recommended": "Nổi bật nhất",
+      "rating": "Đánh giá cao nhất",
+      "price_asc": "Giá: Thấp đến Cao",
+      "price_desc": "Giá: Cao đến Thấp"
+    },
+    "price_tiers": {
+      "under_160": "Dưới 160.000đ/h",
+      "between_160_200": "160.000đ - 200.000đ/h",
+      "over_200": "Trên 200.000đ/h"
+    },
+    "ratings": {
+      "4_8": "4.8+ Xuất sắc",
+      "4_5": "4.5+ Rất tốt"
+    },
+    "amenities": {
+      "ac": "Máy lạnh",
+      "bwf": "Thảm BWF tiêu chuẩn",
+      "parking": "Bãi xe ô tô",
+      "vip": "Sân VIP",
+      "canteen": "Căng tin",
+      "shower": "Phòng tắm / Thay đồ",
+      "wifi": "Wifi free",
+      "proshop": "Shop căng vợt"
+    },
+    "types": {
+      "indoor": "Sân trong nhà",
+      "tournament": "Sân thi đấu",
+      "vip": "Sân VIP"
+    }
+  },
+  "pickleball_venue": {
+    "search_placeholder": "Tìm kiếm theo tên sân Pickleball...",
+    "filter_btn": "Bộ lọc",
+    "map_view": "Bản đồ",
+    "list_view": "Danh sách",
+    "show_on_map": "Hiển thị trên bản đồ",
+    "map_title": "Bản Đồ Sân Pickleball Trực Quan",
+    "map_desc": "Hiển thị vị trí trực quan của các sân Pickleball trên bản đồ.",
+    "map_sidebar_title": "Danh sách khu vực",
+    "filter_title": "Chọn lọc theo:",
+    "reset_filter": "Đặt lại",
+    "district_title": "Khu vực / Quận",
+    "price_title": "Ngân sách của bạn (mỗi giờ)",
+    "rating_title": "Đánh giá sao",
+    "amenities_title": "Tiện ích sân bãi",
+    "type_title": "Loại hình sân",
+    "all": "Tất cả",
+    "found_prefix": "Tìm thấy",
+    "found_suffix": "sân Pickleball",
+    "empty_title": "Không tìm thấy sân Pickleball phù hợp",
+    "empty_desc": "Thử bỏ bớt một số tiêu chí lọc hoặc bấm nút bên dưới để xem toàn bộ danh sách sân.",
+    "reset_all": "Đặt lại bộ lọc",
+    "sort": {
+      "recommended": "Nổi bật nhất",
+      "rating": "Đánh giá cao nhất",
+      "price_asc": "Giá: Thấp đến Cao",
+      "price_desc": "Giá: Cao đến Thấp"
+    },
+    "price_tiers": {
+      "under_160": "Dưới 160.000đ/h",
+      "between_160_200": "160.000đ - 200.000đ/h",
+      "over_200": "Trên 200.000đ/h"
+    },
+    "ratings": {
+      "4_8": "4.8+ Xuất sắc",
+      "4_5": "4.5+ Rất tốt"
+    },
+    "amenities": {
+      "ac": "Máy lạnh",
+      "bwf": "Mặt sân USAPA tiêu chuẩn",
+      "parking": "Bãi xe ô tô",
+      "vip": "Sân VIP",
+      "canteen": "Căng tin / Nước uống",
+      "shower": "Phòng tắm / Thay đồ",
+      "wifi": "Wifi free",
+      "proshop": "Shop bóng & vợt"
+    },
+    "types": {
+      "indoor": "Sân trong nhà",
+      "tournament": "Sân thi đấu",
+      "vip": "Sân VIP"
     }
   }
 }

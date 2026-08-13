@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { BlogCard, BlogPostData } from "@/components/blog/blog-card";
@@ -117,8 +117,9 @@ export function FeaturedBlogsSection() {
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
         {/* Section Header */}
         <div className="flex items-center justify-between">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            {tHome("title")}
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-blue-500 shrink-0" />
+            <span>{tHome("title")}</span>
           </h2>
           <Link
             href="/blog"

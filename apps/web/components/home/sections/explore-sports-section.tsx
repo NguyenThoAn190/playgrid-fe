@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Compass } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface SportCategoryItem {
@@ -64,8 +64,9 @@ export function ExploreSportsSection() {
         {/* Header Row */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              {getT("title", "Khám phá các bộ môn trên PlayGrid")}
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+              <Compass className="w-5.5 h-5.5 text-cyan-500 shrink-0" />
+              <span>{getT("title", "Khám phá các bộ môn trên PlayGrid")}</span>
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
               {getT(
@@ -76,7 +77,7 @@ export function ExploreSportsSection() {
           </div>
 
           <Link
-            href="/courts"
+            href="/badminton/venue"
             className="group inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors shrink-0 self-start sm:self-auto"
           >
             <span>{getT("view_all", "Xem tất cả bộ môn")}</span>

@@ -34,7 +34,7 @@ export function HeroSportsSelector({
         >
           <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center overflow-hidden">
             <Image
-              src="/image/herobanner/gily-badminton.avif"
+              src="/images/herobanner/gily-badminton.avif"
               alt={t("sports.badminton")}
               width={40}
               height={40}
@@ -58,7 +58,7 @@ export function HeroSportsSelector({
         >
           <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center overflow-hidden">
             <Image
-              src="/image/herobanner/gily-pickellbal.avif"
+              src="/images/herobanner/gily-pickellbal.avif"
               alt={t("sports.pickleball")}
               width={40}
               height={40}

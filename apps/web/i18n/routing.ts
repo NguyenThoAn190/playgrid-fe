@@ -6,8 +6,9 @@ export const routing = defineRouting({
   locales: LOCALES,
 
   // Used when no locale matches
-  defaultLocale: "en",
+  defaultLocale: "vi",
 
-  // Hide locale prefix completely
-  // localePrefix: "never",
+  // Always enforce locale prefix in URL (e.g. /vi/badminton or /en/badminton)
+  localePrefix: "always",
 });
+

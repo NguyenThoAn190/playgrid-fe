@@ -40,6 +40,21 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
   const [isMainNavVisible, setIsMainNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Sync active tab with current pathname / hash
+  useEffect(() => {
+    if (pathname.includes("/venue")) {
+      setActiveTab("courts");
+    } else if (typeof window !== "undefined" && window.location.hash) {
+      const hash = window.location.hash.replace("#", "");
+      if (SUB_NAV_TABS.some((t) => t.id === hash)) {
+        setActiveTab(hash);
+      }
+    } else {
+      setActiveTab("overview");
+    }
+  }, [pathname]);
+
+  // Scroll handler for hiding/showing navbar
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -47,10 +62,8 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
       if (currentScrollY <= 20) {
         setIsMainNavVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 60) {
-        // Scroll DOWN -> Main Nav hides, Sub Nav slides up to top-0 and STAYS VISIBLE
         setIsMainNavVisible(false);
       } else if (currentScrollY < lastScrollY) {
-        // Scroll UP -> Main Nav reveals, Sub Nav moves down to top-[56px]
         setIsMainNavVisible(true);
       }
 
@@ -64,8 +77,24 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
   const selectedSportObj =
     SPORTS_LIST.find((s) => s.id === currentSport) || SPORTS_LIST[0];
 
+  const getTabHref = (tabId: string) => {
+    if (tabId === "courts") {
+      return `/${currentSport}/venue`;
+    }
+    if (tabId === "overview") {
+      return `/${currentSport}`;
+    }
+    return `/${currentSport}#${tabId}`;
+  };
+
   const handleTabClick = (e: React.MouseEvent<HTMLAnchorElement>, tabId: string) => {
     setActiveTab(tabId);
+
+    // Clicking "Sân bãi" (courts) always navigates to full venue listing page /${currentSport}/venue
+    if (tabId === "courts") {
+      return;
+    }
+
     const element = document.getElementById(tabId);
     if (element) {
       e.preventDefault();
@@ -73,9 +102,22 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
     }
   };
 
-  const handleSportChange = (sportId: string) => {
+  const handleSportChange = (targetSportId: string) => {
     setIsDropdownOpen(false);
-    router.push(`/${sportId}`);
+
+    // Extract current sub-path after currentSport slug (e.g. "/venue")
+    let subPath = "";
+    const currentSportSegment = `/${currentSport}`;
+    const sportIndex = pathname.indexOf(currentSportSegment);
+    if (sportIndex !== -1) {
+      subPath = pathname.substring(sportIndex + currentSportSegment.length);
+    }
+
+    if (subPath) {
+      router.push(`/${targetSportId}${subPath}`);
+    } else {
+      router.push(`/${targetSportId}`);
+    }
   };
 
   return (
@@ -92,11 +134,12 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
           {SUB_NAV_TABS.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
+            const href = getTabHref(tab.id);
 
             return (
-              <a
+              <Link
                 key={tab.id}
-                href={`#${tab.id}`}
+                href={href}
                 onClick={(e) => handleTabClick(e, tab.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                   isActive
@@ -106,7 +149,7 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
               >
                 <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                 <span>{tab.label}</span>
-              </a>
+              </Link>
             );
           })}
         </div>

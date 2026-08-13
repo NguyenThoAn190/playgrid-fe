@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { CourtCard, CourtData } from "@/components/courts/court-card";
 import { useTranslations } from "next-intl";
 
@@ -93,6 +93,8 @@ export function FeaturedCourtsSection() {
   const tCommon = useTranslations("common");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isResettingRef = useRef(false);
 
   // Position scroll container at the middle set on initial mount
@@ -104,25 +106,35 @@ export function FeaturedCourtsSection() {
     }
   }, []);
 
-  // Seamless infinite position reset handler
+  // Seamless infinite position reset handler & scroll motion detection
   const handleScroll = useCallback(() => {
-    if (isResettingRef.current || !scrollContainerRef.current) return;
+    if (!scrollContainerRef.current) return;
     const container = scrollContainerRef.current;
     const singleSetWidth = container.scrollWidth / 3;
 
-    if (container.scrollLeft >= singleSetWidth * 2) {
-      isResettingRef.current = true;
-      container.scrollLeft -= singleSetWidth;
-      setTimeout(() => {
-        isResettingRef.current = false;
-      }, 50);
-    } else if (container.scrollLeft <= 20) {
-      isResettingRef.current = true;
-      container.scrollLeft += singleSetWidth;
-      setTimeout(() => {
-        isResettingRef.current = false;
-      }, 50);
+    if (!isResettingRef.current) {
+      if (container.scrollLeft >= singleSetWidth * 2) {
+        isResettingRef.current = true;
+        container.scrollLeft -= singleSetWidth;
+        setTimeout(() => {
+          isResettingRef.current = false;
+        }, 50);
+      } else if (container.scrollLeft <= 20) {
+        isResettingRef.current = true;
+        container.scrollLeft += singleSetWidth;
+        setTimeout(() => {
+          isResettingRef.current = false;
+        }, 50);
+      }
     }
+
+    setIsScrolling(true);
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsScrolling(false);
+    }, 200);
   }, []);
 
   const scroll = useCallback((direction: "left" | "right") => {
@@ -140,27 +152,34 @@ export function FeaturedCourtsSection() {
     }
   }, []);
 
-  // Autoplay functionality: Continuous infinite scroll every 3.5s, pause on hover/touch
+  // Autoplay functionality: Auto scroll 3.0s after scroll motion stops completely
   useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || isScrolling) return;
 
-    const interval = setInterval(() => {
+    const timer = setTimeout(() => {
       scroll("right");
-    }, 2500);
+    }, 3000);
 
-    return () => clearInterval(interval);
-  }, [isHovered, scroll]);
+    return () => clearTimeout(timer);
+  }, [isHovered, isScrolling, scroll]);
+
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    };
+  }, []);
 
   return (
     <section id="featured-courts" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden scroll-mt-20">
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
         {/* Section Header */}
         <div className="flex items-center justify-between">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            {tHome("title")}
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-emerald-500 shrink-0" />
+            <span>{tHome("title")}</span>
           </h2>
           <Link
-            href="/courts"
+            href="/badminton/venue"
             className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors"
           >
             <span>{tCommon("view_all")}</span>

@@ -84,7 +84,7 @@ export function MobileBottomNav() {
   const navLinks = [
     { href: "/", label: t("home"), icon: Home, sectionId: undefined },
     { href: "/#explore-sports", label: t("explore"), icon: Compass, sectionId: "explore-sports" },
-    { href: "/courts", label: t("courts"), icon: MapPin, sectionId: undefined },
+    { href: "/badminton/venue", label: t("courts"), icon: MapPin, sectionId: undefined },
     { href: "/tournaments", label: t("tournaments"), icon: Trophy, sectionId: undefined },
     { href: "/clubs", label: t("clubs"), icon: Users, sectionId: undefined },
     { href: "/activities", label: t("activities"), icon: Activity, sectionId: undefined },

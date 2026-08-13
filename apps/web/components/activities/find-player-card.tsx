@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Heart, Calendar, MapPin } from "lucide-react";
+import { Heart, Calendar, MapPin, UserPlus } from "lucide-react";
 import { Card } from "@workspace/ui/components/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
@@ -59,7 +59,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
       <div>
         {/* Top Header Cover Image - Aspect Ratio 12/5 */}
         <div
-          className="relative w-full aspect-[12/5] overflow-hidden bg-gradient-to-br from-emerald-900 via-slate-800 to-slate-900"
+          className="relative w-full aspect-[12/5] overflow-hidden bg-gradient-to-br from-orange-900 via-slate-800 to-slate-900"
           style={{ aspectRatio: "12 / 5" }}
         >
           <Image
@@ -69,6 +69,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
             }
             alt={activity.title}
             fill
+            suppressHydrationWarning
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             unoptimized
           />
@@ -110,7 +111,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
           {/* Bottom Right Image Overlay Tag: Price */}
           {activity.price && (
             <div className="absolute bottom-1.5 right-2 z-10">
-              <span className="inline-flex items-center rounded-md bg-[#00A859] backdrop-blur-md px-2 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
+              <span className="inline-flex items-center rounded-md bg-[#FF7A00] backdrop-blur-md px-2 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
                 {activity.price}
               </span>
             </div>
@@ -121,7 +122,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
         <div className="p-3 space-y-1.5">
           {/* Title */}
           <Link href={`/activities/${activity.id}`} className="block">
-            <h3 className="font-bold text-sm sm:text-base text-foreground line-clamp-1 group-hover:text-[#00A859] dark:group-hover:text-emerald-400 transition-colors">
+            <h3 className="font-bold text-sm sm:text-base text-foreground line-clamp-1 group-hover:text-[#FF7A00] dark:group-hover:text-orange-400 transition-colors">
               {activity.title}
             </h3>
           </Link>
@@ -166,20 +167,20 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
               )}
             </div>
 
-            {/* Capacity Green Text */}
-            <span className="text-xs sm:text-sm font-bold text-[#00A859] dark:text-emerald-400">
+            {/* Capacity Orange Text */}
+            <span className="text-xs sm:text-sm font-bold text-[#FF7A00] dark:text-orange-400">
               {t("players_count", { joined: activity.joinedCount, max: activity.maxCount })}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Card Action Buttons: 2 Buttons (Xem chi tiết & Đăng ký) */}
+      {/* Card Action Buttons: 2 Buttons (Xem chi tiết & Tham gia) */}
       <div className="p-2.5 pt-0 grid grid-cols-2 gap-1.5">
         <Link href={`/activities/${activity.id}`} className="block w-full">
           <Button
             variant="outline"
-            className="w-full h-7.5 sm:h-8 rounded-lg border-border/80 text-foreground hover:bg-muted font-semibold text-[11px] sm:text-xs px-2 transition-all cursor-pointer shadow-2xs"
+            className="w-full h-8 sm:h-8.5 rounded-xl border-border/80 text-foreground hover:bg-muted font-semibold text-[11px] sm:text-xs px-2 transition-all cursor-pointer shadow-2xs"
           >
             {t("view_details")}
           </Button>
@@ -187,9 +188,10 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
 
         <Link href={`/activities/${activity.id}`} className="block w-full">
           <Button
-            className="w-full h-7.5 sm:h-8 rounded-lg bg-[#00A859] hover:bg-[#008f4c] active:bg-[#007a41] text-white font-bold text-[11px] sm:text-xs px-2 transition-all cursor-pointer shadow-xs border-none"
+            className="w-full h-8 sm:h-8.5 rounded-xl bg-[#FF7A00] hover:bg-[#E66E00] active:bg-[#CC6200] text-white font-bold text-[11px] sm:text-xs px-2.5 transition-all cursor-pointer shadow-xs border-none flex items-center justify-center gap-1.5"
           >
-            {t("join_btn")}
+            <UserPlus className="h-3.5 w-3.5 stroke-[2.5] shrink-0" />
+            <span>{t("join_btn")}</span>
           </Button>
         </Link>
       </div>

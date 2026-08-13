@@ -2,7 +2,11 @@
   "extends": "@workspace/typescript-config/nextjs.json",
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,10 +24,18 @@
       }
     ],
     "paths": {
-      "next-intl/config": ["./i18n/request.ts"],
-      "@/*": ["./*"],
-      "@workspace/ui/*": ["../../packages/ui/src/*"],
-      "@workspace/shared/*": ["../../packages/shared/src/*"]
+      "next-intl/config": [
+        "./i18n/request.ts"
+      ],
+      "@/*": [
+        "./*"
+      ],
+      "@workspace/ui/*": [
+        "../../packages/ui/src/*"
+      ],
+      "@workspace/shared/*": [
+        "../../packages/shared/src/*"
+      ]
     }
   },
   "include": [
@@ -34,5 +46,7 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

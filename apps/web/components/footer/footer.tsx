@@ -25,6 +25,7 @@ interface BeforeInstallPromptEvent extends Event {
 export function Footer() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isInstalled, setIsInstalled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const tRoot = useTranslations();
 
@@ -42,14 +43,18 @@ export function Footer() {
   };
 
   useEffect(() => {
+    setMounted(true);
+
     const isStandalone =
       typeof window !== "undefined" &&
       (window.matchMedia("(display-mode: standalone)").matches ||
         (window.navigator as unknown as { standalone?: boolean }).standalone === true);
 
-    if (isStandalone) {
+    const hasInstalledStorage =
+      typeof window !== "undefined" && localStorage.getItem("pwa_installed") === "true";
+
+    if (isStandalone || hasInstalledStorage) {
       setIsInstalled(true);
-      return;
     }
 
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -57,9 +62,20 @@ export function Footer() {
       setDeferredPrompt(e as BeforeInstallPromptEvent);
     };
 
+    const handleAppInstalled = () => {
+      setIsInstalled(true);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("pwa_installed", "true");
+      }
+      setDeferredPrompt(null);
+    };
+
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    window.addEventListener("appinstalled", handleAppInstalled);
+
     return () => {
       window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+      window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
 
@@ -69,6 +85,9 @@ export function Footer() {
       const { outcome } = await deferredPrompt.userChoice;
       if (outcome === "accepted") {
         setIsInstalled(true);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("pwa_installed", "true");
+        }
       }
       setDeferredPrompt(null);
     } else {
@@ -88,63 +107,65 @@ export function Footer() {
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[300px] bg-emerald-500/10 dark:bg-emerald-600/10 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Top CTA / PWA Section */}
-      <div className="border-b border-border/40">
-        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <div className="relative rounded-3xl bg-gradient-to-r from-blue-50/90 via-card to-emerald-50/90 dark:from-blue-950/60 dark:via-slate-900/80 dark:to-emerald-950/60 border border-border/80 p-6 sm:p-8 lg:p-10 shadow-sm overflow-hidden backdrop-blur-md">
-            {/* Background Decorative Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#94a3b8_1px,transparent_1px),linear-gradient(to_bottom,#94a3b8_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-15 pointer-events-none" />
+      {mounted && !isInstalled && (
+        <div className="border-b border-border/40">
+          <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+            <div className="relative rounded-3xl bg-gradient-to-r from-blue-50/90 via-card to-emerald-50/90 dark:from-blue-950/60 dark:via-slate-900/80 dark:to-emerald-950/60 border border-border/80 p-6 sm:p-8 lg:p-10 shadow-sm overflow-hidden backdrop-blur-md">
+              {/* Background Decorative Grid */}
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#94a3b8_1px,transparent_1px),linear-gradient(to_bottom,#94a3b8_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-15 pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6">
-              {/* Text Area */}
-              <div className="space-y-2 max-w-2xl">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-foreground tracking-tight">
-                  {getT("newsletter.title", "Sẵn sàng tham gia & nhận thông báo trận đấu mới nhất?")}
-                </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  {getT(
-                    "newsletter.subtitle",
-                    "Cập nhật các giải đấu phong trào, tin tức cầu lông, pickleball và cơ hội ghép kèo giao lưu mỗi ngày."
-                  )}
-                </p>
-              </div>
+              <div className="relative z-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6">
+                {/* Text Area */}
+                <div className="space-y-2 max-w-2xl">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-foreground tracking-tight">
+                    {getT("newsletter.title", "Sẵn sàng tham gia & nhận thông báo trận đấu mới nhất?")}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    {getT(
+                      "newsletter.subtitle",
+                      "Cập nhật các giải đấu phong trào, tin tức cầu lông, pickleball và cơ hội ghép kèo giao lưu mỗi ngày."
+                    )}
+                  </p>
+                </div>
 
-              {/* App Download Action Card */}
-              <div className="shrink-0">
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-card/90 border border-border/80 shadow-sm backdrop-blur-xs">
-                  <div className="flex items-center gap-3">
-                    <div className="relative w-11 h-11 shrink-0 overflow-hidden rounded-xl border border-border/80 bg-muted shadow-2xs">
-                      <Image
-                        src="/icons/icon-192x192.png"
-                        alt="PlayGrid App Icon"
-                        width={44}
-                        height={44}
-                        className="w-full h-full object-cover"
-                      />
+                {/* App Download Action Card */}
+                <div className="shrink-0">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-card/90 border border-border/80 shadow-sm backdrop-blur-xs">
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-11 h-11 shrink-0 overflow-hidden rounded-xl border border-border/80 bg-muted shadow-2xs">
+                        <Image
+                          src="/icons/icon-192x192.png"
+                          alt="PlayGrid App Icon"
+                          width={44}
+                          height={44}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h4 className="text-xs sm:text-sm font-bold text-foreground leading-tight">
+                          {getT("pwa.title", "Cài app PlayGrid tức thì")}
+                        </h4>
+                        <p className="text-[11px] text-muted-foreground mt-0.5 max-w-[200px] sm:max-w-[240px] leading-snug">
+                          {getT("pwa.subtitle", "Thêm vào màn hình chính chỉ trong 1s – Không cần App Store, không nặng máy")}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-foreground leading-tight">
-                        {getT("pwa.title", "Cài app PlayGrid tức thì")}
-                      </h4>
-                      <p className="text-[11px] text-muted-foreground mt-0.5 max-w-[200px] sm:max-w-[240px] leading-snug">
-                        {getT("pwa.subtitle", "Thêm vào màn hình chính chỉ trong 1s – Không cần App Store, không nặng máy")}
-                      </p>
-                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleInstallPWA}
+                      className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-xl bg-gradient-to-r from-[#0052FF] to-[#00E575] hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-md transition-all shrink-0 cursor-pointer active:scale-[0.98]"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>{isInstalled ? getT("pwa.installed_btn", "Đã có app") : getT("pwa.install_btn", "Cài app ngay")}</span>
+                    </button>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={handleInstallPWA}
-                    className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-xl bg-gradient-to-r from-[#0052FF] to-[#00E575] hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-md transition-all shrink-0 cursor-pointer active:scale-[0.98]"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>{isInstalled ? getT("pwa.installed_btn", "Đã có app") : getT("pwa.install_btn", "Cài app ngay")}</span>
-                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main Footer Links Columns */}
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
@@ -187,13 +208,13 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm text-muted-foreground">
               <li>
-                <Link href="/courts?sport=badminton" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-1.5">
+                <Link href="/badminton/venue" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors inline-flex items-center gap-1.5">
                   <ArrowRight className="w-3 h-3 text-muted-foreground/60" />
                   <span>Cầu lông (Badminton)</span>
                 </Link>
               </li>
               <li>
-                <Link href="/courts?sport=pickleball" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5">
+                <Link href="/pickleball" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5">
                   <ArrowRight className="w-3 h-3 text-muted-foreground/60" />
                   <span>Pickleball</span>
                 </Link>

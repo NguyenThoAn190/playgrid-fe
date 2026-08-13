@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Users } from "lucide-react";
 import { FindPlayerCard, ActivityData } from "@/components/activities/find-player-card";
 import { useTranslations } from "next-intl";
 
@@ -158,17 +158,21 @@ export function FindPlayersSection() {
   }, [isHovered, scroll]);
 
   return (
-    <section id="find-players" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden border-t border-border/40 scroll-mt-20">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+    <section id="find-players" className="relative w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden border-t border-border/40 scroll-mt-20">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-orange-500/5 rounded-full blur-[130px] pointer-events-none" />
+
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6 relative z-10">
         {/* Section Header */}
         <div className="flex items-center justify-between">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-            {tHome("title")}
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+            <Users className="w-5 h-5 text-[#FF7A00]" />
+            <span>{tHome("title")}</span>
           </h2>
 
           <Link
             href="/activities"
-            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#FF7A00] dark:text-orange-400 hover:underline transition-colors"
           >
             <span>{tCommon("view_all")}</span>
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

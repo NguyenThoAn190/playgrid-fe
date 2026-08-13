@@ -28,7 +28,10 @@ export default function SportDetailPage() {
       <SportSubNav currentSport={sportKey} />
 
       {/* Sport Hero Banner & Real-time Stats */}
-      <SportHero sportName={sportName} />
+      <SportHero
+        sportName={sportName}
+        heroImage={sportKey === "badminton" ? "/images/badminton/herobanner/gridy-badminton.avif" : undefined}
+      />
 
       {/* Badminton Courts Finder Grid */}
       <SportCourtsGrid sportName={sportName} />

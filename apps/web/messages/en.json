@@ -27,6 +27,9 @@
     "activities": "Activities",
     "tournaments": "Tournaments",
     "blog": "Blog & News",
+    "about": "About Us",
+    "pricing": "Pricing",
+    "contact": "Contact",
     "create_new": "Create new",
     "create_post": "Create post",
     "profile": "Profile",
@@ -215,6 +218,112 @@
     },
     "col4": {
       "title": "Support"
+    }
+  },
+  "badminton_venue": {
+    "search_placeholder": "Search by badminton court name...",
+    "filter_btn": "Filters",
+    "map_view": "Map",
+    "list_view": "List",
+    "show_on_map": "Show on map",
+    "map_title": "Badminton Courts Visual Map",
+    "map_desc": "Display visual location of badminton courts on the map.",
+    "map_sidebar_title": "Area List",
+    "filter_title": "Filter by:",
+    "reset_filter": "Reset",
+    "district_title": "District / Area",
+    "price_title": "Your budget (per hour)",
+    "rating_title": "Star Rating",
+    "amenities_title": "Court Amenities",
+    "type_title": "Court Type",
+    "all": "All",
+    "found_prefix": "Found",
+    "found_suffix": "badminton courts",
+    "empty_title": "No matching badminton courts found",
+    "empty_desc": "Try adjusting your filter criteria or click reset to view all courts.",
+    "reset_all": "Reset filters",
+    "sort": {
+      "recommended": "Recommended",
+      "rating": "Highest Rated",
+      "price_asc": "Price: Low to High",
+      "price_desc": "Price: High to Low"
+    },
+    "price_tiers": {
+      "under_160": "Under 160.000đ/hr",
+      "between_160_200": "160.000đ - 200.000đ/hr",
+      "over_200": "Over 200.000đ/hr"
+    },
+    "ratings": {
+      "4_8": "4.8+ Excellent",
+      "4_5": "4.5+ Very Good"
+    },
+    "amenities": {
+      "ac": "Air Conditioning",
+      "bwf": "BWF Standard Mat",
+      "parking": "Car Parking",
+      "vip": "VIP Court",
+      "canteen": "Canteen & Refreshment",
+      "shower": "Shower & Locker",
+      "wifi": "Free Wifi",
+      "proshop": "Pro Shop & Stringing"
+    },
+    "types": {
+      "indoor": "Indoor Court",
+      "tournament": "Tournament Court",
+      "vip": "VIP Court"
+    }
+  },
+  "pickleball_venue": {
+    "search_placeholder": "Search by Pickleball court name...",
+    "filter_btn": "Filters",
+    "map_view": "Map",
+    "list_view": "List",
+    "show_on_map": "Show on map",
+    "map_title": "Pickleball Courts Visual Map",
+    "map_desc": "Display visual location of Pickleball courts on map.",
+    "map_sidebar_title": "Area List",
+    "filter_title": "Filter by:",
+    "reset_filter": "Reset",
+    "district_title": "District / Area",
+    "price_title": "Your budget (per hour)",
+    "rating_title": "Star Rating",
+    "amenities_title": "Court Amenities",
+    "type_title": "Court Type",
+    "all": "All",
+    "found_prefix": "Found",
+    "found_suffix": "Pickleball courts",
+    "empty_title": "No matching Pickleball courts found",
+    "empty_desc": "Try adjusting your filter criteria or click reset to view all courts.",
+    "reset_all": "Reset filters",
+    "sort": {
+      "recommended": "Recommended",
+      "rating": "Highest Rated",
+      "price_asc": "Price: Low to High",
+      "price_desc": "Price: High to Low"
+    },
+    "price_tiers": {
+      "under_160": "Under 160.000đ/hr",
+      "between_160_200": "160.000đ - 200.000đ/hr",
+      "over_200": "Over 200.000đ/hr"
+    },
+    "ratings": {
+      "4_8": "4.8+ Excellent",
+      "4_5": "4.5+ Very Good"
+    },
+    "amenities": {
+      "ac": "Air Conditioning",
+      "bwf": "USAPA Standard Court",
+      "parking": "Car Parking",
+      "vip": "VIP Court",
+      "canteen": "Canteen & Refreshment",
+      "shower": "Shower & Locker",
+      "wifi": "Free Wifi",
+      "proshop": "Paddle & Ball Shop"
+    },
+    "types": {
+      "indoor": "Indoor Court",
+      "tournament": "Tournament Court",
+      "vip": "VIP Court"
     }
   }
 }
