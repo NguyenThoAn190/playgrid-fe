@@ -3,9 +3,10 @@
 import * as React from "react";
 import Cookies from "js-cookie";
 import { Link, usePathname } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { ChevronDown, User, Settings, LogOut } from "lucide-react";
 import { CookiesContains } from "@workspace/shared/constants/cookies";
+import { getLoginUrl, clearAuthCookies, isUserAuthenticated } from "@workspace/shared/utils/sso";
 import tokenManager from "@workspace/shared/services/utils/tokenManager";
 
 import { Logo } from "./logo";
@@ -30,32 +31,38 @@ import { useHeaderVisible } from "@/hooks/use-scroll-direction";
 
 export function DesktopNavbar() {
   const t = useTranslations("navbar");
+  const locale = useLocale();
   const pathname = usePathname();
   const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const checkAuth = () => {
-      const token =
-        Cookies.get("token") ||
-        Cookies.get("accessToken") ||
-        Cookies.get(CookiesContains.TOKEN) ||
-        Cookies.get("refresh_token") ||
-        Cookies.get(CookiesContains.EMAIL);
-      setIsAuthenticated(Boolean(token));
+      const isAuth =
+        isUserAuthenticated() ||
+        Boolean(
+          Cookies.get("token") ||
+          Cookies.get("accessToken") ||
+          Cookies.get(CookiesContains.TOKEN) ||
+          Cookies.get(CookiesContains.EMAIL)
+        );
+      setIsAuthenticated(isAuth);
     };
 
     checkAuth();
   }, []);
 
   const handleLogout = () => {
-    Cookies.remove("token");
+    clearAuthCookies();
     Cookies.remove("accessToken");
-    Cookies.remove("refresh_token");
-    Cookies.remove(CookiesContains.EMAIL);
-    Cookies.remove(CookiesContains.ROLE);
     tokenManager.removeTokens();
     setIsAuthenticated(false);
     window.location.reload();
+  };
+
+  const handleLoginRedirect = () => {
+    if (typeof window !== "undefined") {
+      window.location.href = getLoginUrl(window.location.href, locale);
+    }
   };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId?: string) => {
@@ -172,11 +179,12 @@ export function DesktopNavbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Link href="/auth/login" className="shrink-0">
-              <Button className="rounded-xl font-semibold px-5 py-2 h-9 text-xs sm:text-sm whitespace-nowrap shrink-0 bg-gradient-primary text-white shadow-sm hover:opacity-95 active:scale-95 transition-all">
-                {t("login")}
-              </Button>
-            </Link>
+            <Button
+              onClick={handleLoginRedirect}
+              className="rounded-xl font-semibold px-5 py-2 h-9 text-xs sm:text-sm whitespace-nowrap shrink-0 bg-gradient-primary text-white shadow-sm hover:opacity-95 active:scale-95 transition-all cursor-pointer"
+            >
+              {t("login")}
+            </Button>
           )}
         </div>
       </div>

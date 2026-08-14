@@ -325,5 +325,194 @@
       "tournament": "Tournament Court",
       "vip": "VIP Court"
     }
+  },
+  "venue": {
+    "header": {
+      "verified_partner": "PlayGrid Official Partner",
+      "top_booked": "Most Booked",
+      "reviews": "reviews",
+      "favorite": "Favorite",
+      "favorited": "Saved",
+      "share": "Share",
+      "directions": "Directions",
+      "open_hours": "Open Hours",
+      "share_toast": "Venue link copied to clipboard!",
+      "favorite_toast": "Venue added to your favorites!"
+    },
+    "gallery": {
+      "real_photos": "Real photos",
+      "view_all": "View all {count} photos",
+      "fullscreen": "Fullscreen",
+      "close": "Close",
+      "photo": "photo"
+    },
+    "booking": {
+      "title": "Choose Court & Time Slot",
+      "subtitle": "Court booking matrix — easily select time slots and book instantly",
+      "modes": {
+        "single": "Hourly Booking",
+        "recurring": "Fixed (-10%)",
+        "matchmaking": "Find Players"
+      },
+      "select_date": "Select Date",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "periods": {
+        "all": "All",
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening"
+      },
+      "legend": {
+        "available": "Available",
+        "peak": "Peak hours",
+        "booked": "Booked",
+        "selected": "Selected",
+        "past": "Past"
+      },
+      "matrix_title": "Court Booking Matrix",
+      "court_label": "Court",
+      "empty_slot_hint": "Click on a slot to select",
+      "no_slots_found": "No available slots in this period"
+    },
+    "sidebar": {
+      "title": "Booking Summary",
+      "selected_slots": "Selected Slots",
+      "date_label": "Date",
+      "addons_title": "Add-ons & Equipment",
+      "subtotal": "Subtotal",
+      "court_rental_fee": "Court rental ({count} slots)",
+      "discount": "Discount",
+      "total": "Total Amount",
+      "proceed_btn": "Proceed to Booking",
+      "no_slots_selected": "Please select at least 1 slot from the matrix",
+      "empty_title": "No time slots selected yet",
+      "empty_desc": "Please select available time slots from the matrix on the left to proceed.",
+      "peak_slot": "Peak hour",
+      "coupon_placeholder": "Discount code (PLAYGRID20)",
+      "apply": "Apply",
+      "remove_coupon": "Remove",
+      "coupon_error": "Invalid or expired promo code",
+      "recurring_discount_label": "Fixed booking discount (-10%)",
+      "coupon_discount_label": "Discount code ({code})",
+      "grand_total": "Total payment:",
+      "vat_included": "(VAT & service fees included)",
+      "book_now": "Book Court",
+      "guarantee_slot": "100% reservation guaranteed upon payment",
+      "free_cancellation": "Free cancellation/reschedule up to 6 hours before",
+      "support_hotline": "PlayGrid Support Hotline: 1900 6868",
+      "remove": "Remove",
+      "clear_all": "Clear all",
+      "mobile_bar_selected": "{count} slots selected",
+      "mobile_book_now": "Book now"
+    },
+    "matchmaking": {
+      "title": "Open Matchmaking Hub",
+      "subtitle": "Join matches looking for players today or post a new match to invite others",
+      "create_btn": "+ Post New Match",
+      "matches_count": "{count} matches",
+      "host_label": "Host",
+      "progress_label": "Matching Progress",
+      "full_status": "Fully Booked",
+      "missing_players": "Need {count} more players",
+      "format_label": "Format",
+      "join_btn": "Join Match",
+      "joined_btn": "Joined",
+      "view_all": "View all ({count} matches)",
+      "collapse": "Collapse list",
+      "trust_hint": "Slot Reservation Guarantee: 100% of open matches are coordinated and confirmed with the venue."
+    },
+    "about": {
+      "title": "About {name}",
+      "verified_badge": "100% Verified Info",
+      "read_more": "Read more about this venue",
+      "collapse": "Collapse description"
+    },
+    "amenities": {
+      "title": "Venue Amenities & Services",
+      "subtitle": "Comprehensive sports equipment and player support facilities"
+    },
+    "rules": {
+      "rules_title": "Venue Rules & Guidelines",
+      "rules_subtitle": "Please follow court rules to maintain shared sports facilities",
+      "cancellation_title": "Flexible Cancellation Policy"
+    },
+    "location": {
+      "title": "Location & Directions",
+      "subtitle": "Convenient access from neighboring districts",
+      "copy_address": "Copy address",
+      "copied": "Address copied!",
+      "open_maps": "Open in Google Maps",
+      "exact_address": "Exact Address",
+      "open_hours_title": "Opening Hours",
+      "everyday": "Daily (Mon - Sun)",
+      "hotline": "Booking Hotline",
+      "entrance_hint": "Entrance Guide:",
+      "entrance_hint_desc": "Gate 2 Lu Gia or Main Gate Ly Thuong Kiet (Security will guide car parking)."
+    },
+    "reviews": {
+      "title": "Community Reviews ({count})",
+      "subtitle": "100% verified reviews from athletes who played at this venue",
+      "write_review": "Write a Review",
+      "based_on_reviews": "Based on {count} verified reviews",
+      "filter_label": "Filter:",
+      "verified_booking": "Verified Player",
+      "played_at": "Played at: {court}",
+      "categories": {
+        "cleanliness": "Cleanliness & Lockers",
+        "lighting": "Lighting & LED Quality",
+        "surfaceQuality": "Court Surface & Mats",
+        "service": "Staff Service & Support"
+      },
+      "filter_all": "All",
+      "helpful": "Helpful"
+    },
+    "related": {
+      "title": "Nearby Recommended Courts",
+      "subtitle": "Discover other top-quality sports venues in the area",
+      "view_all": "View all"
+    },
+    "articles": {
+      "title": "Articles & Court Insights",
+      "subtitle": "Detailed reviews, gameplay techniques, and venue guides",
+      "view_all": "View all articles",
+      "read_more": "Read article",
+      "read_time": "{time}",
+      "author_prefix": "By:"
+    },
+    "checkout": {
+      "title": "Confirm Court Booking",
+      "info_and_payment": "Information & Payment",
+      "slots_list": "Selected time slots ({count} slots):",
+      "customer_info": "Customer Information",
+      "full_name": "Full Name",
+      "full_name_label": "Full Name *",
+      "phone": "Phone Number",
+      "phone_label": "Phone Number *",
+      "email_label": "Email for E-Ticket",
+      "note": "Note for Venue Management",
+      "note_placeholder": "e.g., Please prepare courts near cooling fans...",
+      "payment_methods": "Payment Methods",
+      "bank_transfer": "Bank VietQR Transfer 24/7",
+      "vietqr_desc": "Instant auto-confirmation in 3s",
+      "wallet_label": "PlayGrid Pay Wallet",
+      "wallet_desc": "Balance: 500,000 VND",
+      "momo_label": "MoMo / ZaloPay E-Wallet",
+      "momo_desc": "Scan QR to pay with wallet",
+      "card_label": "ATM / Visa / Mastercard",
+      "card_desc": "Secured payment gateway",
+      "at_venue": "Pay at Venue",
+      "total_payment": "Total payment:",
+      "confirm_btn": "Confirm & Pay",
+      "processing": "Processing...",
+      "success_badge": "Booking Confirmed!",
+      "booking_code": "Booking Code: {code}",
+      "ticket_sent_desc": "E-Ticket has been sent to email {email} and phone number {phone}.",
+      "play_date": "Date:",
+      "booker": "Booker:",
+      "time_slots": "Time slots:",
+      "download_ticket": "Download E-Ticket (PDF)",
+      "close": "Close"
+    }
   }
 }

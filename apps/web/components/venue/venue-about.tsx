@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
 import { Info, ChevronDown, CheckCircle2, MapPin, Sparkles } from "lucide-react";
-import { Card } from "@workspace/ui/components/card";
 import { Button } from "@workspace/ui/components/button";
 import { VenueDetailData } from "@/lib/venue-data";
 
@@ -14,6 +14,10 @@ interface VenueAboutProps {
 
 export function VenueAbout({ venue, contentHtml }: VenueAboutProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const tAbout = useTranslations("venue.about");
+  const locale = useLocale();
+  const isEn = locale === "en";
 
   return (
     <article
@@ -28,11 +32,11 @@ export function VenueAbout({ venue, contentHtml }: VenueAboutProps) {
           className="text-base sm:text-lg font-bold tracking-tight text-foreground flex items-center gap-2"
         >
           <Info className="size-5 text-brand-blue dark:text-brand-green shrink-0" />
-          <span>Giới thiệu cụm sân {venue.shortName}</span>
+          <span>{tAbout("title", { name: venue.shortName })}</span>
         </h2>
         <span className="text-[11px] font-semibold text-muted-foreground hidden sm:inline-flex items-center gap-1">
           <CheckCircle2 className="size-3.5 text-emerald-500" />
-          Thông tin xác thực 100%
+          {tAbout("verified_badge")}
         </span>
       </header>
 
@@ -50,6 +54,105 @@ export function VenueAbout({ venue, contentHtml }: VenueAboutProps) {
               className="prose dark:prose-invert prose-sm max-w-none text-foreground/90 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: contentHtml || venue.contentHtml || "" }}
             />
+          ) : isEn ? (
+            <>
+              {/* Lead Paragraph */}
+              <p className="text-foreground/90 font-medium text-xs sm:text-sm leading-relaxed">
+                {venue.description}
+              </p>
+
+              {/* Highlight Features Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div className="p-3.5 rounded-2xl bg-muted/30 border border-border/60 space-y-1.5">
+                  <h3 className="font-bold text-xs sm:text-sm text-foreground flex items-center gap-1.5">
+                    <Sparkles className="size-4 text-amber-500 shrink-0" />
+                    BWF Standard Tournament Mats
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-normal">
+                    100% of courts are fitted with 5.0mm professional shock-absorbing sports flooring, minimizing knee impact and offering top-tier traction.
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-muted/30 border border-border/60 space-y-1.5">
+                  <h3 className="font-bold text-xs sm:text-sm text-foreground flex items-center gap-1.5">
+                    <Sparkles className="size-4 text-brand-blue shrink-0" />
+                    Anti-Glare LED Lighting System
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-normal">
+                    Even 500-lux lateral LED lighting prevents glare during overhead smashes and defensive clears.
+                  </p>
+                </div>
+              </div>
+
+              {/* Detailed Content Sections */}
+              <div className="space-y-3 pt-2">
+                <h3 className="text-sm sm:text-base font-bold text-foreground">
+                  Spacious 11m High Ceiling & Premium Facilities
+                </h3>
+                <p>
+                  Features an 11-meter ceiling with natural airflow cross-ventilation and heavy-duty industrial circulation fans. Over 1.5m spacing between courts ensures player safety and freedom of movement during intense rallies.
+                </p>
+              </div>
+
+              {/* Visual Showcase Gallery Images within Content */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/60 group">
+                  <Image
+                    src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=600&auto=format&fit=crop&q=80"
+                    alt={`Tournament standard flooring at ${venue.name}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 640px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-2">
+                    <span className="text-[10px] sm:text-xs font-semibold text-white truncate">
+                      BWF Standard Surface
+                    </span>
+                  </div>
+                </div>
+
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/60 group">
+                  <Image
+                    src="https://images.unsplash.com/photo-1613918108466-292b78a8ef95?w=600&auto=format&fit=crop&q=80"
+                    alt={`Anti-glare LED illumination at ${venue.name}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 640px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-2">
+                    <span className="text-[10px] sm:text-xs font-semibold text-white truncate">
+                      500 Lux Anti-glare LED
+                    </span>
+                  </div>
+                </div>
+
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/60 group col-span-2 sm:col-span-1">
+                  <Image
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop&q=80"
+                    alt={`Grandstand and canteen at ${venue.name}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-2">
+                    <span className="text-[10px] sm:text-xs font-semibold text-white truncate">
+                      Grandstand & Refreshment
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Location and Accessibility */}
+              <div className="space-y-2 pt-1">
+                <h3 className="text-sm sm:text-base font-bold text-foreground flex items-center gap-1.5">
+                  <MapPin className="size-4 text-rose-500 shrink-0" />
+                  Prime Location & Spacious Parking
+                </h3>
+                <p>
+                  Conveniently situated at <strong>{venue.address}</strong> with easy access from major roads. Includes covered motorcycle and car parking with 24/7 security, free for PlayGrid online bookings.
+                </p>
+              </div>
+            </>
           ) : (
             <>
               {/* Lead Paragraph */}
@@ -172,7 +275,7 @@ export function VenueAbout({ venue, contentHtml }: VenueAboutProps) {
           aria-controls="venue-about-content"
           className="h-8.5 px-4 rounded-xl border-border/80 text-xs font-bold text-brand-blue dark:text-brand-green hover:bg-muted/70 cursor-pointer transition-all shadow-2xs hover:border-brand-blue/40"
         >
-          <span>{isExpanded ? "Thu gọn nội dung" : "Xem thêm nội dung giới thiệu"}</span>
+          <span>{isExpanded ? tAbout("collapse") : tAbout("read_more")}</span>
           <ChevronDown
             className={`size-3.5 ml-1.5 transition-transform duration-300 ${
               isExpanded ? "rotate-180" : ""

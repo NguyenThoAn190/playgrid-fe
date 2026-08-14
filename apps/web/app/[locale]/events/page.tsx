@@ -1,105 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { EventCard, EventData } from "@/components/events/event-card";
-import { Search, Filter, Calendar, MapPin } from "lucide-react";
+import { EventCard } from "@/components/events/event-card";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
-const EVENTS_DATA: EventData[] = [
-  {
-    id: "aqua-warriors-2026",
-    title: "Giải Aqua Warriors Vân Đồn năm 2026",
-    category: "Triathlon / Bơi biển",
-    distanceText: "Bơi 3km • Aquathlon",
-    badge: {
-      type: "hot",
-      text: "Nổi bật",
-    },
-    date: "12 - 13 Tháng 9, 2026",
-    location: "Bãi biển Vân Đồn, Quảng Ninh",
-    price: "479.000đ",
-    priceSubtext: "Chỉ từ",
-    imageUrl: "/images/events/aqua-warriors.png",
-    buttonText: "Đăng ký",
-  },
-  {
-    id: "nghe-an-legacy-marathon-2026",
-    title: "NGHỆ AN LEGACY MARATHON - VỀ MIỀN NON XANH NƯỚC BIẾC",
-    category: "Marathon",
-    distanceText: "5km - 10km - 21km - 42km",
-    badge: {
-      type: "recommended",
-      text: "Đề xuất",
-    },
-    date: "05 - 06 Tháng 12, 2026",
-    location: "Quảng trường Bình Minh, Cửa Lò, Nghệ An",
-    price: "137.000đ",
-    priceSubtext: "Chỉ từ",
-    imageUrl: "/images/events/legacy-marathon.png",
-    buttonText: "Đăng ký",
-  },
-  {
-    id: "dak-lak-ultra-2026",
-    title: "Đắk Lắk Ultra - Vietnam Backyard 2026",
-    category: "Trail Running",
-    distanceText: "15km - 25km - 42km - 75km",
-    date: "14 - 16 Tháng 8, 2026",
-    location: "Hồ du lịch sinh thái Ea Cuôr Kăp - Tỉnh Đắk Lắk",
-    price: "399.000đ",
-    priceSubtext: "Chỉ từ",
-    imageUrl: "/images/events/daklak-ultra.png",
-    buttonText: "Đăng ký",
-  },
-  {
-    id: "hanoi-badminton-open-2026",
-    title: "Giải Cầu Lông Hà Nội Open 2026 - Mở Rộng Toàn Quốc",
-    category: "Giải cầu lông",
-    distanceText: "Đôi Nam • Đôi Nữ • Đôi Nam Nữ",
-    badge: {
-      type: "hot",
-      text: "Hot",
-    },
-    date: "20 - 22 Tháng 10, 2026",
-    location: "Nhà thi đấu Trịnh Hoài Đức, Đống Đa, Hà Nội",
-    price: "250.000đ",
-    priceSubtext: "Chỉ từ",
-    imageUrl: "/images/activities/badminton-banner.png",
-    buttonText: "Đăng ký",
-  },
-  {
-    id: "saigon-pickleball-championship",
-    title: "Giải Pickleball Vô Địch TP. HCM 2026 - Master Cup",
-    category: "Pickleball",
-    distanceText: "Đơn & Đôi • Trình 3.0 - 4.5+",
-    badge: {
-      type: "recommended",
-      text: "Đề xuất",
-    },
-    date: "10 - 12 Tháng 11, 2026",
-    location: "Pickleball Club Quận 2, Thủ Đức, TP. HCM",
-    price: "300.000đ",
-    priceSubtext: "Chỉ từ",
-    imageUrl: "/images/activities/pickleball-banner.png",
-    buttonText: "Đăng ký",
-  },
-  {
-    id: "music-fest-summer-2026",
-    title: "Đại Nhạc Hội Thể Thao & Âm Nhạc Summer Fest 2026",
-    category: "Concert / Âm nhạc",
-    distanceText: "Vé GA • VIP • SVIP",
-    badge: {
-      type: "hot",
-      text: "Nổi bật",
-    },
-    date: "30 Tháng 8, 2026",
-    location: "Sân vận động Mỹ Đình, Nam Từ Liêm, Hà Nội",
-    price: "550.000đ",
-    priceSubtext: "Chỉ từ",
-    imageUrl: "/images/activities/football-banner.png",
-    buttonText: "Mua vé",
-  },
-];
+import { EVENTS_DATA } from "@/lib/events-data";
 
 const CATEGORIES = [
   "Tất cả",

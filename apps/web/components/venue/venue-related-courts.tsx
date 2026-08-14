@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { ChevronRight, Compass } from "lucide-react";
 import { CourtCard, CourtData } from "@/components/courts/court-card";
 
@@ -10,7 +11,7 @@ const NEARBY_COURTS: CourtData[] = [
     id: "viettel-badminton",
     name: "Sân Cầu Lông Viettel Hùng Vương",
     location: "Quận 10, TP. HCM",
-    distance: "1.8 km từ Phú Thọ",
+    distance: "1.8 km",
     rating: 4.9,
     reviewsCount: 96,
     price: "150.000đ/giờ",
@@ -45,16 +46,19 @@ const NEARBY_COURTS: CourtData[] = [
 ];
 
 export function VenueRelatedCourts() {
+  const tRelated = useTranslations("venue.related");
+  const tCommon = useTranslations("common");
+
   return (
     <div className="space-y-3 pt-2">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
             <Compass className="size-5 text-brand-blue" />
-            Sân thể thao nổi bật lân cận
+            {tRelated("title")}
           </h3>
           <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-            Khám phá thêm các cụm sân chất lượng cao khác
+            {tRelated("subtitle")}
           </p>
         </div>
 
@@ -62,7 +66,7 @@ export function VenueRelatedCourts() {
           href="/badminton/venue"
           className="flex items-center gap-1 text-xs font-bold text-brand-blue dark:text-brand-green hover:underline"
         >
-          <span>Xem tất cả</span>
+          <span>{tCommon("view_all")}</span>
           <ChevronRight className="size-3.5" />
         </Link>
       </div>

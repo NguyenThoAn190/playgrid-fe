@@ -49,8 +49,7 @@ export default async function LocaleLayout({
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <PWARegister />
-          <Navbar />
-          <main className="flex-1 pb-16 md:pb-0">{children}</main>
+          <main className="flex-1 min-h-screen">{children}</main>
           <InstallPrompt />
         </NextIntlClientProvider>
       </ThemeProvider>

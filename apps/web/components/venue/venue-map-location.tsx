@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { MapPin, Navigation, Copy, Check, Phone, Clock } from "lucide-react";
 import { Card } from "@workspace/ui/components/card";
 import { Button } from "@workspace/ui/components/button";
@@ -12,6 +13,9 @@ interface VenueMapLocationProps {
 
 export function VenueMapLocation({ venue }: VenueMapLocationProps) {
   const [copied, setCopied] = useState(false);
+
+  const tLoc = useTranslations("venue.location");
+  const locale = useLocale();
 
   const handleCopyAddress = () => {
     if (typeof window !== "undefined") {
@@ -29,10 +33,10 @@ export function VenueMapLocation({ venue }: VenueMapLocationProps) {
         <div>
           <h3 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
             <MapPin className="size-5 text-brand-blue dark:text-brand-green" />
-            Vị trí & Chỉ đường
+            {tLoc("title")}
           </h3>
           <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-            Dễ dàng di chuyển từ các quận lân cận
+            {tLoc("subtitle")}
           </p>
         </div>
 
@@ -46,12 +50,12 @@ export function VenueMapLocation({ venue }: VenueMapLocationProps) {
             {copied ? (
               <>
                 <Check className="size-3.5 mr-1 text-emerald-500" />
-                <span>Đã chép địa chỉ</span>
+                <span>{tLoc("copied")}</span>
               </>
             ) : (
               <>
                 <Copy className="size-3.5 mr-1" />
-                <span>Sao chép địa chỉ</span>
+                <span>{tLoc("copy_address")}</span>
               </>
             )}
           </Button>
@@ -62,7 +66,7 @@ export function VenueMapLocation({ venue }: VenueMapLocationProps) {
               className="h-8 px-3 text-xs font-semibold rounded-xl bg-gradient-primary text-white"
             >
               <Navigation className="size-3.5 mr-1" />
-              <span>Mở Google Maps</span>
+              <span>{tLoc("open_maps")}</span>
             </Button>
           </a>
         </div>
@@ -80,7 +84,7 @@ export function VenueMapLocation({ venue }: VenueMapLocationProps) {
             loading="lazy"
             allowFullScreen
             referrerPolicy="no-referrer-when-downgrade"
-            src={`https://maps.google.com/maps?q=${venue.coordinates.lat},${venue.coordinates.lng}&hl=vi&z=15&output=embed`}
+            src={`https://maps.google.com/maps?q=${venue.coordinates.lat},${venue.coordinates.lng}&hl=${locale}&z=15&output=embed`}
             className="w-full h-full grayscale-[20%] dark:invert-[90%] dark:hue-rotate-180 min-h-[260px]"
           />
 
@@ -97,7 +101,7 @@ export function VenueMapLocation({ venue }: VenueMapLocationProps) {
             <div className="space-y-1">
               <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
                 <MapPin className="size-3.5 text-brand-blue" />
-                Địa chỉ chính xác
+                {tLoc("exact_address")}
               </span>
               <p className="text-xs font-medium text-foreground leading-relaxed">
                 {venue.address}
@@ -107,17 +111,17 @@ export function VenueMapLocation({ venue }: VenueMapLocationProps) {
             <div className="space-y-1">
               <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
                 <Clock className="size-3.5 text-brand-green" />
-                Thời gian mở cửa
+                {tLoc("open_hours_title")}
               </span>
               <p className="text-xs font-semibold text-foreground leading-snug">
-                05:00 - 23:00 <span className="text-muted-foreground font-normal">• Hằng ngày (Thứ 2 - CN)</span>
+                05:00 - 23:00 <span className="text-muted-foreground font-normal">• {tLoc("everyday")}</span>
               </p>
             </div>
 
             <div className="space-y-1">
               <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
                 <Phone className="size-3.5 text-amber-500" />
-                Hotline đặt sân
+                {tLoc("hotline")}
               </span>
               <p className="text-xs font-bold text-foreground">
                 {venue.phone}
@@ -127,7 +131,7 @@ export function VenueMapLocation({ venue }: VenueMapLocationProps) {
 
           <div className="pt-2 border-t border-border/60">
             <p className="text-[11px] text-muted-foreground leading-relaxed">
-              💡 <strong>Chỉ dẫn cổng vào:</strong> Cổng 2 Lữ Gia hoặc Cổng chính Lý Thường Kiệt (Bảo vệ hướng dẫn đậu ô tô).
+              💡 <strong>{tLoc("entrance_hint")}</strong> {tLoc("entrance_hint_desc")}
             </p>
           </div>
         </div>

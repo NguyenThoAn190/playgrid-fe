@@ -1,4 +1,5 @@
 import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
@@ -39,13 +40,8 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  let messages;
-  try {
-    const mod = await import(`../../messages/${locale}.json`);
-    messages = mod.default ?? mod;
-  } catch {
-    notFound();
-  }
+  // Load messages using next-intl/server getMessages
+  const messages = await getMessages();
 
   return (
     <div
@@ -57,7 +53,7 @@ export default async function LocaleLayout({
       )}
     >
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider messages={messages}>
           <PWARegister />
           <Navbar />
           <main className="flex-1">{children}</main>

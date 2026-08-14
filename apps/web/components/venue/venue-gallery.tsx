@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Camera, Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 
@@ -13,6 +14,8 @@ interface VenueGalleryProps {
 export function VenueGallery({ images, venueName }: VenueGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const tGallery = useTranslations("venue.gallery");
 
   const activeImage = images[selectedIndex] || images[0] || "/images/activities/badminton-banner.png";
 
@@ -37,7 +40,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
         >
           <Image
             src={activeImage}
-            alt={`${venueName} - Ảnh ${selectedIndex + 1}`}
+            alt={`${venueName} - ${tGallery("photo")} ${selectedIndex + 1}`}
             fill
             unoptimized
             priority
@@ -53,7 +56,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
               setIsOpenModal(true);
             }}
             className="absolute top-3 right-3 z-10 p-2 rounded-xl bg-black/50 text-white backdrop-blur-md hover:bg-black/70 transition-all cursor-pointer"
-            aria-label="Xem ảnh phóng to"
+            aria-label={tGallery("fullscreen")}
           >
             <Maximize2 className="size-4" />
           </button>
@@ -65,7 +68,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
                 type="button"
                 onClick={handlePrev}
                 className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/40 text-white hover:bg-black/70 backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 cursor-pointer"
-                aria-label="Ảnh trước"
+                aria-label="Previous image"
               >
                 <ChevronLeft className="size-5" />
               </button>
@@ -73,7 +76,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
                 type="button"
                 onClick={handleNext}
                 className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/40 text-white hover:bg-black/70 backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 cursor-pointer"
-                aria-label="Ảnh kế tiếp"
+                aria-label="Next image"
               >
                 <ChevronRight className="size-5" />
               </button>
@@ -84,7 +87,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
           <div className="absolute bottom-3 left-3 z-10 flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-black/60 text-white backdrop-blur-md border border-white/20">
               <Camera className="size-3.5" />
-              {selectedIndex + 1} / {images.length} Ảnh thực tế
+              {selectedIndex + 1} / {images.length} {tGallery("real_photos")}
             </span>
           </div>
         </div>
@@ -119,7 +122,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
                     }}
                     className="absolute inset-0 bg-black/60 backdrop-blur-2xs flex items-center justify-center text-white font-bold text-sm hover:bg-black/50 transition-colors"
                   >
-                    +{images.length - 3} ảnh
+                    +{images.length - 3} {tGallery("photo")}
                   </div>
                 )}
               </button>
@@ -157,14 +160,14 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
             <div>
               <h3 className="font-bold text-sm sm:text-base">{venueName}</h3>
               <p className="text-xs text-white/70">
-                Hình ảnh {selectedIndex + 1} / {images.length}
+                {selectedIndex + 1} / {images.length} {tGallery("photo")}
               </p>
             </div>
             <button
               type="button"
               onClick={() => setIsOpenModal(false)}
               className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
-              aria-label="Đóng"
+              aria-label={tGallery("close")}
             >
               <X className="size-6" />
             </button>
@@ -187,7 +190,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
               type="button"
               onClick={handlePrev}
               className="absolute left-2 sm:left-4 p-3 rounded-full bg-white/15 text-white hover:bg-white/30 backdrop-blur-md transition-all cursor-pointer"
-              aria-label="Trước"
+              aria-label="Previous"
             >
               <ChevronLeft className="size-6" />
             </button>
@@ -195,7 +198,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
               type="button"
               onClick={handleNext}
               className="absolute right-2 sm:right-4 p-3 rounded-full bg-white/15 text-white hover:bg-white/30 backdrop-blur-md transition-all cursor-pointer"
-              aria-label="Sau"
+              aria-label="Next"
             >
               <ChevronRight className="size-6" />
             </button>

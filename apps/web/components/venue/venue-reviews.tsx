@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
-import { Star, ThumbsUp, MessageSquare, ShieldCheck, Sparkles, Filter } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Star, ThumbsUp, MessageSquare, ShieldCheck } from "lucide-react";
 import { Card } from "@workspace/ui/components/card";
 import { Button } from "@workspace/ui/components/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@workspace/ui/components/avatar";
@@ -16,6 +16,8 @@ interface VenueReviewsProps {
 export function VenueReviews({ venue }: VenueReviewsProps) {
   const [likesState, setLikesState] = useState<Record<string, number>>({});
   const [filterRating, setFilterRating] = useState<number | "all">("all");
+
+  const tRev = useTranslations("venue.reviews");
 
   const handleLike = (reviewId: string, initialLikes: number) => {
     setLikesState((prev) => ({
@@ -36,10 +38,10 @@ export function VenueReviews({ venue }: VenueReviewsProps) {
         <div>
           <h3 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
             <Star className="size-5 fill-amber-400 text-amber-400" />
-            Đánh giá từ cộng đồng người chơi ({venue.reviewsCount})
+            {tRev("title", { count: venue.reviewsCount })}
           </h3>
           <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-            100% đánh giá từ các vận động viên đã trải nghiệm sân thực tế
+            {tRev("subtitle")}
           </p>
         </div>
 
@@ -49,7 +51,7 @@ export function VenueReviews({ venue }: VenueReviewsProps) {
           className="h-8 px-3 rounded-xl border-border/80 text-xs font-semibold self-start sm:self-auto"
         >
           <MessageSquare className="size-3.5 mr-1.5" />
-          Viết đánh giá
+          {tRev("write_review")}
         </Button>
       </div>
 
@@ -66,17 +68,17 @@ export function VenueReviews({ venue }: VenueReviewsProps) {
             ))}
           </div>
           <p className="text-xs font-semibold text-muted-foreground">
-            Dựa trên {venue.reviewsCount} lượt đánh giá
+            {tRev("based_on_reviews", { count: venue.reviewsCount })}
           </p>
         </div>
 
         {/* Right: Detailed Metric Bars */}
         <div className="md:col-span-2 space-y-2.5 justify-center flex flex-col">
           {[
-            { label: "Chất lượng mặt thảm", score: venue.ratingBreakdown.surfaceQuality },
-            { label: "Độ sáng & Đèn LED", score: venue.ratingBreakdown.lighting },
-            { label: "Vệ sinh & Phòng thay đồ", score: venue.ratingBreakdown.cleanliness },
-            { label: "Thái độ phục vụ & Hỗ trợ", score: venue.ratingBreakdown.service },
+            { label: tRev("categories.surfaceQuality"), score: venue.ratingBreakdown.surfaceQuality },
+            { label: tRev("categories.lighting"), score: venue.ratingBreakdown.lighting },
+            { label: tRev("categories.cleanliness"), score: venue.ratingBreakdown.cleanliness },
+            { label: tRev("categories.service"), score: venue.ratingBreakdown.service },
           ].map((metric) => (
             <div key={metric.label} className="space-y-1 text-xs">
               <div className="flex justify-between font-semibold">
@@ -96,7 +98,7 @@ export function VenueReviews({ venue }: VenueReviewsProps) {
 
       {/* Review Filter Tags */}
       <div className="flex flex-wrap items-center gap-1.5 pt-1">
-        <span className="text-xs font-semibold text-muted-foreground mr-1">Lọc:</span>
+        <span className="text-xs font-semibold text-muted-foreground mr-1">{tRev("filter_label")}</span>
         <button
           type="button"
           onClick={() => setFilterRating("all")}
@@ -106,7 +108,7 @@ export function VenueReviews({ venue }: VenueReviewsProps) {
               : "bg-muted/60 text-muted-foreground hover:text-foreground"
           }`}
         >
-          Tất cả ({venue.reviews.length})
+          {tRev("filter_all")} ({venue.reviews.length})
         </button>
         {[5, 4, 3].map((star) => (
           <button
@@ -150,12 +152,12 @@ export function VenueReviews({ venue }: VenueReviewsProps) {
                         {rev.userName}
                       </h4>
                       <Badge className="bg-blue-600/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400 text-[10px] font-bold px-1.5 py-0 rounded-md">
-                        <ShieldCheck className="size-3 mr-0.5" /> Đã đặt sân
+                        <ShieldCheck className="size-3 mr-0.5" /> {tRev("verified_booking")}
                       </Badge>
                     </div>
                     <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
                       <span>{rev.date}</span>
-                      {rev.courtUsed && <span>• Đã chơi tại: {rev.courtUsed}</span>}
+                      {rev.courtUsed && <span>• {tRev("played_at", { court: rev.courtUsed })}</span>}
                     </div>
                   </div>
                 </div>
@@ -192,7 +194,7 @@ export function VenueReviews({ venue }: VenueReviewsProps) {
                   className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer shrink-0 whitespace-nowrap ml-auto"
                 >
                   <ThumbsUp className="size-3.5" />
-                  <span>Hữu ích ({currentLikes})</span>
+                  <span>{tRev("helpful")} ({currentLikes})</span>
                 </button>
               </div>
             </div>

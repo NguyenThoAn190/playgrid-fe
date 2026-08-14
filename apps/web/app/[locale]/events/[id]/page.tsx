@@ -1,105 +1,266 @@
 "use client";
 
-import React from "react";
+import React, { use, useState } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { ArrowLeft, Calendar, MapPin, Share2, Heart, ShieldCheck, Ticket } from "lucide-react";
+import { useLocale } from "next-intl";
+import {
+  ArrowLeft,
+  Calendar,
+  MapPin,
+  Share2,
+  Heart,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getEventById } from "@/lib/events-data";
+import { EventRegistrationSidebar } from "@/components/events/event-registration-sidebar";
+import { EventAddonsSection } from "@/components/events/event-addons-section";
+import { EventOverview } from "@/components/events/event-overview";
+import { EventDynamicSections } from "@/components/events/event-dynamic-sections";
+import { EventArticles } from "@/components/events/event-articles";
+import { EventRelatedEvents } from "@/components/events/event-related-events";
+import { EventTabsNav, EventTabKey } from "@/components/events/event-tabs-nav";
+import { EventResultsTab } from "@/components/events/event-results-tab";
+import { EventGalleryTab } from "@/components/events/event-gallery-tab";
+import { EventRulesTab } from "@/components/events/event-rules-tab";
+import { EventFaqSection } from "@/components/events/event-faq-section";
+import { EventGeoStructuredData } from "@/components/events/event-geo-structured-data";
 
-export default function EventDetailPage({ params }: { params: { id: string } }) {
+export default function EventDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string; locale: string }> | { id: string; locale: string };
+}) {
+  // Support async params in Next.js 15+
+  const resolvedParams = "then" in params ? use(params) : params;
+  const event = getEventById(resolvedParams.id);
+  const locale = useLocale();
+  const isEn = locale === "en";
+
+  const [activeTab, setActiveTab] = useState<EventTabKey>("overview");
+  const [selectedAddons, setSelectedAddons] = useState<Record<string, number>>({});
+
+  const handleToggleAddon = (addonId: string) => {
+    setSelectedAddons((prev) => {
+      const current = prev[addonId] || 0;
+      if (current > 0) {
+        const copy = { ...prev };
+        delete copy[addonId];
+        return copy;
+      }
+      return { ...prev, [addonId]: 1 };
+    });
+  };
+
   return (
-    <div className="w-full bg-background min-h-screen pb-16">
-      {/* Top Banner */}
-      <div className="relative w-full aspect-[12/5] max-h-[400px] overflow-hidden bg-slate-900">
+    <div className="w-full bg-background min-h-screen pb-24 lg:pb-20">
+      {/* 0. Full GEO & SEO Structured Data JSON-LD (SportsEvent, Offers, SubEvents, Breadcrumbs) */}
+      <EventGeoStructuredData event={event} />
+
+      {/* 1. Top Hero Banner Container */}
+      <div className="relative w-full aspect-[16/7] sm:aspect-[16/6] md:aspect-[16/5] max-h-[440px] overflow-hidden bg-slate-950">
         <Image
-          src="/images/events/aqua-warriors.png"
-          alt="Event Banner"
+          src={event.imageUrl}
+          alt={event.title}
           fill
           className="object-cover"
+          priority
           unoptimized
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-black/30 to-black/50" />
-        
-        <div className="absolute top-4 left-4 sm:left-8 z-10">
-          <Link href="/events">
-            <Button variant="outline" size="sm" className="rounded-xl bg-background/80 backdrop-blur-xs font-semibold gap-1.5">
-              <ArrowLeft className="h-4 w-4" />
-              <span>Quay lại</span>
-            </Button>
-          </Link>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-black/40 to-black/60" />
+
+        {/* Floating Top Actions Bar Aligned with Navbar Container (max-w-[1440px]) */}
+        <div className="absolute top-4 sm:top-6 left-0 right-0 z-10">
+          <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <Link href="/events">
+              <Button
+                variant="outline"
+                size="sm"
+                className="rounded-xl bg-background/90 backdrop-blur-md border-border/80 text-foreground font-medium gap-1.5 shadow-sm hover:bg-background cursor-pointer text-xs"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>{isEn ? "Back to Events" : "Quay lại danh sách"}</span>
+              </Button>
+            </Link>
+
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                className="size-8 sm:size-8.5 rounded-xl bg-background/90 backdrop-blur-md border-border/80 hover:bg-background text-foreground shadow-sm cursor-pointer"
+                title={isEn ? "Share" : "Chia sẻ"}
+              >
+                <Share2 className="h-3.5 w-3.5 text-foreground" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="size-8 sm:size-8.5 rounded-xl bg-background/90 backdrop-blur-md border-border/80 hover:bg-background text-foreground shadow-sm cursor-pointer"
+                title={isEn ? "Save" : "Yêu thích"}
+              >
+                <Heart className="h-3.5 w-3.5 text-rose-500 fill-rose-500/20" />
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Detail Content */}
-      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 -mt-16 relative z-10 space-y-6">
-        <div className="bg-card border border-border/80 rounded-2xl p-6 sm:p-8 shadow-md space-y-6">
-          <div className="flex flex-col sm:flex-row items-start justify-between gap-4 border-b border-border/60 pb-6">
-            <div className="space-y-2">
-              <span className="inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-extrabold bg-red-500 text-white">
-                🔥 Nổi bật
-              </span>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
-                Giải Aqua Warriors Vân Đồn năm 2026
+      {/* 2. Main Detail Content Container (Aligned 100% with Navbar max-w-[1440px]) */}
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 -mt-20 sm:-mt-28 md:-mt-32 relative z-10 space-y-4">
+        {/* Main 2-Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+          {/* Left Column: Event Tabs & Content (Span 8) */}
+          <div className="lg:col-span-8 space-y-3">
+            {/* Event Header Card */}
+            <div className="bg-card border border-border/80 rounded-3xl p-4 sm:p-5 space-y-2.5">
+              {/* Category & Badges */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold bg-rose-500 text-white">
+                  🔥 {event.badge?.text || (isEn ? "Featured" : "Nổi bật")}
+                </span>
+                <span className="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-medium bg-muted text-muted-foreground border border-border/60">
+                  {event.category}
+                </span>
+                {event.distanceText && (
+                  <span className="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-medium bg-brand-blue/10 text-brand-blue dark:text-brand-green border border-brand-blue/20">
+                    {event.distanceText}
+                  </span>
+                )}
+              </div>
+
+              {/* Title */}
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-snug">
+                {event.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-muted-foreground pt-1">
+
+              {/* Date & Location */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm text-muted-foreground pt-0.5 border-t border-border/40">
                 <span className="flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4 text-[#002BCC]" />
-                  12 - 13 Tháng 9, 2026
+                  <Calendar className="h-4 w-4 text-brand-blue dark:text-brand-green shrink-0" />
+                  <span>{event.date}</span>
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="h-4 w-4 text-[#002BCC]" />
-                  Bãi biển Vân Đồn, Quảng Ninh
+                  <MapPin className="h-4 w-4 text-brand-blue dark:text-brand-green shrink-0" />
+                  <span>{event.location}</span>
                 </span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 self-end sm:self-start shrink-0">
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Share2 className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Heart className="h-4 w-4 text-red-500" />
-              </Button>
+            {/* Navigation Tabs Bar (Overview, Results, Gallery, Articles, Rules) */}
+            <EventTabsNav
+              activeTab={activeTab}
+              onChangeTab={setActiveTab}
+              resultCount={850}
+              photoCount={360}
+              articleCount={event.articles?.length || 3}
+            />
+
+            {/* TAB 1: OVERVIEW PANEL (Full DOM for SEO) */}
+            <div
+              role="tabpanel"
+              id="panel-overview"
+              aria-labelledby="tab-overview"
+              className={activeTab === "overview" ? "block space-y-3" : "hidden"}
+            >
+              {/* Event Overview Card */}
+              <EventOverview event={event} />
+
+              {/* Dynamic Backend Content Sections as Standalone Sibling Cards */}
+              <EventDynamicSections sections={event.contentSections} />
+
+              {/* Event Add-ons & Extra Services Section */}
+              <EventAddonsSection
+                addons={event.addons}
+                selectedAddons={selectedAddons}
+                onToggleAddon={handleToggleAddon}
+              />
+
+              {/* Event Related Articles Preview */}
+              <EventArticles event={event} />
+
+              {/* Event Q&A & GEO Knowledge Base FAQ Section */}
+              <EventFaqSection />
+            </div>
+
+            {/* TAB 2: RESULTS & TIMING LEADERBOARD PANEL (Full DOM for SEO) */}
+            <div
+              role="tabpanel"
+              id="panel-results"
+              aria-labelledby="tab-results"
+              className={activeTab === "results" ? "block" : "hidden"}
+            >
+              <EventResultsTab />
+            </div>
+
+            {/* TAB 3: PHOTO GALLERY PANEL (Full DOM for SEO) */}
+            <div
+              role="tabpanel"
+              id="panel-gallery"
+              aria-labelledby="tab-gallery"
+              className={activeTab === "gallery" ? "block" : "hidden"}
+            >
+              <EventGalleryTab />
+            </div>
+
+            {/* TAB 4: ADD-ONS & SERVICES PANEL (Full DOM for SEO) */}
+            <div
+              role="tabpanel"
+              id="panel-addons"
+              aria-labelledby="tab-addons"
+              className={activeTab === "addons" ? "block" : "hidden"}
+            >
+              <EventAddonsSection
+                addons={event.addons}
+                selectedAddons={selectedAddons}
+                onToggleAddon={handleToggleAddon}
+              />
+            </div>
+
+            {/* TAB 5: Q&A FAQS PANEL (Full DOM for SEO & GEO) */}
+            <div
+              role="tabpanel"
+              id="panel-faq"
+              aria-labelledby="tab-faq"
+              className={activeTab === "faq" ? "block" : "hidden"}
+            >
+              <EventFaqSection />
+            </div>
+
+            {/* TAB 5: ARTICLES & GUIDES PANEL (Full DOM for SEO) */}
+            <div
+              role="tabpanel"
+              id="panel-articles"
+              aria-labelledby="tab-articles"
+              className={activeTab === "articles" ? "block" : "hidden"}
+            >
+              <EventArticles event={event} />
+            </div>
+
+            {/* TAB 6: RULES & SAFETY PANEL (Full DOM for SEO) */}
+            <div
+              role="tabpanel"
+              id="panel-rules"
+              aria-labelledby="tab-rules"
+              className={activeTab === "rules" ? "block" : "hidden"}
+            >
+              <EventRulesTab />
             </div>
           </div>
 
-          {/* Description & Tickets */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-4">
-              <h2 className="text-lg font-bold text-foreground">Giới thiệu giải đấu</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Giải đấu Aqua Warriors Vân Đồn 2026 hội tụ hơn 2.000 vận động viên tham gia thi đấu các nội dung bơi biển cá nhân và ba môn phối hợp (Triathlon) tại vùng biển hoang sơ tuyệt đẹp Vân Đồn. Cung đường thi đấu được thiết kế chuẩn quốc tế, đảm bảo an toàn tuyệt đối với đội ngũ cứu hộ chuyên nghiệp.
-              </p>
-              <div className="pt-4 border-t border-border/40 grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/40">
-                  <ShieldCheck className="h-6 w-6 text-emerald-500 shrink-0" />
-                  <div>
-                    <div className="text-xs font-bold">Cam kết bảo mật</div>
-                    <div className="text-[11px] text-muted-foreground">Vé chính hãng 100%</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/40">
-                  <Ticket className="h-6 w-6 text-blue-500 shrink-0" />
-                  <div>
-                    <div className="text-xs font-bold">Xác nhận tức thì</div>
-                    <div className="text-[11px] text-muted-foreground">Vé điện tử QR Code</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Sidebar Pricing Box */}
-            <div className="bg-muted/30 border border-border/60 rounded-xl p-5 space-y-4 h-fit">
-              <div>
-                <span className="text-xs text-muted-foreground">Giá vé niêm yết</span>
-                <div className="text-2xl font-extrabold text-foreground">479.000đ</div>
-              </div>
-              <Button className="w-full h-11 rounded-xl bg-[#002BCC] hover:bg-[#0022a3] text-white font-bold text-sm">
-                Đăng ký ngay
-              </Button>
-            </div>
+          {/* Right Column: Instant Registration Sidebar (Span 4) */}
+          <div className="lg:col-span-4 h-full">
+            <EventRegistrationSidebar
+              event={event}
+              selectedAddons={selectedAddons}
+            />
           </div>
         </div>
+
+        {/* 3. Related Events & Tournaments Section (Full Width, Like VenueRelatedCourts) */}
+        <EventRelatedEvents
+          currentEventId={event.id}
+          category={event.category}
+        />
       </div>
     </div>
   );

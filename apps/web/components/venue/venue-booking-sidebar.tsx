@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import {
   Clock,
   Trash2,
@@ -17,6 +18,7 @@ import { Badge } from "@workspace/ui/components/badge";
 import { Input } from "@workspace/ui/components/input";
 import { VenueDetailData } from "@/lib/venue-data";
 import { SelectedBookingSlot } from "./venue-booking-section";
+import { useHeaderVisible } from "@/hooks/use-scroll-direction";
 
 export interface SelectedAddonItem {
   addonId: string;
@@ -48,6 +50,12 @@ export function VenueBookingSidebar({
   const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; discountPercent: number } | null>(null);
   const [couponError, setCouponError] = useState("");
 
+  const isHeaderVisible = useHeaderVisible();
+  const tSidebar = useTranslations("venue.sidebar");
+  const tBooking = useTranslations("venue.booking");
+  const locale = useLocale();
+  const isEn = locale === "en";
+
   // Calculate court subtotal
   const courtSubtotal = selectedSlots.reduce((sum, slot) => sum + slot.price, 0);
 
@@ -76,7 +84,7 @@ export function VenueBookingSidebar({
       setAppliedCoupon({ code, discountPercent: 10 });
       setCouponCode("");
     } else {
-      setCouponError("Mã giảm giá không hợp lệ hoặc đã hết lượt dùng");
+      setCouponError(tSidebar("coupon_error"));
     }
   };
 
@@ -86,40 +94,48 @@ export function VenueBookingSidebar({
   };
 
   return (
-    <div className="sticky top-24 space-y-3">
+    <div
+      className={`sticky transition-[top] duration-300 ease-in-out space-y-3 ${
+        isHeaderVisible ? "top-20" : "top-3"
+      }`}
+    >
       {/* Booking Summary Card */}
-      <Card className="rounded-3xl border border-border/80 bg-card p-4 sm:p-5 space-y-3 shadow-lg shadow-black/5">
+      <Card className="rounded-2xl border border-border/80 bg-card p-3.5 sm:p-4 space-y-2.5 shadow-md shadow-black/5">
         {/* Header with Venue Info */}
-        <div className="border-b border-border/60 pb-3.5">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-foreground">
-              Tóm tắt đơn đặt sân
+        <div className="border-b border-border/60 pb-2.5">
+          <div className="flex items-center justify-between gap-1">
+            <span className="text-xs font-semibold text-foreground truncate">
+              {tSidebar("title")}
             </span>
-            <Badge variant="outline" className="text-[10px] font-bold px-2 py-0.5 rounded-full">
-              {bookingType === "recurring" ? "Đặt cố định" : bookingType === "matchmaking" ? "Ghép kèo" : "Đặt lẻ"}
+            <Badge variant="outline" className="text-[10px] font-bold px-1.5 py-0.5 rounded-md shrink-0">
+              {bookingType === "recurring"
+                ? tBooking("modes.recurring")
+                : bookingType === "matchmaking"
+                ? tBooking("modes.matchmaking")
+                : tBooking("modes.single")}
             </Badge>
           </div>
-          <h3 className="font-bold text-base sm:text-lg text-foreground mt-1 truncate">
+          <h3 className="font-bold text-sm sm:text-base text-foreground mt-1 truncate">
             {venue.name}
           </h3>
-          <p className="text-xs text-muted-foreground truncate">{venue.address}</p>
+          <p className="text-[11px] text-muted-foreground truncate">{venue.address}</p>
         </div>
 
         {/* Selected Slots List */}
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs font-semibold text-foreground">
             <span className="flex items-center gap-1">
               <Clock className="size-3.5 text-brand-blue" />
-              Khung giờ đã chọn ({selectedSlots.length})
+              {tSidebar("selected_slots")} ({selectedSlots.length})
             </span>
-            <span className="text-[11px]">Ngày: {selectedDate}</span>
+            <span className="text-[10px] text-muted-foreground">{tSidebar("date_label")}: {selectedDate}</span>
           </div>
 
           {selectedSlots.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-border/80 bg-muted/20 p-4 text-center space-y-1">
-              <p className="text-xs font-medium text-foreground">Chưa có khung giờ nào được chọn</p>
-              <p className="text-[11px] text-muted-foreground">
-                Vui lòng bấm chọn khung giờ trên bảng ma trận bên trái để tiếp tục.
+            <div className="rounded-xl border border-dashed border-border/80 bg-muted/20 p-3 text-center space-y-0.5">
+              <p className="text-xs font-medium text-foreground">{tSidebar("empty_title")}</p>
+              <p className="text-[10px] text-muted-foreground leading-snug">
+                {tSidebar("empty_desc")}
               </p>
             </div>
           ) : (
@@ -127,26 +143,26 @@ export function VenueBookingSidebar({
               {selectedSlots.map((slot) => (
                 <div
                   key={slot.courtId + slot.slotId + slot.date}
-                  className="flex items-center justify-between p-2.5 rounded-xl bg-muted/40 border border-border/60 text-xs"
+                  className="flex items-center justify-between p-2 rounded-xl bg-muted/40 border border-border/60 text-xs"
                 >
-                  <div className="space-y-0.5 min-w-0 flex-1">
-                    <div className="font-bold text-foreground truncate">{slot.courtName}</div>
-                    <div className="text-[11px] text-muted-foreground flex items-center gap-1">
+                  <div className="space-y-0.5 min-w-0 flex-1 pr-1">
+                    <div className="font-bold text-[11px] text-foreground truncate">{slot.courtName}</div>
+                    <div className="text-[10px] text-muted-foreground flex items-center gap-1">
                       <span>{slot.time}</span>
                       {slot.isPeak && (
-                        <span className="text-rose-500 font-semibold">• Giờ vàng</span>
+                        <span className="text-rose-500 font-semibold">• {tSidebar("peak_slot")}</span>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <span className="font-extrabold text-foreground">
-                      {slot.price.toLocaleString("vi-VN")}đ
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <span className="font-extrabold text-[11px] text-foreground">
+                      {slot.price.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                     </span>
                     <button
                       type="button"
                       onClick={() => onRemoveSlot(slot)}
                       className="p-1 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors cursor-pointer"
-                      aria-label="Xóa slot"
+                      aria-label={tSidebar("remove")}
                     >
                       <Trash2 className="size-3.5" />
                     </button>
@@ -158,78 +174,78 @@ export function VenueBookingSidebar({
         </div>
 
         {/* Promo Code Input */}
-        <div className="space-y-2 pt-2 border-t border-border/60">
+        <div className="space-y-1.5 pt-2 border-t border-border/60">
           <form onSubmit={handleApplyCoupon} className="flex gap-1.5">
             <div className="relative flex-1">
-              <Tag className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
+              <Tag className="absolute left-2 top-1/2 -translate-y-1/2 size-3 text-muted-foreground" />
               <Input
                 value={couponCode}
                 onChange={(e) => setCouponCode(e.target.value)}
-                placeholder="Mã giảm giá (PLAYGRID20)"
-                className="h-8 pl-8 text-xs uppercase rounded-xl border-border/80 font-semibold"
+                placeholder={tSidebar("coupon_placeholder")}
+                className="h-8 pl-7 text-[11px] uppercase placeholder:normal-case rounded-xl border-border/80 font-semibold"
               />
             </div>
             <Button
               type="submit"
               size="sm"
               variant="outline"
-              className="h-8 px-3 text-xs font-bold rounded-xl"
+              className="h-8 px-2.5 text-[11px] font-bold rounded-xl shrink-0"
             >
-              Áp dụng
+              {tSidebar("apply")}
             </Button>
           </form>
 
-          {couponError && <p className="text-[11px] text-rose-500 font-medium">{couponError}</p>}
+          {couponError && <p className="text-[10px] text-rose-500 font-medium">{couponError}</p>}
 
           {appliedCoupon && (
-            <div className="flex items-center justify-between p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-700 dark:text-emerald-300">
-              <span className="font-bold flex items-center gap-1">
-                <CheckCircle className="size-3.5 text-emerald-500" />
-                Mã {appliedCoupon.code} (-{appliedCoupon.discountPercent}%)
+            <div className="flex items-center justify-between p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-700 dark:text-emerald-300">
+              <span className="font-bold flex items-center gap-1 truncate">
+                <CheckCircle className="size-3 text-emerald-500 shrink-0" />
+                {tSidebar("coupon_discount_label", { code: appliedCoupon.code })} (-{appliedCoupon.discountPercent}%)
               </span>
               <button
                 type="button"
                 onClick={handleRemoveCoupon}
-                className="text-[11px] text-muted-foreground hover:text-destructive underline cursor-pointer"
+                className="text-[10px] text-muted-foreground hover:text-destructive underline cursor-pointer shrink-0 ml-1"
               >
-                Gỡ bỏ
+                {tSidebar("remove_coupon")}
               </button>
             </div>
           )}
         </div>
 
         {/* Price Breakdown Calculation */}
-        <div className="space-y-2 pt-2 border-t border-border/60 text-xs">
-          <div className="flex items-center justify-between text-muted-foreground">
-            <span>Tiền thuê sân ({selectedSlots.length} slot)</span>
+        <div className="space-y-1.5 pt-2 border-t border-border/60 text-xs">
+          <div className="flex items-center justify-between text-muted-foreground text-[11px]">
+            <span>{tSidebar("court_rental_fee", { count: selectedSlots.length })}</span>
             <span className="font-medium text-foreground">
-              {courtSubtotal.toLocaleString("vi-VN")}đ
+              {courtSubtotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
             </span>
           </div>
 
           {bookingType === "recurring" && recurringDiscount > 0 && (
-            <div className="flex items-center justify-between text-emerald-600 dark:text-emerald-400">
-              <span>Ưu đãi đặt cố định (-10%)</span>
-              <span className="font-bold">-{recurringDiscount.toLocaleString("vi-VN")}đ</span>
+            <div className="flex items-center justify-between text-emerald-600 dark:text-emerald-400 text-[11px]">
+              <span>{tSidebar("recurring_discount_label")}</span>
+              <span className="font-bold">-{recurringDiscount.toLocaleString(isEn ? "en-US" : "vi-VN")}đ</span>
             </div>
           )}
 
           {couponDiscount > 0 && (
-            <div className="flex items-center justify-between text-emerald-600 dark:text-emerald-400">
-              <span>Mã giảm giá ({appliedCoupon?.code})</span>
-              <span className="font-bold">-{couponDiscount.toLocaleString("vi-VN")}đ</span>
+            <div className="flex items-center justify-between text-emerald-600 dark:text-emerald-400 text-[11px]">
+              <span>{tSidebar("coupon_discount_label", { code: appliedCoupon?.code || "" })}</span>
+              <span className="font-bold">-{couponDiscount.toLocaleString(isEn ? "en-US" : "vi-VN")}đ</span>
             </div>
           )}
 
           {/* Grand Total */}
-          <div className="flex items-baseline justify-between pt-2 border-t border-border/80">
+          <div className="flex items-baseline justify-between pt-1.5 border-t border-border/80">
             <div>
-              <span className="text-sm font-extrabold text-foreground block">Tổng thanh toán:</span>
-              <span className="text-[10px] text-muted-foreground">(Đã bao gồm VAT & phí dịch vụ)</span>
+              <span className="text-xs font-extrabold text-foreground block">{tSidebar("grand_total")}</span>
+              <span className="text-[9px] text-muted-foreground">{tSidebar("vat_included")}</span>
             </div>
             <div className="text-right">
-              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent">
-                {grandTotal.toLocaleString("vi-VN")}đ
+              <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent">
+                {grandTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
               </span>
             </div>
           </div>
@@ -240,26 +256,26 @@ export function VenueBookingSidebar({
           type="button"
           disabled={selectedSlots.length === 0}
           onClick={onProceedCheckout}
-          className="w-full h-12 rounded-2xl bg-gradient-primary text-white font-extrabold text-sm shadow-sm hover:opacity-95 active:scale-98 transition-all disabled:opacity-50 border-0 outline-none focus:outline-none ring-0 cursor-pointer flex items-center justify-center gap-2"
+          className="w-full h-10 rounded-xl bg-gradient-primary text-white font-extrabold text-xs sm:text-sm shadow-sm hover:opacity-95 active:scale-98 transition-all disabled:opacity-50 border-0 outline-none focus:outline-none ring-0 cursor-pointer flex items-center justify-center gap-1.5"
         >
-          <span>Đặt sân</span>
+          <span>{tSidebar("book_now")}</span>
           {selectedSlots.length > 0 && <span>({selectedSlots.length} slot)</span>}
-          <ArrowRight className="size-4" />
+          <ArrowRight className="size-3.5" />
         </Button>
 
         {/* Guarantees & Trust Badges */}
-        <div className="pt-2 border-t border-border/40 space-y-1.5 text-[11px] text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="size-3.5 text-emerald-500 shrink-0" />
-            <span>Đảm bảo 100% giữ sân sau khi thanh toán</span>
+        <div className="pt-2 border-t border-border/40 space-y-1 text-[10px] text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <ShieldCheck className="size-3 text-emerald-500 shrink-0" />
+            <span className="truncate">{tSidebar("guarantee_slot")}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <HelpCircle className="size-3.5 text-blue-500 shrink-0" />
-            <span>Miễn phí hủy / dời lịch trước 06 tiếng</span>
+          <div className="flex items-center gap-1.5">
+            <HelpCircle className="size-3 text-blue-500 shrink-0" />
+            <span className="truncate">{tSidebar("free_cancellation")}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Headphones className="size-3.5 text-amber-500 shrink-0" />
-            <span>Hotline hỗ trợ PlayGrid: <strong>1900 6868</strong></span>
+          <div className="flex items-center gap-1.5">
+            <Headphones className="size-3 text-amber-500 shrink-0" />
+            <span className="truncate">{tSidebar("support_hotline")}</span>
           </div>
         </div>
       </Card>

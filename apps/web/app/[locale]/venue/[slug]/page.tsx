@@ -12,12 +12,21 @@ interface VenuePageProps {
 export async function generateMetadata({
   params,
 }: VenuePageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const venue = getVenueBySlug(slug);
 
+  const isEn = locale === "en";
+  const title = isEn
+    ? `${venue.name} - Online Sports Court Booking 24/7 | PlayGrid`
+    : `${venue.name} - Đặt Sân Trực Tuyến 24/7 | PlayGrid`;
+
+  const description = isEn
+    ? `${venue.name} at ${venue.address}. Book courts online instantly, view pricing ${venue.priceRange}, and check real-time court availability on PlayGrid.`
+    : `${venue.name} tại ${venue.address}. Đặt sân online nhanh chóng, xem bảng giá ${venue.priceRange}, kiểm tra sân trống theo thời gian thực tại PlayGrid.`;
+
   return {
-    title: `${venue.name} - Đặt Sân Trực Tuyến 24/7 | PlayGrid`,
-    description: `${venue.name} tại ${venue.address}. Đặt sân cầu lông online nhanh chóng, xem bảng giá ${venue.priceRange}, kiểm tra sân trống theo thời gian thực tại PlayGrid.`,
+    title,
+    description,
     openGraph: {
       title: `${venue.name} - PlayGrid`,
       description: venue.description,

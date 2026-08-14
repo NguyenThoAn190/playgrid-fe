@@ -5,6 +5,7 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Cookies from "js-cookie";
 import { CookiesContains } from "@workspace/shared/constants/cookies";
+import { getLoginUrl, getRegisterUrl, clearAuthCookies, isUserAuthenticated } from "@workspace/shared/utils/sso";
 import tokenManager from "@workspace/shared/services/utils/tokenManager";
 import { Button } from "@workspace/ui/components/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@workspace/ui/components/avatar";
@@ -41,27 +42,40 @@ export function MobileBottomNav() {
 
   useEffect(() => {
     const checkAuth = () => {
-      const token =
-        Cookies.get("token") ||
-        Cookies.get("accessToken") ||
-        Cookies.get(CookiesContains.TOKEN) ||
-        Cookies.get("refresh_token") ||
-        Cookies.get(CookiesContains.EMAIL);
-      setIsAuthenticated(Boolean(token));
+      const isAuth =
+        isUserAuthenticated() ||
+        Boolean(
+          Cookies.get("token") ||
+          Cookies.get("accessToken") ||
+          Cookies.get(CookiesContains.TOKEN) ||
+          Cookies.get(CookiesContains.EMAIL)
+        );
+      setIsAuthenticated(isAuth);
     };
     checkAuth();
   }, []);
 
   const handleLogout = () => {
-    Cookies.remove("token");
+    clearAuthCookies();
     Cookies.remove("accessToken");
-    Cookies.remove("refresh_token");
-    Cookies.remove(CookiesContains.EMAIL);
-    Cookies.remove(CookiesContains.ROLE);
     tokenManager.removeTokens();
     setIsAuthenticated(false);
     setIsDrawerOpen(false);
     window.location.reload();
+  };
+
+  const handleLoginRedirect = () => {
+    setIsDrawerOpen(false);
+    if (typeof window !== "undefined") {
+      window.location.href = getLoginUrl(window.location.href, locale);
+    }
+  };
+
+  const handleRegisterRedirect = () => {
+    setIsDrawerOpen(false);
+    if (typeof window !== "undefined") {
+      window.location.href = getRegisterUrl(window.location.href, locale);
+    }
   };
 
   const toggleLanguage = (nextLocale: "vi" | "en") => {
@@ -255,26 +269,21 @@ export function MobileBottomNav() {
                 Đăng nhập để đặt sân, tham gia giải đấu và kết nối với hàng ngàn người chơi.
               </p>
               <div className="flex items-center gap-2 pt-1">
-                <Link
-                  href="/auth/login"
-                  onClick={() => setIsDrawerOpen(false)}
-                  className="flex-1"
+                <Button
+                  onClick={handleLoginRedirect}
+                  className="flex-1 rounded-xl font-semibold text-xs py-2 bg-gradient-primary text-white shadow-sm hover:opacity-95 transition-all cursor-pointer"
                 >
-                  <Button className="w-full rounded-xl font-semibold text-xs py-2 bg-gradient-primary text-white shadow-sm hover:opacity-95 transition-all">
-                    <LogIn className="size-3.5 mr-1" />
-                    {t("login")}
-                  </Button>
-                </Link>
-                <Link
-                  href="/auth/register"
-                  onClick={() => setIsDrawerOpen(false)}
-                  className="flex-1"
+                  <LogIn className="size-3.5 mr-1" />
+                  {t("login")}
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={handleRegisterRedirect}
+                  className="flex-1 rounded-xl font-semibold text-xs py-2 transition-all cursor-pointer"
                 >
-                  <Button variant="outline" className="w-full rounded-xl font-semibold text-xs py-2 transition-all">
-                    <UserPlus className="size-3.5 mr-1" />
-                    Đăng ký
-                  </Button>
-                </Link>
+                  <UserPlus className="size-3.5 mr-1" />
+                  Đăng ký
+                </Button>
               </div>
             </div>
           )}

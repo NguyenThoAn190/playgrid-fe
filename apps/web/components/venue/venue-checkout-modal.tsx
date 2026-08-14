@@ -1,21 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import {
   X,
   CheckCircle,
-  ShieldCheck,
   CreditCard,
   QrCode,
   Wallet,
   Smartphone,
-  Calendar,
   Clock,
-  MapPin,
-  ArrowRight,
   Download,
-  Check,
-  Sparkles,
 } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
@@ -41,7 +36,6 @@ export function VenueCheckoutModal({
   selectedSlots,
   selectedDate,
   selectedAddons,
-  bookingType,
 }: VenueCheckoutModalProps) {
   const [fullName, setFullName] = useState("Nguyễn Văn An");
   const [phone, setPhone] = useState("0908 789 999");
@@ -50,6 +44,10 @@ export function VenueCheckoutModal({
   const [paymentMethod, setPaymentMethod] = useState<"vietqr" | "wallet" | "momo" | "card">("vietqr");
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const tCheck = useTranslations("venue.checkout");
+  const locale = useLocale();
+  const isEn = locale === "en";
 
   if (!isOpen) return null;
 
@@ -86,7 +84,7 @@ export function VenueCheckoutModal({
           type="button"
           onClick={onClose}
           className="absolute top-4 right-4 z-10 p-2 rounded-full bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer"
-          aria-label="Đóng"
+          aria-label={tCheck("close")}
         >
           <X className="size-5" />
         </button>
@@ -96,10 +94,10 @@ export function VenueCheckoutModal({
           <form onSubmit={handleConfirmBooking} className="p-5 sm:p-6 space-y-5">
             <div>
               <span className="text-xs font-bold tracking-wider text-brand-blue dark:text-brand-green">
-                Xác nhận đặt sân
+                {tCheck("title")}
               </span>
               <h3 className="text-xl sm:text-2xl font-extrabold text-foreground mt-0.5">
-                Thông tin & Thanh toán
+                {tCheck("info_and_payment")}
               </h3>
               <p className="text-xs text-muted-foreground mt-1">
                 {venue.name} • {selectedDate}
@@ -109,7 +107,7 @@ export function VenueCheckoutModal({
             {/* Selected Slots Preview Badge */}
             <div className="p-3 rounded-2xl bg-muted/30 border border-border/60 space-y-2">
               <div className="text-xs font-bold text-foreground">
-                Danh sách khung giờ đặt ({selectedSlots.length} slot):
+                {tCheck("slots_list", { count: selectedSlots.length })}
               </div>
               <div className="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto">
                 {selectedSlots.map((slot) => (
@@ -127,12 +125,12 @@ export function VenueCheckoutModal({
             {/* Customer Information Inputs */}
             <div className="space-y-3">
               <span className="text-xs font-bold tracking-wider text-muted-foreground">
-                Thông tin người đặt
+                {tCheck("customer_info")}
               </span>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-xs font-semibold text-foreground">Họ và tên *</label>
+                  <label className="text-xs font-semibold text-foreground">{tCheck("full_name_label")}</label>
                   <Input
                     required
                     value={fullName}
@@ -142,7 +140,7 @@ export function VenueCheckoutModal({
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-semibold text-foreground">Số điện thoại *</label>
+                  <label className="text-xs font-semibold text-foreground">{tCheck("phone_label")}</label>
                   <Input
                     required
                     value={phone}
@@ -154,7 +152,7 @@ export function VenueCheckoutModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-foreground">Email nhận vé điện tử</label>
+                <label className="text-xs font-semibold text-foreground">{tCheck("email_label")}</label>
                 <Input
                   type="email"
                   value={email}
@@ -165,11 +163,11 @@ export function VenueCheckoutModal({
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-foreground">Ghi chú cho ban quản lý sân</label>
+                <label className="text-xs font-semibold text-foreground">{tCheck("note")}</label>
                 <Input
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  placeholder="Ví dụ: Vui lòng chuẩn bị sân gần quạt mát..."
+                  placeholder={tCheck("note_placeholder")}
                   className="h-9 rounded-xl text-xs"
                 />
               </div>
@@ -178,33 +176,33 @@ export function VenueCheckoutModal({
             {/* Payment Method Selector */}
             <div className="space-y-2.5">
               <span className="text-xs font-bold tracking-wider text-muted-foreground">
-                Phương thức thanh toán
+                {tCheck("payment_methods")}
               </span>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   {
                     id: "vietqr",
-                    label: "Chuyển khoản VietQR 24/7",
-                    desc: "Tự động xác nhận trong 3 giây",
+                    label: tCheck("bank_transfer"),
+                    desc: tCheck("vietqr_desc"),
                     icon: QrCode,
                   },
                   {
                     id: "wallet",
-                    label: "Ví PlayGrid Pay",
-                    desc: "Số dư: 500.000đ",
+                    label: tCheck("wallet_label"),
+                    desc: tCheck("wallet_desc"),
                     icon: Wallet,
                   },
                   {
                     id: "momo",
-                    label: "Ví MoMo / ZaloPay",
-                    desc: "Thanh toán quét mã ví",
+                    label: tCheck("momo_label"),
+                    desc: tCheck("momo_desc"),
                     icon: Smartphone,
                   },
                   {
                     id: "card",
-                    label: "Thẻ ATM / Visa / Master",
-                    desc: "Cổng thanh toán bảo mật",
+                    label: tCheck("card_label"),
+                    desc: tCheck("card_desc"),
                     icon: CreditCard,
                   },
                 ].map((item) => {
@@ -248,9 +246,9 @@ export function VenueCheckoutModal({
             {/* Total Payment & Submit CTA */}
             <div className="pt-3 border-t border-border/80 flex items-center justify-between">
               <div>
-                <span className="text-[11px] text-muted-foreground block">Tổng thanh toán:</span>
+                <span className="text-[11px] text-muted-foreground block">{tCheck("total_payment")}</span>
                 <span className="text-xl font-black bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent">
-                  {grandTotal.toLocaleString("vi-VN")}đ
+                  {grandTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                 </span>
               </div>
 
@@ -259,7 +257,7 @@ export function VenueCheckoutModal({
                 disabled={isLoading}
                 className="h-11 px-6 rounded-xl bg-gradient-primary text-white font-extrabold text-sm shadow-md hover:opacity-95 cursor-pointer"
               >
-                {isLoading ? "Đang xử lý..." : "Xác nhận & Thanh toán"}
+                {isLoading ? tCheck("processing") : tCheck("confirm_btn")}
               </Button>
             </div>
           </form>
@@ -272,13 +270,13 @@ export function VenueCheckoutModal({
 
             <div className="space-y-1">
               <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 text-xs font-bold px-2.5 py-0.5 rounded-full">
-                Đặt sân thành công!
+                {tCheck("success_badge")}
               </Badge>
               <h3 className="text-2xl font-black text-foreground">
-                Mã đặt sân: {bookingCode}
+                {tCheck("booking_code", { code: bookingCode })}
               </h3>
               <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-                Vé điện tử đã được gửi tới email <strong>{email}</strong> và số điện thoại <strong>{phone}</strong>.
+                {tCheck("ticket_sent_desc", { email, phone })}
               </p>
             </div>
 
@@ -297,15 +295,15 @@ export function VenueCheckoutModal({
 
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
-                  <span className="text-muted-foreground text-[11px]">Ngày chơi:</span>
+                  <span className="text-muted-foreground text-[11px]">{tCheck("play_date")}</span>
                   <div className="font-bold text-foreground">{selectedDate}</div>
                 </div>
                 <div>
-                  <span className="text-muted-foreground text-[11px]">Người đặt:</span>
+                  <span className="text-muted-foreground text-[11px]">{tCheck("booker")}</span>
                   <div className="font-bold text-foreground">{fullName}</div>
                 </div>
                 <div className="col-span-2">
-                  <span className="text-muted-foreground text-[11px]">Khung giờ:</span>
+                  <span className="text-muted-foreground text-[11px]">{tCheck("time_slots")}</span>
                   <div className="font-bold text-foreground">
                     {selectedSlots.map((s) => `${s.courtName} (${s.time})`).join(", ")}
                   </div>
@@ -320,14 +318,14 @@ export function VenueCheckoutModal({
                 onClick={onClose}
                 className="flex-1 h-10 rounded-xl font-bold text-xs"
               >
-                Đóng
+                {tCheck("close")}
               </Button>
               <Button
                 onClick={onClose}
                 className="flex-1 h-10 rounded-xl bg-gradient-primary text-white font-bold text-xs shadow-md"
               >
                 <Download className="size-3.5 mr-1.5" />
-                Tải vé điện tử (PDF)
+                {tCheck("download_ticket")}
               </Button>
             </div>
           </div>

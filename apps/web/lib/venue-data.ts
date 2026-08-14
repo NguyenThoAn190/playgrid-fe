@@ -37,6 +37,23 @@ export interface VenueReview {
   courtUsed?: string;
 }
 
+export interface VenueArticle {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  category: string;
+  publishedDate: string;
+  readTime: string;
+  imageUrl: string;
+  author: {
+    name: string;
+    avatar: string;
+    role?: string;
+  };
+  tags: string[];
+}
+
 export interface VenueDetailData {
   id: string;
   slug: string;
@@ -86,6 +103,7 @@ export interface VenueDetailData {
     surfaceQuality: number;
     service: number;
   };
+  articles?: VenueArticle[];
 }
 
 export const VENUES_DATA: Record<string, VenueDetailData> = {
@@ -113,6 +131,56 @@ export const VENUES_DATA: Record<string, VenueDetailData> = {
     email: "booking.phutho@playgrid.vn",
     description:
       "Cụm sân cầu lông Nhà Thi Đấu Phú Thọ là một trong những trung tâm cầu lông lớn và hiện đại nhất khu vực Quận 11 - Quận 10. Sân được trang bị 100% thảm Yonex cao cấp đạt chuẩn thi đấu quốc tế BWF, trần cao thông thoáng chống gió lùa, hệ thống đèn LED chống lóa hiện đại cùng khán đài rộng rãi và bãi đậu xe ô tô không giới hạn.",
+    articles: [
+      {
+        id: "art-1",
+        slug: "review-mat-tham-yonex-phu-tho",
+        title: "Review chi tiết trải nghiệm mặt thảm Yonex chuẩn BWF tại Sân Cầu Lông Phú Thọ",
+        summary: "Đánh giá chân thực về độ nảy cầu, độ bám sân chống trơn trượt và trải nghiệm thi đấu thực tế trên 8 sân thảm cao cấp.",
+        category: "Đánh giá sân",
+        publishedDate: "12/08/2026",
+        readTime: "4 phút đọc",
+        imageUrl: "/images/activities/badminton-banner.png",
+        author: {
+          name: "Trần Minh Quân",
+          avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80",
+          role: "HLV Cầu Lông BWF",
+        },
+        tags: ["Review", "Thảm Yonex", "Phú Thọ"],
+      },
+      {
+        id: "art-2",
+        slug: "kinh-nghiem-chon-giay-cau-long-san-tham",
+        title: "Bí quyết chọn giày cầu lông đế bám, chống lật cổ chân khi thi đấu sân thảm trong nhà",
+        summary: "Hướng dẫn chọn size giày, công nghệ đệm Power Cushion và các lưu ý bắt buộc khi mang giày vào cụm sân thể thao tiêu chuẩn.",
+        category: "Kỹ thuật & Mẹo",
+        publishedDate: "08/08/2026",
+        readTime: "5 phút đọc",
+        imageUrl: "/images/explore_sports/gridy-badminton.avif",
+        author: {
+          name: "Nguyễn Hà Linh",
+          avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80",
+          role: "Chuyên gia thể thao",
+        },
+        tags: ["Kỹ thuật", "Giày cầu lông", "Bảo hộ"],
+      },
+      {
+        id: "art-3",
+        slug: "giai-dau-playgrid-open-cup-2026",
+        title: "Khởi tranh giải đấu Cầu Lông Phong Trào PlayGrid Open Cup Mùa Hè 2026",
+        summary: "Tổng giá trị giải thưởng lên đến 50.000.000đ quy tụ hơn 64 cặp VĐV phong trào toàn thành phố tham gia tranh tài sôi nổi.",
+        category: "Giải đấu & Sự kiện",
+        publishedDate: "01/08/2026",
+        readTime: "3 phút đọc",
+        imageUrl: "/images/activities/badminton-banner.png",
+        author: {
+          name: "Ban Tổ Chức PlayGrid",
+          avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=120&q=80",
+          role: "Admin PlayGrid",
+        },
+        tags: ["Giải đấu", "Sự kiện", "Open Cup"],
+      },
+    ],
     images: [
       "/images/activities/badminton-banner.png",
       "/images/explore_sports/gridy-badminton.avif",

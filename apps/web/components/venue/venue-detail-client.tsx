@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { ArrowRight, ShoppingBag } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { VenueDetailData } from "@/lib/venue-data";
@@ -14,6 +15,7 @@ import { VenueAmenities } from "./venue-amenities";
 import { VenueRulesPolicies } from "./venue-rules-policies";
 import { VenueMapLocation } from "./venue-map-location";
 import { VenueReviews } from "./venue-reviews";
+import { VenueArticles } from "./venue-articles";
 import { VenueRelatedCourts } from "./venue-related-courts";
 import { VenueCheckoutModal } from "./venue-checkout-modal";
 
@@ -33,6 +35,10 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
   const [bookingType, setBookingType] = useState<"single" | "recurring" | "matchmaking">("single");
   const [selectedAddons, setSelectedAddons] = useState<SelectedAddonItem[]>([]);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState<boolean>(false);
+
+  const tSidebar = useTranslations("venue.sidebar");
+  const locale = useLocale();
+  const isEn = locale === "en";
 
   // Toggle slot selection (multi-slot support)
   const handleToggleSlot = (slot: SelectedBookingSlot) => {
@@ -84,10 +90,10 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
         {/* 2. Media Showcase Gallery */}
         <VenueGallery images={venue.images} venueName={venue.name} />
 
-        {/* 3. Main 2-Column Booking Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
-          {/* Left Column: Interactive Booking Matrix, Description, Amenities, Rules, Reviews (Span 8) */}
-          <div className="lg:col-span-8 space-y-3">
+        {/* 3. Main 2-Column Booking Layout (Matched 3:1 ratio with Gallery above) */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          {/* Left Column: Interactive Booking Matrix, Description, Amenities, Rules, Reviews (Span 3) */}
+          <div className="md:col-span-3 space-y-3">
             {/* Interactive Booking Matrix */}
             <div id="booking-matrix">
               <VenueBookingSection
@@ -104,7 +110,6 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
             {/* Dedicated Matchmaking Section (Sàn ghép kèo vãng lai) */}
             <div id="matchmaking-section">
               <VenueMatchmakingSection
-                venue={venue}
                 onOpenCreateMatch={() => {
                   setBookingType("single");
                   const elem = document.getElementById("booking-matrix");
@@ -127,10 +132,13 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
 
             {/* Community Reviews & Ratings */}
             <VenueReviews venue={venue} />
+
+            {/* Related Articles & Court Blog Posts */}
+            <VenueArticles venue={venue} />
           </div>
 
-          {/* Right Column: Sticky Summary & Fast Booking Sidebar (Span 4) */}
-          <div className="lg:col-span-4">
+          {/* Right Column: Sticky Summary & Fast Booking Sidebar (Span 1 - Width matches thumbnails) */}
+          <div className="md:col-span-1 h-full">
             <VenueBookingSidebar
               venue={venue}
               selectedSlots={selectedSlots}
@@ -155,11 +163,11 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <ShoppingBag className="size-3.5 text-brand-blue dark:text-brand-green shrink-0" />
               <span className="font-bold text-foreground truncate">
-                Đã chọn {selectedSlots.length} khung giờ
+                {tSidebar("mobile_bar_selected", { count: selectedSlots.length })}
               </span>
             </div>
             <div className="text-sm font-extrabold text-foreground tracking-tight">
-              {totalSlotPrice.toLocaleString("vi-VN")}đ
+              {totalSlotPrice.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
             </div>
           </div>
 
@@ -168,7 +176,7 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
             onClick={() => setIsCheckoutOpen(true)}
             className="h-10 px-4 rounded-xl bg-gradient-primary text-white font-extrabold text-xs shadow-md border-0 outline-none focus:outline-none ring-0 shrink-0 flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all"
           >
-            <span>Đặt sân</span>
+            <span>{tSidebar("mobile_book_now")}</span>
             <ArrowRight className="size-4" />
           </Button>
         </div>

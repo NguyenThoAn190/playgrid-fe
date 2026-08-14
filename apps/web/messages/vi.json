@@ -325,5 +325,194 @@
       "tournament": "Sân thi đấu",
       "vip": "Sân VIP"
     }
+  },
+  "venue": {
+    "header": {
+      "verified_partner": "Đối tác chính thức PlayGrid",
+      "top_booked": "Top Đặt Nhiều",
+      "reviews": "đánh giá",
+      "favorite": "Yêu thích",
+      "favorited": "Đã lưu",
+      "share": "Chia sẻ",
+      "directions": "Chỉ đường",
+      "open_hours": "Giờ mở cửa",
+      "share_toast": "Đã sao chép liên kết sân!",
+      "favorite_toast": "Đã lưu sân vào danh sách yêu thích!"
+    },
+    "gallery": {
+      "real_photos": "Ảnh thực tế",
+      "view_all": "Xem tất cả {count} ảnh",
+      "fullscreen": "Toàn màn hình",
+      "close": "Đóng",
+      "photo": "ảnh"
+    },
+    "booking": {
+      "title": "Chọn sân & giờ chơi",
+      "subtitle": "Bảng ma trận đặt sân — chọn khung giờ và đặt sân nhanh chóng",
+      "modes": {
+        "single": "Đặt lẻ theo giờ",
+        "recurring": "Cố định (-10%)",
+        "matchmaking": "Ghép kèo"
+      },
+      "select_date": "Chọn ngày",
+      "today": "Hôm nay",
+      "tomorrow": "Ngày mai",
+      "periods": {
+        "all": "Tất cả",
+        "morning": "Sáng",
+        "afternoon": "Chiều",
+        "evening": "Tối"
+      },
+      "legend": {
+        "available": "Còn trống",
+        "peak": "Giờ vàng",
+        "booked": "Đã đặt",
+        "selected": "Đang chọn",
+        "past": "Đã qua"
+      },
+      "matrix_title": "Bảng ma trận đặt sân",
+      "court_label": "Sân",
+      "empty_slot_hint": "Nhấn vào ô để chọn khung giờ",
+      "no_slots_found": "Không có khung giờ phù hợp trong ca này"
+    },
+    "sidebar": {
+      "title": "Tóm tắt đơn đặt sân",
+      "selected_slots": "Khung giờ đã chọn",
+      "date_label": "Ngày",
+      "addons_title": "Dịch vụ & Tiện ích thêm",
+      "subtotal": "Tạm tính",
+      "court_rental_fee": "Tiền thuê sân ({count} slot)",
+      "discount": "Chiết khấu",
+      "total": "Tổng tiền",
+      "proceed_btn": "Tiến hành đặt sân",
+      "no_slots_selected": "Vui lòng chọn ít nhất 1 khung giờ trên ma trận",
+      "empty_title": "Chưa có khung giờ nào được chọn",
+      "empty_desc": "Vui lòng bấm chọn khung giờ trên bảng ma trận bên trái để tiếp tục.",
+      "peak_slot": "Giờ vàng",
+      "coupon_placeholder": "Mã giảm giá (PLAYGRID20)",
+      "apply": "Áp dụng",
+      "remove_coupon": "Gỡ bỏ",
+      "coupon_error": "Mã giảm giá không hợp lệ hoặc đã hết lượt dùng",
+      "recurring_discount_label": "Ưu đãi đặt cố định (-10%)",
+      "coupon_discount_label": "Mã giảm giá ({code})",
+      "grand_total": "Tổng thanh toán:",
+      "vat_included": "(Đã bao gồm VAT & phí dịch vụ)",
+      "book_now": "Đặt sân",
+      "guarantee_slot": "Đảm bảo 100% giữ sân sau khi thanh toán",
+      "free_cancellation": "Miễn phí hủy / dời lịch trước 06 tiếng",
+      "support_hotline": "Hotline hỗ trợ PlayGrid: 1900 6868",
+      "remove": "Xóa",
+      "clear_all": "Xóa tất cả",
+      "mobile_bar_selected": "Đã chọn {count} khung giờ",
+      "mobile_book_now": "Đặt sân"
+    },
+    "matchmaking": {
+      "title": "Sàn Kèo Ghép Vãng Lai",
+      "subtitle": "Tham gia ngay các trận đấu thiếu người hôm nay hoặc tự đăng kèo mới để mời đối thủ cùng chơi",
+      "create_btn": "+ Đăng kèo ghép mới",
+      "matches_count": "{count} kèo",
+      "host_label": "Chủ kèo",
+      "progress_label": "Tiến độ ghép nhóm",
+      "full_status": "Đã đủ người",
+      "missing_players": "Còn thiếu {count} người",
+      "format_label": "Hình thức",
+      "join_btn": "Xin vào kèo",
+      "joined_btn": "Đã xin vào kèo",
+      "view_all": "Xem tất cả ({count} kèo ghép)",
+      "collapse": "Thu gọn danh sách",
+      "trust_hint": "Cam kết giữ chỗ: 100% kèo đấu ghép vãng lai được hỗ trợ khớp lịch và xác nhận giữ chỗ từ chủ sân."
+    },
+    "about": {
+      "title": "Giới thiệu cụm sân {name}",
+      "verified_badge": "Thông tin xác thực 100%",
+      "read_more": "Xem thêm nội dung giới thiệu",
+      "collapse": "Thu gọn nội dung"
+    },
+    "amenities": {
+      "title": "Tiện ích & Dịch vụ tại sân",
+      "subtitle": "Cung cấp đầy đủ trang thiết bị và dịch vụ phụ trợ cho người chơi"
+    },
+    "rules": {
+      "rules_title": "Quy định & Lưu ý khi vào sân",
+      "rules_subtitle": "Người chơi vui lòng tuân thủ quy định để giữ gìn mặt sân chung",
+      "cancellation_title": "Chính sách hoàn hủy linh hoạt"
+    },
+    "location": {
+      "title": "Vị trí & Chỉ đường",
+      "subtitle": "Dễ dàng di chuyển từ các quận lân cận",
+      "copy_address": "Sao chép địa chỉ",
+      "copied": "Đã sao chép!",
+      "open_maps": "Xem trên Google Maps",
+      "exact_address": "Địa chỉ chính xác",
+      "open_hours_title": "Thời gian mở cửa",
+      "everyday": "Hằng ngày (Thứ 2 - CN)",
+      "hotline": "Hotline đặt sân",
+      "entrance_hint": "Chỉ dẫn cổng vào:",
+      "entrance_hint_desc": "Cổng 2 Lữ Gia hoặc Cổng chính Lý Thường Kiệt (Bảo vệ hướng dẫn đậu ô tô)."
+    },
+    "reviews": {
+      "title": "Đánh giá từ cộng đồng người chơi ({count})",
+      "subtitle": "100% đánh giá từ các vận động viên đã trải nghiệm sân thực tế",
+      "write_review": "Viết đánh giá",
+      "based_on_reviews": "Dựa trên {count} lượt đánh giá",
+      "filter_label": "Lọc:",
+      "verified_booking": "Đã đặt sân",
+      "played_at": "Đã chơi tại: {court}",
+      "categories": {
+        "cleanliness": "Vệ sinh & Phòng thay đồ",
+        "lighting": "Độ sáng & Đèn LED",
+        "surfaceQuality": "Chất lượng mặt thảm",
+        "service": "Thái độ phục vụ & Hỗ trợ"
+      },
+      "filter_all": "Tất cả",
+      "helpful": "Hữu ích"
+    },
+    "related": {
+      "title": "Sân thể thao nổi bật lân cận",
+      "subtitle": "Khám phá thêm các cụm sân chất lượng cao khác",
+      "view_all": "Xem tất cả"
+    },
+    "articles": {
+      "title": "Bài viết & Kinh nghiệm về sân",
+      "subtitle": "Đánh giá chi tiết, kỹ thuật thi đấu và cẩm nang sân bãi",
+      "view_all": "Xem tất cả bài viết",
+      "read_more": "Đọc bài viết",
+      "read_time": "{time}",
+      "author_prefix": "Tác giả:"
+    },
+    "checkout": {
+      "title": "Xác nhận đặt sân",
+      "info_and_payment": "Thông tin & Thanh toán",
+      "slots_list": "Danh sách khung giờ đặt ({count} slot):",
+      "customer_info": "Thông tin người đặt",
+      "full_name": "Họ và tên",
+      "full_name_label": "Họ và tên *",
+      "phone": "Số điện thoại",
+      "phone_label": "Số điện thoại *",
+      "email_label": "Email nhận vé điện tử",
+      "note": "Ghi chú cho ban quản lý sân",
+      "note_placeholder": "Ví dụ: Vui lòng chuẩn bị sân gần quạt mát...",
+      "payment_methods": "Phương thức thanh toán",
+      "bank_transfer": "Chuyển khoản VietQR 24/7",
+      "vietqr_desc": "Tự động xác nhận trong 3 giây",
+      "wallet_label": "Ví PlayGrid Pay",
+      "wallet_desc": "Số dư: 500.000đ",
+      "momo_label": "Ví MoMo / ZaloPay",
+      "momo_desc": "Thanh toán quét mã ví",
+      "card_label": "Thẻ ATM / Visa / Master",
+      "card_desc": "Cổng thanh toán bảo mật",
+      "at_venue": "Thanh toán tại sân",
+      "total_payment": "Tổng thanh toán:",
+      "confirm_btn": "Xác nhận & Thanh toán",
+      "processing": "Đang xử lý...",
+      "success_badge": "Đặt sân thành công!",
+      "booking_code": "Mã đặt sân: {code}",
+      "ticket_sent_desc": "Vé điện tử đã được gửi tới email {email} và số điện thoại {phone}.",
+      "play_date": "Ngày chơi:",
+      "booker": "Người đặt:",
+      "time_slots": "Khung giờ:",
+      "download_ticket": "Tải vé điện tử (PDF)",
+      "close": "Đóng"
+    }
   }
 }

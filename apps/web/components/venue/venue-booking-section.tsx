@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import {
   Calendar as CalendarIcon,
   Check,
@@ -53,11 +54,17 @@ export function VenueBookingSection({
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
 
+  const tBooking = useTranslations("venue.booking");
+  const locale = useLocale();
+  const isEn = locale === "en";
+
   // Generate 14 days starting from today (2026-08-14)
   const next14Days = useMemo(() => {
     const dates = [];
     const baseDate = new Date("2026-08-14T00:00:00");
-    const weekdays = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+    const weekdaysVi = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+    const weekdaysEn = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const weekdays = isEn ? weekdaysEn : weekdaysVi;
 
     for (let i = 0; i < 14; i++) {
       const d = new Date(baseDate);
@@ -74,13 +81,13 @@ export function VenueBookingSection({
         dateString,
         weekday: weekdayStr,
         label,
-        sublabel: i === 0 ? "Hôm nay" : i === 1 ? "Ngày mai" : "",
+        sublabel: i === 0 ? tBooking("today") : i === 1 ? tBooking("tomorrow") : "",
         isWeekend: d.getDay() === 0 || d.getDay() === 6,
       });
     }
 
     return dates;
-  }, []);
+  }, [isEn, tBooking]);
 
   // Check if a time slot has passed for current selected date
   const isSlotPast = (slot: typeof DEFAULT_TIME_SLOTS[0], dateStr: string) => {
@@ -165,10 +172,10 @@ export function VenueBookingSection({
         <div>
           <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
             <Zap className="size-5 text-brand-blue dark:text-brand-green" />
-            Chọn sân & giờ chơi
+            {tBooking("title")}
           </h2>
           <p className="text-xs text-muted-foreground mt-0.5">
-            Bảng ma trận giờ chẵn — chọn khung giờ và đặt sân nhanh chóng
+            {tBooking("subtitle")}
           </p>
         </div>
 
@@ -183,7 +190,7 @@ export function VenueBookingSection({
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            Đặt lẻ theo giờ
+            {tBooking("modes.single")}
           </button>
           <button
             type="button"
@@ -195,7 +202,7 @@ export function VenueBookingSection({
             }`}
           >
             <Repeat className="size-3" />
-            Cố định (-10%)
+            {tBooking("modes.recurring")}
           </button>
           <button
             type="button"
@@ -207,7 +214,7 @@ export function VenueBookingSection({
             }`}
           >
             <Users className="size-3 text-amber-500" />
-            Ghép kèo
+            {tBooking("modes.matchmaking")}
           </button>
         </div>
       </div>
@@ -217,10 +224,10 @@ export function VenueBookingSection({
         <div className="flex items-center justify-between text-xs">
           <span className="font-semibold text-xs text-foreground flex items-center gap-1.5">
             <CalendarIcon className="size-3.5 text-brand-blue dark:text-brand-green" />
-            1. Chọn ngày
+            {tBooking("select_date")}
           </span>
           <span className="text-[11px] font-medium text-muted-foreground">
-            Đang chọn:{" "}
+            {isEn ? "Selected: " : "Đang chọn: "}
             <strong className="text-foreground">
               {next14Days.find((d) => d.dateString === selectedDate)?.sublabel || ""}{" "}
               {selectedDate}
@@ -264,13 +271,13 @@ export function VenueBookingSection({
         <div className="flex items-center justify-between px-3 py-1.5 border-b border-border/60 bg-muted/30">
           <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
             <MoveHorizontal className="size-3.5 text-brand-blue dark:text-brand-green" />
-            Bảng ma trận đặt sân (Khung giờ chẵn)
+            {tBooking("matrix_title")}
           </span>
           <div className="flex items-center gap-1">
             <button
               type="button"
               onClick={() => handleScroll("left")}
-              aria-label="Cuộn sang trái"
+              aria-label="Scroll left"
               className="p-1 rounded-md bg-background hover:bg-muted border border-border text-foreground transition-colors cursor-pointer"
             >
               <ChevronLeft className="size-3.5" />
@@ -278,7 +285,7 @@ export function VenueBookingSection({
             <button
               type="button"
               onClick={() => handleScroll("right")}
-              aria-label="Cuộn sang phải"
+              aria-label="Scroll right"
               className="p-1 rounded-md bg-background hover:bg-muted border border-border text-foreground transition-colors cursor-pointer"
             >
               <ChevronRight className="size-3.5" />
@@ -302,7 +309,7 @@ export function VenueBookingSection({
             <thead className="sticky top-0 z-30 bg-muted/95 backdrop-blur-md">
               <tr className="border-b border-border/70 text-[11px] font-bold text-muted-foreground">
                 <th className="py-2 px-3.5 w-24 sm:w-28 sticky left-0 z-40 bg-muted/95 backdrop-blur-md border-r border-border/60 shadow-xs tracking-wider text-foreground font-bold">
-                  Sân
+                  {tBooking("court_label")}
                 </th>
 
                 {DEFAULT_TIME_SLOTS.map((slot) => {
@@ -380,7 +387,11 @@ export function VenueBookingSection({
                               })
                             }
                             title={`${court.name} (${slot.time}): ${
-                              past ? "Đã qua" : booked ? "Đã được đặt" : slotPrice.toLocaleString("vi-VN") + "đ"
+                              past
+                                ? tBooking("legend.past")
+                                : booked
+                                ? tBooking("legend.booked")
+                                : slotPrice.toLocaleString(isEn ? "en-US" : "vi-VN") + "đ"
                             }`}
                             className={`w-full h-8 rounded-lg text-xs font-bold transition-all flex items-center justify-center mx-auto border-0 outline-none focus:outline-none focus-visible:outline-none ${
                               past
@@ -420,35 +431,35 @@ export function VenueBookingSection({
             <span className="size-5 rounded-lg bg-blue-500/10 text-blue-600 dark:text-brand-green flex items-center justify-center">
               <Check className="size-3 stroke-[3]" />
             </span>
-            <span>Còn trống</span>
+            <span>{tBooking("legend.available")}</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="size-5 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center">
               <Flame className="size-3 fill-amber-500 text-amber-500" />
             </span>
-            <span className="text-amber-600 dark:text-amber-400 font-bold">Giờ vàng 🔥</span>
+            <span className="text-amber-600 dark:text-amber-400 font-bold">{tBooking("legend.peak")} 🔥</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="size-5 rounded-lg bg-rose-500/10 text-rose-500 dark:text-rose-400 flex items-center justify-center">
               <X className="size-3 stroke-[3]" />
             </span>
-            <span>Đã đặt</span>
+            <span>{tBooking("legend.booked")}</span>
           </div>
 
           <div className="flex items-center gap-2">
             <span className="size-5 rounded-lg bg-gradient-primary text-white flex items-center justify-center shadow-2xs">
               <Check className="size-3 stroke-[3]" />
             </span>
-            <span>Đang chọn</span>
+            <span>{tBooking("legend.selected")}</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className="size-5 rounded-lg bg-slate-100 dark:bg-slate-900 text-slate-400 flex items-center justify-center opacity-60">
               <Clock className="size-3 stroke-[2]" />
             </span>
-            <span className="text-muted-foreground/70">Đã qua</span>
+            <span className="text-muted-foreground/70">{tBooking("legend.past")}</span>
           </div>
         </div>
       </div>
