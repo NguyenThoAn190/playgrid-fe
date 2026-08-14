@@ -46,7 +46,7 @@ export default async function LocaleLayout({
         inter.variable
       )}
     >
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <PWARegister />
           <Navbar />

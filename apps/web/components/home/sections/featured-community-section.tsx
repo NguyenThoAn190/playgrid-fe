@@ -34,12 +34,12 @@ const DEFAULT_POST: CommunityPost = {
   id: "post-1",
   authorName: "Phan Hoàng Nam",
   authorHandle: "@hoangnam_badminton",
-  authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+  authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
   isVerified: true,
   timeAgo: "2 giờ trước",
   title: "Tuyển thêm 2 tay vợt giao lưu trình Trung bình-Khá sân Khang An tối nay!",
   content: "Nhóm mình hiện có 4 người chơi nhiệt tình, cần tìm thêm 2 bạn đánh đôi giao lưu vui vẻ. Sân thảm mới, máy lạnh thoáng mát, có sẵn cầu thi đấu tiêu chuẩn. Mọi người đăng ký tham gia ngay nhé!",
-  imageUrl: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=800&auto=format&fit=crop&q=80",
+  imageUrl: "https://images.unsplash.com/photo-1613918108466-292b78a8ef95?w=1200&auto=format&fit=crop&q=80",
   likes: 142,
   comments: 38,
   shares: 12,
@@ -56,7 +56,7 @@ const COMMUNITY_POSTS: CommunityPost[] = [
     timeAgo: "4 giờ trước",
     title: "Bí kíp giao bóng xoáy sâu trong Pickleball cho người mới bắt đầu",
     content: "Kỹ thuật miết mặt vợt từ dưới lên giúp bóng nảy thấp khiến đối thủ khó kiểm soát và trả gài bóng. Bạn đã thử kỹ thuật này chưa?",
-    imageUrl: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=400&auto=format&fit=crop&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1530915534664-4ac6423816b7?w=600&auto=format&fit=crop&q=80",
     likes: 98,
     comments: 24,
     shares: 8,
@@ -65,12 +65,12 @@ const COMMUNITY_POSTS: CommunityPost[] = [
     id: "post-3",
     authorName: "Đăng Khoa Sport",
     authorHandle: "@dangkhoa_tennis",
-    authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    authorAvatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80",
     isVerified: true,
     timeAgo: "6 giờ trước",
     title: "Pha cứu bóng tuyệt đỉnh ở chung kết giải Tennis Mở rộng vừa qua",
     content: "Trận đấu kịch tính đến phút cuối cùng. Cảm ơn ban tổ chức và toàn thể anh em cộng đồng đã cổ vũ hết mình!",
-    imageUrl: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1560012057-4372e14c5085?w=600&auto=format&fit=crop&q=80",
     likes: 215,
     comments: 52,
     shares: 19,
@@ -84,7 +84,7 @@ const COMMUNITY_POSTS: CommunityPost[] = [
     timeAgo: "8 giờ trước",
     title: "Cách khởi động và phòng tránh chấn thương cổ chân khi chơi thể thao",
     content: "Dành 10 phút khởi động đúng cách sẽ giúp bạn tự tin di chuyển trên sân và kéo dài phong độ bền bỉ suốt trận đấu.",
-    imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&auto=format&fit=crop&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&auto=format&fit=crop&q=80",
     likes: 176,
     comments: 31,
     shares: 14,
@@ -186,7 +186,7 @@ export function FeaturedCommunitySection() {
 
               {/* Media Image Attachment */}
               {featuredPost.imageUrl && (
-                <div className="relative w-full h-56 sm:h-72 rounded-xl overflow-hidden border border-border/60">
+                <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-border/60">
                   <Image
                     src={featuredPost.imageUrl}
                     alt={featuredPost.title}

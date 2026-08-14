@@ -42,7 +42,7 @@ export function SportHero({ sportName = "Cầu Lông", heroImage }: SportHeroPro
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl uppercase leading-[1.18] pb-1">
+            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-[1.18] pb-1">
               Khám phá thế giới{" "}
               <span className="bg-gradient-to-r from-[#0052FF] via-cyan-500 to-[#00E575] bg-clip-text text-transparent">
                 {sportName}

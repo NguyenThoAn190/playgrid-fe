@@ -202,7 +202,7 @@ export function Footer() {
 
           {/* COLUMN 2: Explore Sports & Match (Lg: 3 cols) */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-sm font-bold text-foreground uppercase tracking-wider flex items-center gap-2">
+            <h4 className="text-sm font-bold text-foreground tracking-wider flex items-center gap-2">
               <Users className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               <span>{getT("col2.title", "Khám phá & Giao lưu")}</span>
             </h4>
@@ -242,7 +242,7 @@ export function Footer() {
 
           {/* COLUMN 3: Clubs & Community (Lg: 3 cols) */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-sm font-bold text-foreground uppercase tracking-wider flex items-center gap-2">
+            <h4 className="text-sm font-bold text-foreground tracking-wider flex items-center gap-2">
               <Trophy className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               <span>{getT("col3.title", "Cộng đồng & Câu lạc bộ")}</span>
             </h4>
@@ -276,7 +276,7 @@ export function Footer() {
 
           {/* COLUMN 4: Support & Legal (Lg: 2 cols) */}
           <div className="lg:col-span-2 space-y-4">
-            <h4 className="text-sm font-bold text-foreground uppercase tracking-wider flex items-center gap-2">
+            <h4 className="text-sm font-bold text-foreground tracking-wider flex items-center gap-2">
               <Award className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               <span>{getT("col4.title", "Hỗ trợ")}</span>
             </h4>

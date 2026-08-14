@@ -9,7 +9,7 @@ export function HeroHeadline() {
   return (
     <>
       {/* Main Headline */}
-      <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl uppercase leading-[1.18] pb-1">
+      <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-[1.18] pb-1">
         <span className="block text-foreground py-0.5">{t("title")}</span>
       </h1>
 

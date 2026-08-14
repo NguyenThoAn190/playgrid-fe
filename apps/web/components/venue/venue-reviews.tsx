@@ -1,0 +1,204 @@
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
+import { Star, ThumbsUp, MessageSquare, ShieldCheck, Sparkles, Filter } from "lucide-react";
+import { Card } from "@workspace/ui/components/card";
+import { Button } from "@workspace/ui/components/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@workspace/ui/components/avatar";
+import { Badge } from "@workspace/ui/components/badge";
+import { VenueDetailData } from "@/lib/venue-data";
+
+interface VenueReviewsProps {
+  venue: VenueDetailData;
+}
+
+export function VenueReviews({ venue }: VenueReviewsProps) {
+  const [likesState, setLikesState] = useState<Record<string, number>>({});
+  const [filterRating, setFilterRating] = useState<number | "all">("all");
+
+  const handleLike = (reviewId: string, initialLikes: number) => {
+    setLikesState((prev) => ({
+      ...prev,
+      [reviewId]: (prev[reviewId] ?? initialLikes) + 1,
+    }));
+  };
+
+  const filteredReviews = venue.reviews.filter((rev) => {
+    if (filterRating === "all") return true;
+    return rev.rating === filterRating;
+  });
+
+  return (
+    <Card className="rounded-3xl border border-border/80 bg-card p-4 sm:p-5 space-y-3 shadow-sm">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border/60 pb-4">
+        <div>
+          <h3 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
+            <Star className="size-5 fill-amber-400 text-amber-400" />
+            Đánh giá từ cộng đồng người chơi ({venue.reviewsCount})
+          </h3>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+            100% đánh giá từ các vận động viên đã trải nghiệm sân thực tế
+          </p>
+        </div>
+
+        <Button
+          size="sm"
+          variant="outline"
+          className="h-8 px-3 rounded-xl border-border/80 text-xs font-semibold self-start sm:self-auto"
+        >
+          <MessageSquare className="size-3.5 mr-1.5" />
+          Viết đánh giá
+        </Button>
+      </div>
+
+      {/* Ratings Breakdown Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 rounded-2xl bg-muted/20 border border-border/60">
+        {/* Left: Big Score */}
+        <div className="flex flex-col items-center justify-center p-3 text-center border-b md:border-b-0 md:border-r border-border/60">
+          <span className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">
+            {venue.rating}
+          </span>
+          <div className="flex items-center gap-1 my-1.5">
+            {[1, 2, 3, 4, 5].map((s) => (
+              <Star key={s} className="size-4 fill-amber-400 text-amber-400" />
+            ))}
+          </div>
+          <p className="text-xs font-semibold text-muted-foreground">
+            Dựa trên {venue.reviewsCount} lượt đánh giá
+          </p>
+        </div>
+
+        {/* Right: Detailed Metric Bars */}
+        <div className="md:col-span-2 space-y-2.5 justify-center flex flex-col">
+          {[
+            { label: "Chất lượng mặt thảm", score: venue.ratingBreakdown.surfaceQuality },
+            { label: "Độ sáng & Đèn LED", score: venue.ratingBreakdown.lighting },
+            { label: "Vệ sinh & Phòng thay đồ", score: venue.ratingBreakdown.cleanliness },
+            { label: "Thái độ phục vụ & Hỗ trợ", score: venue.ratingBreakdown.service },
+          ].map((metric) => (
+            <div key={metric.label} className="space-y-1 text-xs">
+              <div className="flex justify-between font-semibold">
+                <span className="text-foreground/90">{metric.label}</span>
+                <span className="font-extrabold text-foreground">{metric.score} / 5.0</span>
+              </div>
+              <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-gradient-primary transition-all duration-500"
+                  style={{ width: `${(metric.score / 5) * 100}%` }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Review Filter Tags */}
+      <div className="flex flex-wrap items-center gap-1.5 pt-1">
+        <span className="text-xs font-semibold text-muted-foreground mr-1">Lọc:</span>
+        <button
+          type="button"
+          onClick={() => setFilterRating("all")}
+          className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
+            filterRating === "all"
+              ? "bg-foreground text-background shadow-2xs"
+              : "bg-muted/60 text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Tất cả ({venue.reviews.length})
+        </button>
+        {[5, 4, 3].map((star) => (
+          <button
+            type="button"
+            key={star}
+            onClick={() => setFilterRating(star)}
+            className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-1 ${
+              filterRating === star
+                ? "bg-foreground text-background shadow-2xs"
+                : "bg-muted/60 text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <span>{star}</span>
+            <Star className="size-3 fill-amber-400 text-amber-400" />
+          </button>
+        ))}
+      </div>
+
+      {/* Reviews List */}
+      <div className="space-y-4 pt-2">
+        {filteredReviews.map((rev) => {
+          const currentLikes = likesState[rev.id] ?? rev.likes;
+
+          return (
+            <div
+              key={rev.id}
+              className="p-4 rounded-2xl bg-muted/20 border border-border/60 space-y-3 hover:border-border transition-colors"
+            >
+              {/* Review Header: User avatar, rating, date */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Avatar className="size-10 border border-border">
+                    <AvatarImage src={rev.userAvatar} alt={rev.userName} />
+                    <AvatarFallback className="bg-brand-blue/10 text-brand-blue font-bold">
+                      {rev.userName.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <h4 className="font-bold text-xs sm:text-sm text-foreground">
+                        {rev.userName}
+                      </h4>
+                      <Badge className="bg-blue-600/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400 text-[10px] font-bold px-1.5 py-0 rounded-md">
+                        <ShieldCheck className="size-3 mr-0.5" /> Đã đặt sân
+                      </Badge>
+                    </div>
+                    <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+                      <span>{rev.date}</span>
+                      {rev.courtUsed && <span>• Đã chơi tại: {rev.courtUsed}</span>}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Star Rating */}
+                <div className="flex items-center gap-0.5">
+                  {[...Array(rev.rating)].map((_, i) => (
+                    <Star key={i} className="size-3.5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+              </div>
+
+              {/* Review Comment Content */}
+              <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed">
+                {rev.comment}
+              </p>
+
+              {/* Review Tags & Likes */}
+              <div className="flex items-center justify-between pt-1">
+                <div className="flex flex-wrap gap-1.5">
+                  {rev.tags?.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-[10px] font-semibold"
+                    >
+                      #{t}
+                    </span>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => handleLike(rev.id, rev.likes)}
+                  className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-brand-blue transition-colors cursor-pointer shrink-0 whitespace-nowrap ml-auto"
+                >
+                  <ThumbsUp className="size-3.5" />
+                  <span>Hữu ích ({currentLikes})</span>
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </Card>
+  );
+}

@@ -110,9 +110,9 @@ export function MobileBottomNav() {
                 type="button"
                 key="center-action"
                 aria-label={t("create_new")}
-                className="relative -top-4 flex size-12 items-center justify-center rounded-full bg-gradient-primary text-white shadow-lg shadow-glow-primary border-4 border-background transition-transform active:scale-90 hover:scale-105 cursor-pointer"
+                className="flex size-10 items-center justify-center rounded-full bg-gradient-primary text-white shadow-sm transition-transform active:scale-90 hover:scale-105 cursor-pointer self-center"
               >
-                <Plus className="size-6 stroke-[3]" />
+                <Plus className="size-5 stroke-[2.5]" />
               </button>
             );
           }

@@ -478,7 +478,7 @@ export default function BadmintonVenuePage() {
 
         {/* SECTION 1: Khu vực / Địa điểm */}
         <div className="pt-4 space-y-2.5">
-          <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">{safeT("district_title")}</h4>
+          <h4 className="text-xs font-bold text-foreground tracking-wider">{safeT("district_title")}</h4>
           <div className="space-y-1.5">
             {DISTRICT_LIST.map((district) => {
               const isChecked = selectedDistricts.includes(district);
@@ -510,7 +510,7 @@ export default function BadmintonVenuePage() {
 
         {/* SECTION 2: Ngân sách (mỗi giờ) */}
         <div className="pt-4 space-y-2.5">
-          <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">{safeT("price_title")}</h4>
+          <h4 className="text-xs font-bold text-foreground tracking-wider">{safeT("price_title")}</h4>
           <div className="space-y-1.5">
             {PRICE_TIERS.map((tier) => {
               const isChecked = selectedPriceTiers.includes(tier.id);
@@ -542,7 +542,7 @@ export default function BadmintonVenuePage() {
 
         {/* SECTION 3: Đánh giá sân */}
         <div className="pt-4 space-y-2.5">
-          <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">{safeT("rating_title")}</h4>
+          <h4 className="text-xs font-bold text-foreground tracking-wider">{safeT("rating_title")}</h4>
           <div className="space-y-1.5">
             {[
               { score: 4.8, label: safeT("ratings.4_8") },
@@ -576,7 +576,7 @@ export default function BadmintonVenuePage() {
 
         {/* SECTION 4: Các tiện ích phổ biến */}
         <div className="pt-4 space-y-2.5">
-          <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">{safeT("amenities_title")}</h4>
+          <h4 className="text-xs font-bold text-foreground tracking-wider">{safeT("amenities_title")}</h4>
           <div className="space-y-1.5">
             {AMENITY_OPTIONS.map((amenity) => {
               const isChecked = selectedAmenities.includes(amenity);
@@ -608,7 +608,7 @@ export default function BadmintonVenuePage() {
 
         {/* SECTION 5: Loại hình sân */}
         <div className="pt-4 space-y-2.5">
-          <h4 className="text-xs font-bold text-foreground uppercase tracking-wider">{safeT("type_title")}</h4>
+          <h4 className="text-xs font-bold text-foreground tracking-wider">{safeT("type_title")}</h4>
           <div className="space-y-1.5">
             {COURT_TYPES.map((type) => {
               const isChecked = selectedTypes.includes(type);
@@ -766,7 +766,7 @@ export default function BadmintonVenuePage() {
 
                   {/* Side Court List (Right) */}
                   <div className="lg:col-span-5 xl:col-span-4 p-4 overflow-y-auto space-y-3 scrollbar-none border-t lg:border-t-0 lg:border-l border-border/60">
-                    <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{safeT("map_sidebar_title")}</h4>
+                    <h4 className="text-xs font-bold text-muted-foreground tracking-wider">{safeT("map_sidebar_title")}</h4>
                     {filteredCourts.map((court) => (
                       <div
                         key={`map-item-${court.id}`}

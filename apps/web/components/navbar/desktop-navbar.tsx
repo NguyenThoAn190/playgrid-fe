@@ -69,24 +69,14 @@ export function DesktopNavbar() {
     }
   };
 
-  const getNavLabel = (key: string, fallback: string) => {
-    try {
-      const val = t(key as any);
-      if (!val || val.includes("navbar.") || val === key) return fallback;
-      return val;
-    } catch {
-      return fallback;
-    }
-  };
-
   const navItems = [
-    { href: "/", label: getNavLabel("home", "Trang chủ"), sectionId: undefined },
-    { href: "/#explore-sports", label: getNavLabel("explore", "Khám phá"), sectionId: "explore-sports" },
-    { href: "/activities", label: getNavLabel("activities", "Hoạt động"), sectionId: undefined },
-    { href: "/pricing", label: getNavLabel("pricing", "Bảng giá"), sectionId: undefined },
-    { href: "/blog", label: getNavLabel("blog", "Blog & Tin tức"), sectionId: undefined },
-    { href: "/about", label: getNavLabel("about", "Về chúng tôi"), sectionId: undefined },
-    { href: "/contact", label: getNavLabel("contact", "Liên hệ"), sectionId: undefined },
+    { href: "/", label: t("home"), sectionId: undefined },
+    { href: "/#explore-sports", label: t("explore"), sectionId: "explore-sports" },
+    { href: "/activities", label: t("activities"), sectionId: undefined },
+    { href: "/pricing", label: t("pricing"), sectionId: undefined },
+    { href: "/blog", label: t("blog"), sectionId: undefined },
+    { href: "/about", label: t("about"), sectionId: undefined },
+    { href: "/contact", label: t("contact"), sectionId: undefined },
   ];
 
   return (
