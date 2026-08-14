@@ -37,7 +37,7 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
       <div>
         {/* Top Cover Banner Image (12:5 ratio) */}
         <div
-          className="relative w-full aspect-[12/5] overflow-hidden bg-slate-800 shrink-0"
+          className="relative w-full aspect-[12/5] overflow-hidden bg-muted shrink-0"
           style={{ aspectRatio: "12 / 5" }}
         >
           <Image
@@ -57,7 +57,7 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
         </div>
 
         {/* Circular Logo Avatar Overlapping Banner */}
-        <div className="-mt-7 sm:-mt-8 ml-3.5 sm:ml-4 relative z-10 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-4 border-card bg-slate-950 overflow-hidden shadow-md shrink-0">
+        <div className="-mt-7 sm:-mt-8 ml-3.5 sm:ml-4 relative z-10 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-4 border-card bg-muted overflow-hidden shadow-md shrink-0">
           {club.logoUrl ? (
             <Image
               src={club.logoUrl}
@@ -67,7 +67,7 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
               unoptimized
             />
           ) : (
-            <div className="w-full h-full bg-slate-950 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center text-center p-1 leading-tight">
+            <div className="w-full h-full bg-muted text-foreground font-extrabold text-xs sm:text-sm flex items-center justify-center text-center p-1 leading-tight">
               {club.logoText || club.name.slice(0, 4)}
             </div>
           )}

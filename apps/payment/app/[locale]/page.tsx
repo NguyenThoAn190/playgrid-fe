@@ -22,10 +22,10 @@ export default function Home() {
         </p>
 
         <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
-          <button className="rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 text-sm shadow-md transition-transform active:scale-95">
+          <button className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3 text-sm shadow-md transition-transform active:scale-95">
             {t("explore")} ngay
           </button>
-          <button className="rounded-full border border-border bg-background hover:bg-muted font-semibold px-6 py-3 text-sm transition-colors">
+          <button className="rounded-full border border-border bg-card hover:bg-muted font-semibold px-6 py-3 text-sm transition-colors text-foreground">
             {t("courts")}
           </button>
         </div>

@@ -14,14 +14,14 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex items-center gap-1 bg-slate-900 border border-slate-800 rounded-lg p-1 text-xs text-slate-300">
-      <Globe className="h-3.5 w-3.5 ml-1 text-slate-400" />
+    <div className="flex items-center gap-1 bg-muted/60 border border-border rounded-lg p-1 text-xs text-muted-foreground">
+      <Globe className="h-3.5 w-3.5 ml-1 text-muted-foreground" />
       <button
         onClick={() => toggleLanguage("vi")}
         className={`px-2 py-1 rounded transition-colors ${
           locale === "vi"
-            ? "bg-indigo-600 text-white font-semibold"
-            : "hover:bg-slate-800 text-slate-400"
+            ? "bg-primary text-primary-foreground font-semibold"
+            : "hover:bg-accent hover:text-accent-foreground"
         }`}
       >
         VI
@@ -30,8 +30,8 @@ export function LanguageSwitcher() {
         onClick={() => toggleLanguage("en")}
         className={`px-2 py-1 rounded transition-colors ${
           locale === "en"
-            ? "bg-indigo-600 text-white font-semibold"
-            : "hover:bg-slate-800 text-slate-400"
+            ? "bg-primary text-primary-foreground font-semibold"
+            : "hover:bg-accent hover:text-accent-foreground"
         }`}
       >
         EN

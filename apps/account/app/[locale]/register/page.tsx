@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
-import { setAuthCookies, isUserAuthenticated } from "@workspace/shared/utils/sso";
+import { setAuthCookies, isUserAuthenticated, getAuthToken } from "@workspace/shared/utils/sso";
 import { APP_DOMAINS } from "@workspace/shared/constants/domains";
 
 function getTargetRedirectUrl(paramFallback: string): string {
@@ -28,32 +28,32 @@ function getTargetRedirectUrl(paramFallback: string): string {
     let target =
       params.get("redirect_uri") ||
       params.get("return_url") ||
-      params.get("continue") ||
-      paramFallback ||
+      params.get("target") ||
+      params.get("callbackUrl") ||
       "";
 
-    if (target) {
-      while (target.includes("%3A") || target.includes("%2F") || target.includes("%26")) {
-        try {
-          const decoded = decodeURIComponent(target);
-          if (decoded === target) break;
-          target = decoded;
-        } catch {
-          break;
-        }
-      }
+    if (!target && paramFallback) {
+      target = paramFallback;
+    }
+
+    if (target.startsWith("http://") || target.startsWith("https://")) {
       return target;
     }
-  } catch {}
 
-  return paramFallback || "";
+    if (target.startsWith("/")) {
+      return target;
+    }
+
+    return APP_DOMAINS.WEB;
+  } catch {
+    return APP_DOMAINS.WEB;
+  }
 }
 
 function RegisterForm() {
-  const searchParams = useSearchParams();
   const locale = useLocale();
   const isEn = locale === "en";
-
+  const searchParams = useSearchParams();
   const rawRedirectParam = searchParams.get("redirect_uri") || searchParams.get("return_url") || "";
 
   const [fullName, setFullName] = useState("");
@@ -65,19 +65,55 @@ function RegisterForm() {
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [error, setError] = useState("");
 
-  const performRedirect = (targetUrl: string) => {
+  const performRedirect = (
+    targetUrl: string,
+    authData?: { token: string; refreshToken?: string; role?: string; email?: string }
+  ) => {
     const destination = targetUrl || APP_DOMAINS.WEB;
-    if (destination.startsWith("http://") || destination.startsWith("https://")) {
-      window.location.replace(destination);
+    let finalUrl = destination;
+
+    if (authData) {
+      try {
+        const isAbsolute = destination.startsWith("http://") || destination.startsWith("https://");
+        const base = isAbsolute
+          ? destination
+          : `${APP_DOMAINS.WEB}${destination.startsWith("/") ? "" : "/"}${destination}`;
+        const urlObj = new URL(base);
+
+        // Route through /auth/callback on the target app to sync cookies
+        if (!urlObj.pathname.includes("/auth/callback")) {
+          const originalTarget = urlObj.pathname + urlObj.search;
+          urlObj.pathname = `/${locale}/auth/callback`;
+          urlObj.searchParams.set("redirect_to", originalTarget);
+        }
+
+        urlObj.searchParams.set("token", authData.token);
+        if (authData.refreshToken) urlObj.searchParams.set("refreshToken", authData.refreshToken);
+        if (authData.role) urlObj.searchParams.set("role", authData.role);
+        if (authData.email) urlObj.searchParams.set("email", authData.email);
+
+        finalUrl = urlObj.toString();
+      } catch {
+        finalUrl = destination;
+      }
+    }
+
+    if (finalUrl.startsWith("http://") || finalUrl.startsWith("https://")) {
+      window.location.replace(finalUrl);
     } else {
-      window.location.replace(`${APP_DOMAINS.WEB}${destination.startsWith("/") ? "" : "/"}${destination}`);
+      window.location.replace(`${APP_DOMAINS.WEB}${finalUrl.startsWith("/") ? "" : "/"}${finalUrl}`);
     }
   };
 
   useEffect(() => {
     const target = getTargetRedirectUrl(rawRedirectParam);
     if (isUserAuthenticated()) {
-      performRedirect(target);
+      const currentToken = getAuthToken();
+      if (currentToken) {
+        performRedirect(target, { token: currentToken });
+      } else {
+        performRedirect(target);
+      }
     } else {
       setIsCheckingAuth(false);
     }
@@ -87,17 +123,19 @@ function RegisterForm() {
     setIsLoading(true);
     setError("");
 
-    setAuthCookies({
+    const tokenData = {
       token: `pg_token_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`,
       refreshToken: `pg_refresh_${Date.now()}`,
       role: "user",
       email: userEmail,
-    });
+    };
+
+    setAuthCookies(tokenData);
 
     const target = getTargetRedirectUrl(rawRedirectParam);
 
     setTimeout(() => {
-      performRedirect(target);
+      performRedirect(target, tokenData);
     }, 400);
   };
 
@@ -119,7 +157,7 @@ function RegisterForm() {
       setError(isEn ? "Please accept the terms of service" : "Vui lòng đồng ý với điều khoản sử dụng");
       return;
     }
-    handleRegisterSuccess(identifier.includes("@") ? identifier : `${identifier}@playgrid.io`);
+    handleRegisterSuccess(identifier.includes("@") ? identifier : `${identifier}@playgrid.vn`);
   };
 
   if (isCheckingAuth) {
@@ -133,7 +171,7 @@ function RegisterForm() {
   return (
     <div className="min-h-screen w-full flex flex-col lg:flex-row items-stretch bg-background">
       {/* Left Column: 100% Full-Screen Mascot Image without any padding or margin */}
-      <div className="hidden lg:block lg:w-1/2 relative h-screen overflow-hidden select-none bg-slate-900">
+      <div className="hidden lg:block lg:w-1/2 relative h-screen overflow-hidden select-none bg-muted/40">
         <Image
           src="/images/login/grily-wellcome-login.png"
           alt="PlayGrid Mascot Grily"
@@ -145,7 +183,7 @@ function RegisterForm() {
       </div>
 
       {/* Right Column: Full-Height Clean & Spacious Auth Container (50% Width) */}
-      <div className="w-full lg:w-1/2 min-h-screen flex flex-col justify-center items-center p-6 sm:p-10 lg:p-12 xl:p-16 bg-card dark:bg-background border-t lg:border-t-0 lg:border-l border-border/60 overflow-y-auto">
+      <div className="w-full lg:w-1/2 min-h-screen flex flex-col justify-center items-center p-6 sm:p-10 lg:p-12 xl:p-16 bg-card border-t lg:border-t-0 lg:border-l border-border/60 overflow-y-auto">
         <div className="w-full max-w-[480px] xl:max-w-[500px] space-y-5 my-auto">
           {/* Title & Subtitle */}
           <div className="text-center space-y-1.5">

@@ -73,7 +73,7 @@ export default function BlogDetailPage() {
 
         {/* Featured Cover Banner Photo (12:5 Aspect Ratio) */}
         <div
-          className="relative w-full aspect-[12/5] overflow-hidden rounded-3xl bg-slate-900 shadow-md"
+          className="relative w-full aspect-[12/5] overflow-hidden rounded-3xl bg-muted shadow-md"
           style={{ aspectRatio: "12 / 5" }}
         >
           <Image

@@ -42,7 +42,7 @@ export function BlogCard({ post, className = "" }: BlogCardProps) {
       <div>
         {/* Cover Image - Strict 12/5 Aspect Ratio */}
         <div
-          className="relative w-full aspect-[12/5] overflow-hidden bg-slate-900 shrink-0"
+          className="relative w-full aspect-[12/5] overflow-hidden bg-muted shrink-0"
           style={{ aspectRatio: "12 / 5" }}
         >
           <Image

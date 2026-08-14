@@ -142,7 +142,7 @@ export default function BlogListingPage() {
           <div className="relative overflow-hidden rounded-3xl bg-card border border-border/60 shadow-md group hover:border-[#00A859]/40 transition-all duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Cover Image 12:5 ratio container */}
-              <div className="lg:col-span-7 relative aspect-[12/5] w-full overflow-hidden bg-slate-900">
+              <div className="lg:col-span-7 relative aspect-[12/5] w-full overflow-hidden bg-muted">
                 <Image
                   src={FEATURED_ARTICLE.imageUrl}
                   alt={FEATURED_ARTICLE.title}

@@ -43,6 +43,44 @@ export function getRegisterUrl(returnUrl?: string, locale: string = "vi"): strin
 }
 
 /**
+ * Generates the Payment Checkout URL with order/session metadata
+ */
+export function getPaymentUrl(params?: {
+  orderId?: string;
+  amount?: number;
+  returnUrl?: string;
+  locale?: string;
+}): string {
+  const { payment, web } = getAppUrls();
+  const locale = params?.locale || "vi";
+  const queryParams = new URLSearchParams();
+
+  if (params?.orderId) queryParams.set("order_id", params.orderId);
+  if (params?.amount) queryParams.set("amount", String(params.amount));
+
+  const returnUrl = params?.returnUrl || (typeof window !== "undefined" ? window.location.href : web);
+  if (returnUrl) queryParams.set("return_url", returnUrl);
+
+  const token = getAuthToken();
+  if (token) queryParams.set("token", token);
+
+  const queryString = queryParams.toString();
+  return `${payment}/${locale}${queryString ? `?${queryString}` : ""}`;
+}
+
+/**
+ * Checks if the current app is running in PWA standalone mode
+ */
+export function isPWA(): boolean {
+  if (typeof window === "undefined") return false;
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    Boolean((window.navigator as any).standalone) ||
+    document.referrer.includes("android-app://")
+  );
+}
+
+/**
  * Cross-Subdomain Auth Cookie Configuration
  */
 export function getCookieOptions(): Cookies.CookieAttributes {
@@ -55,7 +93,7 @@ export function getCookieOptions(): Cookies.CookieAttributes {
     expires: 30, // 30 days
   };
 
-  // If running in production or configured with a shared domain (e.g. .playgrid.io)
+  // If running in production or configured with a shared domain (e.g. .playgrid.vn)
   if (cookieDomain && cookieDomain !== "localhost") {
     options.domain = cookieDomain;
   }

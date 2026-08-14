@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@workspace/ui/components/button";
 import { Badge } from "@workspace/ui/components/badge";
+import { ThemeToggle } from "@workspace/ui/components/theme-toggle";
 import { ShieldAlert, Users, DollarSign, Server, Bell, Search } from "lucide-react";
 import { LanguageSwitcher } from "../../components/language-switcher";
 
@@ -12,25 +13,25 @@ export default function AdminDashboardPage() {
   return (
     <div className="flex min-h-screen">
       {/* Admin Sidebar */}
-      <aside className="w-64 border-r border-border bg-slate-950 text-slate-100 p-6 flex flex-col justify-between">
+      <aside className="w-64 border-r border-sidebar-border bg-sidebar text-sidebar-foreground p-6 flex flex-col justify-between">
         <div className="space-y-6">
           <div className="flex items-center gap-2">
-            <ShieldAlert className="h-6 w-6 text-indigo-400" />
+            <ShieldAlert className="h-6 w-6 text-primary" />
             <h1 className="font-bold text-xl tracking-tight">{t("title")}</h1>
           </div>
           <nav className="space-y-2">
-            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-md bg-indigo-600 text-white font-medium">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-md bg-primary text-primary-foreground font-medium shadow-xs">
               <Users className="h-4 w-4" /> {t("nav.user_management")}
             </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-md text-slate-400 hover:bg-slate-900 hover:text-white">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors">
               <DollarSign className="h-4 w-4" /> {t("nav.revenue_transactions")}
             </a>
-            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-md text-slate-400 hover:bg-slate-900 hover:text-white">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors">
               <Server className="h-4 w-4" /> {t("nav.system_status")}
             </a>
           </nav>
         </div>
-        <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-400">
+        <div className="p-3 rounded-lg bg-sidebar-accent border border-sidebar-border text-xs text-sidebar-foreground/70">
           {t("portal_version")}
         </div>
       </aside>
@@ -42,7 +43,7 @@ export default function AdminDashboardPage() {
             <h2 className="text-2xl font-bold">{t("header.title")}</h2>
             <p className="text-sm text-muted-foreground">{t("header.subtitle")}</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="relative">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
               <input 
@@ -54,6 +55,7 @@ export default function AdminDashboardPage() {
             <Button variant="outline" size="icon">
               <Bell className="h-4 w-4" />
             </Button>
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
         </header>

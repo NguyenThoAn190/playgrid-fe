@@ -12,12 +12,12 @@ export function EventGeoStructuredData({ event }: EventGeoStructuredDataProps) {
   const sportsEventSchema = {
     "@context": "https://schema.org",
     "@type": "SportsEvent",
-    "@id": `https://playgrid.io/events/${event.id}#event`,
+    "@id": `https://playgrid.vn/events/${event.id}#event`,
     "name": event.title,
     "alternateName": "Aqua Warriors Vân Đồn 2026",
     "description": event.description,
     "disambiguatingDescription": `Giải đấu ba môn phối hợp Triathlon và bơi biển quy mô quốc tế tổ chức tại Bãi biển Vân Đồn, Quảng Ninh. Gồm các cự ly ${event.distanceText || "Triathlon Olympic 51.5km, Aquathlon Standard, Bơi biển 3km, Kid Warriors"}.`,
-    "url": `https://playgrid.io/events/${event.id}`,
+    "url": `https://playgrid.vn/events/${event.id}`,
     "image": [event.imageUrl],
     "startDate": "2026-09-12T08:00:00+07:00",
     "endDate": "2026-09-13T18:00:00+07:00",
@@ -49,8 +49,8 @@ export function EventGeoStructuredData({ event }: EventGeoStructuredDataProps) {
     "organizer": {
       "@type": "SportsOrganization",
       "name": "Ban Tổ Chức Aqua Warriors & PlayGrid Vietnam",
-      "url": "https://playgrid.io",
-      "logo": "https://playgrid.io/images/logo.png",
+      "url": "https://playgrid.vn",
+      "logo": "https://playgrid.vn/images/logo.png",
     },
     "offers": event.distanceTiers?.map((tier) => ({
       "@type": "Offer",
@@ -64,7 +64,7 @@ export function EventGeoStructuredData({ event }: EventGeoStructuredDataProps) {
           : "https://schema.org/InStock",
       "validFrom": "2026-06-01T00:00:00+07:00",
       "validThrough": "2026-08-31T23:59:59+07:00",
-      "url": `https://playgrid.io/events/${event.id}`,
+      "url": `https://playgrid.vn/events/${event.id}`,
     })) || [],
     "subEvents": scheduleSection?.scheduleTimeline?.map((item) => ({
       "@type": "Event",
@@ -94,19 +94,19 @@ export function EventGeoStructuredData({ event }: EventGeoStructuredDataProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Trang chủ PlayGrid",
-        "item": "https://playgrid.io",
+        "item": "https://playgrid.vn",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Sự kiện & Giải đấu",
-        "item": "https://playgrid.io/events",
+        "item": "https://playgrid.vn/events",
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": event.title,
-        "item": `https://playgrid.io/events/${event.id}`,
+        "item": `https://playgrid.vn/events/${event.id}`,
       },
     ],
   };

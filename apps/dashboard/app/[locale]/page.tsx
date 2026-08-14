@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@workspace/ui/components/button";
 import { Badge } from "@workspace/ui/components/badge";
+import { ThemeToggle } from "@workspace/ui/components/theme-toggle";
 import { LayoutDashboard, CreditCard, Activity, Settings, Zap } from "lucide-react";
 import { LanguageSwitcher } from "../../components/language-switcher";
 
@@ -49,6 +50,7 @@ export default function UserDashboardPage() {
           <div className="flex items-center gap-3">
             <Badge variant="default" className="bg-emerald-600 text-white">{t("header.pro_badge")}</Badge>
             <Button>{t("header.upgrade")}</Button>
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
         </header>

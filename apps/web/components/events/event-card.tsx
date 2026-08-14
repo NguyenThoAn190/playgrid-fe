@@ -51,7 +51,7 @@ export function EventCard({ event, className = "" }: EventCardProps) {
       <div>
         {/* Banner Cover Image (12:5 ratio) */}
         <div
-          className="relative w-full aspect-[12/5] overflow-hidden bg-slate-800"
+          className="relative w-full aspect-[12/5] overflow-hidden bg-muted"
           style={{ aspectRatio: "12 / 5" }}
         >
           <Image
