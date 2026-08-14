@@ -6,7 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { User, Settings, LogOut } from "lucide-react";
 import { CookiesContains } from "@workspace/shared/constants/cookies";
-import { getLoginUrl, clearAuthCookies, isUserAuthenticated } from "@workspace/shared/utils/sso";
+import { getLoginUrl, getLogoutUrl, clearAuthCookies, isUserAuthenticated } from "@workspace/shared/utils/sso";
 import tokenManager from "@workspace/shared/services/utils/tokenManager";
 
 import { Logo } from "./logo";
@@ -55,7 +55,9 @@ export function MobileNavbar() {
     Cookies.remove("accessToken");
     tokenManager.removeTokens();
     setIsAuthenticated(false);
-    window.location.reload();
+    if (typeof window !== "undefined") {
+      window.location.href = getLogoutUrl(window.location.href, locale);
+    }
   };
 
   const handleLoginRedirect = () => {

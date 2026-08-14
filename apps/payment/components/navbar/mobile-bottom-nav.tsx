@@ -5,6 +5,7 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Cookies from "js-cookie";
 import { CookiesContains } from "@workspace/shared/constants/cookies";
+import { getLogoutUrl, clearAuthCookies } from "@workspace/shared/utils/sso";
 import tokenManager from "@workspace/shared/services/utils/tokenManager";
 import { Button } from "@workspace/ui/components/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@workspace/ui/components/avatar";
@@ -53,6 +54,7 @@ export function MobileBottomNav() {
   }, []);
 
   const handleLogout = () => {
+    clearAuthCookies();
     Cookies.remove("token");
     Cookies.remove("accessToken");
     Cookies.remove("refresh_token");
@@ -61,7 +63,9 @@ export function MobileBottomNav() {
     tokenManager.removeTokens();
     setIsAuthenticated(false);
     setIsDrawerOpen(false);
-    window.location.reload();
+    if (typeof window !== "undefined") {
+      window.location.href = getLogoutUrl(window.location.href, locale);
+    }
   };
 
   const toggleLanguage = (nextLocale: "vi" | "en") => {

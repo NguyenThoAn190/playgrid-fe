@@ -43,6 +43,26 @@ export function getRegisterUrl(returnUrl?: string, locale: string = "vi"): strin
 }
 
 /**
+ * Generates the SSO Logout URL with return_url / redirect_uri
+ */
+export function getLogoutUrl(returnUrl?: string, locale: string = "vi"): string {
+  const { account, web } = getAppUrls();
+  let targetReturn = returnUrl;
+
+  if (!targetReturn && typeof window !== "undefined") {
+    targetReturn = window.location.href;
+  }
+
+  const queryParams = new URLSearchParams();
+  if (targetReturn) {
+    queryParams.set("redirect_uri", targetReturn);
+  }
+
+  const queryString = queryParams.toString();
+  return `${account}/${locale}/logout${queryString ? `?${queryString}` : ""}`;
+}
+
+/**
  * Generates the Payment Checkout URL with order/session metadata
  */
 export function getPaymentUrl(params?: {

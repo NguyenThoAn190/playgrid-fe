@@ -5,7 +5,7 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Cookies from "js-cookie";
 import { CookiesContains } from "@workspace/shared/constants/cookies";
-import { getLoginUrl, getRegisterUrl, clearAuthCookies, isUserAuthenticated } from "@workspace/shared/utils/sso";
+import { getLoginUrl, getRegisterUrl, getLogoutUrl, clearAuthCookies, isUserAuthenticated } from "@workspace/shared/utils/sso";
 import tokenManager from "@workspace/shared/services/utils/tokenManager";
 import { Button } from "@workspace/ui/components/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@workspace/ui/components/avatar";
@@ -61,7 +61,9 @@ export function MobileBottomNav() {
     tokenManager.removeTokens();
     setIsAuthenticated(false);
     setIsDrawerOpen(false);
-    window.location.reload();
+    if (typeof window !== "undefined") {
+      window.location.href = getLogoutUrl(window.location.href, locale);
+    }
   };
 
   const handleLoginRedirect = () => {

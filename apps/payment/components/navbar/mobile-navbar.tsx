@@ -3,9 +3,10 @@
 import * as React from "react";
 import Cookies from "js-cookie";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { User, Settings, LogOut } from "lucide-react";
 import { CookiesContains } from "@workspace/shared/constants/cookies";
+import { getLogoutUrl, clearAuthCookies } from "@workspace/shared/utils/sso";
 import tokenManager from "@workspace/shared/services/utils/tokenManager";
 
 import { Logo } from "./logo";
@@ -28,6 +29,7 @@ import {
 
 export function MobileNavbar() {
   const t = useTranslations("navbar");
+  const locale = useLocale();
   const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -45,6 +47,7 @@ export function MobileNavbar() {
   }, []);
 
   const handleLogout = () => {
+    clearAuthCookies();
     Cookies.remove("token");
     Cookies.remove("accessToken");
     Cookies.remove("refresh_token");
@@ -52,7 +55,9 @@ export function MobileNavbar() {
     Cookies.remove(CookiesContains.ROLE);
     tokenManager.removeTokens();
     setIsAuthenticated(false);
-    window.location.reload();
+    if (typeof window !== "undefined") {
+      window.location.href = getLogoutUrl(window.location.href, locale);
+    }
   };
 
   return (

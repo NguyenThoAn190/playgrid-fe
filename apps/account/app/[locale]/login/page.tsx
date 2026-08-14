@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
-import { setAuthCookies, isUserAuthenticated, getAuthToken } from "@workspace/shared/utils/sso";
+import { setAuthCookies, isUserAuthenticated, getAuthToken, clearAuthCookies } from "@workspace/shared/utils/sso";
 import { APP_DOMAINS } from "@workspace/shared/constants/domains";
 
 function getTargetRedirectUrl(paramFallback: string): string {
@@ -106,6 +106,18 @@ function LoginForm() {
 
   // Auto redirect if user is already authenticated
   useEffect(() => {
+    const prompt = searchParams.get("prompt");
+    const isSwitching =
+      searchParams.get("switch") === "true" ||
+      prompt === "login" ||
+      searchParams.get("logout") === "true";
+
+    if (isSwitching) {
+      clearAuthCookies();
+      setIsCheckingAuth(false);
+      return;
+    }
+
     const target = getTargetRedirectUrl(rawRedirectParam);
     if (isUserAuthenticated()) {
       const currentToken = getAuthToken();
@@ -117,7 +129,7 @@ function LoginForm() {
     } else {
       setIsCheckingAuth(false);
     }
-  }, [rawRedirectParam]);
+  }, [rawRedirectParam, searchParams]);
 
   const handleLoginSuccess = (userEmail: string) => {
     setIsLoading(true);
