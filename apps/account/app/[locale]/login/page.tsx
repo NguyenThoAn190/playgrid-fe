@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
-import { setAuthCookies, isUserAuthenticated, getAuthToken, clearAuthCookies } from "@workspace/shared/utils/sso";
+import { setAuthCookies, isUserAuthenticated, getAuthToken, clearAuthCookies, getCurrentTheme } from "@workspace/shared/utils/sso";
 import { APP_DOMAINS } from "@workspace/shared/constants/domains";
 
 function getTargetRedirectUrl(paramFallback: string): string {
@@ -90,6 +90,9 @@ function LoginForm() {
         if (authData.refreshToken) urlObj.searchParams.set("refreshToken", authData.refreshToken);
         if (authData.role) urlObj.searchParams.set("role", authData.role);
         if (authData.email) urlObj.searchParams.set("email", authData.email);
+
+        const currentTheme = getCurrentTheme();
+        if (currentTheme) urlObj.searchParams.set("theme", currentTheme);
 
         finalUrl = urlObj.toString();
       } catch {

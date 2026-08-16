@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import { routing } from "../../i18n/routing";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "../globals.css";
@@ -43,6 +44,11 @@ export default async function LocaleLayout({
   // Load messages using next-intl/server getMessages
   const messages = await getMessages();
 
+  // Read theme from server cookies for instantaneous SSR theme matching
+  const cookieStore = await cookies();
+  const themeCookie = cookieStore.get("playgrid_theme")?.value;
+  const initialTheme = themeCookie === "dark" || themeCookie === "light" ? themeCookie : "system";
+
   return (
     <div
       className={cn(
@@ -52,7 +58,7 @@ export default async function LocaleLayout({
         inter.variable
       )}
     >
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <ThemeProvider attribute="class" defaultTheme={initialTheme} enableSystem disableTransitionOnChange>
         <NextIntlClientProvider messages={messages}>
           <PWARegister />
           <Navbar />

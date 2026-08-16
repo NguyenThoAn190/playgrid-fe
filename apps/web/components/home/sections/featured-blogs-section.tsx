@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React from "react";
 import { ArrowRight, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { BlogCard, BlogPostData } from "@/components/blog/blog-card";
+import { useOptimizedCarousel } from "@/hooks/use-optimized-carousel";
 
 export const MOCK_BLOG_POSTS: BlogPostData[] = [
   {
@@ -65,52 +66,11 @@ const INFINITE_BLOGS = [...MOCK_BLOG_POSTS, ...MOCK_BLOG_POSTS, ...MOCK_BLOG_POS
 export function FeaturedBlogsSection() {
   const tHome = useTranslations("home.featured_blogs");
   const tCommon = useTranslations("common");
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Smooth scroll handler
-  const scroll = useCallback((direction: "left" | "right") => {
-    if (!scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const scrollAmount = container.clientWidth * 0.75;
-
-    container.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
-  }, []);
-
-  // Infinite scroll loop reset calculation
-  const handleScroll = () => {
-    if (!scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const maxScroll = container.scrollWidth - container.clientWidth;
-    const currentScroll = container.scrollLeft;
-
-    if (currentScroll >= maxScroll - 5) {
-      container.scrollLeft = container.scrollWidth / 3;
-    } else if (currentScroll <= 5) {
-      container.scrollLeft = container.scrollWidth / 3;
-    }
-  };
-
-  // Auto scroll effect when not hovered
-  useEffect(() => {
-    if (isHovered) return;
-
-    const interval = setInterval(() => {
-      if (!scrollContainerRef.current) return;
-      const container = scrollContainerRef.current;
-      const cardWidth = container.clientWidth / 3;
-
-      container.scrollBy({
-        left: cardWidth,
-        behavior: "smooth",
-      });
-    }, 2500);
-
-    return () => clearInterval(interval);
-  }, [isHovered]);
+  const { scrollContainerRef, scroll, containerProps } = useOptimizedCarousel({
+    autoplayInterval: 4500,
+    cooldownBuffer: 4000,
+    isInfinite: true,
+  });
 
   return (
     <section id="blogs" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden scroll-mt-20">
@@ -131,11 +91,7 @@ export function FeaturedBlogsSection() {
         </div>
 
         {/* Blog Posts Horizontal Infinite Slider Container */}
-        <div
-          className="relative group/carousel"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <div className="relative group/carousel">
           {/* Scroll Navigation Buttons */}
           <button
             type="button"
@@ -158,8 +114,8 @@ export function FeaturedBlogsSection() {
           {/* Continuous Infinite Horizontal Scroll List */}
           <div
             ref={scrollContainerRef}
-            onScroll={handleScroll}
-            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1"
+            {...containerProps}
+            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1 overscroll-x-contain"
           >
             {INFINITE_BLOGS.map((post, index) => (
               <div

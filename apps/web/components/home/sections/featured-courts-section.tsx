@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React from "react";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { CourtCard, CourtData } from "@/components/courts/court-card";
 import { useTranslations } from "next-intl";
+import { useOptimizedCarousel } from "@/hooks/use-optimized-carousel";
 
 const MOCK_FEATURED_COURTS: CourtData[] = [
   {
@@ -91,83 +92,11 @@ const INFINITE_COURTS = [
 export function FeaturedCourtsSection() {
   const tHome = useTranslations("home.featured_courts");
   const tCommon = useTranslations("common");
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const isResettingRef = useRef(false);
-
-  // Position scroll container at the middle set on initial mount
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const singleSetWidth = container.scrollWidth / 3;
-      container.scrollLeft = singleSetWidth;
-    }
-  }, []);
-
-  // Seamless infinite position reset handler & scroll motion detection
-  const handleScroll = useCallback(() => {
-    if (!scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const singleSetWidth = container.scrollWidth / 3;
-
-    if (!isResettingRef.current) {
-      if (container.scrollLeft >= singleSetWidth * 2) {
-        isResettingRef.current = true;
-        container.scrollLeft -= singleSetWidth;
-        setTimeout(() => {
-          isResettingRef.current = false;
-        }, 50);
-      } else if (container.scrollLeft <= 20) {
-        isResettingRef.current = true;
-        container.scrollLeft += singleSetWidth;
-        setTimeout(() => {
-          isResettingRef.current = false;
-        }, 50);
-      }
-    }
-
-    setIsScrolling(true);
-    if (scrollTimeoutRef.current) {
-      clearTimeout(scrollTimeoutRef.current);
-    }
-    scrollTimeoutRef.current = setTimeout(() => {
-      setIsScrolling(false);
-    }, 200);
-  }, []);
-
-  const scroll = useCallback((direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const cardWidth = container.firstElementChild?.clientWidth || 300;
-      const gap = 12;
-      const scrollAmount = cardWidth + gap;
-
-      if (direction === "right") {
-        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
-      } else {
-        container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      }
-    }
-  }, []);
-
-  // Autoplay functionality: Auto scroll 3.0s after scroll motion stops completely
-  useEffect(() => {
-    if (isHovered || isScrolling) return;
-
-    const timer = setTimeout(() => {
-      scroll("right");
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [isHovered, isScrolling, scroll]);
-
-  useEffect(() => {
-    return () => {
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    };
-  }, []);
+  const { scrollContainerRef, scroll, containerProps } = useOptimizedCarousel({
+    autoplayInterval: 4500,
+    cooldownBuffer: 4000,
+    isInfinite: true,
+  });
 
   return (
     <section id="featured-courts" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden scroll-mt-20">
@@ -188,13 +117,7 @@ export function FeaturedCourtsSection() {
         </div>
 
         {/* Courts Horizontal Infinite Slider Container */}
-        <div
-          className="relative group/carousel"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onTouchStart={() => setIsHovered(true)}
-          onTouchEnd={() => setIsHovered(false)}
-        >
+        <div className="relative group/carousel">
           {/* Left Navigation Arrow */}
           <button
             type="button"
@@ -208,8 +131,8 @@ export function FeaturedCourtsSection() {
           {/* Continuous Infinite Horizontal Scroll List */}
           <div
             ref={scrollContainerRef}
-            onScroll={handleScroll}
-            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1"
+            {...containerProps}
+            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1 overscroll-x-contain"
           >
             {INFINITE_COURTS.map((court, index) => (
               <div

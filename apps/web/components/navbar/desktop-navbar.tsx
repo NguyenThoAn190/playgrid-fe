@@ -88,31 +88,37 @@ export function DesktopNavbar() {
     { href: "/contact", label: t("contact"), sectionId: undefined },
   ];
 
+  const isVisible = useHeaderVisible();
+
   return (
-    <div>
-      <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
+    <div
+      className={`fixed top-0 left-0 right-0 z-40 hidden lg:block bg-background/80 backdrop-blur-md border-b border-border/40 transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
+      <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left: Brand Logo */}
-        <div className="flex items-center shrink-0">
-          <Logo />
-        </div>
+        <Logo />
 
         {/* Center: Main Navigation Menu */}
-        <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 mx-4">
+        <nav className="flex items-center gap-1 xl:gap-1.5">
           {navItems.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === "/" || pathname === "/vi" || pathname === "/en"
-                : pathname.startsWith(item.href.replace("/#", "/"));
+            const isHomePage = pathname === "/" || pathname === "/vi" || pathname === "/en";
+            const isActive = item.sectionId
+              ? false
+              : item.href === "/"
+                ? isHomePage
+                : pathname.includes(item.href);
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.sectionId)}
-                className={`relative py-5 px-2 xl:px-3 text-xs xl:text-sm font-medium whitespace-nowrap transition-colors hover:text-brand-blue dark:hover:text-brand-green shrink-0 ${
+                className={`relative px-3 py-1.5 text-xs xl:text-sm font-semibold rounded-lg transition-colors cursor-pointer ${
                   isActive
-                    ? "font-semibold text-brand-blue dark:text-brand-green"
-                    : "text-foreground/80 hover:text-foreground"
+                    ? "text-brand-blue dark:text-brand-green font-bold"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
               >
                 {item.label}
@@ -193,4 +199,3 @@ export function DesktopNavbar() {
     </div>
   );
 }
-

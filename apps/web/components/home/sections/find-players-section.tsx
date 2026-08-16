@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React from "react";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, ChevronLeft, ChevronRight, Users } from "lucide-react";
 import { FindPlayerCard, ActivityData } from "@/components/activities/find-player-card";
 import { useTranslations } from "next-intl";
+import { useOptimizedCarousel } from "@/hooks/use-optimized-carousel";
 
 const MOCK_ACTIVITIES: ActivityData[] = [
   {
@@ -97,65 +98,11 @@ const INFINITE_ACTIVITIES = [
 export function FindPlayersSection() {
   const tHome = useTranslations("home.find_players");
   const tCommon = useTranslations("common");
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const isResettingRef = useRef(false);
-
-  // Position scroll container at middle set on initial mount
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const singleSetWidth = container.scrollWidth / 3;
-      container.scrollLeft = singleSetWidth;
-    }
-  }, []);
-
-  // Seamless infinite position reset handler
-  const handleScroll = useCallback(() => {
-    if (isResettingRef.current || !scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const singleSetWidth = container.scrollWidth / 3;
-
-    if (container.scrollLeft >= singleSetWidth * 2) {
-      isResettingRef.current = true;
-      container.scrollLeft -= singleSetWidth;
-      setTimeout(() => {
-        isResettingRef.current = false;
-      }, 50);
-    } else if (container.scrollLeft <= 20) {
-      isResettingRef.current = true;
-      container.scrollLeft += singleSetWidth;
-      setTimeout(() => {
-        isResettingRef.current = false;
-      }, 50);
-    }
-  }, []);
-
-  const scroll = useCallback((direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const cardWidth = container.firstElementChild?.clientWidth || 300;
-      const gap = 12;
-      const scrollAmount = cardWidth + gap;
-
-      if (direction === "right") {
-        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
-      } else {
-        container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      }
-    }
-  }, []);
-
-  // Autoplay functionality: Auto-scroll every 4s, pause on hover/touch
-  useEffect(() => {
-    if (isHovered) return;
-
-    const interval = setInterval(() => {
-      scroll("right");
-    }, 2500);
-
-    return () => clearInterval(interval);
-  }, [isHovered, scroll]);
+  const { scrollContainerRef, scroll, containerProps } = useOptimizedCarousel({
+    autoplayInterval: 4500,
+    cooldownBuffer: 4000,
+    isInfinite: true,
+  });
 
   return (
     <section id="find-players" className="relative w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden border-t border-border/40 scroll-mt-20">
@@ -180,13 +127,7 @@ export function FindPlayersSection() {
         </div>
 
         {/* Horizontal Infinite Slider Container */}
-        <div
-          className="relative group/carousel"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onTouchStart={() => setIsHovered(true)}
-          onTouchEnd={() => setIsHovered(false)}
-        >
+        <div className="relative group/carousel">
           {/* Left Navigation Arrow */}
           <button
             type="button"
@@ -200,8 +141,8 @@ export function FindPlayersSection() {
           {/* Continuous Infinite Horizontal Scroll List */}
           <div
             ref={scrollContainerRef}
-            onScroll={handleScroll}
-            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1"
+            {...containerProps}
+            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1 overscroll-x-contain"
           >
             {INFINITE_ACTIVITIES.map((activity, index) => (
               <div

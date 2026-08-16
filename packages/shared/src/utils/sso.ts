@@ -3,7 +3,23 @@ import { CookiesContains } from "../constants/cookies";
 import { getAppUrls } from "../constants/domains";
 
 /**
- * Generates the SSO Login URL with return_url / redirect_uri
+ * Reads current theme from localStorage, Cookie or document class
+ */
+export function getCurrentTheme(): string | undefined {
+  if (typeof window === "undefined") return undefined;
+  try {
+    const local = localStorage.getItem("playgrid_theme");
+    if (local === "dark" || local === "light") return local;
+    const cookie = Cookies.get("playgrid_theme");
+    if (cookie === "dark" || cookie === "light") return cookie;
+    if (document.documentElement.classList.contains("dark")) return "dark";
+    if (document.documentElement.classList.contains("light")) return "light";
+  } catch {}
+  return undefined;
+}
+
+/**
+ * Generates the SSO Login URL with return_url / redirect_uri and theme sync
  */
 export function getLoginUrl(returnUrl?: string, locale: string = "vi"): string {
   const { account } = getAppUrls();
@@ -18,12 +34,17 @@ export function getLoginUrl(returnUrl?: string, locale: string = "vi"): string {
     queryParams.set("redirect_uri", targetReturn);
   }
 
+  const theme = getCurrentTheme();
+  if (theme) {
+    queryParams.set("theme", theme);
+  }
+
   const queryString = queryParams.toString();
   return `${account}/${locale}/login${queryString ? `?${queryString}` : ""}`;
 }
 
 /**
- * Generates the SSO Register URL with return_url / redirect_uri
+ * Generates the SSO Register URL with return_url / redirect_uri and theme sync
  */
 export function getRegisterUrl(returnUrl?: string, locale: string = "vi"): string {
   const { account } = getAppUrls();
@@ -38,12 +59,17 @@ export function getRegisterUrl(returnUrl?: string, locale: string = "vi"): strin
     queryParams.set("redirect_uri", targetReturn);
   }
 
+  const theme = getCurrentTheme();
+  if (theme) {
+    queryParams.set("theme", theme);
+  }
+
   const queryString = queryParams.toString();
   return `${account}/${locale}/register${queryString ? `?${queryString}` : ""}`;
 }
 
 /**
- * Generates the SSO Logout URL with return_url / redirect_uri
+ * Generates the SSO Logout URL with return_url / redirect_uri and theme sync
  */
 export function getLogoutUrl(returnUrl?: string, locale: string = "vi"): string {
   const { account, web } = getAppUrls();
@@ -58,12 +84,17 @@ export function getLogoutUrl(returnUrl?: string, locale: string = "vi"): string 
     queryParams.set("redirect_uri", targetReturn);
   }
 
+  const theme = getCurrentTheme();
+  if (theme) {
+    queryParams.set("theme", theme);
+  }
+
   const queryString = queryParams.toString();
   return `${account}/${locale}/logout${queryString ? `?${queryString}` : ""}`;
 }
 
 /**
- * Generates the Payment Checkout URL with order/session metadata
+ * Generates the Payment Checkout URL with order/session metadata and theme sync
  */
 export function getPaymentUrl(params?: {
   orderId?: string;
@@ -83,6 +114,9 @@ export function getPaymentUrl(params?: {
 
   const token = getAuthToken();
   if (token) queryParams.set("token", token);
+
+  const theme = getCurrentTheme();
+  if (theme) queryParams.set("theme", theme);
 
   const queryString = queryParams.toString();
   return `${payment}/${locale}${queryString ? `?${queryString}` : ""}`;
