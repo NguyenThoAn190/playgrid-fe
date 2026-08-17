@@ -160,9 +160,9 @@ export function FeaturedCommunitySection() {
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <h4 className="text-sm sm:text-base font-bold text-foreground">
+                      <p className="text-sm sm:text-base font-bold text-foreground">
                         {featuredPost.authorName}
-                      </h4>
+                      </p>
                       {featuredPost.isVerified && (
                         <CheckCircle2 className="w-4 h-4 text-blue-500 fill-blue-500/10 shrink-0" />
                       )}
@@ -217,6 +217,7 @@ export function FeaturedCommunitySection() {
                   <span>
                     {featuredPost.likes + (likedPostIds[featuredPost.id] ? 1 : 0)}
                   </span>
+                  <span className="sr-only">lượt thích</span>
                 </button>
 
                 {/* Comment Button */}
@@ -226,6 +227,7 @@ export function FeaturedCommunitySection() {
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{featuredPost.comments}</span>
+                  <span className="sr-only">bình luận</span>
                 </button>
 
                 {/* Share Button */}
@@ -235,12 +237,14 @@ export function FeaturedCommunitySection() {
                 >
                   <Share2 className="w-4 h-4" />
                   <span>{featuredPost.shares}</span>
+                  <span className="sr-only">lượt chia sẻ</span>
                 </button>
               </div>
 
               {/* Bookmark Save Button */}
               <button
                 type="button"
+                aria-label="Lưu bài viết"
                 onClick={() => toggleSave(featuredPost.id)}
                 className={`p-1.5 rounded-lg hover:bg-muted transition-colors cursor-pointer ${savedPostIds[featuredPost.id] ? "text-blue-600 dark:text-blue-400" : ""
                   }`}
@@ -275,9 +279,9 @@ export function FeaturedCommunitySection() {
                         />
                       </div>
                       <div className="min-w-0">
-                        <h5 className="text-xs font-bold text-foreground truncate">
+                        <p className="text-xs font-bold text-foreground truncate">
                           {post.authorName}
-                        </h5>
+                        </p>
                         <p className="text-[11px] text-muted-foreground truncate">
                           {post.timeAgo}
                         </p>
@@ -288,9 +292,9 @@ export function FeaturedCommunitySection() {
                   {/* Body Content with Thumbnail */}
                   <div className="flex items-start gap-3 justify-between">
                     <div className="space-y-1 min-w-0 flex-1">
-                      <h4 className="text-xs sm:text-sm font-bold text-foreground line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <h3 className="text-xs sm:text-sm font-bold text-foreground line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {post.title}
-                      </h4>
+                      </h3>
                       <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2">
                         {post.content}
                       </p>
@@ -323,16 +327,19 @@ export function FeaturedCommunitySection() {
                             }`}
                         />
                         <span>{post.likes + (isLiked ? 1 : 0)}</span>
+                        <span className="sr-only">lượt thích</span>
                       </button>
 
                       <div className="flex items-center gap-1">
                         <MessageSquare className="w-3.5 h-3.5" />
                         <span>{post.comments}</span>
+                        <span className="sr-only">bình luận</span>
                       </div>
                     </div>
 
                     <button
                       type="button"
+                      aria-label="Lưu bài viết"
                       onClick={() => toggleSave(post.id)}
                       className="hover:text-foreground transition-colors cursor-pointer"
                     >

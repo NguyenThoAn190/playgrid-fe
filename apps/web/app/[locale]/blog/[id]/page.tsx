@@ -4,19 +4,30 @@ import React from "react";
 import Image from "next/image";
 import { ArrowLeft, Calendar, Clock, Share2, ThumbsUp, Bookmark, Sparkles } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { BlogCard } from "@/components/blog/blog-card";
 import { MOCK_BLOG_POSTS } from "@/components/home/sections/featured-blogs-section";
+import { JsonLdScript, getBlogPostingJsonLd, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
 
 export interface BlogDetailPageProps {
   params: Promise<{ id: string; locale: string }>;
 }
 
 export default function BlogDetailPage() {
+  const locale = useLocale();
   const post = MOCK_BLOG_POSTS[0]!;
+
+  const blogPostingSchema = getBlogPostingJsonLd(post, locale);
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: "Trang chủ", url: `/${locale}` },
+    { name: "Blog & Tin tức", url: `/${locale}/blog` },
+    { name: post.title, url: `/${locale}/blog/${post.id}` },
+  ]);
 
   return (
     <div className="w-full min-h-screen bg-background text-foreground py-6 sm:py-10">
+      <JsonLdScript data={[blogPostingSchema, breadcrumbSchema]} />
       <div className="mx-auto w-full max-w-[1000px] px-4 sm:px-6 space-y-8">
         {/* Top Back Navigation */}
         <div>

@@ -227,9 +227,9 @@ export function FeaturedLeaderboardSection() {
 
                     {/* Info */}
                     <div className="min-w-0">
-                      <h4 className="text-sm font-semibold text-foreground truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <p className="text-sm font-semibold text-foreground truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {player.name}
-                      </h4>
+                      </p>
                       <p className="text-xs text-muted-foreground truncate">
                         {player.location}
                       </p>
@@ -354,8 +354,9 @@ export function FeaturedLeaderboardSection() {
                 src="/images/rankings/podium-cta.png"
                 alt="Podium Illustration"
                 fill
+                loading="lazy"
                 className="object-contain object-bottom scale-105"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 768px) 300px, 300px"
               />
             </div>
           </div>

@@ -49,7 +49,7 @@ export function BlogCard({ post, className = "" }: BlogCardProps) {
             src={post.imageUrl || FALLBACK_BLOG_IMAGE}
             alt={post.title}
             fill
-            unoptimized
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>

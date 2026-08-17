@@ -28,6 +28,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { JsonLdScript, getOrganizationJsonLd, getWebsiteJsonLd } from "@/lib/seo/json-ld";
+
 export default async function LocaleLayout({
   children,
   params,
@@ -49,6 +51,9 @@ export default async function LocaleLayout({
   const themeCookie = cookieStore.get("playgrid_theme")?.value;
   const initialTheme = themeCookie === "dark" || themeCookie === "light" ? themeCookie : "system";
 
+  const organizationSchema = getOrganizationJsonLd();
+  const websiteSchema = getWebsiteJsonLd(locale);
+
   return (
     <div
       className={cn(
@@ -60,6 +65,7 @@ export default async function LocaleLayout({
     >
       <ThemeProvider attribute="class" defaultTheme={initialTheme} enableSystem disableTransitionOnChange>
         <NextIntlClientProvider messages={messages}>
+          <JsonLdScript data={[organizationSchema, websiteSchema]} />
           <PWARegister />
           <Navbar />
           <main className="flex-1">{children}</main>

@@ -38,7 +38,6 @@ export function HeroSportsSelector({
               alt={t("sports.badminton")}
               width={40}
               height={40}
-              unoptimized
               className="h-full w-full object-contain"
             />
           </div>
@@ -62,7 +61,6 @@ export function HeroSportsSelector({
               alt={t("sports.pickleball")}
               width={40}
               height={40}
-              unoptimized
               className="h-full w-full object-contain"
             />
           </div>

@@ -18,6 +18,7 @@ import {
 import { useTranslations, useLocale } from "next-intl";
 import { SportSubNav } from "@/components/sports/sport-sub-nav";
 import { CourtCard, CourtData } from "@/components/courts/court-card";
+import { JsonLdScript, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
 import {
   Select,
   SelectTrigger,
@@ -574,8 +575,33 @@ export default function PickleballVenuePage() {
     </div>
   );
 
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: "Trang chủ", url: `/${locale}` },
+    { name: "Pickleball", url: `/${locale}/pickleball` },
+    { name: "Danh sách sân Pickleball", url: `/${locale}/pickleball/venue` },
+  ]);
+
+  const venueItemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Danh sách sân Pickleball TP. HCM",
+    "description": "Đặt sân Pickleball trực tuyến tại TP. HCM với giá tốt nhất trên PlayGrid.",
+    "itemListElement": PICKLEBALL_VENUES.slice(0, 10).map((v, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "item": {
+        "@type": "SportsActivityLocation",
+        "name": v.name,
+        "url": `https://playgrid.vn/${locale}/venue/${v.id}`,
+        "address": v.location,
+        "priceRange": v.price,
+      },
+    })),
+  };
+
   return (
     <main className="w-full flex flex-col min-h-screen bg-background text-foreground">
+      <JsonLdScript data={[breadcrumbSchema, venueItemListSchema]} />
       <SportSubNav currentSport="pickleball" />
 
       <section className="w-full pt-6 sm:pt-8 pb-12 bg-background flex-1">

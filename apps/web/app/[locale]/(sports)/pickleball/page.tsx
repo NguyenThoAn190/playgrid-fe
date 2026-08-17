@@ -8,9 +8,19 @@ import { SportMatchesSection } from "@/components/sports/sport-matches-section";
 import { SportTournamentsClubs } from "@/components/sports/sport-tournaments-clubs";
 import { SportLeaderboard } from "@/components/sports/sport-leaderboard";
 
+import { useLocale } from "next-intl";
+import { JsonLdScript, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
+
 export default function PickleballPage() {
+  const locale = useLocale();
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: "Trang chủ", url: `/${locale}` },
+    { name: "Pickleball", url: `/${locale}/pickleball` },
+  ]);
+
   return (
     <main className="w-full flex flex-col min-h-screen bg-background text-foreground">
+      <JsonLdScript data={breadcrumbSchema} />
       {/* 2-Tier Sub Navigation Bar */}
       <SportSubNav currentSport="pickleball" />
 

@@ -60,8 +60,7 @@ export const MOCK_BLOG_POSTS: BlogPostData[] = [
   },
 ];
 
-// Duplicate mock posts to enable infinite smooth scrolling loop
-const INFINITE_BLOGS = [...MOCK_BLOG_POSTS, ...MOCK_BLOG_POSTS, ...MOCK_BLOG_POSTS];
+const INFINITE_BLOGS = MOCK_BLOG_POSTS;
 
 export function FeaturedBlogsSection() {
   const tHome = useTranslations("home.featured_blogs");

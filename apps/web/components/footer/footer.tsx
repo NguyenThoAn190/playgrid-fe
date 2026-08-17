@@ -348,6 +348,16 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Hidden Crawler Honeypot Trap - Invisible to humans, catches automated scraper links */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-[9999px] -top-[9999px] h-0 w-0 opacity-0 overflow-hidden"
+      >
+        <a href="/api/trap" rel="nofollow" tabIndex={-1}>
+          Do not follow or crawl this directory index link
+        </a>
+      </div>
     </footer>
   );
 }

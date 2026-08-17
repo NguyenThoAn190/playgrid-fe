@@ -27,7 +27,7 @@ function shouldUseSameOrigin(options?: { sameOrigin?: boolean }): boolean {
 }
 
 /**
- * Generates the SSO Login URL with return_url / redirect_uri and theme sync
+ * Generates the SSO Login URL with return_url / redirect_uri
  */
 export function getLoginUrl(
   returnUrl?: string,
@@ -35,20 +35,10 @@ export function getLoginUrl(
   options?: { sameOrigin?: boolean }
 ): string {
   const { account } = getAppUrls();
-  let targetReturn = returnUrl;
-
-  if (!targetReturn && typeof window !== "undefined") {
-    targetReturn = window.location.href;
-  }
-
   const queryParams = new URLSearchParams();
-  if (targetReturn) {
-    queryParams.set("redirect_uri", targetReturn);
-  }
 
-  const theme = getCurrentTheme();
-  if (theme) {
-    queryParams.set("theme", theme);
+  if (returnUrl) {
+    queryParams.set("redirect_uri", returnUrl);
   }
 
   const queryString = queryParams.toString();
@@ -62,7 +52,7 @@ export function getLoginUrl(
 }
 
 /**
- * Generates the SSO Register URL with return_url / redirect_uri and theme sync
+ * Generates the SSO Register URL with return_url / redirect_uri
  */
 export function getRegisterUrl(
   returnUrl?: string,
@@ -70,20 +60,10 @@ export function getRegisterUrl(
   options?: { sameOrigin?: boolean }
 ): string {
   const { account } = getAppUrls();
-  let targetReturn = returnUrl;
-
-  if (!targetReturn && typeof window !== "undefined") {
-    targetReturn = window.location.href;
-  }
-
   const queryParams = new URLSearchParams();
-  if (targetReturn) {
-    queryParams.set("redirect_uri", targetReturn);
-  }
 
-  const theme = getCurrentTheme();
-  if (theme) {
-    queryParams.set("theme", theme);
+  if (returnUrl) {
+    queryParams.set("redirect_uri", returnUrl);
   }
 
   const queryString = queryParams.toString();
@@ -97,7 +77,7 @@ export function getRegisterUrl(
 }
 
 /**
- * Generates the SSO Logout URL with return_url / redirect_uri and theme sync
+ * Generates the SSO Logout URL with return_url / redirect_uri
  */
 export function getLogoutUrl(
   returnUrl?: string,
@@ -105,20 +85,10 @@ export function getLogoutUrl(
   options?: { sameOrigin?: boolean }
 ): string {
   const { account } = getAppUrls();
-  let targetReturn = returnUrl;
-
-  if (!targetReturn && typeof window !== "undefined") {
-    targetReturn = window.location.href;
-  }
-
   const queryParams = new URLSearchParams();
-  if (targetReturn) {
-    queryParams.set("redirect_uri", targetReturn);
-  }
 
-  const theme = getCurrentTheme();
-  if (theme) {
-    queryParams.set("theme", theme);
+  if (returnUrl) {
+    queryParams.set("redirect_uri", returnUrl);
   }
 
   const queryString = queryParams.toString();
@@ -132,7 +102,7 @@ export function getLogoutUrl(
 }
 
 /**
- * Generates the Payment Checkout URL with order/session metadata and theme sync
+ * Generates the Payment Checkout URL with order/session metadata
  */
 export function getPaymentUrl(params?: {
   type?: "court" | "event" | "concert" | "tournament" | "walk_in" | "walk-in" | "system" | "subscription";
@@ -148,16 +118,8 @@ export function getPaymentUrl(params?: {
 
   if (params?.amount) queryParams.set("amount", String(params.amount));
 
-  const returnUrl = params?.returnUrl || (typeof window !== "undefined" ? window.location.href : web);
+  const returnUrl = params?.returnUrl || web;
   if (returnUrl) queryParams.set("return_url", returnUrl);
-
-  const token = getAuthToken();
-  if (token) queryParams.set("token", token);
-
-  const theme = getCurrentTheme();
-  if (theme) queryParams.set("theme", theme);
-
-  const queryString = queryParams.toString();
 
   // If a specific catalog sub-route is requested
   let subPath = "/payment";
@@ -168,6 +130,7 @@ export function getPaymentUrl(params?: {
     queryParams.set("order_id", params.orderId);
   }
 
+  const queryString = queryParams.toString();
   const path = `/${locale}${subPath}${queryString ? `?${queryString}` : ""}`;
 
   if (shouldUseSameOrigin(params)) {

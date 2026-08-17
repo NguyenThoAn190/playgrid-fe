@@ -26,7 +26,8 @@ export function HeroVisualGraphic({
             width={620}
             height={620}
             priority
-            unoptimized
+            fetchPriority="high"
+            sizes="(max-width: 1024px) 100vw, 620px"
             className="w-full h-auto object-contain"
           />
         </div>

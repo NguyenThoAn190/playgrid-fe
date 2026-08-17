@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Search, Sparkles, BookOpen, ArrowRight, Calendar, Clock } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/button";
+import { useLocale } from "next-intl";
 import { BlogCard, BlogPostData } from "@/components/blog/blog-card";
+import { JsonLdScript, getBlogListJsonLd, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
+import { Button } from "@workspace/ui/components/button";
 
 const CATEGORIES = ["Tất cả", "Kỹ năng", "Mẹo tập luyện", "Dinh dưỡng", "Tin tức thể thao"];
 
@@ -87,8 +89,16 @@ export default function BlogListingPage() {
     return matchesCategory && matchesSearch;
   });
 
+  const locale = useLocale();
+  const blogListSchema = getBlogListJsonLd(ALL_BLOG_POSTS, locale);
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: "Trang chủ", url: `/${locale}` },
+    { name: "Blog & Tin tức", url: `/${locale}/blog` },
+  ]);
+
   return (
     <div className="w-full min-h-screen bg-background text-foreground py-8 sm:py-12">
+      <JsonLdScript data={[blogListSchema, breadcrumbSchema]} />
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Page Header */}
         <div className="space-y-3 text-center sm:text-left">
@@ -113,11 +123,10 @@ export default function BlogListingPage() {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  selectedCategory === cat
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${selectedCategory === cat
                     ? "bg-[#00A859] text-white shadow-xs"
                     : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
-                }`}
+                  }`}
               >
                 {cat}
               </button>

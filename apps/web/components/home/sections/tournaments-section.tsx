@@ -54,11 +54,7 @@ const MOCK_EVENTS: EventData[] = [
   },
 ];
 
-const INFINITE_EVENTS = [
-  ...MOCK_EVENTS,
-  ...MOCK_EVENTS,
-  ...MOCK_EVENTS,
-];
+const INFINITE_EVENTS = MOCK_EVENTS;
 
 export function TournamentsSection() {
   const tHome = useTranslations("home.tournaments");

@@ -44,8 +44,8 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
             src={club.coverUrl}
             alt={club.name}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            unoptimized
           />
 
           {/* Top Right Crown Badge */}
@@ -63,8 +63,8 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
               src={club.logoUrl}
               alt={club.name}
               fill
+              sizes="64px"
               className="object-cover"
-              unoptimized
             />
           ) : (
             <div className="w-full h-full bg-muted text-foreground font-extrabold text-xs sm:text-sm flex items-center justify-center text-center p-1 leading-tight">
@@ -79,11 +79,11 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
             {/* Title & Verified Checkmark */}
             <Link href={`/clubs/${club.id}`} className="block">
               <div className="flex items-center gap-1.5 min-w-0">
-                <h3 className="font-bold text-sm sm:text-base text-foreground line-clamp-1 group-hover:text-[#00A859] dark:group-hover:text-emerald-400 transition-colors">
+                <h3 className="font-bold text-sm sm:text-base text-foreground line-clamp-1 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                   {club.name}
                 </h3>
                 {club.isVerified !== false && (
-                  <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 fill-[#00A859] text-card" />
+                  <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 fill-emerald-600 text-card" />
                 )}
               </div>
             </Link>
@@ -110,11 +110,11 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
               <span className="truncate">{club.sport}</span>
             </div>
 
-            {/* Action Button */}
+            {/* Action Button with High Contrast text-emerald-700 */}
             <Link href={`/clubs/${club.id}`} className="shrink-0">
               <Button
                 variant="outline"
-                className="h-7.5 sm:h-8 rounded-xl border-emerald-600/30 dark:border-emerald-500/30 text-[#00A859] hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:text-[#008f4c] font-bold text-xs px-3 sm:px-3.5 cursor-pointer transition-all shadow-2xs"
+                className="h-7.5 sm:h-8 rounded-xl border-emerald-600/30 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:text-emerald-800 font-bold text-xs px-3 sm:px-3.5 cursor-pointer transition-all shadow-2xs"
               >
                 Xem CLB
               </Button>

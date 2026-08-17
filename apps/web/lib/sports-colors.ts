@@ -9,18 +9,18 @@ export interface SportColorTheme {
 }
 
 const DEFAULT_THEME: SportColorTheme = {
-  solidBg: "bg-[#00A859] text-white",
+  solidBg: "bg-emerald-700 text-white",
   tagBg: "bg-emerald-50 text-emerald-700 border-emerald-200/60 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/40",
 };
 
 const SPORT_COLORS: Record<string, SportColorTheme> = {
-  // Cầu lông (Badminton) - Green / Emerald
+  // Cầu lông (Badminton) - High contrast Emerald
   "cầu lông": {
-    solidBg: "bg-[#00A859] text-white",
+    solidBg: "bg-emerald-700 text-white",
     tagBg: "bg-emerald-50 text-emerald-700 border-emerald-200/60 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/40",
   },
   "badminton": {
-    solidBg: "bg-[#00A859] text-white",
+    solidBg: "bg-emerald-700 text-white",
     tagBg: "bg-emerald-50 text-emerald-700 border-emerald-200/60 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/40",
   },
 
@@ -46,13 +46,13 @@ const SPORT_COLORS: Record<string, SportColorTheme> = {
     tagBg: "bg-lime-50 text-lime-800 border-lime-200/60 dark:bg-lime-950/40 dark:text-lime-400 dark:border-lime-800/40",
   },
 
-  // Bóng rổ (Basketball) - Warm Orange
+  // Bóng rổ (Basketball) - High contrast Orange
   "bóng rổ": {
-    solidBg: "bg-orange-600 text-white",
+    solidBg: "bg-orange-700 text-white",
     tagBg: "bg-orange-50 text-orange-700 border-orange-200/60 dark:bg-orange-950/40 dark:text-orange-400 dark:border-orange-800/40",
   },
   "basketball": {
-    solidBg: "bg-orange-600 text-white",
+    solidBg: "bg-orange-700 text-white",
     tagBg: "bg-orange-50 text-orange-700 border-orange-200/60 dark:bg-orange-950/40 dark:text-orange-400 dark:border-orange-800/40",
   },
 

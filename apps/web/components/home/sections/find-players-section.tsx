@@ -89,11 +89,7 @@ const MOCK_ACTIVITIES: ActivityData[] = [
   },
 ];
 
-const INFINITE_ACTIVITIES = [
-  ...MOCK_ACTIVITIES,
-  ...MOCK_ACTIVITIES,
-  ...MOCK_ACTIVITIES,
-];
+const INFINITE_ACTIVITIES = MOCK_ACTIVITIES;
 
 export function FindPlayersSection() {
   const tHome = useTranslations("home.find_players");
@@ -113,13 +109,13 @@ export function FindPlayersSection() {
         {/* Section Header */}
         <div className="flex items-center justify-between">
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <Users className="w-5 h-5 text-[#FF7A00]" />
+            <Users className="w-5 h-5 text-orange-600" />
             <span>{tHome("title")}</span>
           </h2>
 
           <Link
             href="/activities"
-            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#FF7A00] dark:text-orange-400 hover:underline transition-colors"
+            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-orange-700 dark:text-orange-400 hover:text-orange-800 hover:underline transition-colors"
           >
             <span>{tCommon("view_all")}</span>
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

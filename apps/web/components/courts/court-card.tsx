@@ -41,11 +41,10 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
           src={imgSrc}
           alt={court.name}
           fill
-          unoptimized
-          loading="eager"
+          loading="lazy"
           suppressHydrationWarning
           onError={() => setImgSrc(FALLBACK_COURT_IMAGE)}
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
           className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
         />
 
@@ -55,8 +54,8 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
             <span
               className={`inline-flex items-center rounded-full px-2 py-0.5 sm:px-2.5 sm:py-0.5 text-[10px] sm:text-[11px] font-bold text-white shadow-md backdrop-blur-xs ${
                 court.badge === "Hot"
-                  ? "bg-red-500"
-                  : "bg-emerald-600"
+                  ? "bg-red-600"
+                  : "bg-emerald-700"
               }`}
             >
               {court.badge}
@@ -98,7 +97,7 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
           <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs">
             <div className="flex items-center gap-0.5 sm:gap-1 shrink-0">
               <Star className="h-3 w-3 sm:h-3.5 sm:w-3.5 fill-amber-400 text-amber-400" />
-              <span className="font-bold text-amber-500 dark:text-amber-400">{court.rating}</span>
+              <span className="font-bold text-amber-700 dark:text-amber-400">{court.rating}</span>
               <span className="text-muted-foreground">({court.reviewsCount})</span>
             </div>
             <div className="flex items-center gap-0.5 sm:gap-1 text-muted-foreground text-[10px] sm:text-[11px] truncate">
@@ -111,8 +110,8 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
         {/* Row 3: Price (Left) & Booking Button (Right) */}
         <div className="flex items-center justify-between gap-1.5 sm:gap-2 pt-1.5 sm:pt-2 border-t border-border/40 mt-1">
           <div className="space-y-0.5 min-w-0 flex-1">
-            {/* Price */}
-            <div className="font-extrabold text-xs sm:text-base text-emerald-600 dark:text-emerald-400 leading-tight truncate">
+            {/* Price (High-contrast WCAG AA) */}
+            <div className="font-extrabold text-xs sm:text-base text-emerald-700 dark:text-emerald-400 leading-tight truncate">
               {court.price}
             </div>
             {/* Location Address */}

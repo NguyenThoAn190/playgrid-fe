@@ -100,6 +100,8 @@ export function ExploreSportsSection() {
                   src={sport.bgImage}
                   alt={sport.name}
                   fill
+                  priority={sport.id === "badminton"}
+                  fetchPriority={sport.id === "badminton" ? "high" : "auto"}
                   className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
                   sizes="(max-width: 640px) 100vw, 50vw"
                 />

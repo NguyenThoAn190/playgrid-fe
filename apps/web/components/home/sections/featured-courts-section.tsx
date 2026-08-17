@@ -82,12 +82,7 @@ const MOCK_FEATURED_COURTS: CourtData[] = [
   },
 ];
 
-// Tripled dataset to enable seamless 360-degree infinite looping without end boundaries
-const INFINITE_COURTS = [
-  ...MOCK_FEATURED_COURTS,
-  ...MOCK_FEATURED_COURTS,
-  ...MOCK_FEATURED_COURTS,
-];
+const INFINITE_COURTS = MOCK_FEATURED_COURTS;
 
 export function FeaturedCourtsSection() {
   const tHome = useTranslations("home.featured_courts");

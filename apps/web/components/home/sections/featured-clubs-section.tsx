@@ -66,11 +66,7 @@ const MOCK_CLUBS: ClubData[] = [
   },
 ];
 
-const INFINITE_CLUBS = [
-  ...MOCK_CLUBS,
-  ...MOCK_CLUBS,
-  ...MOCK_CLUBS,
-];
+const INFINITE_CLUBS = MOCK_CLUBS;
 
 export function FeaturedClubsSection() {
   const tHome = useTranslations("home.featured_clubs");

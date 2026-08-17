@@ -83,9 +83,9 @@ export function EventCard({ event, className = "" }: EventCardProps) {
             src={event.imageUrl}
             alt={event.title}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
             suppressHydrationWarning
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            unoptimized
           />
 
           {/* Top Row Badges & Heart Overlay */}
@@ -95,7 +95,7 @@ export function EventCard({ event, className = "" }: EventCardProps) {
                 <span
                   className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-extrabold shadow-xs ${
                     event.badge.type === "hot"
-                      ? "bg-red-500 text-white"
+                      ? "bg-red-600 text-white"
                       : "bg-amber-500 text-slate-950"
                   }`}
                 >

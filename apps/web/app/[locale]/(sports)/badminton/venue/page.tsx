@@ -19,6 +19,7 @@ import {
 import { useTranslations, useLocale } from "next-intl";
 import { SportSubNav } from "@/components/sports/sport-sub-nav";
 import { CourtCard, CourtData } from "@/components/courts/court-card";
+import { JsonLdScript, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
 import {
   Select,
   SelectTrigger,
@@ -641,8 +642,33 @@ export default function BadmintonVenuePage() {
     </div>
   );
 
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: "Trang chủ", url: `/${locale}` },
+    { name: "Cầu lông", url: `/${locale}/badminton` },
+    { name: "Danh sách sân cầu lông", url: `/${locale}/badminton/venue` },
+  ]);
+
+  const venueItemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Danh sách sân cầu lông TP. HCM",
+    "description": "Đặt sân cầu lông trực tuyến tại TP. HCM với giá tốt nhất trên PlayGrid.",
+    "itemListElement": BADMINTON_VENUES.slice(0, 10).map((v, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "item": {
+        "@type": "SportsActivityLocation",
+        "name": v.name,
+        "url": `https://playgrid.vn/${locale}/venue/${v.id}`,
+        "address": v.location,
+        "priceRange": v.price,
+      },
+    })),
+  };
+
   return (
     <main className="w-full flex flex-col min-h-screen bg-background text-foreground">
+      <JsonLdScript data={[breadcrumbSchema, venueItemListSchema]} />
       {/* 2-Tier Sub Navigation Bar */}
       <SportSubNav currentSport="badminton" />
 

@@ -18,9 +18,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
+import { JsonLdScript, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
+
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: "Trang chủ", url: `/${locale}` },
+    { name: "Liên hệ & Hỗ trợ", url: `/${locale}/contact` },
+  ]);
+
   return (
     <div className="w-full min-h-screen bg-background text-foreground py-6 sm:py-10">
+      <JsonLdScript data={breadcrumbSchema} />
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         {/* 1. Hero & Trust Badges */}
         <ContactHero />

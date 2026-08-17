@@ -69,9 +69,8 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
             }
             alt={activity.title}
             fill
-            suppressHydrationWarning
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
@@ -111,7 +110,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
           {/* Bottom Right Image Overlay Tag: Price */}
           {activity.price && (
             <div className="absolute bottom-1.5 right-2 z-10">
-              <span className="inline-flex items-center rounded-md bg-[#FF7A00] backdrop-blur-md px-2 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
+              <span className="inline-flex items-center rounded-md bg-orange-700 backdrop-blur-md px-2 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
                 {activity.price}
               </span>
             </div>
@@ -122,7 +121,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
         <div className="p-3 space-y-1.5">
           {/* Title */}
           <Link href={`/activities/${activity.id}`} className="block">
-            <h3 className="font-bold text-sm sm:text-base text-foreground line-clamp-1 group-hover:text-[#FF7A00] dark:group-hover:text-orange-400 transition-colors">
+            <h3 className="font-bold text-sm sm:text-base text-foreground line-clamp-1 group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors">
               {activity.title}
             </h3>
           </Link>
@@ -155,7 +154,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
                     src={user.avatarUrl}
                     alt={user.name}
                     fill
-                    unoptimized
+                    sizes="26px"
                     className="object-cover"
                   />
                 </div>
@@ -167,8 +166,8 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
               )}
             </div>
 
-            {/* Capacity Orange Text */}
-            <span className="text-xs sm:text-sm font-bold text-[#FF7A00] dark:text-orange-400">
+            {/* Capacity Orange Text (High-contrast WCAG AA) */}
+            <span className="text-xs sm:text-sm font-bold text-orange-700 dark:text-orange-400">
               {t("players_count", { joined: activity.joinedCount, max: activity.maxCount })}
             </span>
           </div>
@@ -188,7 +187,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
 
         <Link href={`/activities/${activity.id}`} className="block w-full">
           <Button
-            className="w-full h-8 sm:h-8.5 rounded-xl bg-[#FF7A00] hover:bg-[#E66E00] active:bg-[#CC6200] text-white font-bold text-[11px] sm:text-xs px-2.5 transition-all cursor-pointer shadow-xs border-none flex items-center justify-center gap-1.5"
+            className="w-full h-8 sm:h-8.5 rounded-xl bg-orange-700 hover:bg-orange-800 active:bg-orange-900 text-white font-bold text-[11px] sm:text-xs px-2.5 transition-all cursor-pointer shadow-xs border-none flex items-center justify-center gap-1.5"
           >
             <UserPlus className="h-3.5 w-3.5 stroke-[2.5] shrink-0" />
             <span>{t("join_btn")}</span>

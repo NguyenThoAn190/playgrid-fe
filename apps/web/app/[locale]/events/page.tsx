@@ -7,6 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { EVENTS_DATA } from "@/lib/events-data";
 
+import { useLocale } from "next-intl";
+import { JsonLdScript, getEventListJsonLd, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
+
 const CATEGORIES = [
   "Tất cả",
   "Marathon",
@@ -18,8 +21,15 @@ const CATEGORIES = [
 ];
 
 export default function EventsPage() {
+  const locale = useLocale();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Tất cả");
+
+  const eventListSchema = getEventListJsonLd(EVENTS_DATA, locale);
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: "Trang chủ", url: `/${locale}` },
+    { name: "Giải đấu & Sự kiện", url: `/${locale}/events` },
+  ]);
 
   const filteredEvents = EVENTS_DATA.filter((event) => {
     const matchesSearch =
@@ -32,6 +42,7 @@ export default function EventsPage() {
 
   return (
     <div className="w-full bg-background min-h-screen pb-16">
+      <JsonLdScript data={[eventListSchema, breadcrumbSchema]} />
       {/* Page Header */}
       <div className="bg-muted/30 border-b border-border/40 py-8 sm:py-12">
         <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">

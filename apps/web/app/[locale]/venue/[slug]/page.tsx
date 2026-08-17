@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getVenueBySlug } from "@/lib/venue-data";
 import { VenueDetailClient } from "@/components/venue/venue-detail-client";
+import { JsonLdScript, getVenueJsonLd, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
 
 interface VenuePageProps {
   params: Promise<{
@@ -36,8 +37,20 @@ export async function generateMetadata({
 }
 
 export default async function VenueDetailPage({ params }: VenuePageProps) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const venue = getVenueBySlug(slug);
 
-  return <VenueDetailClient venue={venue} />;
+  const venueSchema = getVenueJsonLd(venue, locale);
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: "Trang chủ", url: `/${locale}` },
+    { name: venue.sport || "Sân thể thao", url: `/${locale}/badminton/venue` },
+    { name: venue.name, url: `/${locale}/venue/${venue.slug}` },
+  ]);
+
+  return (
+    <>
+      <JsonLdScript data={[venueSchema, breadcrumbSchema]} />
+      <VenueDetailClient venue={venue} />
+    </>
+  );
 }
