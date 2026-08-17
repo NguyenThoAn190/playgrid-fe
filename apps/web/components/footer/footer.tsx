@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Logo } from "@/components/navbar/logo";
+import { getPaymentUrl } from "@workspace/shared/utils/sso";
 import {
   MapPin,
   Phone,
@@ -28,6 +29,7 @@ export function Footer() {
   const [mounted, setMounted] = useState(false);
 
   const tRoot = useTranslations();
+  const locale = useLocale();
 
   const getT = (key: string, fallback: string): string => {
     try {
@@ -266,16 +268,22 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/payment/system/PG-SYS-10293" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 font-medium text-foreground">
+                <a
+                  href={getPaymentUrl({ type: "system", orderId: "PG-SYS-10293", locale })}
+                  className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 font-medium text-foreground"
+                >
                   <ArrowRight className="w-3 h-3 text-amber-500" />
                   <span>Dành cho Chủ sân & Doanh nghiệp (SaaS)</span>
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/payment" className="hover:text-brand-blue dark:hover:text-brand-green transition-colors inline-flex items-center gap-1.5 font-medium">
+                <a
+                  href={getPaymentUrl({ locale })}
+                  className="hover:text-brand-blue dark:hover:text-brand-green transition-colors inline-flex items-center gap-1.5 font-medium"
+                >
                   <ArrowRight className="w-3 h-3 text-brand-blue dark:text-brand-green" />
                   <span>Cổng thanh toán PlayGrid Pay Hub</span>
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

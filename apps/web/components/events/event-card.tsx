@@ -6,8 +6,9 @@ import { Heart, Calendar, MapPin, Flame, ThumbsUp } from "lucide-react";
 import { Card } from "@workspace/ui/components/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { getSportColor } from "@/lib/sports-colors";
+import { getPaymentUrl } from "@workspace/shared/utils/sso";
 
 export interface EventData {
   id: string;
@@ -42,6 +43,7 @@ export function formatDistanceDisplay(distanceText?: string, distances?: string[
 
 export function EventCard({ event, className = "" }: EventCardProps) {
   const tCommon = useTranslations("common");
+  const locale = useLocale();
   const [isFavorite, setIsFavorite] = useState(event.isFavorite || false);
   const sportTheme = getSportColor(event.category);
   const formattedDistance = formatDistanceDisplay(event.distanceText, event.distances);
@@ -50,16 +52,24 @@ export function EventCard({ event, className = "" }: EventCardProps) {
     const cat = event.category?.toLowerCase() || "";
     const id = event.id.toLowerCase();
     if (id.startsWith("tourney-") || cat.includes("giải") || cat.includes("tournament")) {
-      return `/payment/tournament/PG-TRN-${id.replace(/\D/g, "") || "55812"}`;
+      return getPaymentUrl({
+        type: "tournament",
+        orderId: `PG-TRN-${id.replace(/\D/g, "") || "55812"}`,
+        locale,
+      });
     }
     if (cat.includes("concert") || cat.includes("âm nhạc") || id.startsWith("concert-")) {
-      return `/payment/concert/PG-CON-${id.replace(/\D/g, "") || "33910"}`;
+      return getPaymentUrl({
+        type: "concert",
+        orderId: `PG-CON-${id.replace(/\D/g, "") || "33910"}`,
+        locale,
+      });
     }
     return `/events/${event.id}`;
   };
 
   const targetUrl = getEventTargetUrl();
-  const isDirectCheckout = targetUrl.startsWith("/payment/");
+  const isDirectCheckout = targetUrl.startsWith("http://") || targetUrl.startsWith("https://") || targetUrl.includes("/payment");
 
   return (
     <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/60 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-0 ${className}`}>
@@ -137,11 +147,19 @@ export function EventCard({ event, className = "" }: EventCardProps) {
           )}
 
           {/* Title Row */}
-          <Link href={targetUrl} className="block min-h-[2.25rem] sm:min-h-[2.75rem]">
-            <h3 className="font-bold text-xs sm:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
-              {event.title}
-            </h3>
-          </Link>
+          {isDirectCheckout ? (
+            <a href={targetUrl} className="block min-h-[2.25rem] sm:min-h-[2.75rem]">
+              <h3 className="font-bold text-xs sm:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
+                {event.title}
+              </h3>
+            </a>
+          ) : (
+            <Link href={targetUrl} className="block min-h-[2.25rem] sm:min-h-[2.75rem]">
+              <h3 className="font-bold text-xs sm:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
+                {event.title}
+              </h3>
+            </Link>
+          )}
 
           {/* Date Row */}
           <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-muted-foreground font-medium">
@@ -170,13 +188,23 @@ export function EventCard({ event, className = "" }: EventCardProps) {
         </div>
 
         {/* Right Side: Blue Action Button */}
-        <Link href={targetUrl} className="shrink-0">
-          <Button
-            className="h-8 sm:h-9 rounded-xl bg-[#002BCC] hover:bg-[#0022a3] active:bg-[#001a80] text-white font-bold text-[11px] sm:text-xs px-3 sm:px-5 transition-all cursor-pointer shadow-xs border-none"
-          >
-            {event.buttonText || (isDirectCheckout ? (targetUrl.includes("tournament") ? "Đăng ký" : "Mua vé") : "Đăng ký")}
-          </Button>
-        </Link>
+        {isDirectCheckout ? (
+          <a href={targetUrl} className="shrink-0">
+            <Button
+              className="h-8 sm:h-9 rounded-xl bg-[#002BCC] hover:bg-[#0022a3] active:bg-[#001a80] text-white font-bold text-[11px] sm:text-xs px-3 sm:px-5 transition-all cursor-pointer shadow-xs border-none"
+            >
+              {event.buttonText || (targetUrl.includes("tournament") ? "Đăng ký" : "Mua vé")}
+            </Button>
+          </a>
+        ) : (
+          <Link href={targetUrl} className="shrink-0">
+            <Button
+              className="h-8 sm:h-9 rounded-xl bg-[#002BCC] hover:bg-[#0022a3] active:bg-[#001a80] text-white font-bold text-[11px] sm:text-xs px-3 sm:px-5 transition-all cursor-pointer shadow-xs border-none"
+            >
+              {event.buttonText || "Đăng ký"}
+            </Button>
+          </Link>
+        )}
       </div>
     </Card>
   );

@@ -23,15 +23,6 @@ export function getCurrentTheme(): string | undefined {
  */
 function shouldUseSameOrigin(options?: { sameOrigin?: boolean }): boolean {
   if (typeof options?.sameOrigin === "boolean") return options.sameOrigin;
-  if (typeof window === "undefined") return false;
-
-  const { web } = getAppUrls();
-  try {
-    const currentOrigin = window.location.origin;
-    if (web && currentOrigin === web) return true;
-    if (window.location.host.includes("web") || window.location.port === "3000") return true;
-  } catch {}
-
   return false;
 }
 

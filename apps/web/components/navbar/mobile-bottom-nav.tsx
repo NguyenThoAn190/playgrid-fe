@@ -5,7 +5,7 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Cookies from "js-cookie";
 import { CookiesContains } from "@workspace/shared/constants/cookies";
-import { getLoginUrl, getRegisterUrl, getLogoutUrl, clearAuthCookies, isUserAuthenticated } from "@workspace/shared/utils/sso";
+import { getLoginUrl, getRegisterUrl, getLogoutUrl, getPaymentUrl, clearAuthCookies, isUserAuthenticated } from "@workspace/shared/utils/sso";
 import tokenManager from "@workspace/shared/services/utils/tokenManager";
 import { Button } from "@workspace/ui/components/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@workspace/ui/components/avatar";
@@ -99,14 +99,14 @@ export function MobileBottomNav() {
   };
 
   const navLinks = [
-    { href: "/", label: t("home"), icon: Home, sectionId: undefined },
-    { href: "/#explore-sports", label: t("explore"), icon: Compass, sectionId: "explore-sports" },
-    { href: "/badminton/venue", label: t("courts"), icon: MapPin, sectionId: undefined },
-    { href: "/events", label: t("tournaments"), icon: Trophy, sectionId: undefined },
-    { href: "/payment", label: locale === "en" ? "PlayGrid Pay Hub" : "Cổng thanh toán", icon: CreditCard, sectionId: undefined },
-    { href: "/clubs", label: t("clubs"), icon: Users, sectionId: undefined },
-    { href: "/activities", label: t("activities"), icon: Activity, sectionId: undefined },
-    { href: "/blog", label: t("blog"), icon: Newspaper, sectionId: undefined },
+    { href: "/", label: t("home"), icon: Home, sectionId: undefined, isExternal: false },
+    { href: "/#explore-sports", label: t("explore"), icon: Compass, sectionId: "explore-sports", isExternal: false },
+    { href: "/badminton/venue", label: t("courts"), icon: MapPin, sectionId: undefined, isExternal: false },
+    { href: "/events", label: t("tournaments"), icon: Trophy, sectionId: undefined, isExternal: false },
+    { href: getPaymentUrl({ locale }), label: locale === "en" ? "PlayGrid Pay Hub" : "Cổng thanh toán", icon: CreditCard, sectionId: undefined, isExternal: true },
+    { href: "/clubs", label: t("clubs"), icon: Users, sectionId: undefined, isExternal: false },
+    { href: "/activities", label: t("activities"), icon: Activity, sectionId: undefined, isExternal: false },
+    { href: "/blog", label: t("blog"), icon: Newspaper, sectionId: undefined, isExternal: false },
   ];
 
   const bottomItems = [
@@ -363,9 +363,27 @@ export function MobileBottomNav() {
               {navLinks.map((item) => {
                 const Icon = item.icon;
                 const isActive =
-                  item.href === "/"
+                  !item.isExternal &&
+                  (item.href === "/"
                     ? pathname === "/"
-                    : pathname.startsWith(item.href);
+                    : pathname.startsWith(item.href));
+
+                if (item.isExternal) {
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsDrawerOpen(false)}
+                      className="flex items-center justify-between p-3.5 text-xs font-medium transition-colors hover:bg-muted/50 text-foreground/90"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Icon className="size-4 text-muted-foreground" />
+                        <span>{item.label}</span>
+                      </div>
+                      <ChevronRight className="size-4 text-muted-foreground/60" />
+                    </a>
+                  );
+                }
 
                 return (
                   <Link

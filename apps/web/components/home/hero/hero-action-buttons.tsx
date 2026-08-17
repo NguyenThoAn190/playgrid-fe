@@ -4,6 +4,7 @@ import * as React from "react";
 import { Link } from "@/i18n/navigation";
 import { ChevronRight, Zap } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
+import { getPaymentUrl } from "@workspace/shared/utils/sso";
 
 export interface HeroActionButtonsProps {
   onExploreClick?: () => void;
@@ -29,6 +30,12 @@ export function HeroActionButtons({
     }
   };
 
+  const walkInUrl = getPaymentUrl({
+    type: "walk-in",
+    orderId: "PG-WLK-99014",
+    locale,
+  });
+
   return (
     <div className="flex flex-wrap items-center gap-3 pt-0.5 w-full sm:w-auto">
       <Link
@@ -48,13 +55,13 @@ export function HeroActionButtons({
         <span>{t("find_players")}</span>
       </Link>
 
-      <Link
-        href="/payment/walk-in/PG-WLK-99014"
+      <a
+        href={walkInUrl}
         className="group inline-flex h-10 sm:h-12 items-center justify-center gap-1.5 rounded-xl border border-brand-blue/30 dark:border-brand-green/30 bg-brand-blue/5 dark:bg-brand-green/10 px-4 sm:px-5 text-sm sm:text-base font-bold text-brand-blue dark:text-brand-green transition-all hover:bg-brand-blue/10 active:scale-[0.98] cursor-pointer shadow-2xs"
       >
         <Zap className="h-4 w-4 fill-current" />
         <span>{isEn ? "Quick Walk-in" : "Sân vãng lai"}</span>
-      </Link>
+      </a>
     </div>
   );
 }

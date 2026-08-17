@@ -34,7 +34,7 @@ import {
   calculateVoucherDiscount,
 } from "@/lib/voucher-data";
 import { VoucherWalletModal } from "@/components/vouchers/voucher-wallet-modal";
-import { useRouter } from "@/i18n/navigation";
+import { getPaymentUrl } from "@workspace/shared/utils/sso";
 
 interface EventRegistrationSidebarProps {
   event: EventData;
@@ -45,7 +45,6 @@ export function EventRegistrationSidebar({
   event,
   selectedAddons = {},
 }: EventRegistrationSidebarProps) {
-  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -69,8 +68,14 @@ export function EventRegistrationSidebar({
           finalTotal,
         })
       );
+      window.location.href = getPaymentUrl({
+        type: "event",
+        orderId,
+        locale,
+        amount: finalTotal,
+        returnUrl: window.location.href,
+      });
     }
-    router.push(`/payment/event/${orderId}`);
   };
 
   const tiers: EventDistanceTier[] =

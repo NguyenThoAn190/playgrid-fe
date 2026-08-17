@@ -27,8 +27,6 @@ import {
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu";
 
-import { useHeaderVisible } from "@/hooks/use-scroll-direction";
-
 export function MobileNavbar() {
   const t = useTranslations("navbar");
   const locale = useLocale();

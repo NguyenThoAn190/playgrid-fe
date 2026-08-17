@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { ArrowRight, ShoppingBag } from "lucide-react";
 import { Button } from "@workspace/ui/components/button";
@@ -18,15 +18,13 @@ import { VenueReviews } from "./venue-reviews";
 import { VenueArticles } from "./venue-articles";
 import { VenueRelatedCourts } from "./venue-related-courts";
 import { VenueCheckoutModal } from "./venue-checkout-modal";
-import { useRouter } from "@/i18n/navigation";
+import { getPaymentUrl } from "@workspace/shared/utils/sso";
 
 interface VenueDetailClientProps {
   venue: VenueDetailData;
 }
 
 export function VenueDetailClient({ venue }: VenueDetailClientProps) {
-  const router = useRouter();
-
   // Today's date string YYYY-MM-DD
   const getTodayString = () => {
     const d = new Date();
@@ -46,6 +44,8 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
   const handleProceedToPayment = () => {
     if (selectedSlots.length === 0) return;
     const orderId = "PG-CRT-" + Math.floor(10000 + Math.random() * 90000);
+    const totalSlotPrice = selectedSlots.reduce((sum, s) => sum + s.price, 0);
+
     if (typeof window !== "undefined") {
       sessionStorage.setItem(
         "playgrid_court_booking",
@@ -57,8 +57,14 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
           bookingType,
         })
       );
+      window.location.href = getPaymentUrl({
+        type: "court",
+        orderId,
+        locale,
+        amount: totalSlotPrice,
+        returnUrl: window.location.href,
+      });
     }
-    router.push(`/payment/court/${orderId}`);
   };
 
   // Toggle slot selection (multi-slot support)
@@ -103,8 +109,8 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
   const totalSlotPrice = selectedSlots.reduce((sum, s) => sum + s.price, 0);
 
   return (
-    <div className="min-h-screen bg-background pb-32 lg:pb-20 pt-3">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-3">
+    <div className="min-h-screen bg-background pb-32 lg:pb-20 pt-4 sm:pt-6">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">
         {/* 1. Header (Title, Badges, Metrics, Actions) */}
         <VenueHeader venue={venue} />
 

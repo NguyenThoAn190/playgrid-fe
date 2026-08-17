@@ -18,7 +18,7 @@ import { Badge } from "@workspace/ui/components/badge";
 import { VenueDetailData } from "@/lib/venue-data";
 import { SelectedBookingSlot } from "./venue-booking-section";
 import { SelectedAddonItem } from "./venue-booking-sidebar";
-import { useRouter } from "@/i18n/navigation";
+import { getPaymentUrl } from "@workspace/shared/utils/sso";
 
 interface VenueCheckoutModalProps {
   isOpen: boolean;
@@ -38,7 +38,6 @@ export function VenueCheckoutModal({
   selectedDate,
   selectedAddons,
 }: VenueCheckoutModalProps) {
-  const router = useRouter();
   const [fullName, setFullName] = useState("Nguyễn Văn An");
   const [phone, setPhone] = useState("0908 789 999");
   const [email, setEmail] = useState("an.nguyen@example.com");
@@ -84,7 +83,15 @@ export function VenueCheckoutModal({
     setTimeout(() => {
       setIsLoading(false);
       onClose();
-      router.push(`/payment/court/${bookingCode}`);
+      if (typeof window !== "undefined") {
+        window.location.href = getPaymentUrl({
+          type: "court",
+          orderId: bookingCode,
+          locale,
+          amount: grandTotal,
+          returnUrl: window.location.href,
+        });
+      }
     }, 400);
   };
 
