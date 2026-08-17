@@ -190,13 +190,221 @@
       "not_yet_time_to_register": "Not yet time to register",
       "expired": "Expired",
       "full": "Full",
-      "": "View more training courses"
+      "register": "Register",
+      "view_more_trainings": "View more training courses"
+    }
+  },
+  "auth_page": {
+    "login": "Log in",
+    "register": "Sign up",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "email": "Email",
+    "username": "Username",
+    "forgot_password": "Forgot password?",
+    "reset_password": "Reset password",
+    "send_reset_link": "Send reset link",
+    "back_to_login": "Back to log in",
+    "login_with_google": "Log in with Google",
+    "login_with_facebook": "Log in with Facebook",
+    "register_now": "Sign up now",
+    "have_account": "Already have an account?",
+    "dont_have_account": "Don't have an account?",
+    "terms_and_conditions": "I agree to the Terms and Conditions",
+    "privacy_policy": "Privacy Policy",
+    "invalid_email": "Invalid email",
+    "password_mismatch": "Passwords do not match",
+    "required_field": "This field is required",
+    "weak_password": "Password is too weak",
+    "user_not_found": "User not found"
+  },
+  "checkout": {
+    "header": {
+      "back": "Back",
+      "secure_payment": "256-bit SSL Secure Payment",
+      "order_id": "Order ID",
+      "hold_ticket": "Ticket reservation time",
+      "hold_court": "Court reservation time",
+      "hold_tournament": "Slot reservation time",
+      "hold_walkin": "Walk-in slot hold time",
+      "hold_quote": "Special quote hold time",
+      "minute": "min",
+      "seconds": "sec"
     },
-    "training_card": {
-      "registration_full_title": "Registration for this program is full",
-      "registration_full_message": "The number of registrations for Training Camp 01 is full. See you in the next program.",
-      "close": "Close",
-      "register": "Register"
+    "stepper": {
+      "event": {
+        "step1": "Select Tickets",
+        "step2": "Athlete Info",
+        "step3": "Payment"
+      },
+      "court": {
+        "step1": "Schedule & Court",
+        "step2": "Booker & Services",
+        "step3": "Payment"
+      },
+      "concert": {
+        "step1": "Seat Map & Tiers",
+        "step2": "Recipient Info",
+        "step3": "Payment"
+      },
+      "tournament": {
+        "step1": "Category & Division",
+        "step2": "Roster & Services",
+        "step3": "Entry Fee"
+      },
+      "walkin": {
+        "step1": "Slots & Customer",
+        "step2": "Beverages & Addons",
+        "step3": "Fast Checkout"
+      },
+      "system_plan": {
+        "step1": "Select Plan",
+        "step2": "Company Info",
+        "step3": "Activate System"
+      }
+    },
+    "buyer": {
+      "title": "Ticket Purchaser Information",
+      "customer_title": "Customer Information",
+      "enterprise_title": "Company Registration Information",
+      "use_saved_profile": "Select saved profile",
+      "full_name": "Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "full_name_placeholder": "John Doe",
+      "phone_placeholder": "0908123456",
+      "email_placeholder": "john.doe@example.com"
+    },
+    "athlete": {
+      "individual_title": "Participant",
+      "team_title": "Relay Team",
+      "bib_name": "Name on BIB Number",
+      "citizen_id": "ID Card / Passport No.",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "emergency_phone": "Emergency Contact Phone",
+      "club": "Club / Organization",
+      "shirt_size": "Finisher T-Shirt Size",
+      "size_selected": "Selected: Size {size}",
+      "autofill": "Autofill Profile",
+      "save_athlete_checkbox": "Automatically save this participant to profile list",
+      "save_team_checkbox": "Automatically save this relay team to profile list",
+      "save_btn": "Save Profile",
+      "saved_btn": "Profile Saved",
+      "toast_saved": "Saved profile \"{name}\" to PlayGrid ID list!",
+      "team_name": "Team Name",
+      "team_name_placeholder": "e.g. PlayGrid Warriors Team",
+      "club_placeholder": "Saigon Triathlon Club",
+      "select_profile_title": "Select Athlete Profile",
+      "buyer_badge": "(Purchaser)",
+      "buyer_subtitle": "Primary Account",
+      "dual_role_badge": "(Dual Role - Previous Leg)",
+      "dual_role_subtitle": "2-Person Team"
+    },
+    "relay": {
+      "all_legs": "View all 3 legs",
+      "swim_tab": "1. Swim (1.9 KM)",
+      "bike_tab": "2. Bike (90 KM)",
+      "run_tab": "3. Run (21.1 KM)",
+      "swim_title": "Leg 1: Ocean Swim (1.9 KM)",
+      "bike_title": "Leg 2: Cycling (90 KM)",
+      "run_title": "Leg 3: Running (21.1 KM)",
+      "next_bike": "Continue to Leg 2 (Cycling) →",
+      "back_swim": "← Back to Leg 1 (Swim)",
+      "next_run": "Continue to Leg 3 (Running) →",
+      "back_bike": "← Back to Leg 2 (Cycling)",
+      "save_team_btn": "Save Team Profile",
+      "saved_team_btn": "Team Saved"
+    },
+    "payment_methods": {
+      "title": "Payment Method",
+      "free_fee": "Zero transaction fee",
+      "instant_confirm": "Instant Confirmation",
+      "cashback": "5% Cashback",
+      "vietqr_name": "VietQR Pro Bank Transfer (Recommended)",
+      "vietqr_desc": "Scan QR from any mobile banking app. Auto-confirmed within 2 seconds.",
+      "momo_name": "MoMo E-Wallet",
+      "momo_desc": "1-tap checkout via MoMo app or scan MoMo QR code.",
+      "zalopay_name": "ZaloPay E-Wallet",
+      "zalopay_desc": "Pay directly inside Zalo or ZaloPay app.",
+      "card_name": "International Cards & Apple Pay",
+      "card_desc": "Visa, Mastercard, JCB, Apple Pay & Google Pay (3D Secure protected).",
+      "napas_name": "Domestic ATM Cards (Napas)",
+      "napas_desc": "Supports ATM cards from over 40 banks in Vietnam via Napas.",
+      "wallet_name": "PlayGrid Sports Wallet",
+      "wallet_balance": "Current balance: {balance} VND",
+      "wallet_insufficient": "(Insufficient balance - Please top up)",
+      "wallet_direct": "(Direct deduction)"
+    },
+    "vat": {
+      "request_vat": "Request Corporate Electronic VAT Invoice",
+      "badge": "E-Invoice",
+      "note": "Electronic VAT invoice will be sent via email within 24-48h after payment.",
+      "company_name": "Company / Organization Name",
+      "company_placeholder": "PLAYGRID VIETNAM CO., LTD",
+      "tax_id": "Tax ID (TIN / MST)",
+      "tax_id_placeholder": "0312345678",
+      "address": "Registered Business Address",
+      "address_placeholder": "123 Le Loi Street, Ben Nghe Ward, District 1, HCMC",
+      "email": "Invoice Receiving Email",
+      "email_placeholder": "accounting@company.com"
+    },
+    "sidebar": {
+      "order_summary": "Order Summary",
+      "ticket_list": "Tickets & Services",
+      "unit_price": "Price",
+      "original_total": "Subtotal",
+      "discount": "Voucher Discount",
+      "bib_chip_fee": "BIB & Timing Chip Issuance Fee",
+      "service_fee": "Service & Facilities Fee",
+      "subtotal": "Subtotal",
+      "vat_fee": "VAT Tax (8%)",
+      "total_amount": "Total Amount",
+      "voucher_code": "Voucher Code",
+      "voucher_placeholder": "Enter promo code",
+      "apply": "Apply",
+      "applied": "Applied",
+      "invalid_voucher": "Invalid promo code!",
+      "voucher_success": "Applied voucher {code} successfully (-{discount} VND)!",
+      "continue_step": "Continue: Enter Participant Info →",
+      "continue_payment": "Continue: Select Payment Method →",
+      "finish_payment": "Complete Payment Now",
+      "price_included_vat": "All taxes & fees included"
+    },
+    "review": {
+      "confirm_title": "Confirm Participant & Relay Team List",
+      "edit_btn": "Edit Info",
+      "ready_status": "✓ Ready",
+      "swim_label": "Swim",
+      "bike_label": "Bike",
+      "run_label": "Run"
+    },
+    "vietqr_modal": {
+      "title": "VietQR Pro Payment",
+      "subtitle": "Open any banking app to scan this QR code",
+      "scan_instruction": "Scan VietQR code for automatic transfer",
+      "qr_valid_in": "QR code expires in",
+      "beneficiary_bank": "Beneficiary Bank",
+      "account_number": "Account Number",
+      "account_holder": "Account Holder",
+      "amount": "Payment Amount",
+      "memo": "Transfer Memo (Required)",
+      "copy": "Copy",
+      "copied": "Copied",
+      "confirm_btn": "I have completed the transfer",
+      "verifying": "Verifying transaction...",
+      "note": "The system activates immediately upon bank signal (usually 2-5 seconds).",
+      "success_title": "Payment Successful!",
+      "success_desc": "Order #{orderId} has been verified automatically. Redirecting..."
+    },
+    "success_page": {
+      "title": "Payment Completed!",
+      "subtitle": "Thank you for booking with PlayGrid",
+      "order_code": "Order Code",
+      "payment_time": "Payment Time",
+      "download_ticket": "Download PDF E-Ticket",
+      "view_history": "View Order History",
+      "back_home": "Back to Home"
     }
   }
 }

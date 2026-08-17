@@ -104,7 +104,7 @@ export function ContactForm() {
   };
 
   return (
-    <div className="p-5 sm:p-8 rounded-3xl bg-card border border-border/80 shadow-md relative overflow-hidden">
+    <div id="contact-form" className="p-5 sm:p-8 rounded-3xl bg-card border border-border/80 shadow-md relative overflow-hidden scroll-mt-24">
       {/* Decorative top gradient accent */}
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-primary" />
 
@@ -172,11 +172,11 @@ export function ContactForm() {
           </div>
 
           {/* Contact Input Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4.5">
             {/* Name & Phone row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-medium text-foreground flex items-center gap-1.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4.5 gap-x-4">
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                   <User className="size-3.5 text-muted-foreground" />
                   <span>{t("form.name_label")} *</span>
                 </label>
@@ -185,15 +185,15 @@ export function ContactForm() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder={t("form.name_placeholder")}
-                  className={`h-10 rounded-xl text-xs sm:text-sm ${errors.fullName ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                  className={`h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs ${errors.fullName ? "border-destructive focus-visible:ring-destructive" : ""}`}
                 />
                 {errors.fullName && (
                   <p className="text-[11px] text-destructive font-normal">{errors.fullName}</p>
                 )}
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-medium text-foreground flex items-center gap-1.5">
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                   <Phone className="size-3.5 text-muted-foreground" />
                   <span>{t("form.phone_label")} *</span>
                 </label>
@@ -202,7 +202,7 @@ export function ContactForm() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder={t("form.phone_placeholder")}
-                  className={`h-10 rounded-xl text-xs sm:text-sm ${errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                  className={`h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs ${errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}`}
                 />
                 {errors.phone && (
                   <p className="text-[11px] text-destructive font-normal">{errors.phone}</p>
@@ -211,9 +211,9 @@ export function ContactForm() {
             </div>
 
             {/* Email & Venue/Sport row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-medium text-foreground flex items-center gap-1.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4.5 gap-x-4">
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                   <Mail className="size-3.5 text-muted-foreground" />
                   <span>{t("form.email_label")} *</span>
                 </label>
@@ -222,7 +222,7 @@ export function ContactForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t("form.email_placeholder")}
-                  className={`h-10 rounded-xl text-xs sm:text-sm ${errors.email ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                  className={`h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs ${errors.email ? "border-destructive focus-visible:ring-destructive" : ""}`}
                 />
                 {errors.email && (
                   <p className="text-[11px] text-destructive font-normal">{errors.email}</p>
@@ -230,8 +230,8 @@ export function ContactForm() {
               </div>
 
               {topic === "venue" ? (
-                <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-foreground flex items-center gap-1.5">
+                <div className="space-y-2">
+                  <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                     <Building className="size-3.5 text-muted-foreground" />
                     <span>{t("form.venue_name_label")}</span>
                   </label>
@@ -240,19 +240,19 @@ export function ContactForm() {
                     value={venueName}
                     onChange={(e) => setVenueName(e.target.value)}
                     placeholder={t("form.venue_name_placeholder")}
-                    className="h-10 rounded-xl text-xs sm:text-sm"
+                    className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs"
                   />
                 </div>
               ) : (
-                <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-foreground flex items-center gap-1.5">
+                <div className="space-y-2">
+                  <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                     <Activity className="size-3.5 text-muted-foreground" />
                     <span>{t("form.sport_label")}</span>
                   </label>
                   <select
                     value={sport}
                     onChange={(e) => setSport(e.target.value)}
-                    className="w-full h-10 px-3 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring font-normal"
+                    className="w-full h-11 px-3.5 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring font-normal shadow-2xs"
                   >
                     <option value="">{t("form.sport_all")}</option>
                     {sports.map((s) => (
@@ -266,8 +266,8 @@ export function ContactForm() {
             </div>
 
             {/* Subject */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-foreground flex items-center gap-1.5">
+            <div className="space-y-2">
+              <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                 <MessageSquare className="size-3.5 text-muted-foreground" />
                 <span>{t("form.subject_label")} *</span>
               </label>
@@ -276,7 +276,7 @@ export function ContactForm() {
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 placeholder={t("form.subject_placeholder")}
-                className={`h-10 rounded-xl text-xs sm:text-sm ${errors.subject ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                className={`h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs ${errors.subject ? "border-destructive focus-visible:ring-destructive" : ""}`}
               />
               {errors.subject && (
                 <p className="text-[11px] text-destructive font-normal">{errors.subject}</p>

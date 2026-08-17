@@ -61,50 +61,13 @@ export function DesktopNavbar() {
     }
   };
 
-  const navItems = [
-    { href: "/", label: t("home") },
-    { href: "/explore", label: t("explore") },
-    { href: "/courts", label: t("courts") },
-    { href: "/tournaments", label: t("tournaments") },
-    { href: "/clubs", label: t("clubs") },
-    { href: "/activities", label: t("activities") },
-    { href: "/blog", label: t("blog") },
-  ];
-
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80 transition-colors">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left: Brand Logo */}
         <div className="flex items-center shrink-0">
           <Logo />
         </div>
-
-        {/* Center: Main Navigation Menu */}
-        <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 mx-4">
-          {navItems.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`relative py-5 px-2 xl:px-3 text-xs xl:text-sm font-medium whitespace-nowrap transition-colors hover:text-brand-blue dark:hover:text-brand-green shrink-0 ${
-                  isActive
-                    ? "font-semibold text-brand-blue dark:text-brand-green"
-                    : "text-foreground/80 hover:text-foreground"
-                }`}
-              >
-                {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-2 right-2 xl:left-3 xl:right-3 h-[2.5px] rounded-full bg-gradient-primary transition-all" />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
 
         {/* Right: Actions & Tools */}
         <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">

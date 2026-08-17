@@ -35,6 +35,15 @@ const nextConfig: NextConfig = {
         source: "/payment-static/logo/:path*",
         destination: "/logo/:path*",
       },
+      // Fallback if accessed directly on payment domain with /payment prefix
+      {
+        source: "/:locale/payment/:path*",
+        destination: "/:locale/:path*",
+      },
+      {
+        source: "/:locale/payment",
+        destination: "/:locale",
+      },
     ];
   },
 };

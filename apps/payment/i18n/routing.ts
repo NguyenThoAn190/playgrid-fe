@@ -1,4 +1,5 @@
 import { defineRouting } from "next-intl/routing";
+import { createNavigation } from "next-intl/navigation";
 import { LOCALES } from "@workspace/shared/constants/locale";
 
 export const routing = defineRouting({
@@ -6,8 +7,12 @@ export const routing = defineRouting({
   locales: LOCALES,
 
   // Used when no locale matches
-  defaultLocale: "en",
+  defaultLocale: "vi",
 
-  // Hide locale prefix completely
-  // localePrefix: "never",
+  // Always enforce locale prefix in URL
+  localePrefix: "always",
 });
+
+export const { Link, redirect, usePathname, useRouter, getPathname } =
+  createNavigation(routing);
+

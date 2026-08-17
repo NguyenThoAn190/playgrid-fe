@@ -46,6 +46,21 @@ export function EventCard({ event, className = "" }: EventCardProps) {
   const sportTheme = getSportColor(event.category);
   const formattedDistance = formatDistanceDisplay(event.distanceText, event.distances);
 
+  const getEventTargetUrl = () => {
+    const cat = event.category?.toLowerCase() || "";
+    const id = event.id.toLowerCase();
+    if (id.startsWith("tourney-") || cat.includes("giải") || cat.includes("tournament")) {
+      return `/payment/tournament/PG-TRN-${id.replace(/\D/g, "") || "55812"}`;
+    }
+    if (cat.includes("concert") || cat.includes("âm nhạc") || id.startsWith("concert-")) {
+      return `/payment/concert/PG-CON-${id.replace(/\D/g, "") || "33910"}`;
+    }
+    return `/events/${event.id}`;
+  };
+
+  const targetUrl = getEventTargetUrl();
+  const isDirectCheckout = targetUrl.startsWith("/payment/");
+
   return (
     <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/60 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-0 ${className}`}>
       <div>
@@ -102,21 +117,18 @@ export function EventCard({ event, className = "" }: EventCardProps) {
               />
             </button>
           </div>
+        </div>
 
-          {/* Bottom Left Image Overlay Tag: Distance Info */}
-          {formattedDistance && (
-            <div className="absolute bottom-2 left-2.5 max-w-[calc(100%-20px)] z-10">
-              <span className="inline-flex items-center rounded-md bg-black/65 backdrop-blur-md px-2 py-0.5 text-[10px] sm:text-[11px] font-bold text-white/90 border border-white/15 shadow-xs truncate max-w-full">
+        {/* Card Body Details */}
+        <div className="p-3 sm:p-3.5 space-y-1.5 sm:space-y-2">
+          {/* Distance Text / Tag Badge */}
+          {formattedDistance ? (
+            <div>
+              <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold ${sportTheme.tagBg}`}>
                 {formattedDistance}
               </span>
             </div>
-          )}
-        </div>
-
-        {/* Card Content Body */}
-        <div className="p-3 sm:p-3.5 space-y-1.5 sm:space-y-2">
-          {/* Category Tag Badge with sport color scheme */}
-          {event.category && (
+          ) : event.category && (
             <div>
               <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold ${sportTheme.tagBg}`}>
                 {event.category}
@@ -125,7 +137,7 @@ export function EventCard({ event, className = "" }: EventCardProps) {
           )}
 
           {/* Title Row */}
-          <Link href={`/events/${event.id}`} className="block min-h-[2.25rem] sm:min-h-[2.75rem]">
+          <Link href={targetUrl} className="block min-h-[2.25rem] sm:min-h-[2.75rem]">
             <h3 className="font-bold text-xs sm:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
               {event.title}
             </h3>
@@ -158,11 +170,11 @@ export function EventCard({ event, className = "" }: EventCardProps) {
         </div>
 
         {/* Right Side: Blue Action Button */}
-        <Link href={`/events/${event.id}`} className="shrink-0">
+        <Link href={targetUrl} className="shrink-0">
           <Button
             className="h-8 sm:h-9 rounded-xl bg-[#002BCC] hover:bg-[#0022a3] active:bg-[#001a80] text-white font-bold text-[11px] sm:text-xs px-3 sm:px-5 transition-all cursor-pointer shadow-xs border-none"
           >
-            {event.buttonText || "Đăng ký"}
+            {event.buttonText || (isDirectCheckout ? (targetUrl.includes("tournament") ? "Đăng ký" : "Mua vé") : "Đăng ký")}
           </Button>
         </Link>
       </div>

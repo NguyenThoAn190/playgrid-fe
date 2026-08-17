@@ -34,6 +34,7 @@ import {
   calculateVoucherDiscount,
 } from "@/lib/voucher-data";
 import { VoucherWalletModal } from "@/components/vouchers/voucher-wallet-modal";
+import { useRouter } from "@/i18n/navigation";
 
 interface EventRegistrationSidebarProps {
   event: EventData;
@@ -44,6 +45,7 @@ export function EventRegistrationSidebar({
   event,
   selectedAddons = {},
 }: EventRegistrationSidebarProps) {
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -52,6 +54,24 @@ export function EventRegistrationSidebar({
   const isHeaderVisible = useHeaderVisible();
   const locale = useLocale();
   const isEn = locale === "en";
+
+  const handleProceedToEventPayment = () => {
+    const orderId = "PG-EVT-" + Math.floor(10000 + Math.random() * 90000);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(
+        "playgrid_event_booking",
+        JSON.stringify({
+          eventId: event.id,
+          eventTitle: event.title,
+          selectedQuantities,
+          appliedDiscount,
+          appliedVoucher,
+          finalTotal,
+        })
+      );
+    }
+    router.push(`/payment/event/${orderId}`);
+  };
 
   const tiers: EventDistanceTier[] =
     event.distanceTiers && event.distanceTiers.length > 0
@@ -439,11 +459,11 @@ export function EventRegistrationSidebar({
           </div>
         </div>
 
-        {/* Action Button: Open Athlete Registration Modal */}
+        {/* Action Button: Navigate to Payment App */}
         <Button
           type="button"
           disabled={totalTickets === 0}
-          onClick={() => setIsModalOpen(true)}
+          onClick={handleProceedToEventPayment}
           className="w-full h-10.5 rounded-xl bg-gradient-primary text-white font-bold text-xs sm:text-sm shadow-md hover:opacity-95 active:scale-98 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed border-0"
         >
           {totalTickets === 0
@@ -716,7 +736,7 @@ export function EventRegistrationSidebar({
                 disabled={totalTickets === 0}
                 onClick={() => {
                   setIsMobileDrawerOpen(false);
-                  setIsModalOpen(true);
+                  handleProceedToEventPayment();
                 }}
                 className="w-full h-11.5 rounded-xl bg-gradient-primary text-white font-bold text-xs sm:text-sm shadow-md active:scale-98 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed border-0"
               >
@@ -791,7 +811,8 @@ export function EventRegistrationSidebar({
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
-                    setIsSubmitted(true);
+                    setIsModalOpen(false);
+                    handleProceedToEventPayment();
                   }}
                   className="space-y-3 text-xs"
                 >

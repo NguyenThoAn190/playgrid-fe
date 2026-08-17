@@ -11,7 +11,15 @@ import {
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu";
 
-export function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  className?: string;
+  variant?: "ghost" | "outline" | "default";
+}
+
+export function LanguageSwitcher({
+  className,
+  variant = "ghost",
+}: LanguageSwitcherProps = {}) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -27,13 +35,16 @@ export function LanguageSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="ghost"
+          variant={variant}
           size="sm"
-          className="flex items-center gap-1.5 px-2.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground"
+          className={
+            className ||
+            "flex items-center gap-1.5 px-2.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground"
+          }
           aria-label={t("language")}
         >
-          <Globe className="size-4 text-brand-blue dark:text-brand-green" />
-          <span>{locale}</span>
+          <Globe className="size-3.5 text-brand-blue dark:text-brand-green" />
+          <span>{locale === "vi" ? "VI" : "EN"}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-36">

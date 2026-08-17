@@ -82,7 +82,7 @@ export function DesktopNavbar() {
     { href: "/", label: t("home"), sectionId: undefined },
     { href: "/#explore-sports", label: t("explore"), sectionId: "explore-sports" },
     { href: "/activities", label: t("activities"), sectionId: undefined },
-    { href: "/pricing", label: t("pricing"), sectionId: undefined },
+    { href: "/payment/system/PG-SYS-10293", label: t("pricing"), sectionId: undefined },
     { href: "/blog", label: t("blog"), sectionId: undefined },
     { href: "/about", label: t("about"), sectionId: undefined },
     { href: "/contact", label: t("contact"), sectionId: undefined },

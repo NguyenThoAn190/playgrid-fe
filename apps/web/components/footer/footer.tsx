@@ -266,9 +266,15 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/organizer" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors inline-flex items-center gap-1.5">
-                  <ArrowRight className="w-3 h-3 text-muted-foreground/60" />
-                  <span>Dành cho Ban tổ chức giải đấu</span>
+                <Link href="/payment/system/PG-SYS-10293" className="hover:text-amber-600 dark:hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 font-medium text-foreground">
+                  <ArrowRight className="w-3 h-3 text-amber-500" />
+                  <span>Dành cho Chủ sân & Doanh nghiệp (SaaS)</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/payment" className="hover:text-brand-blue dark:hover:text-brand-green transition-colors inline-flex items-center gap-1.5 font-medium">
+                  <ArrowRight className="w-3 h-3 text-brand-blue dark:text-brand-green" />
+                  <span>Cổng thanh toán PlayGrid Pay Hub</span>
                 </Link>
               </li>
             </ul>

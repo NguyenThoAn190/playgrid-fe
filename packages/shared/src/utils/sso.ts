@@ -144,6 +144,7 @@ export function getLogoutUrl(
  * Generates the Payment Checkout URL with order/session metadata and theme sync
  */
 export function getPaymentUrl(params?: {
+  type?: "court" | "event" | "concert" | "tournament" | "walk_in" | "walk-in" | "system" | "subscription";
   orderId?: string;
   amount?: number;
   returnUrl?: string;
@@ -154,7 +155,6 @@ export function getPaymentUrl(params?: {
   const locale = params?.locale || "vi";
   const queryParams = new URLSearchParams();
 
-  if (params?.orderId) queryParams.set("order_id", params.orderId);
   if (params?.amount) queryParams.set("amount", String(params.amount));
 
   const returnUrl = params?.returnUrl || (typeof window !== "undefined" ? window.location.href : web);
@@ -167,13 +167,23 @@ export function getPaymentUrl(params?: {
   if (theme) queryParams.set("theme", theme);
 
   const queryString = queryParams.toString();
-  const path = `/${locale}/payment${queryString ? `?${queryString}` : ""}`;
+
+  // If a specific catalog sub-route is requested
+  let subPath = "/payment";
+  if (params?.type) {
+    const formattedType = params.type === "walk_in" ? "walk-in" : params.type === "subscription" ? "system" : params.type;
+    subPath = params.orderId ? `/payment/${formattedType}/${params.orderId}` : `/payment/${formattedType}`;
+  } else if (params?.orderId) {
+    queryParams.set("order_id", params.orderId);
+  }
+
+  const path = `/${locale}${subPath}${queryString ? `?${queryString}` : ""}`;
 
   if (shouldUseSameOrigin(params)) {
     return path;
   }
 
-  return `${payment}/${locale}${queryString ? `?${queryString}` : ""}`;
+  return `${payment}${path}`;
 }
 
 /**

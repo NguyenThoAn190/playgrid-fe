@@ -16,9 +16,6 @@ export function Navbar() {
       <div className="block lg:hidden">
         <MobileNavbar />
       </div>
-
-      {/* Mobile Fixed Bottom Navigation Bar */}
-      <MobileBottomNav />
     </>
   );
 }

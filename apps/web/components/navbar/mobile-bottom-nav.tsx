@@ -29,6 +29,7 @@ import {
   MapPin,
   UserPlus,
   LogIn,
+  CreditCard,
 } from "lucide-react";
 
 export function MobileBottomNav() {
@@ -101,7 +102,8 @@ export function MobileBottomNav() {
     { href: "/", label: t("home"), icon: Home, sectionId: undefined },
     { href: "/#explore-sports", label: t("explore"), icon: Compass, sectionId: "explore-sports" },
     { href: "/badminton/venue", label: t("courts"), icon: MapPin, sectionId: undefined },
-    { href: "/tournaments", label: t("tournaments"), icon: Trophy, sectionId: undefined },
+    { href: "/events", label: t("tournaments"), icon: Trophy, sectionId: undefined },
+    { href: "/payment", label: locale === "en" ? "PlayGrid Pay Hub" : "Cổng thanh toán", icon: CreditCard, sectionId: undefined },
     { href: "/clubs", label: t("clubs"), icon: Users, sectionId: undefined },
     { href: "/activities", label: t("activities"), icon: Activity, sectionId: undefined },
     { href: "/blog", label: t("blog"), icon: Newspaper, sectionId: undefined },

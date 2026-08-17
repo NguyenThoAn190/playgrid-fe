@@ -18,12 +18,15 @@ import { VenueReviews } from "./venue-reviews";
 import { VenueArticles } from "./venue-articles";
 import { VenueRelatedCourts } from "./venue-related-courts";
 import { VenueCheckoutModal } from "./venue-checkout-modal";
+import { useRouter } from "@/i18n/navigation";
 
 interface VenueDetailClientProps {
   venue: VenueDetailData;
 }
 
 export function VenueDetailClient({ venue }: VenueDetailClientProps) {
+  const router = useRouter();
+
   // Today's date string YYYY-MM-DD
   const getTodayString = () => {
     const d = new Date();
@@ -39,6 +42,24 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
   const tSidebar = useTranslations("venue.sidebar");
   const locale = useLocale();
   const isEn = locale === "en";
+
+  const handleProceedToPayment = () => {
+    if (selectedSlots.length === 0) return;
+    const orderId = "PG-CRT-" + Math.floor(10000 + Math.random() * 90000);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(
+        "playgrid_court_booking",
+        JSON.stringify({
+          venueName: venue.name,
+          selectedDate,
+          selectedSlots,
+          selectedAddons,
+          bookingType,
+        })
+      );
+    }
+    router.push(`/payment/court/${orderId}`);
+  };
 
   // Toggle slot selection (multi-slot support)
   const handleToggleSlot = (slot: SelectedBookingSlot) => {
@@ -147,7 +168,7 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
               bookingType={bookingType}
               selectedAddons={selectedAddons}
               onChangeAddonQuantity={handleChangeAddonQuantity}
-              onProceedCheckout={() => setIsCheckoutOpen(true)}
+              onProceedCheckout={handleProceedToPayment}
             />
           </div>
         </div>
@@ -173,7 +194,7 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
 
           <Button
             type="button"
-            onClick={() => setIsCheckoutOpen(true)}
+            onClick={handleProceedToPayment}
             className="h-10 px-4 rounded-xl bg-gradient-primary text-white font-extrabold text-xs shadow-md border-0 outline-none focus:outline-none ring-0 shrink-0 flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all"
           >
             <span>{tSidebar("mobile_book_now")}</span>

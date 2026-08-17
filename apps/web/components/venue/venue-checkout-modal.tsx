@@ -18,6 +18,7 @@ import { Badge } from "@workspace/ui/components/badge";
 import { VenueDetailData } from "@/lib/venue-data";
 import { SelectedBookingSlot } from "./venue-booking-section";
 import { SelectedAddonItem } from "./venue-booking-sidebar";
+import { useRouter } from "@/i18n/navigation";
 
 interface VenueCheckoutModalProps {
   isOpen: boolean;
@@ -37,6 +38,7 @@ export function VenueCheckoutModal({
   selectedDate,
   selectedAddons,
 }: VenueCheckoutModalProps) {
+  const router = useRouter();
   const [fullName, setFullName] = useState("Nguyễn Văn An");
   const [phone, setPhone] = useState("0908 789 999");
   const [email, setEmail] = useState("an.nguyen@example.com");
@@ -58,17 +60,33 @@ export function VenueCheckoutModal({
   }, 0);
   const grandTotal = courtSubtotal + addonsSubtotal;
 
+  const bookingCode = "PG-CRT-" + Math.floor(10000 + Math.random() * 90000);
+
   const handleConfirmBooking = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(
+        "playgrid_court_booking",
+        JSON.stringify({
+          venueName: venue.name,
+          selectedDate,
+          selectedSlots,
+          selectedAddons,
+          fullName,
+          phone,
+          email,
+        })
+      );
+    }
+
     setTimeout(() => {
       setIsLoading(false);
-      setIsSuccess(true);
-    }, 1200);
+      onClose();
+      router.push(`/payment/court/${bookingCode}`);
+    }, 400);
   };
-
-  const bookingCode = "PG-" + Math.floor(100000 + Math.random() * 900000);
 
   return (
     <div
@@ -128,47 +146,58 @@ export function VenueCheckoutModal({
                 {tCheck("customer_info")}
               </span>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label className="text-xs font-semibold text-foreground">{tCheck("full_name_label")}</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-3.5">
+                <div className="space-y-2">
+                  <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                    <span>{tCheck("full_name_label")}</span>
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
                   <Input
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Nguyễn Văn An"
-                    className="h-9 rounded-xl text-xs"
+                    className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                   />
                 </div>
-                <div className="space-y-1">
-                  <label className="text-xs font-semibold text-foreground">{tCheck("phone_label")}</label>
+                <div className="space-y-2">
+                  <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                    <span>{tCheck("phone_label")}</span>
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
                   <Input
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="0908 123 456"
-                    className="h-9 rounded-xl text-xs"
+                    className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <label className="text-xs font-semibold text-foreground">{tCheck("email_label")}</label>
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                  <span>{tCheck("email_label")}</span>
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="an.nguyen@example.com"
-                  className="h-9 rounded-xl text-xs"
+                  className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="text-xs font-semibold text-foreground">{tCheck("note")}</label>
+              <div className="space-y-2">
+                <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                  <span>{tCheck("note")}</span>
+                </label>
                 <Input
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder={tCheck("note_placeholder")}
-                  className="h-9 rounded-xl text-xs"
+                  className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                 />
               </div>
             </div>

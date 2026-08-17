@@ -1,4 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   themeColor: [
@@ -29,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi" suppressHydrationWarning>
-      <body className="min-h-full bg-background text-foreground font-sans antialiased">
+    <html lang="vi" suppressHydrationWarning className={inter.variable}>
+      <body className={`${inter.className} min-h-full bg-background text-foreground font-sans antialiased`}>
         {children}
       </body>
     </html>

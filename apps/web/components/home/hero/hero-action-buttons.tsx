@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { Link } from "@/i18n/navigation";
-import { ChevronRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { ChevronRight, Zap } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
 
 export interface HeroActionButtonsProps {
   onExploreClick?: () => void;
@@ -15,6 +15,8 @@ export function HeroActionButtons({
   onFindPlayersClick,
 }: HeroActionButtonsProps) {
   const t = useTranslations("home.hero");
+  const locale = useLocale();
+  const isEn = locale === "en";
 
   const handleExploreClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onExploreClick) {
@@ -44,6 +46,14 @@ export function HeroActionButtons({
         className="group inline-flex h-10 sm:h-12 items-center justify-center gap-2 rounded-xl border border-border/80 bg-background/90 backdrop-blur-xs px-5 sm:px-6 text-sm sm:text-base font-bold text-foreground transition-all hover:bg-muted hover:border-slate-300 dark:hover:border-slate-700 active:scale-[0.98] cursor-pointer shadow-xs"
       >
         <span>{t("find_players")}</span>
+      </Link>
+
+      <Link
+        href="/payment/walk-in/PG-WLK-99014"
+        className="group inline-flex h-10 sm:h-12 items-center justify-center gap-1.5 rounded-xl border border-brand-blue/30 dark:border-brand-green/30 bg-brand-blue/5 dark:bg-brand-green/10 px-4 sm:px-5 text-sm sm:text-base font-bold text-brand-blue dark:text-brand-green transition-all hover:bg-brand-blue/10 active:scale-[0.98] cursor-pointer shadow-2xs"
+      >
+        <Zap className="h-4 w-4 fill-current" />
+        <span>{isEn ? "Quick Walk-in" : "Sân vãng lai"}</span>
       </Link>
     </div>
   );

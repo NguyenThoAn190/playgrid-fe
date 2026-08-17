@@ -54,5 +54,194 @@
     "required_field": "Trường này là bắt buộc",
     "weak_password": "Mật khẩu quá yếu",
     "user_not_found": "Không tìm thấy người dùng"
+  },
+  "checkout": {
+    "header": {
+      "back": "Quay lại",
+      "secure_payment": "Thanh toán an toàn SSL 256-bit",
+      "order_id": "Mã đơn hàng",
+      "hold_ticket": "Thời gian giữ vé",
+      "hold_court": "Thời gian giữ chỗ",
+      "hold_tournament": "Thời gian giữ suất thi đấu",
+      "hold_walkin": "Thời gian giữ slot",
+      "hold_quote": "Thời gian giữ báo giá ưu đãi",
+      "minute": "phút",
+      "seconds": "giây"
+    },
+    "stepper": {
+      "event": {
+        "step1": "Chọn vé sự kiện",
+        "step2": "Thông tin VĐV",
+        "step3": "Thanh toán"
+      },
+      "court": {
+        "step1": "Lịch đặt & Sân đấu",
+        "step2": "Người đặt & Dịch vụ",
+        "step3": "Thanh toán"
+      },
+      "concert": {
+        "step1": "Sơ đồ ghế & Hạng vé",
+        "step2": "Thông tin nhận vé",
+        "step3": "Thanh toán"
+      },
+      "tournament": {
+        "step1": "Nội dung & Hạng đấu",
+        "step2": "Danh sách VĐV & Dịch vụ",
+        "step3": "Nộp lệ phí"
+      },
+      "walkin": {
+        "step1": "Số slot & Khách hàng",
+        "step2": "Dịch vụ & Nước uống",
+        "step3": "Thanh toán nhanh"
+      },
+      "system_plan": {
+        "step1": "Chọn gói thuê bao",
+        "step2": "Thông tin doanh nghiệp",
+        "step3": "Kích hoạt hệ thống"
+      }
+    },
+    "buyer": {
+      "title": "Thông tin Người Mua Vé",
+      "customer_title": "Thông tin Khách Hàng",
+      "enterprise_title": "Thông tin Doanh Nghiệp Đăng Ký",
+      "use_saved_profile": "Chọn hồ sơ đã lưu",
+      "full_name": "Họ và tên",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "full_name_placeholder": "Nguyễn Văn A",
+      "phone_placeholder": "0908123456",
+      "email_placeholder": "user@example.com"
+    },
+    "athlete": {
+      "individual_title": "Vận động viên",
+      "team_title": "Đội tiếp sức",
+      "bib_name": "Tên in trên số đeo BIB",
+      "citizen_id": "Số CCCD / Hộ chiếu",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "emergency_phone": "SĐT người thân khẩn cấp",
+      "club": "Câu lạc bộ / Doanh nghiệp",
+      "shirt_size": "Size áo thi đấu Finisher",
+      "size_selected": "Đã chọn: Size {size}",
+      "autofill": "Điền nhanh hồ sơ",
+      "save_athlete_checkbox": "Tự động lưu VĐV này vào danh sách hồ sơ",
+      "save_team_checkbox": "Tự động lưu đội tiếp sức này vào danh sách hồ sơ",
+      "save_btn": "Lưu hồ sơ",
+      "saved_btn": "Đã lưu hồ sơ",
+      "toast_saved": "Đã lưu hồ sơ \"{name}\" vào danh sách PlayGrid ID!",
+      "team_name": "Tên đội thi đấu",
+      "team_name_placeholder": "VD: PlayGrid Warriors Team",
+      "club_placeholder": "CLB Ba Môn Phối Hợp Sài Gòn",
+      "select_profile_title": "Chọn hồ sơ VĐV",
+      "buyer_badge": "(Người mua)",
+      "buyer_subtitle": "Chính chủ",
+      "dual_role_badge": "(Kiêm chặng trước)",
+      "dual_role_subtitle": "Đội 2 người"
+    },
+    "relay": {
+      "all_legs": "Xem tất cả 3 chặng",
+      "swim_tab": "1. Bơi (1.9 KM)",
+      "bike_tab": "2. Đạp xe (90 KM)",
+      "run_tab": "3. Chạy bộ (21.1 KM)",
+      "swim_title": "Vận động viên Bơi biển (1.9 KM)",
+      "bike_title": "Vận động viên Đạp xe (90 KM)",
+      "run_title": "Vận động viên Chạy bộ (21.1 KM)",
+      "next_bike": "Tiếp tục sang Chặng 2 (Đạp xe) →",
+      "back_swim": "← Quay lại Chặng 1 (Bơi)",
+      "next_run": "Tiếp tục sang Chặng 3 (Chạy bộ) →",
+      "back_bike": "← Quay lại Chặng 2 (Đạp xe)",
+      "save_team_btn": "Lưu hồ sơ đội",
+      "saved_team_btn": "Đã lưu hồ sơ"
+    },
+    "payment_methods": {
+      "title": "Phương thức thanh toán",
+      "free_fee": "Miễn phí giao dịch",
+      "instant_confirm": "Xác nhận tức thì",
+      "cashback": "Hoàn tiền 5%",
+      "vietqr_name": "Chuyển khoản VietQR Pro (Khuyên dùng)",
+      "vietqr_desc": "Quét mã QR từ mọi ứng dụng ngân hàng. Tự động xác nhận trong 2 giây.",
+      "momo_name": "Ví điện tử MoMo",
+      "momo_desc": "Thanh toán 1 chạm qua ứng dụng MoMo hoặc quét mã QR MoMo.",
+      "zalopay_name": "Ví điện tử ZaloPay",
+      "zalopay_desc": "Thanh toán trực tiếp trong Zalo hoặc ứng dụng ZaloPay.",
+      "card_name": "Thẻ Quốc Tế & Apple Pay",
+      "card_desc": "Visa, Mastercard, JCB, Apple Pay & Google Pay (Bảo mật 3D Secure).",
+      "napas_name": "Thẻ ATM Nội Địa (Napas)",
+      "napas_desc": "Hỗ trợ thẻ ATM của hơn 40 ngân hàng tại Việt Nam qua cổng Napas.",
+      "wallet_name": "Ví Thể Thao PlayGrid Wallet",
+      "wallet_balance": "Số dư hiện tại: {balance}đ",
+      "wallet_insufficient": "(Không đủ số dư - Vui lòng nạp thêm)",
+      "wallet_direct": "(Trừ trực tiếp)"
+    },
+    "vat": {
+      "request_vat": "Yêu cầu xuất hóa đơn điện tử VAT (Thuế GTGT)",
+      "badge": "Hóa đơn điện tử",
+      "note": "Hóa đơn VAT điện tử sẽ được gửi tự động qua email trong vòng 24-48h sau khi thanh toán.",
+      "company_name": "Tên công ty / Tổ chức",
+      "company_placeholder": "CÔNG TY TNHH PLAYGRID VIỆT NAM",
+      "tax_id": "Mã số thuế (MST)",
+      "tax_id_placeholder": "0312345678",
+      "address": "Địa chỉ doanh nghiệp theo ĐKKD",
+      "address_placeholder": "Số 123 Đường Lê Lợi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      "email": "Email nhận hóa đơn điện tử",
+      "email_placeholder": "accounting@company.com"
+    },
+    "sidebar": {
+      "order_summary": "Tóm tắt đơn hàng",
+      "ticket_list": "Danh sách vé & Dịch vụ",
+      "unit_price": "Đơn giá",
+      "original_total": "Tổng tiền gốc",
+      "discount": "Ưu đãi voucher",
+      "bib_chip_fee": "Phí phát hành BIB & Chip timing",
+      "service_fee": "Phí dịch vụ & Tiện ích",
+      "subtotal": "Tạm tính",
+      "vat_fee": "Thuế VAT (8%)",
+      "total_amount": "Tổng thanh toán",
+      "voucher_code": "Mã ưu đãi",
+      "voucher_placeholder": "Nhập mã giảm giá",
+      "apply": "Áp dụng",
+      "applied": "Đã áp dụng",
+      "invalid_voucher": "Mã giảm giá không hợp lệ!",
+      "voucher_success": "Áp dụng mã giảm giá {code} thành công (-{discount}đ)!",
+      "continue_step": "Tiếp tục: Nhập thông tin VĐV →",
+      "continue_payment": "Tiếp tục: Phương thức thanh toán →",
+      "finish_payment": "Thanh toán ngay",
+      "price_included_vat": "Đã bao gồm thuế & phí"
+    },
+    "review": {
+      "confirm_title": "Xác nhận danh sách Vận động viên & Đội tiếp sức",
+      "edit_btn": "Sửa thông tin",
+      "ready_status": "✓ Đã sẵn sàng",
+      "swim_label": "Bơi",
+      "bike_label": "Đạp",
+      "run_label": "Chạy"
+    },
+    "vietqr_modal": {
+      "title": "Thanh toán VietQR Pro",
+      "subtitle": "Mở app ngân hàng bất kỳ để quét mã QR",
+      "scan_instruction": "Quét mã VietQR chuyển khoản tự động",
+      "qr_valid_in": "Mã QR có hiệu lực trong",
+      "beneficiary_bank": "Ngân hàng thụ hưởng",
+      "account_number": "Số tài khoản",
+      "account_holder": "Chủ tài khoản",
+      "amount": "Số tiền thanh toán",
+      "memo": "Nội dung chuyển khoản (Bắt buộc)",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép",
+      "confirm_btn": "Tôi đã chuyển khoản thành công",
+      "verifying": "Đang kiểm tra giao dịch...",
+      "note": "Hệ thống tự động kích hoạt ngay khi nhận được tín hiệu từ ngân hàng (thông thường 2-5 giây).",
+      "success_title": "Thanh toán thành công!",
+      "success_desc": "Hệ thống đã tự động đối soát đơn hàng #{orderId}. Đang chuyển hướng..."
+    },
+    "success_page": {
+      "title": "Thanh toán hoàn tất!",
+      "subtitle": "Cảm ơn bạn đã đặt chỗ cùng PlayGrid",
+      "order_code": "Mã đơn hàng",
+      "payment_time": "Thời gian thanh toán",
+      "download_ticket": "Tải vé điện tử PDF",
+      "view_history": "Xem lịch sử đơn hàng",
+      "back_home": "Về trang chủ"
+    }
   }
 }
