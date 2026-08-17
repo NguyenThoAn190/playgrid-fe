@@ -4,6 +4,11 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
+  productionBrowserSourceMaps: false,
+  compiler: {
+    removeConsole:
+      process.env.NODE_ENV === "production" ? { exclude: ["error"] } : false,
+  },
   transpilePackages: ["@workspace/ui"],
   allowedDevOrigins: ["100.78.38.8", "100.78.38.8:3000", "localhost:3000"],
   turbopack: {
