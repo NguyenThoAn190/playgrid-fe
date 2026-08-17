@@ -32,6 +32,7 @@ export function DesktopNavbar() {
   const locale = useLocale();
   const pathname = usePathname();
   const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(false);
+  const [userEmail, setUserEmail] = React.useState<string>("");
 
   React.useEffect(() => {
     const checkAuth = () => {
@@ -44,6 +45,8 @@ export function DesktopNavbar() {
           Cookies.get(CookiesContains.EMAIL)
         );
       setIsAuthenticated(isAuth);
+      const email = Cookies.get(CookiesContains.EMAIL) || Cookies.get("email");
+      if (email) setUserEmail(email);
     };
 
     checkAuth();
@@ -149,7 +152,7 @@ export function DesktopNavbar() {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-muted ml-1 transition-colors"
+                className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-muted ml-1 transition-colors cursor-pointer"
               >
                 <Avatar className="size-7.5 border border-border">
                   <AvatarImage
@@ -171,13 +174,13 @@ export function DesktopNavbar() {
                 {userEmail || "Tài khoản người dùng"}
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
+              <DropdownMenuItem className="p-0">
                 <Link href="/profile" className="flex items-center gap-2 w-full px-2 py-1.5 cursor-pointer text-xs">
                   <User className="size-4 text-muted-foreground" />
                   <span>{t("profile")}</span>
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
+              <DropdownMenuItem className="p-0">
                 <Link href="/settings" className="flex items-center gap-2 w-full px-2 py-1.5 cursor-pointer text-xs">
                   <Settings className="size-4 text-muted-foreground" />
                   <span>{t("settings")}</span>
