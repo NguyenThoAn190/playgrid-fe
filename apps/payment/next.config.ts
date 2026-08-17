@@ -6,10 +6,31 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig: NextConfig = {
   transpilePackages: ["@workspace/ui"],
   allowedDevOrigins: ["100.78.38.8", "100.78.38.8:3000", "localhost:3000"],
+  assetPrefix: "/payment-static",
   turbopack: {
     resolveAlias: {
       "next-intl/config": "./i18n/request.ts",
     },
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/payment-static/_next/:path*",
+        destination: "/_next/:path*",
+      },
+      {
+        source: "/payment-static/images/:path*",
+        destination: "/images/:path*",
+      },
+      {
+        source: "/payment-static/icons/:path*",
+        destination: "/icons/:path*",
+      },
+      {
+        source: "/payment-static/logo/:path*",
+        destination: "/logo/:path*",
+      },
+    ];
   },
 };
 

@@ -24,15 +24,16 @@ function LogoutContent() {
     }
 
     // 3. Determine redirect target
+    const currentOrigin = typeof window !== "undefined" ? window.location.origin : APP_DOMAINS.WEB;
     const rawRedirect =
       searchParams.get("redirect_uri") ||
       searchParams.get("return_url") ||
       searchParams.get("target") ||
-      APP_DOMAINS.WEB;
+      currentOrigin;
 
     const target = rawRedirect.startsWith("http")
       ? rawRedirect
-      : `${APP_DOMAINS.WEB}${rawRedirect.startsWith("/") ? "" : "/"}${rawRedirect}`;
+      : `${currentOrigin}${rawRedirect.startsWith("/") ? "" : "/"}${rawRedirect}`;
 
     setTimeout(() => {
       window.location.replace(target);

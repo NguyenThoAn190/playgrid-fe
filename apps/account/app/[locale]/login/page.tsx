@@ -68,7 +68,8 @@ function LoginForm() {
     targetUrl: string,
     authData?: { token: string; refreshToken?: string; role?: string; email?: string }
   ) => {
-    const destination = targetUrl || APP_DOMAINS.WEB;
+    const currentOrigin = typeof window !== "undefined" ? window.location.origin : APP_DOMAINS.WEB;
+    const destination = targetUrl || currentOrigin;
     let finalUrl = destination;
 
     if (authData) {
@@ -76,7 +77,7 @@ function LoginForm() {
         const isAbsolute = destination.startsWith("http://") || destination.startsWith("https://");
         const base = isAbsolute
           ? destination
-          : `${APP_DOMAINS.WEB}${destination.startsWith("/") ? "" : "/"}${destination}`;
+          : `${currentOrigin}${destination.startsWith("/") ? "" : "/"}${destination}`;
         const urlObj = new URL(base);
 
         // Route through /auth/callback on the target app to sync cookies
@@ -103,7 +104,7 @@ function LoginForm() {
     if (finalUrl.startsWith("http://") || finalUrl.startsWith("https://")) {
       window.location.replace(finalUrl);
     } else {
-      window.location.replace(`${APP_DOMAINS.WEB}${finalUrl.startsWith("/") ? "" : "/"}${finalUrl}`);
+      window.location.replace(`${currentOrigin}${finalUrl.startsWith("/") ? "" : "/"}${finalUrl}`);
     }
   };
 

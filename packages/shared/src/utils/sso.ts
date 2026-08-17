@@ -19,9 +19,30 @@ export function getCurrentTheme(): string | undefined {
 }
 
 /**
+ * Helper to check if current runtime should use same-origin relative auth URLs
+ */
+function shouldUseSameOrigin(options?: { sameOrigin?: boolean }): boolean {
+  if (typeof options?.sameOrigin === "boolean") return options.sameOrigin;
+  if (typeof window === "undefined") return false;
+
+  const { web } = getAppUrls();
+  try {
+    const currentOrigin = window.location.origin;
+    if (web && currentOrigin === web) return true;
+    if (window.location.host.includes("web") || window.location.port === "3000") return true;
+  } catch {}
+
+  return false;
+}
+
+/**
  * Generates the SSO Login URL with return_url / redirect_uri and theme sync
  */
-export function getLoginUrl(returnUrl?: string, locale: string = "vi"): string {
+export function getLoginUrl(
+  returnUrl?: string,
+  locale: string = "vi",
+  options?: { sameOrigin?: boolean }
+): string {
   const { account } = getAppUrls();
   let targetReturn = returnUrl;
 
@@ -40,13 +61,23 @@ export function getLoginUrl(returnUrl?: string, locale: string = "vi"): string {
   }
 
   const queryString = queryParams.toString();
-  return `${account}/${locale}/login${queryString ? `?${queryString}` : ""}`;
+  const path = `/${locale}/login${queryString ? `?${queryString}` : ""}`;
+
+  if (shouldUseSameOrigin(options)) {
+    return path;
+  }
+
+  return `${account}${path}`;
 }
 
 /**
  * Generates the SSO Register URL with return_url / redirect_uri and theme sync
  */
-export function getRegisterUrl(returnUrl?: string, locale: string = "vi"): string {
+export function getRegisterUrl(
+  returnUrl?: string,
+  locale: string = "vi",
+  options?: { sameOrigin?: boolean }
+): string {
   const { account } = getAppUrls();
   let targetReturn = returnUrl;
 
@@ -65,14 +96,24 @@ export function getRegisterUrl(returnUrl?: string, locale: string = "vi"): strin
   }
 
   const queryString = queryParams.toString();
-  return `${account}/${locale}/register${queryString ? `?${queryString}` : ""}`;
+  const path = `/${locale}/register${queryString ? `?${queryString}` : ""}`;
+
+  if (shouldUseSameOrigin(options)) {
+    return path;
+  }
+
+  return `${account}${path}`;
 }
 
 /**
  * Generates the SSO Logout URL with return_url / redirect_uri and theme sync
  */
-export function getLogoutUrl(returnUrl?: string, locale: string = "vi"): string {
-  const { account, web } = getAppUrls();
+export function getLogoutUrl(
+  returnUrl?: string,
+  locale: string = "vi",
+  options?: { sameOrigin?: boolean }
+): string {
+  const { account } = getAppUrls();
   let targetReturn = returnUrl;
 
   if (!targetReturn && typeof window !== "undefined") {
@@ -90,7 +131,13 @@ export function getLogoutUrl(returnUrl?: string, locale: string = "vi"): string 
   }
 
   const queryString = queryParams.toString();
-  return `${account}/${locale}/logout${queryString ? `?${queryString}` : ""}`;
+  const path = `/${locale}/logout${queryString ? `?${queryString}` : ""}`;
+
+  if (shouldUseSameOrigin(options)) {
+    return path;
+  }
+
+  return `${account}${path}`;
 }
 
 /**
@@ -101,6 +148,7 @@ export function getPaymentUrl(params?: {
   amount?: number;
   returnUrl?: string;
   locale?: string;
+  sameOrigin?: boolean;
 }): string {
   const { payment, web } = getAppUrls();
   const locale = params?.locale || "vi";
@@ -119,6 +167,12 @@ export function getPaymentUrl(params?: {
   if (theme) queryParams.set("theme", theme);
 
   const queryString = queryParams.toString();
+  const path = `/${locale}/payment${queryString ? `?${queryString}` : ""}`;
+
+  if (shouldUseSameOrigin(params)) {
+    return path;
+  }
+
   return `${payment}/${locale}${queryString ? `?${queryString}` : ""}`;
 }
 
