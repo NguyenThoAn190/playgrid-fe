@@ -175,13 +175,21 @@ export function VenueBookingSidebar({
 
         {/* Promo Code Input */}
         <div className="space-y-1.5 pt-2 border-t border-border/60">
-          <form onSubmit={handleApplyCoupon} className="flex gap-1.5">
+          <form
+            onSubmit={handleApplyCoupon}
+            toolname="apply_venue_coupon"
+            tooldescription="Apply a discount voucher or coupon code to reduce the total court booking fee."
+            className="flex gap-1.5"
+          >
             <div className="relative flex-1">
               <Tag className="absolute left-2 top-1/2 -translate-y-1/2 size-3 text-muted-foreground" />
               <Input
+                id="venue-coupon-code"
+                name="couponCode"
                 value={couponCode}
                 onChange={(e) => setCouponCode(e.target.value)}
                 placeholder={tSidebar("coupon_placeholder")}
+                toolparamdescription="Discount voucher code string (e.g. PLAYGRID2026)"
                 className="h-8 pl-7 text-[11px] uppercase placeholder:normal-case rounded-xl border-border/80 font-semibold"
               />
             </div>

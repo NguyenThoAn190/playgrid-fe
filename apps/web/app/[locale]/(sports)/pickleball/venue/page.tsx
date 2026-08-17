@@ -398,7 +398,13 @@ export default function PickleballVenuePage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border/80 bg-card p-4 sm:p-5 space-y-5 shadow-2xs divide-y divide-border/50">
+      {/* Filter Sections Wrapper */}
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        toolname="filter_pickleball_venues"
+        tooldescription="Filter pickleball courts in Vietnam by district, price range, player rating, amenities, and court surface type."
+        className="rounded-2xl border border-border/80 bg-card p-4 sm:p-5 space-y-5 shadow-2xs divide-y divide-border/50"
+      >
         <div className="flex items-center justify-between pb-1">
           <h3 className="font-extrabold text-sm sm:text-base text-foreground tracking-tight">
             {safeT("filter_title")}
@@ -429,6 +435,8 @@ export default function PickleballVenuePage() {
                   <div className="flex items-center gap-2 min-w-0">
                     <input
                       type="checkbox"
+                      name="district"
+                      toolparamdescription="Filter pickleball venues by district"
                       checked={isChecked}
                       onChange={() => toggleDistrict(district)}
                       className="w-4 h-4 rounded border-border text-blue-600 focus:ring-blue-500 cursor-pointer"
@@ -460,6 +468,8 @@ export default function PickleballVenuePage() {
                   <div className="flex items-center gap-2 min-w-0">
                     <input
                       type="checkbox"
+                      name="priceTier"
+                      toolparamdescription="Filter venues by hourly budget tier"
                       checked={isChecked}
                       onChange={() => togglePriceTier(tier.id)}
                       className="w-4 h-4 rounded border-border text-blue-600 focus:ring-blue-500 cursor-pointer"
@@ -493,6 +503,8 @@ export default function PickleballVenuePage() {
                   <div className="flex items-center gap-2 min-w-0">
                     <input
                       type="checkbox"
+                      name="rating"
+                      toolparamdescription="Filter venues by minimum star rating"
                       checked={isChecked}
                       onChange={() => setMinRating(isChecked ? 0 : ratingItem.score)}
                       className="w-4 h-4 rounded border-border text-blue-600 focus:ring-blue-500 cursor-pointer"
@@ -524,6 +536,8 @@ export default function PickleballVenuePage() {
                   <div className="flex items-center gap-2 min-w-0">
                     <input
                       type="checkbox"
+                      name="amenity"
+                      toolparamdescription="Filter venues by available amenities"
                       checked={isChecked}
                       onChange={() => toggleAmenity(amenity)}
                       className="w-4 h-4 rounded border-border text-blue-600 focus:ring-blue-500 cursor-pointer"
@@ -555,6 +569,8 @@ export default function PickleballVenuePage() {
                   <div className="flex items-center gap-2 min-w-0">
                     <input
                       type="checkbox"
+                      name="courtType"
+                      toolparamdescription="Filter by court surface type (indoor, outdoor, roofed)"
                       checked={isChecked}
                       onChange={() => toggleType(type)}
                       className="w-4 h-4 rounded border-border text-blue-600 focus:ring-blue-500 cursor-pointer"
@@ -571,7 +587,7 @@ export default function PickleballVenuePage() {
             })}
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 
@@ -607,16 +623,25 @@ export default function PickleballVenuePage() {
       <section className="w-full pt-6 sm:pt-8 pb-12 bg-background flex-1">
         <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-3">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-card border border-border/80 rounded-2xl p-3 sm:p-4 shadow-2xs">
-            <div className="relative flex-1 min-w-0">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={safeT("search_placeholder")}
-                className="w-full pl-10 pr-4 py-2 sm:py-2.5 rounded-xl bg-background border border-border/70 text-foreground placeholder:text-muted-foreground text-xs sm:text-sm focus:outline-none focus:border-blue-500 transition-colors"
-              />
-            </div>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              toolname="search_pickleball_venues"
+              tooldescription="Search pickleball courts in Vietnam by name, address, or location keyword."
+              className="relative flex-1 min-w-0"
+            >
+              <div className="relative w-full">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  name="query"
+                  toolparamdescription="Search keyword for pickleball court name or location"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={safeT("search_placeholder")}
+                  className="w-full pl-10 pr-4 py-2 sm:py-2.5 rounded-xl bg-background border border-border/70 text-foreground placeholder:text-muted-foreground text-xs sm:text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                />
+              </div>
+            </form>
 
             <div className="flex items-center gap-3 shrink-0">
               <button

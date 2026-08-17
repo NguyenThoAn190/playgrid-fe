@@ -1,0 +1,128 @@
+# PlayGrid Full Platform Documentation & AI Context (llms-full.txt)
+
+> Comprehensive reference guide, system architecture, sports directories, venue booking workflows, tournament management, API contracts, WebMCP tools specification, and operational policies for PlayGrid (Vietnam).
+
+---
+
+## 1. Overview & Architecture
+
+PlayGrid is Vietnam's leading sports-tech ecosystem connecting athletes, recreational players, venue owners, coaches, and tournament organizers. Built on a modern Next.js micro-frontend architecture with Turbo monorepo, Base UI design system, VietQR automated payment processing, and WebMCP agentic browsing integration.
+
+### Core Ecosystem Components:
+- **PlayGrid Web (`apps/web`)**: Customer discovery portal, court availability matrix, tournament registration, blog, knowledge base, and club management.
+- **PlayGrid Account (`apps/account`)**: Unified Single Sign-On (SSO) authentication supporting multi-domain cookie sharing, OAuth2/OIDC, phone OTP, and player profile management.
+- **PlayGrid Payment (`apps/payment`)**: Multi-step checkout engine featuring VietQR dynamic payment generation, e-wallet integration, voucher engine, and automated VAT invoice issuance compliant with Vietnamese General Department of Taxation.
+- **PlayGrid Dashboard (`apps/dashboard`)**: B2B venue management portal with real-time POS, court schedule timeline, dynamic pricing rules, customer CRM, and hardware gate turnstile controllers.
+- **PlayGrid Admin (`apps/admin`)**: System administration, transaction auditing, payout management, and content moderation.
+
+---
+
+## 2. Sports Directories & Venue Booking Workflows
+
+### 2.1 Badminton (Cầu Lông)
+- **Hub Locations**: TP. Hồ Chí Minh (Quận 1, Quận 7, Bình Thạnh, Thủ Đức, Tân Bình, Gò Vấp), Hà Nội (Cầu Giấy, Đống Đa, Nam Từ Liêm, Thanh Xuân), Đà Nẵng, Bình Dương, Cần Thơ.
+- **Court Specifications**: Standard vinyl PVC multi-layer shock absorption flooring, anti-glare LED lighting >= 300 Lux, BWF tournament standard dimensions (13.4m x 6.1m).
+- **Price Range**: 70,000 VND - 180,000 VND / court / hour.
+- **Booking Types**:
+  - Flexible Hourly Booking (Đặt sân linh hoạt theo giờ).
+  - Fixed Monthly Subscription (Đặt lịch cố định theo tháng).
+  - Sparring Group Match Slot (Giao lưu vãng lai ghép cặp).
+
+### 2.2 Pickleball
+- **Court Specifications**: Professional acrylic cushion surface (USAPA standard), indoor air-conditioned courts, outdoor LED lighted courts, professional net systems.
+- **Price Range**: 120,000 VND - 300,000 VND / court / hour.
+- **Amenities**: Equipment rental (paddles, tournament balls), certified coaching staff, shower rooms, pro-shop, athlete lounge.
+
+### 2.3 Tennis, Football & Basketball
+- **Tennis**: Hard court (DecoTurf), clay court, synthetic grass, ball machine rental, night lighting.
+- **Football (Bóng đá mini)**: 5-a-side and 7-a-side artificial turf pitches, synthetic infill rubber, bibs and referee service.
+- **Basketball**: FIBA standard indoor wooden flooring and outdoor acrylic courts.
+
+---
+
+## 3. Tournament & Event Management Engine
+
+- **Registration Workflow**: Multi-tier ticketing (Early Bird, Standard, VIP, Team Relay), race kit collection scheduling, athlete bib personalization, finisher shirt size selection (XS to 2XL), emergency medical contact declaration.
+- **AI Photo Recognition**: Deep-learning facial recognition and OCR optical character recognition for 99.8% accurate runner BIB number indexing. Photos uploaded by official race photographers are auto-tagged and accessible via selfie search within 5 minutes.
+- **Automated Check-in**: High-speed QR Code check-in with offline synchronization capability, turnstile gate barrier integration, and instant wristband/kit printing.
+
+---
+
+## 4. Payment & Fiscal Compliance (VietQR & VAT Invoices)
+
+- **VietQR Dynamic Payment**: Seamless banking app integration using NAPAS 24/7 QR standard. Real-time webhook reconciliation detects successful transfers in under 1.5 seconds.
+- **Electronic VAT Invoices (Hóa đơn điện tử)**: Mandatory enterprise compliance for B2B transactions. Collects Corporate Tax Code (MST), legal entity name, headquarters address, and accounting email. Direct integration with certified e-invoice providers (VNPT, Viettel, MISA).
+- **Cancellation & Refund Policy**:
+  - Cancel >= 24 hours prior to booking slot: 100% refund to PlayGrid wallet or original payment method.
+  - Cancel 12 - 24 hours prior: 50% refund voucher.
+  - Cancel < 12 hours prior: Non-refundable due to court reservation hold.
+
+---
+
+## 5. WebMCP (Web Model Context Protocol) Tools Specification
+
+All tools are registered on `document.modelContext` and available for autonomous AI agents:
+
+### Tool: `search_sports_venues`
+- **Description**: Search sports venues across Vietnam by sport category, city/district location, date, and budget filter.
+- **Parameters**:
+  - `sport` (string, enum: ["badminton", "pickleball", "tennis", "football", "basketball", "table_tennis", "all"]): Sport category.
+  - `location` (string): City/province in Vietnam.
+  - `district` (string): Specific district within the city.
+  - `date` (string): Date in YYYY-MM-DD format or 'today'/'tomorrow'/'weekend'.
+  - `maxPricePerHour` (number): Price ceiling in VND.
+
+### Tool: `get_venue_details`
+- **Description**: Retrieve complete details, court facilities, amenities, operating hours, and pricing for a specific venue by slug.
+- **Parameters**:
+  - `venueSlug` (string, required): The unique URL slug of the venue.
+
+### Tool: `check_court_availability`
+- **Description**: Check available time slots and court status for a specific venue on a designated date.
+- **Parameters**:
+  - `venueSlug` (string, required): Venue slug.
+  - `date` (string, required): Target date (YYYY-MM-DD).
+  - `timePreference` (string, enum: ["morning", "afternoon", "evening", "all"]).
+
+### Tool: `search_events_tournaments`
+- **Description**: Search sports tournaments, marathons, community workshops, and open sporting events.
+- **Parameters**:
+  - `query` (string): Search query keyword.
+  - `category` (string): Tournament category (e.g. Marathon, Badminton, Pickleball).
+  - `city` (string): Host city.
+
+### Tool: `apply_promotional_voucher`
+- **Description**: Validate a promotional discount voucher/coupon code and calculate savings.
+- **Parameters**:
+  - `code` (string, required): Promo code string.
+  - `orderAmount` (number): Order value in VND.
+
+### Tool: `search_help_and_faq`
+- **Description**: Search PlayGrid knowledge base, FAQs, court cancellation rules, VietQR payment guides, and tournament rules.
+- **Parameters**:
+  - `query` (string, required): Search query or question keyword.
+
+### Tool: `submit_contact_inquiry`
+- **Description**: Submit a customer support request, venue owner partnership inquiry, or tournament hosting proposal.
+- **Parameters**:
+  - `fullName` (string, required): Customer name.
+  - `email` (string, required): Email address.
+  - `phone` (string): Phone number.
+  - `subject` (string, required): Subject title.
+  - `message` (string, required): Detailed inquiry text.
+
+---
+
+## 6. Official URL Sitemap for AI Agents
+
+- Home: `https://playgrid.vn/vi`
+- Badminton Venues: `https://playgrid.vn/vi/badminton/venue`
+- Pickleball Venues: `https://playgrid.vn/vi/pickleball/venue`
+- Tournaments & Events: `https://playgrid.vn/vi/events`
+- Sports Community & Matchmaking: `https://playgrid.vn/vi/activities`
+- ELO Leaderboard: `https://playgrid.vn/vi/leaderboard`
+- Blog & Sports Guides: `https://playgrid.vn/vi/blog`
+- Help Center & FAQ: `https://playgrid.vn/vi/contact#faq`
+- Contact & Venue Partnership: `https://playgrid.vn/vi/contact`
+- Terms of Service: `https://playgrid.vn/vi/terms`
+- Privacy Policy: `https://playgrid.vn/vi/privacy`

@@ -116,7 +116,12 @@ export function VenueCheckoutModal({
 
         {!isSuccess ? (
           /* Step 1: Checkout Form */
-          <form onSubmit={handleConfirmBooking} className="p-5 sm:p-6 space-y-5">
+          <form
+            onSubmit={handleConfirmBooking}
+            toolname="confirm_court_booking"
+            tooldescription="Submit booking details, player contact information, and selected payment method for sports court reservation."
+            className="p-5 sm:p-6 space-y-5"
+          >
             <div>
               <span className="text-xs font-bold tracking-wider text-brand-blue dark:text-brand-green">
                 {tCheck("title")}
@@ -155,55 +160,67 @@ export function VenueCheckoutModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-3.5">
                 <div className="space-y-2">
-                  <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                  <label htmlFor="booking-fullName" className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
                     <span>{tCheck("full_name_label")}</span>
                     <span className="text-red-500 ml-1">*</span>
                   </label>
                   <Input
+                    id="booking-fullName"
+                    name="fullName"
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Nguyễn Văn An"
+                    toolparamdescription="Full name of customer booking the court"
                     className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                  <label htmlFor="booking-phone" className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
                     <span>{tCheck("phone_label")}</span>
                     <span className="text-red-500 ml-1">*</span>
                   </label>
                   <Input
+                    id="booking-phone"
+                    name="phone"
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="0908 123 456"
+                    toolparamdescription="Contact phone number for booking SMS / Zalo confirmation"
                     className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                <label htmlFor="booking-email" className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
                   <span>{tCheck("email_label")}</span>
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <Input
+                  id="booking-email"
+                  name="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="an.nguyen@example.com"
+                  toolparamdescription="Email address to receive court booking receipt and check-in QR"
                   className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                <label htmlFor="booking-note" className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
                   <span>{tCheck("note")}</span>
                 </label>
                 <Input
+                  id="booking-note"
+                  name="note"
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder={tCheck("note_placeholder")}
+                  toolparamdescription="Special requests or notes for the venue manager"
                   className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                 />
               </div>

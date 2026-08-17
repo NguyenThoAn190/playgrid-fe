@@ -209,16 +209,24 @@ function RegisterForm() {
           )}
 
           {/* Register Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form
+            onSubmit={handleSubmit}
+            toolname="user_register"
+            tooldescription="Create a new PlayGrid player account with full name, email/phone, and password."
+            className="space-y-4"
+          >
             {/* Full Name */}
             <div className="relative">
               <User className="absolute left-3.5 top-3.5 size-4.5 text-muted-foreground pointer-events-none" />
               <Input
+                id="register-fullName"
+                name="fullName"
                 type="text"
                 placeholder={isEn ? "Full Name" : "Họ và tên"}
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 disabled={isLoading}
+                toolparamdescription="Full name of user creating the account"
                 className="h-11.5 rounded-xl bg-background border border-border/80 pl-10.5 pr-3 text-xs sm:text-sm placeholder:text-muted-foreground/70 focus-visible:ring-2 focus-visible:ring-brand-blue/30"
               />
             </div>
@@ -227,11 +235,14 @@ function RegisterForm() {
             <div className="relative">
               <Mail className="absolute left-3.5 top-3.5 size-4.5 text-muted-foreground pointer-events-none" />
               <Input
+                id="register-identifier"
+                name="identifier"
                 type="text"
                 placeholder={isEn ? "Email or phone number" : "Email hoặc số điện thoại"}
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
                 disabled={isLoading}
+                toolparamdescription="Email address or phone number for authentication"
                 className="h-11.5 rounded-xl bg-background border border-border/80 pl-10.5 pr-3 text-xs sm:text-sm placeholder:text-muted-foreground/70 focus-visible:ring-2 focus-visible:ring-brand-blue/30"
               />
             </div>
@@ -240,11 +251,14 @@ function RegisterForm() {
             <div className="relative">
               <Lock className="absolute left-3.5 top-3.5 size-4.5 text-muted-foreground pointer-events-none" />
               <Input
+                id="register-password"
+                name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder={isEn ? "Password" : "Mật khẩu"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
+                toolparamdescription="Account password (minimum 8 characters)"
                 className="h-11.5 rounded-xl bg-background border border-border/80 pl-10.5 pr-11 text-xs sm:text-sm placeholder:text-muted-foreground/70 focus-visible:ring-2 focus-visible:ring-brand-blue/30"
               />
               <button

@@ -29,6 +29,7 @@ const geistMono = Geist_Mono({
 });
 
 import { JsonLdScript, getOrganizationJsonLd, getWebsiteJsonLd } from "@/lib/seo/json-ld";
+import { WebMCPInitializer } from "@/components/webmcp/webmcp-initializer";
 
 export default async function LocaleLayout({
   children,
@@ -66,6 +67,7 @@ export default async function LocaleLayout({
       <ThemeProvider attribute="class" defaultTheme={initialTheme} enableSystem disableTransitionOnChange>
         <NextIntlClientProvider messages={messages}>
           <JsonLdScript data={[organizationSchema, websiteSchema]} />
+          <WebMCPInitializer />
           <PWARegister />
           <Navbar />
           <main className="flex-1">{children}</main>

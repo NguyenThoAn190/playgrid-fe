@@ -1,0 +1,9 @@
+# PlayGrid Account & Authentication (llms.txt)
+
+> PlayGrid Account is the unified Single Sign-On (SSO) identity service for PlayGrid.
+
+- [Login](https://account.playgrid.vn/vi/login): Sign In
+- [Register](https://account.playgrid.vn/vi/register): Create Player Account
+- [Terms](https://playgrid.vn/vi/terms): Terms of Service
+- [Privacy](https://playgrid.vn/vi/privacy): Privacy Policy
+- [Main Portal](https://playgrid.vn): PlayGrid Web

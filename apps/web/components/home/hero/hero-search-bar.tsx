@@ -99,7 +99,34 @@ export function HeroSearchBar({
 
   return (
     <div className={`w-full z-40 relative ${className}`}>
-      <div className="w-full rounded-2xl bg-card text-card-foreground border border-border/80 p-3 sm:p-3.5 shadow-xs backdrop-blur-md transition-all">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearch();
+        }}
+        toolname="search_sports_venues"
+        tooldescription="Search sports venues by sport category (badminton, pickleball, etc.), city or district location, and booking date on PlayGrid."
+        className="w-full rounded-2xl bg-card text-card-foreground border border-border/80 p-3 sm:p-3.5 shadow-xs backdrop-blur-md transition-all"
+      >
+        {/* Hidden inputs for semantic WebMCP parameters */}
+        <input
+          type="hidden"
+          name="sport"
+          value={currentSport}
+          toolparamdescription="Sport category to search (e.g. Badminton, Pickleball, All)"
+        />
+        <input
+          type="hidden"
+          name="location"
+          value={currentLocationLabel}
+          toolparamdescription="Target city or district in Vietnam"
+        />
+        <input
+          type="hidden"
+          name="date"
+          value={currentDateLabel}
+          toolparamdescription="Booking date or time period"
+        />
 
         {/* Header Title inside Search Bar */}
         <div className="mb-2 px-1 text-foreground font-bold text-xs sm:text-sm">
@@ -252,7 +279,7 @@ export function HeroSearchBar({
 
             {/* Search Action Button */}
             <Button
-              onClick={handleSearch}
+              type="submit"
               className="w-full md:w-auto h-11 md:h-12 px-6 rounded-xl bg-gradient-to-r from-[#0052FF] to-[#00E575] hover:opacity-95 active:scale-95 text-white font-bold text-sm shadow-md hover:shadow-blue-500/20 flex items-center justify-center gap-2 transition-all cursor-pointer shrink-0 border-0 mt-1 md:mt-0 md:mr-1"
             >
               <Search className="h-4 w-4 stroke-[2.5]" />
@@ -261,7 +288,7 @@ export function HeroSearchBar({
           </div>
 
         </div>
-      </div>
+      </form>
     </div>
   );
 }

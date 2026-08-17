@@ -259,7 +259,12 @@ export function EventFaqSection() {
 
       {/* Ask a Question Box for Athletes */}
       <div className="pt-2 border-t border-border/50">
-        <form onSubmit={handleAskQuestion} className="space-y-2">
+        <form
+          onSubmit={handleAskQuestion}
+          toolname="ask_event_organizer_question"
+          tooldescription="Submit an inquiry or question directly to the event organizers and tournament directors."
+          className="space-y-2"
+        >
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
               <Sparkles className="size-3.5 text-brand-blue dark:text-brand-green" />
@@ -272,11 +277,14 @@ export function EventFaqSection() {
 
           <div className="flex items-center gap-2">
             <Input
+              id="event-faq-question"
+              name="userQuestion"
               type="text"
               placeholder={isEn ? "Type your question here..." : "Nhập câu hỏi của bạn về giải đấu..."}
               value={userQuestion}
               onChange={(e) => setUserQuestion(e.target.value)}
               disabled={isSubmitting}
+              toolparamdescription="Question or inquiry for the event organizers"
               className="h-9 rounded-xl text-xs bg-background border-border/80 font-normal focus-visible:ring-2 focus-visible:ring-brand-blue/30"
             />
             <Button

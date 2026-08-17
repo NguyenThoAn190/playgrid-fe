@@ -2063,12 +2063,20 @@ export function EventCheckout({ orderId = "PG-EVT-77210" }: EventCheckoutProps) 
               </div>
 
               {/* Promo code input in sidebar */}
-              <form onSubmit={handleApplyVoucher} className="flex gap-2 pt-1">
+              <form
+                onSubmit={handleApplyVoucher}
+                toolname="apply_event_checkout_voucher"
+                tooldescription="Apply promotional voucher discount code to reduce total event ticket price."
+                className="flex gap-2 pt-1"
+              >
                 <Input
+                  id="event-checkout-voucher-code"
+                  name="voucherCode"
                   type="text"
                   placeholder={isEn ? "Enter promo code..." : "Nhập mã giảm giá..."}
                   value={voucherCode}
                   onChange={(e) => setVoucherCode(e.target.value)}
+                  toolparamdescription="Promotional discount voucher code"
                   className="h-9 text-xs rounded-xl uppercase"
                 />
                 <Button type="submit" variant="outline" className="h-9 text-xs font-semibold rounded-xl shrink-0 cursor-pointer">
@@ -2156,12 +2164,20 @@ export function EventCheckout({ orderId = "PG-EVT-77210" }: EventCheckoutProps) 
             <span>{isEn ? "Promo:" : "Mã giảm:"}</span>
           </div>
 
-          <form onSubmit={handleApplyVoucher} className="flex items-center gap-1.5 flex-1 justify-end max-w-[250px]">
+          <form
+            onSubmit={handleApplyVoucher}
+            toolname="apply_event_checkout_voucher_mobile"
+            tooldescription="Apply promotional voucher discount code on mobile checkout bar."
+            className="flex items-center gap-1.5 flex-1 justify-end max-w-[250px]"
+          >
             <Input
+              id="event-checkout-mobile-voucher-code"
+              name="voucherCode"
               type="text"
               placeholder={isEn ? "Enter code (WELCOMEPG)..." : "Nhập mã (WELCOMEPG)..."}
               value={voucherCode}
               onChange={(e) => setVoucherCode(e.target.value)}
+              toolparamdescription="Promotional discount voucher code"
               className="h-7 text-[11px] rounded-lg uppercase bg-background px-2 py-0"
             />
             <Button

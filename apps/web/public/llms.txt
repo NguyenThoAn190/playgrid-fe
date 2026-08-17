@@ -1,0 +1,42 @@
+# PlayGrid - Nền Tảng Đặt Sân Thể Thao & Kết Nối Cộng Đồng Hàng Đầu Việt Nam
+
+> PlayGrid (https://playgrid.vn) là nền tảng công nghệ thể thao hàng đầu tại Việt Nam, cung cấp giải pháp đặt sân thể thao trực tuyến 24/7 (Cầu lông, Pickleball, Tennis, Bóng đá, Bóng rổ, Bóng bàn), tổ chức và quản lý giải đấu thể thao phong trào/chuyên nghiệp, hệ thống ghép cặp giao lưu (Sparring Matchmaking), tính điểm xếp hạng ELO thông minh, cùng hệ sinh thái SaaS POS và camera AI nhận diện khuôn mặt & số BIB dành cho chủ sân và ban tổ chức sự kiện.
+
+PlayGrid được thiết kế tối ưu cho cả người dùng cuối (VĐV, người chơi phong trào), chủ cơ sở sân bãi (Venue Owners) và các ban tổ chức giải đấu (Tournament Organizers). Website hỗ trợ chuẩn WebMCP (Web Model Context Protocol) cho phép các tác nhân AI (AI Agents) tương tác trực tiếp với các biểu mẫu tìm kiếm, đặt chỗ, đăng ký giải đấu và tra cứu thông tin theo thời gian thực.
+
+## Dịch Vụ Đặt Sân & Địa Điểm Thể Thao (Sports & Venues)
+- [Đặt Sân Cầu Lông (Badminton Courts)](https://playgrid.vn/vi/badminton/venue): Tìm kiếm, so sánh giá và đặt sân cầu lông trực tuyến theo thời gian thực tại TP.HCM, Hà Nội, Đà Nẵng, Cần Thơ, Bình Dương.
+- [Đặt Sân Pickleball (Pickleball Courts)](https://playgrid.vn/vi/pickleball/venue): Khám phá danh sách các cụm sân Pickleball chuẩn thi đấu quốc tế, sân trong nhà có máy lạnh, sân ngoài trời kèm dịch vụ huấn luyện viên.
+- [Sân Tennis & Quần Vợt](https://playgrid.vn/vi/sports/tennis): Đặt sân tennis mặt cứng, đất nện, sân có mái che và đèn chiếu sáng ban đêm.
+- [Sân Bóng Đá Mini (Football Pitches)](https://playgrid.vn/vi/sports/football): Đặt sân bóng đá mini cỏ nhân tạo 5 người, 7 người và 11 người.
+- [Sân Bóng Rổ (Basketball Courts)](https://playgrid.vn/vi/sports/basketball): Đặt sân bóng rổ tiêu chuẩn FIBA trong nhà và ngoài trời.
+- [Câu Lạc Bộ Thể Thao (Sports Clubs)](https://playgrid.vn/vi/clubs): Danh sách các câu lạc bộ thể thao, hội nhóm sinh hoạt định kỳ và học viện đào tạo.
+
+## Giải Đấu & Sự Kiện Thể Thao (Tournaments & Events)
+- [Cổng Sự Kiện & Giải Đấu](https://playgrid.vn/vi/events): Cổng đăng ký tham gia các giải chạy Marathon, giải đấu cầu lông, pickleball mở rộng, giải golf và các sự kiện thể thao - âm nhạc lớn trên toàn quốc.
+- [Bảng Xếp Hạng & Điểm ELO](https://playgrid.vn/vi/leaderboard): Hệ thống xếp hạng vận động viên theo điểm ELO tự động sau mỗi trận đấu giao lưu và giải đấu chính thức.
+- [Hoạt Động Giao Lưu Thể Thao](https://playgrid.vn/vi/activities): Tìm kiếm bạn cùng chơi, tìm đối thủ có trình độ tương đương (Sparring) theo khung giờ và địa điểm mong muốn.
+
+## Giải Pháp Doanh Nghiệp & Chủ Sân (Business & SaaS POS)
+- [Phần Mềm Quản Lý Sân PlayGrid POS](https://playgrid.vn/vi/contact?topic=venue): Giải pháp quản lý lịch đặt sân, sơ đồ thời gian thực, tự động gạch nợ qua VietQR Pro, quản lý quầy bán nước/dụng cụ và báo cáo doanh thu.
+- [Cổng Bán Vé Điện Tử E-Ticketing](https://playgrid.vn/vi/contact?topic=tournament): Hệ thống phát hành vé điện tử QR Code, sơ đồ chọn chỗ ngồi Seat Map và ứng dụng quét mã check-in tốc độ cao cho ban tổ chức.
+- [Giải Pháp AI Photo Nhận Diện BIB](https://playgrid.vn/vi/contact?topic=ai_photo): Công nghệ AI nhận diện số BIB và gương mặt VĐV tự động tag ảnh vào album trong 5 phút sau khi chụp.
+- [Tích Hợp Cổng Kiểm Soát Turnstile](https://playgrid.vn/vi/contact?topic=hardware): Tích hợp cổng xoay tự động mở khóa khi khách quét mã QR check-in tại sân.
+
+## Hướng Dẫn, Chính Sách & Liên Hệ (Legal & Support)
+- [Về Chúng Tôi (About PlayGrid)](https://playgrid.vn/vi/about): Tầm nhìn, sứ mệnh kiến tạo phong cách sống năng động và phát triển thể thao số tại Việt Nam.
+- [Tin Tức & Cẩm Nang Thể Thao (Blog)](https://playgrid.vn/vi/blog): Cập nhật kiến thức luật thi đấu, kỹ thuật tập luyện, mẹo chọn dụng cụ và tin tức sự kiện.
+- [Trung Tâm Trợ Giúp & FAQ](https://playgrid.vn/vi/contact#faq): Câu hỏi thường gặp về quy trình hoàn tiền, hủy lịch đặt sân, thanh toán VietQR, hóa đơn VAT và chính sách thành viên.
+- [Quy Định & Quy Tắc Ứng Xử](https://playgrid.vn/vi/guidelines): Bộ quy tắc ứng xử trên sân đấu và quy định tham gia cộng đồng PlayGrid.
+- [Điều Khoản Dịch Vụ](https://playgrid.vn/vi/terms): Điều khoản sử dụng dịch vụ và chính sách bảo vệ quyền lợi người dùng.
+- [Chính Sách Quyền Riêng Tư](https://playgrid.vn/vi/privacy): Cam kết bảo mật thông tin cá nhân và an toàn dữ liệu thanh toán.
+- [Liên Hệ & Hợp Tác](https://playgrid.vn/vi/contact): Thông tin liên hệ đội ngũ hỗ trợ kỹ thuật, hotline 1900-PLAYGRID, email support@playgrid.vn và địa chỉ văn phòng.
+
+## Công Cụ WebMCP Cho Tác Nhân AI (Registered WebMCP Tools)
+- `search_sports_venues`: Tìm kiếm sân thể thao theo môn (cầu lông, pickleball, tennis), khu vực quận/huyện, ngày và mức giá.
+- `get_venue_details`: Tra cứu thông tin chi tiết, danh sách sân, tiện ích và bảng giá của một cơ sở cụ thể qua mã slug.
+- `check_court_availability`: Kiểm tra khung giờ và sân còn trống theo thời gian thực.
+- `search_events_tournaments`: Tra cứu các giải chạy, giải đấu phong trào và sự kiện thể thao đang mở đơn đăng ký.
+- `apply_promotional_voucher`: Kiểm tra và áp dụng mã voucher giảm giá cho đơn đặt sân hoặc vé sự kiện.
+- `search_help_and_faq`: Tra cứu cơ sở tri thức giải đáp chính sách hoàn tiền, hóa đơn GTGT và thanh toán.
+- `submit_contact_inquiry`: Gửi biểu mẫu yêu cầu hỗ trợ, khiếu nại hoặc đề xuất hợp tác đến bộ phận chăm sóc khách hàng.

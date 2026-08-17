@@ -232,16 +232,24 @@ function LoginForm() {
           )}
 
           {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form
+            onSubmit={handleSubmit}
+            toolname="user_login"
+            tooldescription="Sign in to PlayGrid account using registered email/phone and password."
+            className="space-y-4"
+          >
             {/* Email or Phone Input */}
             <div className="relative">
               <Mail className="absolute left-3.5 top-3.5 size-4.5 text-muted-foreground pointer-events-none" />
               <Input
+                id="login-identifier"
+                name="identifier"
                 type="text"
                 placeholder={isEn ? "Email or phone number" : "Email hoặc số điện thoại"}
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
                 disabled={isLoading}
+                toolparamdescription="Registered email address or Vietnamese phone number"
                 className="h-11.5 rounded-xl bg-background border border-border/80 pl-10.5 pr-3 text-xs sm:text-sm placeholder:text-muted-foreground/70 focus-visible:ring-2 focus-visible:ring-brand-blue/30"
               />
             </div>
@@ -250,11 +258,14 @@ function LoginForm() {
             <div className="relative">
               <Lock className="absolute left-3.5 top-3.5 size-4.5 text-muted-foreground pointer-events-none" />
               <Input
+                id="login-password"
+                name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder={isEn ? "Password" : "Mật khẩu"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
+                toolparamdescription="Account secret password"
                 className="h-11.5 rounded-xl bg-background border border-border/80 pl-10.5 pr-11 text-xs sm:text-sm placeholder:text-muted-foreground/70 focus-visible:ring-2 focus-visible:ring-brand-blue/30"
               />
               <button

@@ -151,7 +151,12 @@ export function VatInvoiceForm({
       </div>
 
       {isChecked && (
-        <div className="space-y-4 pt-1 animate-in fade-in duration-200">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          toolname="declare_vat_invoice"
+          tooldescription="Declare corporate tax code or personal tax identification for electronic VAT invoice issuance."
+          className="space-y-4 pt-1 animate-in fade-in duration-200"
+        >
           {/* 2. Radio Options: Hóa đơn Doanh nghiệp / Tổ chức vs Hóa đơn Cá nhân */}
           <div className="flex items-center gap-6 text-xs sm:text-sm font-medium text-foreground pt-1 border-t border-border/50">
             <label className="flex items-center gap-2 cursor-pointer select-none">
@@ -207,11 +212,13 @@ export function VatInvoiceForm({
             <div className="space-y-4 animate-in fade-in duration-150">
               {/* Tax Code */}
               <div className="space-y-2">
-                <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                <label htmlFor="vat-taxCode" className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
                   <span>{isEn ? "Tax Identification Number (Tax Code / MST)" : "Mã số thuế doanh nghiệp (Tax code)"}</span>
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <Input
+                  id="vat-taxCode"
+                  name="taxCode"
                   type="text"
                   placeholder="0317892345"
                   value={data.taxCode || ""}
@@ -221,17 +228,20 @@ export function VatInvoiceForm({
                       taxCode: e.target.value,
                     })
                   }
+                  toolparamdescription="Company 10 or 13 digit Tax Identification Number (MST)"
                   className="h-11 text-xs sm:text-sm rounded-xl px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                 />
               </div>
 
               {/* Company Name */}
               <div className="space-y-2">
-                <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                <label htmlFor="vat-companyName" className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
                   <span>{isEn ? "Company / Organization Name" : "Tên công ty / Tổ chức"}</span>
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <Input
+                  id="vat-companyName"
+                  name="companyName"
                   type="text"
                   placeholder={isEn ? "e.g. PlayGrid Vietnam Co., Ltd" : "Công ty Cổ phần PlayGrid..."}
                   value={data.companyName || ""}
@@ -241,17 +251,20 @@ export function VatInvoiceForm({
                       companyName: e.target.value,
                     })
                   }
+                  toolparamdescription="Official registered business entity name"
                   className="h-11 text-xs sm:text-sm rounded-xl px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                 />
               </div>
 
               {/* Email */}
               <div className="space-y-2">
-                <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                <label htmlFor="vat-companyEmail" className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
                   <span>{isEn ? "E-Invoice Receiving Email" : "Email nhận hóa đơn điện tử"}</span>
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <Input
+                  id="vat-companyEmail"
+                  name="companyEmail"
                   type="email"
                   placeholder="accounting@company.com"
                   value={data.companyEmail || data.invoiceEmail || ""}
@@ -262,17 +275,20 @@ export function VatInvoiceForm({
                       invoiceEmail: e.target.value,
                     })
                   }
+                  toolparamdescription="Accounting department email to receive PDF and XML e-invoice"
                   className="h-11 text-xs sm:text-sm rounded-xl px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                 />
               </div>
 
               {/* Company Address */}
               <div className="space-y-2">
-                <label className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
+                <label htmlFor="vat-companyAddress" className="text-xs sm:text-sm font-medium text-foreground/90 flex items-center">
                   <span>{isEn ? "Registered Company Address" : "Địa chỉ trụ sở công ty"}</span>
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <Input
+                  id="vat-companyAddress"
+                  name="companyAddress"
                   type="text"
                   placeholder={isEn ? "123 Le Loi Street, Ben Nghe Ward, District 1, HCMC" : "Tầng 12, Tòa nhà Bitexco, 02 Hải Triều, Q.1, TP.HCM"}
                   value={data.companyAddress || data.address || ""}
@@ -283,6 +299,7 @@ export function VatInvoiceForm({
                       address: e.target.value,
                     })
                   }
+                  toolparamdescription="Headquarters registered business address"
                   className="h-11 text-xs sm:text-sm rounded-xl px-3.5 bg-background shadow-2xs focus-visible:ring-1"
                 />
               </div>
@@ -439,7 +456,7 @@ export function VatInvoiceForm({
               </div>
             </div>
           )}
-        </div>
+        </form>
       )}
     </div>
   );

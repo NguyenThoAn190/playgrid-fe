@@ -55,15 +55,25 @@ export default function EventsPage() {
 
           {/* Search & Filter Bar */}
           <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
-            <div className="relative w-full sm:w-96">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Tìm tên giải đấu, địa điểm..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 h-10 rounded-xl bg-background border-border/80 text-sm"
-              />
-            </div>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              toolname="search_events_tournaments"
+              tooldescription="Search sports tournaments, marathons, community games and events on PlayGrid."
+              className="relative w-full sm:w-96"
+            >
+              <div className="relative w-full">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="events-search-term"
+                  name="searchTerm"
+                  placeholder="Tìm tên giải đấu, địa điểm..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  toolparamdescription="Search keyword for tournament or event name"
+                  className="pl-10 h-10 rounded-xl bg-background border-border/80 text-sm"
+                />
+              </div>
+            </form>
 
             {/* Category Pills */}
             <div className="flex items-center gap-2 overflow-x-auto w-full scrollbar-none py-1">

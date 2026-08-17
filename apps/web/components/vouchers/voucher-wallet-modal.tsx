@@ -159,24 +159,34 @@ export function VoucherWalletModal({
 
         {/* Promo Code Input Field */}
         <div className="shrink-0 px-4 py-3 border-b border-border/50 bg-muted/15 space-y-2">
-          <div className="flex gap-2">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleApplyCustomCode();
+            }}
+            toolname="apply_voucher_code"
+            tooldescription="Apply a promo voucher code in the user wallet to unlock discounts."
+            className="flex gap-2"
+          >
             <div className="relative flex-1">
               <Tag className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
               <Input
+                id="voucher-custom-code"
+                name="customCode"
                 placeholder={isEn ? "Enter promo code..." : "Nhập mã voucher khác..."}
                 value={customCode}
                 onChange={(e) => setCustomCode(e.target.value)}
+                toolparamdescription="Voucher promo code string"
                 className="pl-8.5 h-10 rounded-xl text-xs uppercase placeholder:normal-case font-semibold bg-background shadow-2xs"
               />
             </div>
             <Button
-              type="button"
-              onClick={handleApplyCustomCode}
+              type="submit"
               className="h-10 px-4 rounded-xl bg-gradient-primary text-white font-bold text-xs shadow-2xs border-0 cursor-pointer active:scale-95"
             >
               {isEn ? "Apply" : "Áp dụng"}
             </Button>
-          </div>
+          </form>
           {customError && (
             <p className="text-[10px] text-rose-500 flex items-center gap-1">
               <AlertCircle className="size-2.5 shrink-0" />

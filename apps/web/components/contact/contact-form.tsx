@@ -172,19 +172,27 @@ export function ContactForm() {
           </div>
 
           {/* Contact Input Form */}
-          <form onSubmit={handleSubmit} className="space-y-4.5">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4.5"
+            toolname="submit_contact_inquiry"
+            tooldescription="Submit a contact inquiry, customer support request, venue partnership proposal, or feedback to PlayGrid team."
+          >
             {/* Name & Phone row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4.5 gap-x-4">
               <div className="space-y-2">
-                <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
+                <label htmlFor="contact-fullName" className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                   <User className="size-3.5 text-muted-foreground" />
                   <span>{t("form.name_label")} *</span>
                 </label>
                 <Input
+                  id="contact-fullName"
+                  name="fullName"
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder={t("form.name_placeholder")}
+                  toolparamdescription="Full name of the person submitting the inquiry"
                   className={`h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs ${errors.fullName ? "border-destructive focus-visible:ring-destructive" : ""}`}
                 />
                 {errors.fullName && (
@@ -193,15 +201,18 @@ export function ContactForm() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
+                <label htmlFor="contact-phone" className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                   <Phone className="size-3.5 text-muted-foreground" />
                   <span>{t("form.phone_label")} *</span>
                 </label>
                 <Input
+                  id="contact-phone"
+                  name="phone"
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder={t("form.phone_placeholder")}
+                  toolparamdescription="Contact phone number (e.g. 0912345678)"
                   className={`h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs ${errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}`}
                 />
                 {errors.phone && (
@@ -213,15 +224,18 @@ export function ContactForm() {
             {/* Email & Venue/Sport row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4.5 gap-x-4">
               <div className="space-y-2">
-                <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
+                <label htmlFor="contact-email" className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                   <Mail className="size-3.5 text-muted-foreground" />
                   <span>{t("form.email_label")} *</span>
                 </label>
                 <Input
+                  id="contact-email"
+                  name="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t("form.email_placeholder")}
+                  toolparamdescription="Email address to receive response"
                   className={`h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs ${errors.email ? "border-destructive focus-visible:ring-destructive" : ""}`}
                 />
                 {errors.email && (
@@ -231,27 +245,33 @@ export function ContactForm() {
 
               {topic === "venue" ? (
                 <div className="space-y-2">
-                  <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
+                  <label htmlFor="contact-venueName" className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                     <Building className="size-3.5 text-muted-foreground" />
                     <span>{t("form.venue_name_label")}</span>
                   </label>
                   <Input
+                    id="contact-venueName"
+                    name="venueName"
                     type="text"
                     value={venueName}
                     onChange={(e) => setVenueName(e.target.value)}
                     placeholder={t("form.venue_name_placeholder")}
+                    toolparamdescription="Sports venue facility name for partnership"
                     className="h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs"
                   />
                 </div>
               ) : (
                 <div className="space-y-2">
-                  <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
+                  <label htmlFor="contact-sport" className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                     <Activity className="size-3.5 text-muted-foreground" />
                     <span>{t("form.sport_label")}</span>
                   </label>
                   <select
+                    id="contact-sport"
+                    name="sport"
                     value={sport}
                     onChange={(e) => setSport(e.target.value)}
+                    toolparamdescription="Sports category related to the inquiry"
                     className="w-full h-11 px-3.5 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-ring font-normal shadow-2xs"
                   >
                     <option value="">{t("form.sport_all")}</option>
@@ -267,15 +287,18 @@ export function ContactForm() {
 
             {/* Subject */}
             <div className="space-y-2">
-              <label className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
+              <label htmlFor="contact-subject" className="text-xs sm:text-sm font-medium text-foreground flex items-center gap-1.5">
                 <MessageSquare className="size-3.5 text-muted-foreground" />
                 <span>{t("form.subject_label")} *</span>
               </label>
               <Input
+                id="contact-subject"
+                name="subject"
                 type="text"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 placeholder={t("form.subject_placeholder")}
+                toolparamdescription="Subject topic of inquiry"
                 className={`h-11 rounded-xl text-xs sm:text-sm px-3.5 bg-background shadow-2xs ${errors.subject ? "border-destructive focus-visible:ring-destructive" : ""}`}
               />
               {errors.subject && (
@@ -285,14 +308,17 @@ export function ContactForm() {
 
             {/* Detailed Message */}
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-foreground">
+              <label htmlFor="contact-message" className="text-xs font-medium text-foreground">
                 {t("form.message_label")} *
               </label>
               <textarea
+                id="contact-message"
+                name="message"
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder={t("form.message_placeholder")}
+                toolparamdescription="Detailed inquiry text or message"
                 className={`w-full p-3 rounded-xl border bg-card text-foreground text-xs sm:text-sm font-normal resize-none focus:outline-none focus:ring-2 focus:ring-ring ${
                   errors.message ? "border-destructive focus:ring-destructive" : "border-input"
                 }`}

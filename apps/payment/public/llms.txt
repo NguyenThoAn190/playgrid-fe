@@ -1,0 +1,8 @@
+# PlayGrid Payment & Checkout Gateway (llms.txt)
+
+> PlayGrid Payment is the secure checkout gateway supporting VietQR automated payment processing, promotional vouchers, and corporate VAT invoice issuance.
+
+- [Court Checkout](https://payment.playgrid.vn/vi/checkout/court): Court Booking Checkout
+- [Event Checkout](https://payment.playgrid.vn/vi/checkout/event): Tournament & Ticket Checkout
+- [Terms](https://playgrid.vn/vi/terms): Payment Terms & Refund Policy
+- [Main Portal](https://playgrid.vn): PlayGrid Web

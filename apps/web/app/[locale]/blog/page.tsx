@@ -135,14 +135,25 @@ export default function BlogListingPage() {
 
           {/* Search Box */}
           <div className="relative min-w-[240px] sm:min-w-[280px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Tìm kiếm bài viết..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm rounded-xl border border-border/70 bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-[#00A859]/30 focus:border-[#00A859]"
-            />
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              toolname="search_blog_articles"
+              tooldescription="Search sports articles, tournament news, player guidelines, and coaching tips on PlayGrid blog."
+            >
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <input
+                  id="blog-search-query"
+                  name="query"
+                  type="text"
+                  placeholder="Tìm kiếm bài viết..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  toolparamdescription="Article keyword or topic to search"
+                  className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm rounded-xl border border-border/70 bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-[#00A859]/30 focus:border-[#00A859]"
+                />
+              </div>
+            </form>
           </div>
         </div>
 

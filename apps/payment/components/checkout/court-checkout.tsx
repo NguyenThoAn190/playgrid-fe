@@ -478,12 +478,20 @@ export function CourtCheckout({ orderId = "PG-CRT-89241" }: CourtCheckoutProps) 
               </div>
 
               {/* Promo code input in sidebar */}
-              <form onSubmit={handleApplyVoucher} className="flex gap-2 pt-1">
+              <form
+                onSubmit={handleApplyVoucher}
+                toolname="apply_court_checkout_voucher"
+                tooldescription="Apply promotional voucher discount code on court checkout summary."
+                className="flex gap-2 pt-1"
+              >
                 <Input
+                  id="court-checkout-voucher-code"
+                  name="voucherCode"
                   type="text"
                   placeholder={isEn ? "Enter promo code..." : "Nhập mã giảm giá..."}
                   value={voucherCode}
                   onChange={(e) => setVoucherCode(e.target.value)}
+                  toolparamdescription="Promotional discount voucher code"
                   className="h-9 text-xs rounded-xl uppercase"
                 />
                 <Button type="submit" variant="outline" className="h-9 text-xs font-semibold rounded-xl shrink-0 cursor-pointer">

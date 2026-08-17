@@ -819,6 +819,8 @@ export function EventRegistrationSidebar({
                     setIsModalOpen(false);
                     handleProceedToEventPayment();
                   }}
+                  toolname="confirm_event_booking"
+                  tooldescription="Review and confirm event tickets, race add-ons, and athlete information before proceeding to payment."
                   className="space-y-3 text-xs"
                 >
                   {/* Selected Tickets & Add-ons Summary in Modal */}
@@ -854,16 +856,19 @@ export function EventRegistrationSidebar({
 
                   {/* Full name */}
                   <div className="space-y-1">
-                    <label className="font-semibold text-foreground">
+                    <label htmlFor="sidebar-athlete-fullName" className="font-semibold text-foreground">
                       {isEn ? "Full Name (as in ID/Passport)" : "Họ và tên VĐV (theo CCCD/Hộ chiếu)"} *
                     </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
                       <Input
+                        id="sidebar-athlete-fullName"
+                        name="fullName"
                         required
                         placeholder="NGUYEN VAN A"
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        toolparamdescription="Full legal name of the athlete"
                         className="pl-9 h-9 rounded-xl uppercase"
                       />
                     </div>
@@ -872,32 +877,38 @@ export function EventRegistrationSidebar({
                   {/* Email & Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
-                      <label className="font-semibold text-foreground">Email *</label>
+                      <label htmlFor="sidebar-athlete-email" className="font-semibold text-foreground">Email *</label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
                         <Input
+                          id="sidebar-athlete-email"
+                          name="email"
                           required
                           type="email"
                           placeholder="athlete@example.com"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          toolparamdescription="Athlete email address for notifications"
                           className="pl-9 h-9 rounded-xl"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1">
-                      <label className="font-semibold text-foreground">
+                      <label htmlFor="sidebar-athlete-phone" className="font-semibold text-foreground">
                         {isEn ? "Phone Number" : "Số điện thoại"} *
                       </label>
                       <div className="relative">
                         <Phone className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
                         <Input
+                          id="sidebar-athlete-phone"
+                          name="phone"
                           required
                           type="tel"
                           placeholder="0912 345 678"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          toolparamdescription="Contact phone number"
                           className="pl-9 h-9 rounded-xl"
                         />
                       </div>
@@ -907,27 +918,33 @@ export function EventRegistrationSidebar({
                   {/* DOB & ID Number */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
-                      <label className="font-semibold text-foreground">
+                      <label htmlFor="sidebar-athlete-dob" className="font-semibold text-foreground">
                         {isEn ? "Date of Birth" : "Ngày sinh"} *
                       </label>
                       <Input
+                        id="sidebar-athlete-dob"
+                        name="dob"
                         required
                         type="date"
                         value={formData.dob}
                         onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
+                        toolparamdescription="Date of birth in YYYY-MM-DD"
                         className="h-9 rounded-xl"
                       />
                     </div>
 
                     <div className="space-y-1">
-                      <label className="font-semibold text-foreground">
+                      <label htmlFor="sidebar-athlete-idNumber" className="font-semibold text-foreground">
                         {isEn ? "ID / Passport No." : "Số CCCD / Hộ chiếu"} *
                       </label>
                       <Input
+                        id="sidebar-athlete-idNumber"
+                        name="idNumber"
                         required
                         placeholder="001234567890"
                         value={formData.idNumber}
                         onChange={(e) => setFormData({ ...formData, idNumber: e.target.value })}
+                        toolparamdescription="National Citizen ID or Passport number"
                         className="h-9 rounded-xl"
                       />
                     </div>
@@ -936,12 +953,15 @@ export function EventRegistrationSidebar({
                   {/* Gender & Shirt Size */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
-                      <label className="font-semibold text-foreground">
+                      <label htmlFor="sidebar-athlete-gender" className="font-semibold text-foreground">
                         {isEn ? "Gender" : "Giới tính"} *
                       </label>
                       <select
+                        id="sidebar-athlete-gender"
+                        name="gender"
                         value={formData.gender}
                         onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                        toolparamdescription="Athlete gender ('male' or 'female')"
                         className="w-full h-9 px-3 rounded-xl bg-background border border-border text-foreground text-xs"
                       >
                         <option value="male">{isEn ? "Male" : "Nam"}</option>
@@ -950,13 +970,16 @@ export function EventRegistrationSidebar({
                     </div>
 
                     <div className="space-y-1">
-                      <label className="font-semibold text-foreground flex items-center gap-1">
+                      <label htmlFor="sidebar-athlete-shirtSize" className="font-semibold text-foreground flex items-center gap-1">
                         <Shirt className="size-3.5 text-brand-blue" />
                         <span>{isEn ? "Finisher Shirt Size" : "Size áo Finisher"} *</span>
                       </label>
                       <select
+                        id="sidebar-athlete-shirtSize"
+                        name="shirtSize"
                         value={formData.shirtSize}
                         onChange={(e) => setFormData({ ...formData, shirtSize: e.target.value })}
+                        toolparamdescription="Running shirt size (XS, S, M, L, XL, 2XL)"
                         className="w-full h-9 px-3 rounded-xl bg-background border border-border text-foreground text-xs font-semibold"
                       >
                         <option value="XS">XS (Dưới 50kg)</option>
@@ -971,13 +994,16 @@ export function EventRegistrationSidebar({
 
                   {/* Club */}
                   <div className="space-y-1">
-                    <label className="font-semibold text-foreground">
+                    <label htmlFor="sidebar-athlete-clubName" className="font-semibold text-foreground">
                       {isEn ? "Club / Team (Optional)" : "Câu lạc bộ / Đội thi đấu (Không bắt buộc)"}
                     </label>
                     <Input
+                      id="sidebar-athlete-clubName"
+                      name="clubName"
                       placeholder="PlayGrid Athletes Team"
                       value={formData.clubName}
                       onChange={(e) => setFormData({ ...formData, clubName: e.target.value })}
+                      toolparamdescription="Club or team name"
                       className="h-9 rounded-xl"
                     />
                   </div>

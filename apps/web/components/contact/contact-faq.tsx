@@ -121,30 +121,39 @@ export function ContactFAQ() {
 
       {/* Search Input Bar */}
       <div className="max-w-2xl mx-auto px-4">
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4.5 text-muted-foreground pointer-events-none" />
-          <Input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={
-              isEn
-                ? "Search by keyword (e.g., refund, badminton court, POS, ELO rank, invoice)..."
-                : "Tìm nhanh theo từ khóa (ví dụ: hoàn tiền, đặt sân cầu lông, POS chủ sân, rank ELO, hóa đơn VAT)..."
-            }
-            className="w-full h-12 pl-11 pr-10 rounded-2xl bg-card border border-border shadow-xs text-xs sm:text-sm focus-visible:ring-2 focus-visible:ring-brand-blue/30"
-          />
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery("")}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
-              aria-label="Clear search"
-            >
-              <X className="size-4" />
-            </button>
-          )}
-        </div>
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          toolname="search_help_faq"
+          tooldescription="Search PlayGrid frequently asked questions, customer support guides, court booking policies, and partner documentation."
+        >
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4.5 text-muted-foreground pointer-events-none" />
+            <Input
+              id="faq-search-query"
+              name="query"
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={
+                isEn
+                  ? "Search by keyword (e.g., refund, badminton court, POS, ELO rank, invoice)..."
+                  : "Tìm nhanh theo từ khóa (ví dụ: hoàn tiền, đặt sân cầu lông, POS chủ sân, rank ELO, hóa đơn VAT)..."
+              }
+              toolparamdescription="Search keyword or question about PlayGrid features and policies"
+              className="w-full h-12 pl-11 pr-10 rounded-2xl bg-card border border-border shadow-xs text-xs sm:text-sm focus-visible:ring-2 focus-visible:ring-brand-blue/30"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                aria-label="Clear search"
+              >
+                <X className="size-4" />
+              </button>
+            )}
+          </div>
+        </form>
 
         {/* Live Search Match Info */}
         {searchQuery.trim() && (
