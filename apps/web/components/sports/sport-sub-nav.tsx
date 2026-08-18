@@ -128,7 +128,7 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
           : "top-0 shadow-sm"
       }`}
     >
-      <div className="mx-auto flex h-12 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-12 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left: Sub Nav Tabs (Scrollable on mobile) */}
         <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto scrollbar-none py-1 min-w-0 flex-1">
           {SUB_NAV_TABS.map((tab) => {
@@ -143,8 +143,8 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
                 onClick={(e) => handleTabClick(e, tab.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-blue-600 dark:bg-blue-500 text-white shadow-xs"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+                    ? "bg-primary text-primary-foreground shadow-2xs"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                 }`}
               >
                 <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
@@ -159,7 +159,7 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
           <button
             type="button"
             onClick={() => setIsDropdownOpen((prev) => !prev)}
-            className="flex items-center gap-1 sm:gap-1.5 rounded-xl border border-blue-500/30 bg-blue-50 dark:bg-blue-950/40 px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-bold text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all cursor-pointer"
+            className="flex items-center gap-1 sm:gap-1.5 rounded-xl border border-primary/20 bg-primary/10 px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-semibold text-primary hover:bg-primary/15 transition-all cursor-pointer"
           >
             <span className="text-sm sm:text-base">{selectedSportObj?.icon}</span>
             <span className="hidden sm:inline">{selectedSportObj?.name}</span>
@@ -184,8 +184,8 @@ export function SportSubNav({ currentSport }: SportSubNavProps) {
                     onClick={() => handleSportChange(sport.id)}
                     className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors cursor-pointer text-left ${
                       sport.id === currentSport
-                        ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold"
-                        : "text-foreground hover:bg-accent"
+                        ? "bg-primary/10 text-primary font-semibold"
+                        : "text-foreground hover:bg-muted"
                     }`}
                   >
                     <span className="text-base">{sport.icon}</span>

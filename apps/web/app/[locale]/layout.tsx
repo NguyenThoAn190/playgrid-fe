@@ -3,7 +3,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import { routing } from "../../i18n/routing";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "../globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@workspace/ui/components/theme-provider";
@@ -16,16 +16,6 @@ const inter = Inter({
   subsets: ["latin", "vietnamese"], 
   variable: "--font-sans",
   display: "swap"
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
 import { JsonLdScript, getOrganizationJsonLd, getWebsiteJsonLd } from "@/lib/seo/json-ld";
@@ -59,8 +49,6 @@ export default async function LocaleLayout({
     <div
       className={cn(
         "min-h-full flex flex-col bg-background text-foreground antialiased font-sans",
-        geistSans.variable,
-        geistMono.variable,
         inter.variable
       )}
     >

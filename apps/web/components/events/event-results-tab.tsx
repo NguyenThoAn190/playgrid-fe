@@ -195,19 +195,19 @@ export function EventResultsTab() {
   }, [filteredResults]);
 
   return (
-    <div className="space-y-3">
-      {/* 1. Compact Header Search & Filter Card with Filter Icon Button */}
-      <section className="bg-card border border-border/80 rounded-3xl p-4 sm:p-5 space-y-3">
-        <header className="flex items-center justify-between border-b border-border/60 pb-3">
+    <div className="space-y-4">
+      {/* 1. Header Search & Filter Card */}
+      <section className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-4 shadow-2xs">
+        <header className="flex items-center justify-between border-b border-border/50 pb-3 gap-3">
           <div className="flex items-center gap-2.5">
-            <div className="size-8 rounded-xl bg-brand-blue/10 text-brand-blue dark:text-brand-green flex items-center justify-center shrink-0">
-              <Timer className="size-4.5" />
+            <div className="size-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <Timer className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="text-sm sm:text-base font-semibold text-foreground">
-                {isEn ? "Live Results & Timing Leaderboard" : "Tra Cứu Kết Quả & Bảng Xếp Hạng"}
+              <h2 className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-foreground">
+                {isEn ? "Live Results & Timing Leaderboard" : "Tra cứu kết quả & bảng xếp hạng"}
               </h2>
-              <p className="text-[11px] text-muted-foreground font-normal">
+              <p className="text-xs sm:text-sm text-muted-foreground font-normal leading-normal">
                 {isEn
                   ? "Official electronic chip timing system (Gun Time & Chip Time)"
                   : "Hệ thống tính giờ điện tử chính thức từ Chip Timing Ban Tổ Chức"}
@@ -215,31 +215,31 @@ export function EventResultsTab() {
             </div>
           </div>
 
-          <span className="hidden sm:inline-flex items-center gap-1 text-[10.5px] font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
-            <CheckCircle2 className="size-3.5" />
-            {isEn ? "Official Verified" : "Đã xác thực"}
+          <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 px-2.5 py-0.5 rounded-lg border border-emerald-500/20">
+            <CheckCircle2 className="w-3.5 h-3.5" />
+            <span>{isEn ? "Official Verified" : "Đã xác thực"}</span>
           </span>
         </header>
 
         {/* Search Bar + Compact Filter Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
           {/* Main Full-Width Search Input */}
-          <div className="relative flex-1">
-            <Search className="absolute left-3.5 top-2.5 size-4 text-muted-foreground pointer-events-none" />
+          <div className="relative flex-1 min-w-[200px]">
+            <Search className="absolute left-3.5 top-3 w-4 h-4 text-muted-foreground pointer-events-none" />
             <Input
               type="text"
               placeholder={isEn ? "Search by BIB or Athlete name..." : "Nhập số BIB hoặc Tên vận động viên..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-9 pl-10 pr-8 rounded-xl text-xs sm:text-sm bg-background border-border/80 font-normal focus-visible:ring-2 focus-visible:ring-brand-blue/30"
+              className="h-10 pl-10 pr-8 rounded-xl text-xs sm:text-sm bg-background border-border/80 font-normal focus-visible:ring-2 focus-visible:ring-primary/30"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2.5 top-2.5 text-muted-foreground hover:text-foreground cursor-pointer"
+                className="absolute right-2.5 top-3 text-muted-foreground hover:text-foreground cursor-pointer"
               >
-                <X className="size-3.5" />
+                <X className="w-4 h-4" />
               </button>
             )}
           </div>
@@ -249,7 +249,7 @@ export function EventResultsTab() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="h-9 px-3 rounded-xl border border-border/80 bg-background text-xs text-foreground font-normal cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+              className="h-10 px-3 rounded-xl border border-border/80 bg-background text-xs sm:text-sm text-foreground font-normal cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/30"
             >
               {categories.map((cat) => (
                 <option key={cat.id} value={cat.id}>
@@ -264,7 +264,7 @@ export function EventResultsTab() {
             <select
               value={selectedGender}
               onChange={(e) => setSelectedGender(e.target.value)}
-              className="h-9 px-3 rounded-xl border border-border/80 bg-background text-xs text-foreground font-normal cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+              className="h-10 px-3 rounded-xl border border-border/80 bg-background text-xs sm:text-sm text-foreground font-normal cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/30"
             >
               <option value="all">{isEn ? "All Genders" : "Tất cả giới tính"}</option>
               <option value="male">{isEn ? "Men" : "Nam"}</option>
@@ -278,16 +278,16 @@ export function EventResultsTab() {
             variant="outline"
             size="sm"
             onClick={() => setShowFilterPanel(!showFilterPanel)}
-            className={`h-9 px-3 rounded-xl border-border/80 gap-1.5 text-xs font-medium cursor-pointer transition-all ${
+            className={`h-10 px-3.5 rounded-xl border-border/80 gap-1.5 text-xs font-semibold cursor-pointer transition-all ${
               showFilterPanel || activeFilterCount > 0
-                ? "bg-brand-blue text-white border-brand-blue hover:bg-brand-blue/90"
+                ? "bg-primary text-primary-foreground border-primary hover:bg-primary/90"
                 : "bg-background hover:bg-muted text-foreground"
             }`}
           >
-            <SlidersHorizontal className="size-3.5" />
+            <SlidersHorizontal className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">{isEn ? "Filter" : "Bộ lọc"}</span>
             {activeFilterCount > 0 && (
-              <span className="size-4.5 rounded-full bg-white text-brand-blue text-[10px] font-bold flex items-center justify-center">
+              <span className="size-4.5 rounded-full bg-white text-primary text-[10px] font-bold flex items-center justify-center">
                 {activeFilterCount}
               </span>
             )}
@@ -296,10 +296,10 @@ export function EventResultsTab() {
 
         {/* Expandable Filter Panel (Mobile / Advanced) */}
         {showFilterPanel && (
-          <div className="p-3.5 rounded-2xl bg-muted/20 border border-border/60 space-y-3 transition-all animate-in fade-in-50 duration-200">
+          <div className="p-4 rounded-xl sm:rounded-2xl bg-muted/30 border border-border/70 space-y-3 transition-all animate-in fade-in-50 duration-200">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                <SlidersHorizontal className="size-3 text-brand-blue dark:text-brand-green" />
+                <SlidersHorizontal className="w-3.5 h-3.5 text-primary" />
                 <span>{isEn ? "Filter Options" : "Tiêu chí lọc kết quả"}</span>
               </span>
 
@@ -307,18 +307,18 @@ export function EventResultsTab() {
                 <button
                   type="button"
                   onClick={resetFilters}
-                  className="text-[11px] text-muted-foreground hover:text-brand-blue flex items-center gap-1 cursor-pointer"
+                  className="text-xs text-muted-foreground hover:text-primary flex items-center gap-1 cursor-pointer font-medium"
                 >
-                  <RotateCcw className="size-3" />
+                  <RotateCcw className="w-3 h-3" />
                   <span>{isEn ? "Reset" : "Đặt lại"}</span>
                 </button>
               )}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
               {/* Category Filter Pills */}
               <div className="space-y-1.5">
-                <label className="text-[11px] text-muted-foreground font-medium">
+                <label className="text-xs text-muted-foreground font-medium">
                   {isEn ? "Distance / Category" : "Cự ly thi đấu"}
                 </label>
                 <div className="flex flex-wrap gap-1.5">
@@ -327,10 +327,10 @@ export function EventResultsTab() {
                       key={cat.id}
                       type="button"
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`px-2.5 py-1 rounded-lg text-[11px] transition-all cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-xl text-xs transition-all cursor-pointer ${
                         selectedCategory === cat.id
-                          ? "bg-brand-blue text-white font-medium shadow-2xs"
-                          : "bg-background border border-border/70 text-muted-foreground hover:text-foreground font-normal"
+                          ? "bg-primary text-primary-foreground font-semibold shadow-2xs"
+                          : "bg-background border border-border/70 text-muted-foreground hover:text-foreground font-medium"
                       }`}
                     >
                       {cat.label}
@@ -341,7 +341,7 @@ export function EventResultsTab() {
 
               {/* Gender Filter Pills */}
               <div className="space-y-1.5">
-                <label className="text-[11px] text-muted-foreground font-medium">
+                <label className="text-xs text-muted-foreground font-medium">
                   {isEn ? "Gender" : "Giới tính"}
                 </label>
                 <div className="flex items-center gap-1.5">
@@ -354,10 +354,10 @@ export function EventResultsTab() {
                       key={g.id}
                       type="button"
                       onClick={() => setSelectedGender(g.id)}
-                      className={`px-3 py-1 rounded-lg text-[11px] transition-all cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-xl text-xs transition-all cursor-pointer ${
                         selectedGender === g.id
-                          ? "bg-foreground text-background font-medium"
-                          : "bg-background border border-border/70 text-muted-foreground hover:text-foreground font-normal"
+                          ? "bg-foreground text-background font-semibold"
+                          : "bg-background border border-border/70 text-muted-foreground hover:text-foreground font-medium"
                       }`}
                     >
                       {g.label}
@@ -370,9 +370,9 @@ export function EventResultsTab() {
         )}
       </section>
 
-      {/* 2. Top Podium Highlights (Clean & Elegant) */}
+      {/* 2. Top Podium Highlights */}
       {topPodium.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
           {topPodium.map((podium) => {
             const isFirst = podium.rank === 1;
             const isSecond = podium.rank === 2;
@@ -380,21 +380,21 @@ export function EventResultsTab() {
             return (
               <div
                 key={podium.bib}
-                className={`bg-card border rounded-3xl p-3.5 sm:p-4 shadow-sm flex items-center gap-3 relative transition-all ${
+                className={`bg-card border rounded-xl sm:rounded-2xl p-4 shadow-2xs flex items-center gap-3 relative transition-all ${
                   isFirst
-                    ? "border-amber-500/40 bg-amber-500/[0.03]"
+                    ? "border-amber-400/60 dark:border-amber-500/60 bg-amber-500/5"
                     : isSecond
-                    ? "border-slate-400/40 bg-slate-400/[0.03]"
-                    : "border-amber-700/30 bg-amber-700/[0.02]"
+                    ? "border-slate-400/50 bg-slate-400/5"
+                    : "border-amber-700/40 bg-amber-700/5"
                 }`}
               >
                 <div
-                  className={`size-8.5 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 ${
+                  className={`size-9 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 ${
                     isFirst
-                      ? "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
+                      ? "bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30"
                       : isSecond
-                      ? "bg-slate-400/15 text-slate-600 dark:text-slate-300 border border-slate-400/30"
-                      : "bg-amber-700/15 text-amber-700 dark:text-amber-400 border border-amber-700/30"
+                      ? "bg-slate-400/20 text-slate-700 dark:text-slate-200 border border-slate-400/30"
+                      : "bg-amber-700/20 text-amber-800 dark:text-amber-300 border border-amber-700/30"
                   }`}
                 >
                   #{podium.rank}
@@ -402,19 +402,19 @@ export function EventResultsTab() {
 
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[10.5px] font-mono text-muted-foreground font-normal">
+                    <span className="text-xs font-mono text-muted-foreground font-medium">
                       BIB #{podium.bib}
                     </span>
-                    <span className="text-[9.5px] px-1.5 py-0.2 rounded bg-muted/60 text-muted-foreground font-normal">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-muted text-muted-foreground font-semibold">
                       {podium.gender === "male" ? "Nam" : "Nữ"}
                     </span>
                   </div>
                   <div className="font-semibold text-xs sm:text-sm text-foreground truncate mt-0.5">
                     {podium.name}
                   </div>
-                  <div className="text-[10.5px] font-normal text-muted-foreground flex items-center gap-1 mt-0.5">
-                    <Clock className="size-2.5 text-brand-green shrink-0" />
-                    <span className="text-brand-blue dark:text-brand-green font-medium">Chip: {podium.chipTime}</span>
+                  <div className="text-xs font-normal text-muted-foreground flex items-center gap-1.5 mt-0.5">
+                    <Clock className="w-3 h-3 text-primary shrink-0" />
+                    <span className="text-primary font-semibold">Chip: {podium.chipTime}</span>
                     <span>({podium.pace})</span>
                   </div>
                 </div>
@@ -424,60 +424,60 @@ export function EventResultsTab() {
         </div>
       )}
 
-      {/* 3. Detailed Results Table Card (Lightweight Typography) */}
-      <section className="bg-card border border-border/80 rounded-3xl p-4 sm:p-5 shadow-sm space-y-3">
-        <div className="overflow-x-auto rounded-2xl border border-border/60 bg-card">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-muted/40 text-[10.5px] font-medium text-muted-foreground uppercase tracking-wider border-b border-border/50">
+      {/* 3. Detailed Results Table Card */}
+      <section className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xs space-y-4">
+        <div className="overflow-x-auto rounded-xl border border-border/60 bg-card">
+          <table className="w-full text-left text-xs border-collapse min-w-[640px]">
+            <thead className="bg-muted/50 text-muted-foreground font-semibold border-b border-border/60">
               <tr>
-                <th className="p-2.5 sm:px-3.5 whitespace-nowrap">{isEn ? "Rank" : "Hạng"}</th>
-                <th className="p-2.5 sm:px-3.5 whitespace-nowrap">BIB</th>
-                <th className="p-2.5 sm:px-3.5">{isEn ? "Athlete & Club" : "Vận động viên & CLB"}</th>
-                <th className="p-2.5 sm:px-3.5 hidden md:table-cell">{isEn ? "Category" : "Cự ly"}</th>
-                <th className="p-2.5 sm:px-3.5 whitespace-nowrap">{isEn ? "Chip Time" : "Chip Time"}</th>
-                <th className="p-2.5 sm:px-3.5 whitespace-nowrap hidden sm:table-cell">{isEn ? "Gun Time" : "Gun Time"}</th>
-                <th className="p-2.5 sm:px-3.5 whitespace-nowrap text-right">{isEn ? "E-Cert" : "Chứng nhận"}</th>
+                <th className="py-3 px-3.5 whitespace-nowrap">{isEn ? "Rank" : "Hạng"}</th>
+                <th className="py-3 px-3.5 whitespace-nowrap">BIB</th>
+                <th className="py-3 px-3.5">{isEn ? "Athlete & Club" : "Vận động viên & CLB"}</th>
+                <th className="py-3 px-3.5 hidden md:table-cell">{isEn ? "Category" : "Cự ly"}</th>
+                <th className="py-3 px-3.5 whitespace-nowrap">{isEn ? "Chip Time" : "Chip Time"}</th>
+                <th className="py-3 px-3.5 whitespace-nowrap hidden sm:table-cell">{isEn ? "Gun Time" : "Gun Time"}</th>
+                <th className="py-3 px-3.5 whitespace-nowrap text-right">{isEn ? "E-Cert" : "Chứng nhận"}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/30">
+            <tbody className="divide-y divide-border/40 text-foreground">
               {filteredResults.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="p-8 text-center text-xs text-muted-foreground font-normal">
+                  <td colSpan={7} className="py-8 text-center text-xs sm:text-sm text-muted-foreground font-normal">
                     {isEn ? "No athlete result found matching your search." : "Không tìm thấy kết quả phù hợp với từ khóa tìm kiếm."}
                   </td>
                 </tr>
               ) : (
                 filteredResults.map((row) => (
-                  <tr key={row.bib} className="hover:bg-muted/15 transition-colors">
-                    <td className="p-2.5 sm:px-3.5 font-semibold text-xs text-muted-foreground whitespace-nowrap">
+                  <tr key={row.bib} className="hover:bg-muted/20 transition-colors">
+                    <td className="py-2.5 px-3.5 font-bold text-xs text-muted-foreground whitespace-nowrap">
                       #{row.rank}
                     </td>
-                    <td className="p-2.5 sm:px-3.5 font-mono text-xs font-medium text-brand-blue dark:text-brand-green whitespace-nowrap">
+                    <td className="py-2.5 px-3.5 font-mono text-xs font-semibold text-primary whitespace-nowrap">
                       {row.bib}
                     </td>
-                    <td className="p-2.5 sm:px-3.5">
-                      <div className="font-semibold text-xs text-foreground">{row.name}</div>
-                      <div className="text-[10px] text-muted-foreground font-normal">{row.club}</div>
+                    <td className="py-2.5 px-3.5">
+                      <div className="font-semibold text-xs sm:text-sm text-foreground">{row.name}</div>
+                      <div className="text-xs text-muted-foreground font-normal">{row.club}</div>
                     </td>
-                    <td className="p-2.5 sm:px-3.5 text-muted-foreground font-normal text-xs hidden md:table-cell">
+                    <td className="py-2.5 px-3.5 text-muted-foreground font-normal text-xs hidden md:table-cell">
                       {row.category}
                     </td>
-                    <td className="p-2.5 sm:px-3.5 whitespace-nowrap font-mono">
-                      <div className="font-medium text-xs text-foreground">{row.chipTime}</div>
-                      <div className="text-[9.5px] text-muted-foreground font-normal">{row.pace}</div>
+                    <td className="py-2.5 px-3.5 whitespace-nowrap font-mono">
+                      <div className="font-semibold text-xs sm:text-sm text-foreground">{row.chipTime}</div>
+                      <div className="text-xs text-muted-foreground font-normal">{row.pace}</div>
                     </td>
-                    <td className="p-2.5 sm:px-3.5 font-mono text-muted-foreground font-normal whitespace-nowrap hidden sm:table-cell">
+                    <td className="py-2.5 px-3.5 font-mono text-muted-foreground font-normal text-xs whitespace-nowrap hidden sm:table-cell">
                       {row.gunTime}
                     </td>
-                    <td className="p-2.5 sm:px-3.5 text-right whitespace-nowrap">
+                    <td className="py-2.5 px-3.5 text-right whitespace-nowrap">
                       <Button
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="h-7 px-2.5 text-[11px] font-medium text-brand-blue dark:text-brand-green hover:bg-brand-blue/10 rounded-lg cursor-pointer transition-all"
+                        className="h-7.5 px-3 text-xs font-semibold text-primary hover:bg-primary/10 rounded-xl cursor-pointer transition-all"
                         onClick={() => alert(`Tải E-Certificate cho VĐV ${row.name} (BIB: ${row.bib})`)}
                       >
-                        <Download className="size-3 mr-1" />
+                        <Download className="w-3.5 h-3.5 mr-1" />
                         <span>E-Cert</span>
                       </Button>
                     </td>

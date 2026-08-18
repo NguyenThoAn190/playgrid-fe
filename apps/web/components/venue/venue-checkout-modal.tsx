@@ -101,7 +101,7 @@ export function VenueCheckoutModal({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg rounded-3xl bg-background border border-border shadow-2xl overflow-hidden my-6 animate-in zoom-in-95"
+        className="relative w-full max-w-lg rounded-2xl bg-background border border-border shadow-2xl overflow-hidden my-6 animate-in zoom-in-95"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Close Button */}
@@ -123,29 +123,29 @@ export function VenueCheckoutModal({
             className="p-5 sm:p-6 space-y-5"
           >
             <div>
-              <span className="text-xs font-bold tracking-wider text-brand-blue dark:text-brand-green">
+              <span className="text-xs font-semibold tracking-wider text-primary">
                 {tCheck("title")}
               </span>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-foreground mt-0.5">
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-0.5">
                 {tCheck("info_and_payment")}
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">
+              </h2>
+              <p className="text-xs text-muted-foreground font-normal mt-1">
                 {venue.name} • {selectedDate}
               </p>
             </div>
 
             {/* Selected Slots Preview Badge */}
-            <div className="p-3 rounded-2xl bg-muted/30 border border-border/60 space-y-2">
-              <div className="text-xs font-bold text-foreground">
+            <div className="p-3 rounded-xl bg-muted/30 border border-border/60 space-y-2">
+              <div className="text-xs font-semibold text-foreground">
                 {tCheck("slots_list", { count: selectedSlots.length })}
               </div>
               <div className="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto">
                 {selectedSlots.map((slot) => (
                   <span
                     key={slot.courtId + slot.slotId}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-background border border-border/80 text-[11px] font-semibold"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-background border border-border/80 text-[11px] font-semibold"
                   >
-                    <Clock className="size-3 text-brand-blue" />
+                    <Clock className="size-3 text-primary" />
                     <strong>{slot.courtName}</strong>: {slot.time}
                   </span>
                 ))}
@@ -154,7 +154,7 @@ export function VenueCheckoutModal({
 
             {/* Customer Information Inputs */}
             <div className="space-y-3">
-              <span className="text-xs font-bold tracking-wider text-muted-foreground">
+              <span className="text-xs font-semibold tracking-wider text-muted-foreground">
                 {tCheck("customer_info")}
               </span>
 
@@ -228,7 +228,7 @@ export function VenueCheckoutModal({
 
             {/* Payment Method Selector */}
             <div className="space-y-2.5">
-              <span className="text-xs font-bold tracking-wider text-muted-foreground">
+              <span className="text-xs font-semibold tracking-wider text-muted-foreground">
                 {tCheck("payment_methods")}
               </span>
 
@@ -267,23 +267,23 @@ export function VenueCheckoutModal({
                       type="button"
                       key={item.id}
                       onClick={() => setPaymentMethod(item.id as any)}
-                      className={`flex items-start gap-2.5 p-2.5 rounded-2xl border text-left transition-all cursor-pointer ${
+                      className={`flex items-start gap-2.5 p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                         isSelected
-                          ? "bg-brand-blue/5 border-brand-blue dark:border-brand-green ring-1 ring-brand-blue dark:ring-brand-green"
+                          ? "bg-primary/5 border-primary ring-1 ring-primary"
                           : "bg-muted/20 border-border/60 hover:bg-muted/40"
                       }`}
                     >
                       <div
                         className={`size-7 rounded-lg flex items-center justify-center shrink-0 ${
                           isSelected
-                            ? "bg-brand-blue text-white dark:bg-brand-green dark:text-slate-950"
+                            ? "bg-primary text-primary-foreground"
                             : "bg-muted text-muted-foreground"
                         }`}
                       >
                         <Icon className="size-4" />
                       </div>
                       <div className="min-w-0">
-                        <div className="font-bold text-xs text-foreground truncate">
+                        <div className="font-semibold text-xs text-foreground truncate">
                           {item.label}
                         </div>
                         <div className="text-[10px] text-muted-foreground truncate">
@@ -300,7 +300,7 @@ export function VenueCheckoutModal({
             <div className="pt-3 border-t border-border/80 flex items-center justify-between">
               <div>
                 <span className="text-[11px] text-muted-foreground block">{tCheck("total_payment")}</span>
-                <span className="text-xl font-black bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent">
+                <span className="text-xl font-bold text-primary">
                   {grandTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                 </span>
               </div>
@@ -308,7 +308,7 @@ export function VenueCheckoutModal({
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="h-11 px-6 rounded-xl bg-gradient-primary text-white font-extrabold text-sm shadow-md hover:opacity-95 cursor-pointer"
+                className="h-11 px-6 rounded-xl bg-gradient-primary text-white font-bold text-sm shadow-2xs hover:opacity-95 cursor-pointer border-0"
               >
                 {isLoading ? tCheck("processing") : tCheck("confirm_btn")}
               </Button>
@@ -322,25 +322,25 @@ export function VenueCheckoutModal({
             </div>
 
             <div className="space-y-1">
-              <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 text-xs font-bold px-2.5 py-0.5 rounded-full">
+              <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 text-xs font-semibold px-2.5 py-0.5 rounded-full">
                 {tCheck("success_badge")}
               </Badge>
-              <h3 className="text-2xl font-black text-foreground">
+              <h3 className="text-2xl font-bold text-foreground">
                 {tCheck("booking_code", { code: bookingCode })}
               </h3>
-              <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+              <p className="text-xs text-muted-foreground max-w-sm mx-auto font-normal">
                 {tCheck("ticket_sent_desc", { email, phone })}
               </p>
             </div>
 
             {/* Ticket Card Summary with simulated QR code */}
-            <div className="p-4 rounded-2xl bg-muted/40 border border-border/80 text-left space-y-3">
+            <div className="p-4 rounded-xl bg-muted/40 border border-border/80 text-left space-y-3">
               <div className="flex items-center justify-between border-b border-border/60 pb-2.5">
                 <div>
-                  <h4 className="font-extrabold text-sm text-foreground">{venue.name}</h4>
-                  <p className="text-[11px] text-muted-foreground">{venue.address}</p>
+                  <h4 className="font-bold text-sm text-foreground">{venue.name}</h4>
+                  <p className="text-[11px] text-muted-foreground font-normal">{venue.address}</p>
                 </div>
-                <div className="p-1.5 bg-white rounded-lg border shadow-xs">
+                <div className="p-1.5 bg-white rounded-lg border shadow-2xs">
                   {/* Visual simulated QR */}
                   <QrCode className="size-10 text-slate-900" />
                 </div>
@@ -348,16 +348,16 @@ export function VenueCheckoutModal({
 
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
-                  <span className="text-muted-foreground text-[11px]">{tCheck("play_date")}</span>
-                  <div className="font-bold text-foreground">{selectedDate}</div>
+                  <span className="text-muted-foreground text-[11px] font-normal">{tCheck("play_date")}</span>
+                  <div className="font-semibold text-foreground">{selectedDate}</div>
                 </div>
                 <div>
-                  <span className="text-muted-foreground text-[11px]">{tCheck("booker")}</span>
-                  <div className="font-bold text-foreground">{fullName}</div>
+                  <span className="text-muted-foreground text-[11px] font-normal">{tCheck("booker")}</span>
+                  <div className="font-semibold text-foreground">{fullName}</div>
                 </div>
                 <div className="col-span-2">
-                  <span className="text-muted-foreground text-[11px]">{tCheck("time_slots")}</span>
-                  <div className="font-bold text-foreground">
+                  <span className="text-muted-foreground text-[11px] font-normal">{tCheck("time_slots")}</span>
+                  <div className="font-semibold text-foreground">
                     {selectedSlots.map((s) => `${s.courtName} (${s.time})`).join(", ")}
                   </div>
                 </div>
@@ -369,13 +369,13 @@ export function VenueCheckoutModal({
               <Button
                 variant="outline"
                 onClick={onClose}
-                className="flex-1 h-10 rounded-xl font-bold text-xs"
+                className="flex-1 h-10 rounded-xl font-semibold text-xs hover:bg-muted"
               >
                 {tCheck("close")}
               </Button>
               <Button
                 onClick={onClose}
-                className="flex-1 h-10 rounded-xl bg-gradient-primary text-white font-bold text-xs shadow-md"
+                className="flex-1 h-10 rounded-xl bg-gradient-primary text-white font-bold text-xs shadow-2xs border-0"
               >
                 <Download className="size-3.5 mr-1.5" />
                 {tCheck("download_ticket")}

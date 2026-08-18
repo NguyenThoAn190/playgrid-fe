@@ -103,7 +103,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
                 onClick={() => setSelectedIndex(idx)}
                 className={`relative flex-1 w-full rounded-2xl overflow-hidden bg-slate-800 transition-all cursor-pointer ${
                   isSelected
-                    ? "ring-2 ring-brand-blue dark:ring-brand-green scale-[0.98]"
+                    ? "ring-2 ring-primary scale-[0.98]"
                     : "opacity-75 hover:opacity-100 hover:scale-[1.02]"
                 }`}
               >
@@ -140,7 +140,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
             onClick={() => setSelectedIndex(idx)}
             className={`relative size-16 shrink-0 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
               selectedIndex === idx
-                ? "border-brand-blue dark:border-brand-green scale-95"
+                ? "border-primary scale-95"
                 : "border-transparent opacity-70"
             }`}
           >
@@ -216,7 +216,7 @@ export function VenueGallery({ images, venueName }: VenueGalleryProps) {
                 }}
                 className={`relative size-14 sm:size-16 shrink-0 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
                   selectedIndex === idx
-                    ? "border-brand-blue scale-105 opacity-100"
+                    ? "border-primary scale-105 opacity-100"
                     : "border-transparent opacity-50 hover:opacity-80"
                 }`}
               >

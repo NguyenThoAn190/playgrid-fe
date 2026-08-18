@@ -17,29 +17,29 @@ export function EventOverview({ event }: EventOverviewProps) {
     <article
       id="event-overview"
       aria-labelledby="event-overview-title"
-      className="bg-card border border-border/80 rounded-3xl p-4 sm:p-5 space-y-3.5"
+      className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-4 shadow-2xs"
       itemScope
       itemType="https://schema.org/SportsEvent"
     >
       {/* Header */}
-      <header className="flex items-center justify-between border-b border-border/60 pb-3">
+      <header className="flex items-center justify-between border-b border-border/50 pb-3">
         <h2
           id="event-overview-title"
-          className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2"
+          className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-foreground flex items-center gap-2"
         >
-          <Trophy className="size-4.5 text-amber-500 shrink-0" />
+          <Trophy className="w-5 h-5 text-primary shrink-0" />
           <span itemProp="name">
             {isEn ? "Event Overview" : "Tổng quan sự kiện"}
           </span>
         </h2>
-        <span className="text-[11px] font-semibold text-muted-foreground hidden sm:inline-flex items-center gap-1">
-          <CheckCircle2 className="size-3.5 text-emerald-500" />
-          {isEn ? "100% Official Event" : "Thông tin xác thực"}
+        <span className="text-xs font-medium text-muted-foreground hidden sm:inline-flex items-center gap-1.5">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <span>{isEn ? "100% Official Event" : "Thông tin xác thực"}</span>
         </span>
       </header>
 
       {/* Description Content */}
-      <div className="space-y-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+      <div className="space-y-4 text-xs sm:text-sm text-foreground/90 leading-relaxed font-normal">
         <p
           className="text-foreground/90 font-normal text-xs sm:text-sm leading-relaxed"
           itemProp="description"
@@ -48,28 +48,28 @@ export function EventOverview({ event }: EventOverviewProps) {
         </p>
 
         {/* Highlights & Guarantees */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-          <div className="flex items-start gap-2.5 p-3 rounded-2xl bg-muted/30 border border-border/60">
-            <ShieldCheck className="h-4.5 w-4.5 text-emerald-500 shrink-0 mt-0.5" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+          <div className="flex items-start gap-3 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/30 border border-border/70">
+            <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <div className="text-xs font-semibold text-foreground">
+              <h3 className="text-xs sm:text-sm font-semibold text-foreground">
                 {isEn ? "Official Guarantee" : "Cam kết bảo mật & Chính hãng"}
-              </div>
-              <div className="text-[11px] text-muted-foreground mt-0.5">
+              </h3>
+              <p className="text-xs text-muted-foreground mt-0.5 font-normal leading-normal">
                 {isEn ? "100% authentic registered tickets" : "Vé điện tử chính hãng từ ban tổ chức 100%"}
-              </div>
+              </p>
             </div>
           </div>
 
-          <div className="flex items-start gap-2.5 p-3 rounded-2xl bg-muted/30 border border-border/60">
-            <Ticket className="h-4.5 w-4.5 text-brand-blue dark:text-brand-green shrink-0 mt-0.5" />
+          <div className="flex items-start gap-3 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-muted/30 border border-border/70">
+            <Ticket className="w-5 h-5 text-primary shrink-0 mt-0.5" />
             <div>
-              <div className="text-xs font-semibold text-foreground">
+              <h3 className="text-xs sm:text-sm font-semibold text-foreground">
                 {isEn ? "Instant Confirmation" : "Xác nhận tức thì"}
-              </div>
-              <div className="text-[11px] text-muted-foreground mt-0.5">
+              </h3>
+              <p className="text-xs text-muted-foreground mt-0.5 font-normal leading-normal">
                 {isEn ? "QR Code E-Ticket via email & SMS" : "Mã vé QR Code nhận ngay qua email & SMS"}
-              </div>
+              </p>
             </div>
           </div>
         </div>

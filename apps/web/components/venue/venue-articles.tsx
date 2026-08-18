@@ -70,25 +70,25 @@ export function VenueArticles({ venue }: VenueArticlesProps) {
   const articles = venue.articles && venue.articles.length > 0 ? venue.articles : DEFAULT_ARTICLES;
 
   return (
-    <Card className="rounded-3xl border border-border/80 bg-card p-4 sm:p-5 space-y-4 shadow-sm">
+    <Card className="rounded-2xl border border-border/80 bg-card p-4 sm:p-5 space-y-4 shadow-2xs">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border/60 pb-3">
         <div>
-          <h3 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <BookOpen className="size-5 text-brand-blue dark:text-brand-green" />
+          <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
+            <BookOpen className="size-5 text-primary" />
             {tArticles("title")}
-          </h3>
-          <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+          </h2>
+          <p className="text-xs sm:text-sm text-muted-foreground font-normal mt-0.5">
             {tArticles("subtitle")}
           </p>
         </div>
 
         <Link
           href="/badminton/news"
-          className="flex items-center gap-1 text-xs font-bold text-brand-blue dark:text-brand-green hover:underline shrink-0"
+          className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0"
         >
           <span>{tArticles("view_all")}</span>
-          <ChevronRight className="size-3.5" />
+          <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
       </div>
 
@@ -97,7 +97,7 @@ export function VenueArticles({ venue }: VenueArticlesProps) {
         {articles.map((art) => (
           <article
             key={art.id}
-            className="group flex flex-col rounded-2xl overflow-hidden border border-border/60 bg-muted/20 hover:border-brand-blue/40 dark:hover:border-brand-green/40 hover:bg-muted/40 transition-all duration-300 shadow-2xs hover:shadow-md"
+            className="group flex flex-col rounded-xl overflow-hidden border border-border/60 bg-muted/20 hover:border-primary/40 hover:bg-muted/40 transition-all duration-300 shadow-2xs hover:shadow-md"
           >
             {/* Thumbnail Image */}
             <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900">
@@ -111,7 +111,7 @@ export function VenueArticles({ venue }: VenueArticlesProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
 
               {/* Category Badge */}
-              <Badge className="absolute top-2.5 left-2.5 bg-background/90 backdrop-blur-md text-foreground border-border text-[10px] font-bold px-2 py-0.5 rounded-lg shadow-xs">
+              <Badge className="absolute top-2.5 left-2.5 bg-background/90 backdrop-blur-md text-foreground border-border text-[10px] font-semibold px-2 py-0.5 rounded-lg shadow-2xs">
                 {art.category}
               </Badge>
             </div>
@@ -120,25 +120,25 @@ export function VenueArticles({ venue }: VenueArticlesProps) {
             <div className="p-3.5 flex flex-col justify-between flex-1 space-y-2.5">
               <div className="space-y-1.5">
                 {/* Meta info (Date & Read time) */}
-                <div className="flex items-center gap-2 text-[10.5px] text-muted-foreground">
+                <div className="flex items-center gap-2 text-[10.5px] text-muted-foreground font-normal">
                   <span className="flex items-center gap-1">
-                    <Calendar className="size-3 text-brand-blue" />
+                    <Calendar className="size-3 text-primary" />
                     {art.publishedDate}
                   </span>
                   <span>•</span>
                   <span className="flex items-center gap-1">
-                    <Clock className="size-3 text-brand-green" />
+                    <Clock className="size-3 text-muted-foreground" />
                     {art.readTime}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h4 className="font-bold text-xs sm:text-sm text-foreground line-clamp-2 group-hover:text-brand-blue dark:group-hover:text-brand-green transition-colors leading-snug">
+                <h3 className="font-semibold text-xs sm:text-sm text-foreground line-clamp-2 group-hover:text-primary transition-colors leading-snug">
                   {art.title}
-                </h4>
+                </h3>
 
                 {/* Summary snippet */}
-                <p className="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed">
+                <p className="text-[11px] text-muted-foreground font-normal line-clamp-2 leading-relaxed">
                   {art.summary}
                 </p>
               </div>
@@ -157,7 +157,7 @@ export function VenueArticles({ venue }: VenueArticlesProps) {
                   </span>
                 </div>
 
-                <span className="text-[11px] font-bold text-brand-blue dark:text-brand-green flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform shrink-0">
+                <span className="text-[11px] font-semibold text-primary flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform shrink-0">
                   <span>{tArticles("read_more")}</span>
                   <ArrowRight className="size-3" />
                 </span>

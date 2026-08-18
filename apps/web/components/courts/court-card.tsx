@@ -34,9 +34,9 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
   const [imgSrc, setImgSrc] = useState(court.imageUrl);
 
   return (
-    <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/50 py-0 gap-0 shadow-2xs hover:shadow-md transition-all duration-300 hover:-translate-y-1 ${className}`}>
+    <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/60 py-0 gap-0 shadow-2xs hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 ${className}`}>
       {/* Court Thumbnail Image - Strict 12/5 Aspect Ratio */}
-      <div className="relative aspect-[12/5] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+      <div className="relative aspect-[12/5] w-full overflow-hidden bg-muted shrink-0">
         <Image
           src={imgSrc}
           alt={court.name}
@@ -65,11 +65,11 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
       </div>
 
       {/* Court Content Details */}
-      <div className="p-2.5 sm:p-4 space-y-1.5 sm:space-y-2 flex flex-col justify-between flex-1">
-        <div className="space-y-1.5 sm:space-y-2">
+      <div className="p-2.5 sm:p-3.5 space-y-1.5 sm:space-y-2 flex flex-col justify-between flex-1">
+        <div className="space-y-1 sm:space-y-1.5">
           {/* Row 1: Title */}
           <Link href={`/venue/${court.id}`} className="block w-full">
-            <h3 className="font-bold text-xs sm:text-base text-foreground line-clamp-1 group-hover:text-[#0052FF] dark:group-hover:text-blue-400 transition-colors">
+            <h3 className="font-bold text-xs sm:text-sm md:text-base text-foreground line-clamp-1 group-hover:text-primary transition-colors">
               {court.name}
             </h3>
           </Link>
@@ -111,7 +111,7 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
         <div className="flex items-center justify-between gap-1.5 sm:gap-2 pt-1.5 sm:pt-2 border-t border-border/40 mt-1">
           <div className="space-y-0.5 min-w-0 flex-1">
             {/* Price (High-contrast WCAG AA) */}
-            <div className="font-extrabold text-xs sm:text-base text-emerald-700 dark:text-emerald-400 leading-tight truncate">
+            <div className="font-bold text-xs sm:text-sm md:text-base text-emerald-600 dark:text-emerald-400 leading-tight truncate">
               {court.price}
             </div>
             {/* Location Address */}
@@ -124,9 +124,9 @@ export function CourtCard({ court, className = "" }: CourtCardProps) {
           {/* Action Button: Đặt sân */}
           <Link href={`/venue/${court.id}`} className="shrink-0">
             <Button
-              variant="outline"
-              size="sm"
-              className="h-7 sm:h-8 px-2 sm:px-3.5 rounded-lg sm:rounded-xl border-blue-500/40 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 hover:border-blue-500 font-bold text-[10px] sm:text-xs transition-all cursor-pointer shadow-2xs whitespace-nowrap"
+              variant="solid"
+              size="card"
+              className="whitespace-nowrap"
             >
               {t("book_btn")}
             </Button>

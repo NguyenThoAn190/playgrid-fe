@@ -55,7 +55,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
   const extraParticipantsCount = Math.max(0, activity.joinedCount - visibleParticipants.length);
 
   return (
-    <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/60 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-0 ${className}`}>
+    <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/60 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-0 ${className}`}>
       <div>
         {/* Top Header Cover Image - Aspect Ratio 12/5 */}
         <div
@@ -121,7 +121,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
         <div className="p-3 space-y-1.5">
           {/* Title */}
           <Link href={`/activities/${activity.id}`} className="block">
-            <h3 className="font-bold text-sm sm:text-base text-foreground line-clamp-1 group-hover:text-orange-700 dark:group-hover:text-orange-400 transition-colors">
+            <h3 className="font-bold text-xs sm:text-sm md:text-base text-foreground line-clamp-1 group-hover:text-primary transition-colors">
               {activity.title}
             </h3>
           </Link>
@@ -179,7 +179,8 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
         <Link href={`/activities/${activity.id}`} className="block w-full">
           <Button
             variant="outline"
-            className="w-full h-8 sm:h-8.5 rounded-xl border-border/80 text-foreground hover:bg-muted font-semibold text-[11px] sm:text-xs px-2 transition-all cursor-pointer shadow-2xs"
+            size="card"
+            className="w-full px-2 font-semibold"
           >
             {t("view_details")}
           </Button>
@@ -187,7 +188,9 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
 
         <Link href={`/activities/${activity.id}`} className="block w-full">
           <Button
-            className="w-full h-8 sm:h-8.5 rounded-xl bg-orange-700 hover:bg-orange-800 active:bg-orange-900 text-white font-bold text-[11px] sm:text-xs px-2.5 transition-all cursor-pointer shadow-xs border-none flex items-center justify-center gap-1.5"
+            variant="solid"
+            size="card"
+            className="w-full flex items-center justify-center gap-1.5 px-2"
           >
             <UserPlus className="h-3.5 w-3.5 stroke-[2.5] shrink-0" />
             <span>{t("join_btn")}</span>

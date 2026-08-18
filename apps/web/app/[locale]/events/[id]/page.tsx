@@ -69,9 +69,9 @@ export default function EventDetailPage({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-black/40 to-black/60" />
 
-        {/* Floating Top Actions Bar Aligned with Navbar Container (max-w-[1440px]) */}
+        {/* Floating Top Actions Bar Aligned with Navbar Container (max-w-7xl) */}
         <div className="absolute top-4 sm:top-6 left-0 right-0 z-10">
-          <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <Link href="/events">
               <Button
                 variant="outline"
@@ -105,48 +105,48 @@ export default function EventDetailPage({
         </div>
       </div>
 
-      {/* 2. Main Detail Content Container (Aligned 100% with Navbar max-w-[1440px]) */}
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 -mt-20 sm:-mt-28 md:-mt-32 relative z-10 space-y-4">
+      {/* 2. Main Detail Content Container */}
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-20 space-y-6">
         {/* Main 2-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Left Column: Event Tabs & Content (Span 8) */}
-          <div className="lg:col-span-8 space-y-3">
+          <div className="lg:col-span-8 space-y-5">
             {/* Event Header Card */}
-            <div className="bg-card border border-border/80 rounded-3xl p-4 sm:p-5 space-y-2.5">
+            <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-3 shadow-2xs">
               {/* Category & Badges */}
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold bg-rose-500 text-white">
+                <span className="inline-flex items-center gap-1 rounded-lg px-2.5 py-0.5 text-[11px] font-semibold bg-rose-500 text-white shadow-2xs">
                   🔥 {event.badge?.text || (isEn ? "Featured" : "Nổi bật")}
                 </span>
-                <span className="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-medium bg-muted text-muted-foreground border border-border/60">
+                <span className="inline-flex items-center rounded-lg px-2.5 py-0.5 text-[11px] font-semibold bg-muted text-muted-foreground border border-border/60">
                   {event.category}
                 </span>
                 {event.distanceText && (
-                  <span className="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-medium bg-brand-blue/10 text-brand-blue dark:text-brand-green border border-brand-blue/20">
+                  <span className="inline-flex items-center rounded-lg px-2.5 py-0.5 text-[11px] font-semibold bg-primary/10 text-primary border border-primary/20">
                     {event.distanceText}
                   </span>
                 )}
               </div>
 
               {/* Title */}
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-snug">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-tight">
                 {event.title}
               </h1>
 
               {/* Date & Location */}
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs sm:text-sm text-muted-foreground pt-0.5 border-t border-border/40">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-1.5 text-xs sm:text-sm text-muted-foreground pt-2 border-t border-border/50">
                 <span className="flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4 text-brand-blue dark:text-brand-green shrink-0" />
+                  <Calendar className="h-4 w-4 text-primary shrink-0" />
                   <span>{event.date}</span>
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="h-4 w-4 text-brand-blue dark:text-brand-green shrink-0" />
+                  <MapPin className="h-4 w-4 text-primary shrink-0" />
                   <span>{event.location}</span>
                 </span>
               </div>
             </div>
 
-            {/* Navigation Tabs Bar (Overview, Results, Gallery, Articles, Rules) */}
+            {/* Navigation Tabs Bar */}
             <EventTabsNav
               activeTab={activeTab}
               onChangeTab={setActiveTab}
@@ -155,12 +155,12 @@ export default function EventDetailPage({
               articleCount={event.articles?.length || 3}
             />
 
-            {/* TAB 1: OVERVIEW PANEL (Full DOM for SEO) */}
+            {/* TAB 1: OVERVIEW PANEL */}
             <div
               role="tabpanel"
               id="panel-overview"
               aria-labelledby="tab-overview"
-              className={activeTab === "overview" ? "block space-y-3" : "hidden"}
+              className={activeTab === "overview" ? "block space-y-4" : "hidden"}
             >
               {/* Event Overview Card */}
               <EventOverview event={event} />

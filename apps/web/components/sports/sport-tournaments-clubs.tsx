@@ -12,59 +12,59 @@ export interface SportTournamentsClubsProps {
 
 const BADMINTON_TOURNAMENTS: EventData[] = [
   {
-    id: "tourney-1",
-    title: "Giải Cầu Lông Phong Trào TP.HCM Mở Rộng 2026",
+    id: "hanoi-badminton-open-2026",
+    title: "Giải Cầu Lông Hà Nội Open 2026 - Mở Rộng",
     category: "Cầu lông",
-    distanceText: "64 Cặp Vận Động Viên",
+    distanceText: "Tổng giải: 120.000.000đ",
     badge: {
       type: "hot",
-      text: "Nổi bật",
+      text: "Đang Mở Đơn",
     },
-    date: "25/08 - 28/08/2026",
-    location: "Nhà Thi Đấu Phú Thọ, Q.11",
-    price: "50.000.000đ",
-    priceSubtext: "Tổng giải thưởng",
+    date: "20 - 22 Tháng 10, 2026",
+    location: "Nhà Thi Đấu Trịnh Hoài Đức, Hà Nội",
+    price: "250.000đ",
+    priceSubtext: "Lệ phí từ",
     imageUrl: "/images/activities/badminton-banner.png",
-    buttonText: "Xem chi tiết",
+    buttonText: "Đăng ký",
   },
   {
     id: "tourney-2",
-    title: "Giải Cầu Lông Đôi Nam Nữ Doanh Nghiệp Trẻ",
+    title: "Cúp Doanh Nghiệp Trẻ 2026",
     category: "Cầu lông",
-    distanceText: "32 Cặp Đôi",
+    distanceText: "Tổng giải: 20.000.000đ",
     badge: {
       type: "recommended",
       text: "Đề xuất",
     },
     date: "12/09/2026",
-    location: "Sân VNB Sports Center, Tân Bình",
-    price: "20.000.000đ",
-    priceSubtext: "Tổng giải thưởng",
+    location: "VNB Sports Center, Tân Bình",
+    price: "300.000đ",
+    priceSubtext: "Lệ phí từ",
     imageUrl: "/images/activities/badminton-banner.png",
-    buttonText: "Xem chi tiết",
+    buttonText: "Đăng ký",
   },
   {
     id: "tourney-3",
-    title: "Giải Cầu Lông Cúp Khang An Open 2026",
+    title: "Cúp Cầu Lông Khang An Open",
     category: "Cầu lông",
-    distanceText: "48 Cặp Vận Động Viên",
+    distanceText: "Tổng giải: 35.000.000đ",
     badge: {
       type: "hot",
       text: "Nổi bật",
     },
     date: "05/10 - 08/10/2026",
-    location: "CLB Cầu Lông Khang An, Thủ Đức",
-    price: "35.000.000đ",
-    priceSubtext: "Tổng giải thưởng",
+    location: "Khang An Club, Thủ Đức",
+    price: "280.000đ",
+    priceSubtext: "Lệ phí từ",
     imageUrl: "/images/explore_sports/gridy-badminton.avif",
-    buttonText: "Xem chi tiết",
+    buttonText: "Đăng ký",
   },
 ];
 
 const BADMINTON_CLUBS: ClubData[] = [
   {
     id: "club-thumpers",
-    name: "CLB Cầu Lông Thủ Đức Thumpers",
+    name: "CLB Cầu Lông Thủ Đức",
     coverUrl: "/images/activities/badminton-hero.png",
     logoUrl: "/images/explore_sports/gridy-badminton.avif",
     logoText: "TDTH",
@@ -78,7 +78,7 @@ const BADMINTON_CLUBS: ClubData[] = [
   },
   {
     id: "club-vnb-smashers",
-    name: "CLB Cầu Lông VNB Smashers",
+    name: "CLB Cầu Lông VNB",
     coverUrl: "/images/activities/badminton-banner.png",
     logoUrl: "/images/explore_sports/gridy-badminton.avif",
     logoText: "VNBS",
@@ -92,7 +92,7 @@ const BADMINTON_CLUBS: ClubData[] = [
   },
   {
     id: "club-phu-tho-star",
-    name: "CLB Cầu Lông Phú Thọ Star",
+    name: "CLB Cầu Lông Phú Thọ",
     coverUrl: "/images/explore_sports/gridy-badminton.avif",
     logoUrl: "/images/activities/badminton-hero.png",
     logoText: "PTST",
@@ -104,20 +104,34 @@ const BADMINTON_CLUBS: ClubData[] = [
     location: "Quận 11, TP. HCM",
     sport: "Cầu lông",
   },
+  {
+    id: "club-tada-badminton",
+    name: "CLB Cầu Lông Tada Q.7",
+    coverUrl: "/images/clubs/tada-club.png",
+    logoUrl: "/images/explore_sports/gridy-badminton.avif",
+    logoText: "TADA",
+    isVerified: true,
+    isVip: true,
+    rating: 4.9,
+    reviewCount: 130,
+    memberCount: 220,
+    location: "Quận 7, TP. HCM",
+    sport: "Cầu lông",
+  },
 ];
 
 const PICKLEBALL_TOURNAMENTS: EventData[] = [
   {
     id: "tourney-pb-1",
-    title: "Giải Pickleball Vô Địch TP.HCM Mở Rộng 2026",
+    title: "Giải Pickleball TP.HCM Mở Rộng",
     category: "Pickleball",
-    distanceText: "64 Cặp Vận Động Viên",
+    distanceText: "64 Cặp Đôi",
     badge: {
       type: "hot",
       text: "Nổi bật",
     },
     date: "18/09 - 20/09/2026",
-    location: "Pickleball Club Quận 2, TP. HCM",
+    location: "Pickleball Club Q.2, TP. HCM",
     price: "60.000.000đ",
     priceSubtext: "Tổng giải thưởng",
     imageUrl: "/images/explore_sports/gridy-pickleball.avif",
@@ -125,7 +139,7 @@ const PICKLEBALL_TOURNAMENTS: EventData[] = [
   },
   {
     id: "tourney-pb-2",
-    title: "Giải Pickleball Đôi Nam Nữ Doanh Nhân Trẻ",
+    title: "Cúp Doanh Nhân Trẻ Pickleball",
     category: "Pickleball",
     distanceText: "32 Cặp Đôi",
     badge: {
@@ -133,7 +147,7 @@ const PICKLEBALL_TOURNAMENTS: EventData[] = [
       text: "Đề xuất",
     },
     date: "10/10/2026",
-    location: "Sài Gòn Pickleball Arena, Q.7",
+    location: "Saigon Arena, Q.7",
     price: "30.000.000đ",
     priceSubtext: "Tổng giải thưởng",
     imageUrl: "/images/activities/pickleball-banner.png",
@@ -141,15 +155,15 @@ const PICKLEBALL_TOURNAMENTS: EventData[] = [
   },
   {
     id: "tourney-pb-3",
-    title: "Giải Pickleball Khang An Open 2026",
+    title: "Cúp Pickleball Khang An Open",
     category: "Pickleball",
-    distanceText: "48 Cặp Vận Động Viên",
+    distanceText: "48 Cặp Đôi",
     badge: {
       type: "hot",
       text: "Nổi bật",
     },
     date: "15/11 - 18/11/2026",
-    location: "Sân Pickleball Khang An, Thủ Đức",
+    location: "Khang An Club, Thủ Đức",
     price: "40.000.000đ",
     priceSubtext: "Tổng giải thưởng",
     imageUrl: "/images/explore_sports/gridy-pickleball.avif",
@@ -160,7 +174,7 @@ const PICKLEBALL_TOURNAMENTS: EventData[] = [
 const PICKLEBALL_CLUBS: ClubData[] = [
   {
     id: "club-pb-q2",
-    name: "CLB Pickleball Quận 2 Stars",
+    name: "CLB Pickleball Quận 2",
     coverUrl: "/images/activities/pickleball-banner.png",
     logoUrl: "/images/explore_sports/gridy-pickleball.avif",
     logoText: "PBQ2",
@@ -174,7 +188,7 @@ const PICKLEBALL_CLUBS: ClubData[] = [
   },
   {
     id: "club-pb-saigon",
-    name: "CLB Pickleball Sài Gòn Elite",
+    name: "CLB Pickleball Sài Gòn",
     coverUrl: "/images/explore_sports/gridy-pickleball.avif",
     logoUrl: "/images/activities/pickleball-banner.png",
     logoText: "PBSE",
@@ -188,7 +202,7 @@ const PICKLEBALL_CLUBS: ClubData[] = [
   },
   {
     id: "club-pb-thuduc",
-    name: "CLB Pickleball Thủ Đức Master",
+    name: "CLB Pickleball Thủ Đức",
     coverUrl: "/images/activities/pickleball-banner.png",
     logoUrl: "/images/explore_sports/gridy-pickleball.avif",
     logoText: "PBTD",
@@ -198,6 +212,20 @@ const PICKLEBALL_CLUBS: ClubData[] = [
     reviewCount: 65,
     memberCount: 110,
     location: "Thủ Đức, TP. HCM",
+    sport: "Pickleball",
+  },
+  {
+    id: "club-pb-tanbinh",
+    name: "CLB Pickleball Tân Bình",
+    coverUrl: "/images/clubs/saigon-smash.png",
+    logoUrl: "/images/explore_sports/gridy-pickleball.avif",
+    logoText: "PBTB",
+    isVerified: true,
+    isVip: true,
+    rating: 4.9,
+    reviewCount: 88,
+    memberCount: 145,
+    location: "Tân Bình, TP. HCM",
     sport: "Pickleball",
   },
 ];
@@ -331,30 +359,30 @@ export function SportTournamentsClubs({ sportName = "Cầu Lông" }: SportTourna
   }, [isClubHovered, scrollClub]);
 
   return (
-    <div className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors border-b border-border/40 space-y-10 sm:space-y-12 overflow-hidden">
-      {/* TOURNAMENTS SECTION */}
-      <section id="tournaments" className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6 scroll-mt-24">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-              <Trophy className="w-5 h-5 text-purple-500" />
-              <span>Giải Đấu {sportName} Sắp Diễn Ra</span>
+    <div className="w-full py-5 sm:py-6 bg-background text-foreground transition-colors border-b border-border/40 space-y-8 sm:space-y-10 overflow-hidden">
+      {/* TOURNAMENTS SECTION: 3-Card Standard */}
+      <section id="tournaments" className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4 scroll-mt-24">
+        <div className="flex items-center justify-between gap-4">
+          <div className="space-y-0.5 min-w-0">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2 truncate">
+              <Trophy className="w-5 h-5 text-amber-500 shrink-0" />
+              <span>Giải Đấu & Sự Kiện</span>
             </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground pt-1">
-              Đăng ký tham gia tranh tài tại các giải đấu cầu lông phong trào lớn nhất.
+            <p className="text-xs sm:text-sm text-muted-foreground font-normal line-clamp-1">
+              Tranh tài và tích lũy điểm xếp hạng tại các giải đấu {sportName}.
             </p>
           </div>
 
           <Link
-            href="/events"
-            className="group flex items-center gap-1 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors shrink-0"
+            href="/tournaments"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0"
           >
-            <span>Tất cả giải đấu</span>
+            <span>Xem tất cả</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
-        {/* Tournaments Slider */}
+        {/* Tournaments Slider: 3-Card Standard */}
         <div
           className="relative group/carousel"
           onMouseEnter={() => setIsTourneyHovered(true)}
@@ -367,23 +395,27 @@ export function SportTournamentsClubs({ sportName = "Cầu Lông" }: SportTourna
             type="button"
             onClick={() => scrollTourney("left")}
             aria-label="Scroll left"
-            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
+            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
           {/* Continuous Infinite Horizontal Scroll List */}
           <div
             ref={tourneyContainerRef}
             onScroll={handleTourneyScroll}
-            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1"
+            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-1 pb-1 px-1"
           >
             {infiniteTournaments.map((event, index) => (
               <div
                 key={`${event.id}-infinite-${index}`}
                 className="w-[80vw] sm:w-[calc((100%-12px)/2)] lg:w-[calc((100%-24px)/3)] shrink-0 snap-start"
               >
-                <EventCard event={event} className="h-full" />
+                <EventCard
+                  event={event}
+                  href={`/tournaments/${event.id}`}
+                  className="h-full"
+                />
               </div>
             ))}
           </div>
@@ -393,36 +425,36 @@ export function SportTournamentsClubs({ sportName = "Cầu Lông" }: SportTourna
             type="button"
             onClick={() => scrollTourney("right")}
             aria-label="Scroll right"
-            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100 sm:opacity-100"
+            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100 sm:opacity-100"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       </section>
 
-      {/* CLUBS SECTION */}
-      <section id="clubs" className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6 scroll-mt-24">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-              <UserCheck className="w-5 h-5 text-emerald-500" />
-              <span>Câu Lạc Bộ {sportName} Nổi Bật</span>
+      {/* CLUBS SECTION: 4-Card Standard */}
+      <section id="clubs" className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4 scroll-mt-24">
+        <div className="flex items-center justify-between gap-4">
+          <div className="space-y-0.5 min-w-0">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2 truncate">
+              <UserCheck className="w-5 h-5 text-indigo-500 shrink-0" />
+              <span>Câu Lạc Bộ Hoạt Động</span>
             </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground pt-1">
-              Gia nhập câu lạc bộ sinh hoạt thường xuyên để rèn luyện kỹ năng mỗi tuần.
+            <p className="text-xs sm:text-sm text-muted-foreground font-normal line-clamp-1">
+              Gia nhập câu lạc bộ sinh hoạt định kỳ để nâng cao trình độ.
             </p>
           </div>
 
           <Link
             href="/clubs"
-            className="group flex items-center gap-1 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors shrink-0"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0"
           >
-            <span>Tất cả CLB</span>
+            <span>Xem tất cả</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
-        {/* Clubs Slider */}
+        {/* Clubs Slider: 4-Card Standard */}
         <div
           className="relative group/carousel"
           onMouseEnter={() => setIsClubHovered(true)}
@@ -435,21 +467,21 @@ export function SportTournamentsClubs({ sportName = "Cầu Lông" }: SportTourna
             type="button"
             onClick={() => scrollClub("left")}
             aria-label="Scroll left"
-            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
+            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
           {/* Continuous Infinite Horizontal Scroll List */}
           <div
             ref={clubContainerRef}
             onScroll={handleClubScroll}
-            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1"
+            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-1 pb-1 px-1"
           >
             {infiniteClubs.map((club, index) => (
               <div
                 key={`${club.id}-infinite-${index}`}
-                className="w-[80vw] sm:w-[calc((100%-12px)/2)] lg:w-[calc((100%-24px)/3)] shrink-0 snap-start"
+                className="w-[80vw] sm:w-[calc((100%-12px)/2)] lg:w-[calc((100%-36px)/4)] shrink-0 snap-start"
               >
                 <ClubCard club={club} className="h-full" />
               </div>
@@ -461,15 +493,12 @@ export function SportTournamentsClubs({ sportName = "Cầu Lông" }: SportTourna
             type="button"
             onClick={() => scrollClub("right")}
             aria-label="Scroll right"
-            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100 sm:opacity-100"
+            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100 sm:opacity-100"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       </section>
     </div>
   );
 }
-
-
-

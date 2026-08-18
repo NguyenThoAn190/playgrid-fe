@@ -57,56 +57,56 @@ export function EventDynamicSections({ sections = [] }: EventDynamicSectionsProp
             <section
               key={section.id}
               id={section.id}
-              className="bg-card border border-border/80 rounded-3xl p-4 sm:p-5 space-y-3.5"
+              className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-4 shadow-2xs"
             >
               {/* Section Header */}
-              <header className="flex items-center justify-between border-b border-border/60 pb-3">
+              <header className="flex items-center justify-between border-b border-border/50 pb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="size-8 rounded-xl bg-muted/60 border border-border/60 flex items-center justify-center shrink-0 shadow-2xs">
+                  <div className="size-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 shadow-2xs">
                     {getSectionIcon(section.type)}
                   </div>
-                  <h2 className="text-sm sm:text-base font-bold text-foreground">
+                  <h3 className="text-base sm:text-lg font-bold text-foreground">
                     {section.title}
-                  </h2>
+                  </h3>
                 </div>
               </header>
 
               {/* Section Description Content */}
               {section.content && (
-                <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed">
+                <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed font-normal">
                   {section.content}
                 </p>
               )}
 
               {/* 1. Schedule Timeline Table */}
               {section.type === "schedule" && section.scheduleTimeline && (
-                <div className="overflow-x-auto rounded-2xl border border-border/60 bg-card">
-                  <table className="w-full text-left text-xs">
-                    <thead className="bg-muted/40 text-[10.5px] font-medium text-muted-foreground uppercase tracking-wider border-b border-border/50">
+                <div className="overflow-x-auto rounded-xl border border-border/60 bg-card">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead className="bg-muted/50 text-muted-foreground font-semibold border-b border-border/60">
                       <tr>
-                        <th className="p-2.5 sm:px-3.5 whitespace-nowrap">{isEn ? "Time" : "Thời gian"}</th>
-                        <th className="p-2.5 sm:px-3.5">{isEn ? "Activity" : "Hoạt động & Lịch trình"}</th>
-                        <th className="p-2.5 sm:px-3.5 hidden sm:table-cell">{isEn ? "Location" : "Địa điểm"}</th>
+                        <th className="py-3 px-3.5 whitespace-nowrap">{isEn ? "Time" : "Thời gian"}</th>
+                        <th className="py-3 px-3.5">{isEn ? "Activity" : "Hoạt động & Lịch trình"}</th>
+                        <th className="py-3 px-3.5 hidden sm:table-cell">{isEn ? "Location" : "Địa điểm"}</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-border/30">
+                    <tbody className="divide-y divide-border/40 text-foreground">
                       {section.scheduleTimeline.map((item, idx) => (
-                        <tr key={idx} className="hover:bg-muted/15 transition-colors">
-                          <td className="p-2.5 sm:px-3.5 font-medium text-brand-blue dark:text-brand-green whitespace-nowrap align-top font-mono">
+                        <tr key={idx} className="hover:bg-muted/20 transition-colors">
+                          <td className="py-2.5 px-3.5 font-semibold text-primary whitespace-nowrap align-top font-mono text-xs">
                             <time>{item.time}</time>
                           </td>
-                          <td className="p-2.5 sm:px-3.5 text-foreground align-top">
-                            <div className="font-medium text-xs text-foreground/90">{item.activity}</div>
+                          <td className="py-2.5 px-3.5 text-foreground align-top">
+                            <div className="font-semibold text-xs sm:text-sm text-foreground">{item.activity}</div>
                             {item.note && (
-                              <div className="text-[10.5px] text-muted-foreground font-normal mt-0.5">
+                              <div className="text-xs text-muted-foreground font-normal mt-0.5">
                                 {item.note}
                               </div>
                             )}
-                            <div className="sm:hidden text-[10.5px] text-muted-foreground font-normal mt-0.5">
+                            <div className="sm:hidden text-xs text-muted-foreground font-normal mt-0.5">
                               📍 {item.location}
                             </div>
                           </td>
-                          <td className="p-2.5 sm:px-3.5 text-muted-foreground font-normal align-top hidden sm:table-cell">
+                          <td className="py-2.5 px-3.5 text-muted-foreground font-normal align-top hidden sm:table-cell text-xs">
                             {item.location}
                           </td>
                         </tr>
@@ -120,25 +120,25 @@ export function EventDynamicSections({ sections = [] }: EventDynamicSectionsProp
               {section.type === "size_chart" && (
                 <div className="space-y-3.5">
                   {section.sizeChart && (
-                    <div className="overflow-x-auto rounded-2xl border border-border/60 bg-card">
-                      <table className="w-full text-center text-xs">
-                        <thead className="bg-muted/40 text-[10.5px] font-medium text-muted-foreground uppercase tracking-wider border-b border-border/50">
+                    <div className="overflow-x-auto rounded-xl border border-border/60 bg-card">
+                      <table className="w-full text-center text-xs border-collapse">
+                        <thead className="bg-muted/50 text-muted-foreground font-semibold border-b border-border/60">
                           <tr>
-                            <th className="p-2 sm:px-3">{isEn ? "Size" : "Kích cỡ"}</th>
-                            <th className="p-2 sm:px-3">{isEn ? "Chest" : "Vòng ngực"}</th>
-                            <th className="p-2 sm:px-3">{isEn ? "Height" : "Chiều cao"}</th>
-                            <th className="p-2 sm:px-3">{isEn ? "Weight" : "Cân nặng"}</th>
+                            <th className="py-3 px-3">{isEn ? "Size" : "Kích cỡ"}</th>
+                            <th className="py-3 px-3">{isEn ? "Chest" : "Vòng ngực"}</th>
+                            <th className="py-3 px-3">{isEn ? "Height" : "Chiều cao"}</th>
+                            <th className="py-3 px-3">{isEn ? "Weight" : "Cân nặng"}</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-border/30">
+                        <tbody className="divide-y divide-border/40 text-foreground">
                           {section.sizeChart.map((row) => (
-                            <tr key={row.size} className="hover:bg-muted/15 transition-colors">
-                              <td className="p-2 sm:px-3 font-semibold text-brand-blue dark:text-brand-green font-mono">
+                            <tr key={row.size} className="hover:bg-muted/20 transition-colors">
+                              <td className="py-2.5 px-3 font-bold text-primary font-mono text-xs">
                                 {row.size}
                               </td>
-                              <td className="p-2 sm:px-3 text-muted-foreground font-normal">{row.chest}</td>
-                              <td className="p-2 sm:px-3 text-muted-foreground font-normal">{row.height}</td>
-                              <td className="p-2 sm:px-3 text-muted-foreground font-normal">{row.weight}</td>
+                              <td className="py-2.5 px-3 text-muted-foreground font-normal text-xs">{row.chest}</td>
+                              <td className="py-2.5 px-3 text-muted-foreground font-normal text-xs">{row.height}</td>
+                              <td className="py-2.5 px-3 text-muted-foreground font-normal text-xs">{row.weight}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -156,7 +156,7 @@ export function EventDynamicSections({ sections = [] }: EventDynamicSectionsProp
                         className="object-cover"
                       />
                       {section.imageCaption && (
-                        <figcaption className="absolute bottom-2 left-2 px-2.5 py-1 rounded-md text-[10.5px] font-medium bg-background/90 text-foreground border border-border shadow-xs">
+                        <figcaption className="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg text-xs font-medium bg-background/90 text-foreground border border-border shadow-xs">
                           {section.imageCaption}
                         </figcaption>
                       )}
@@ -168,18 +168,18 @@ export function EventDynamicSections({ sections = [] }: EventDynamicSectionsProp
               {/* 3. Rules & Guidelines */}
               {section.type === "rules" && (
                 <div className="space-y-3">
-                  <ul className="space-y-2 text-xs sm:text-sm text-foreground/85">
+                  <ul className="space-y-2 text-xs sm:text-sm text-foreground/90 font-normal">
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="size-4 text-emerald-500 shrink-0 mt-0.5" />
-                      <span>Bắt buộc sử dụng <strong>Phao bơi an toàn (Safety Buoy)</strong> cho mọi cự ly bơi biển.</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                      <span>Bắt buộc sử dụng <strong className="font-semibold">Phao bơi an toàn (Safety Buoy)</strong> cho mọi cự ly bơi biển.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="size-4 text-emerald-500 shrink-0 mt-0.5" />
-                      <span>Đeo <strong>Mũ bơi chính thức</strong> do BTC cung cấp (màu sắc theo từng cự ly).</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                      <span>Đeo <strong className="font-semibold">Mũ bơi chính thức</strong> do BTC cung cấp (màu sắc theo từng cự ly).</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="size-4 text-emerald-500 shrink-0 mt-0.5" />
-                      <span>Gắn <strong>Timing Chip</strong> ở cổ chân trái trong suốt thời gian thi đấu để tính thành tích.</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                      <span>Gắn <strong className="font-semibold">Timing Chip</strong> ở cổ chân trái trong suốt thời gian thi đấu để tính thành tích.</span>
                     </li>
                   </ul>
 
@@ -193,7 +193,7 @@ export function EventDynamicSections({ sections = [] }: EventDynamicSectionsProp
                         className="object-cover"
                       />
                       {section.imageCaption && (
-                        <figcaption className="absolute bottom-2 left-2 px-2.5 py-1 rounded-md text-[10.5px] font-medium bg-background/90 text-foreground border border-border shadow-xs">
+                        <figcaption className="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg text-xs font-medium bg-background/90 text-foreground border border-border shadow-xs">
                           {section.imageCaption}
                         </figcaption>
                       )}
@@ -209,25 +209,25 @@ export function EventDynamicSections({ sections = [] }: EventDynamicSectionsProp
                     <a
                       key={file.id}
                       href={file.url}
-                      className="p-3 rounded-2xl border border-border/70 bg-card hover:border-brand-blue/60 transition-all flex items-center justify-between gap-2 group cursor-pointer shadow-2xs"
+                      className="p-3.5 rounded-xl sm:rounded-2xl border border-border/70 bg-muted/30 hover:border-primary/60 transition-all flex items-center justify-between gap-2 group cursor-pointer shadow-2xs"
                       title={`Tải xuống ${file.name}`}
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
                         <div className="size-8 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
-                          <FileText className="size-4" />
+                          <FileText className="w-4 h-4" />
                         </div>
                         <div className="min-w-0">
-                          <div className="font-semibold text-xs text-foreground group-hover:text-brand-blue truncate">
+                          <div className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary truncate">
                             {file.name}
                           </div>
-                          <div className="text-[10px] text-muted-foreground mt-0.5">
+                          <div className="text-xs text-muted-foreground mt-0.5 font-normal">
                             {file.size} • PDF Document
                           </div>
                         </div>
                       </div>
 
-                      <div className="size-7 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:bg-brand-blue group-hover:text-white transition-all shrink-0">
-                        <Download className="size-3.5" />
+                      <div className="size-7 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-all shrink-0">
+                        <Download className="w-3.5 h-3.5" />
                       </div>
                     </a>
                   ))}
@@ -255,7 +255,7 @@ export function EventDynamicSections({ sections = [] }: EventDynamicSectionsProp
           onClick={() => setIsExpanded(!isExpanded)}
           aria-expanded={isExpanded}
           aria-controls="event-dynamic-sections-content"
-          className="h-9 px-5 rounded-full border-border/80 bg-card hover:bg-muted/70 text-xs font-bold text-brand-blue dark:text-brand-green hover:text-brand-blue cursor-pointer transition-all shadow-xs hover:border-brand-blue/40 flex items-center gap-1.5 mx-auto"
+          className="h-9 px-5 rounded-xl border-border/80 bg-card hover:bg-muted/70 text-xs font-semibold text-primary hover:text-primary cursor-pointer transition-all shadow-2xs hover:border-primary/40 flex items-center gap-1.5 mx-auto"
         >
           <span>
             {isExpanded
@@ -267,7 +267,7 @@ export function EventDynamicSections({ sections = [] }: EventDynamicSectionsProp
               : "Xem thêm chi tiết sự kiện & lịch trình"}
           </span>
           <ChevronDown
-            className={`size-3.5 ml-1 transition-transform duration-300 ${
+            className={`w-3.5 h-3.5 ml-1 transition-transform duration-300 ${
               isExpanded ? "rotate-180" : ""
             }`}
           />

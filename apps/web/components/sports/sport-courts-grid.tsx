@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { MapPin, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { CourtCard, CourtData } from "@/components/courts/court-card";
 
@@ -12,7 +12,7 @@ export interface SportCourtsGridProps {
 const BADMINTON_COURTS: CourtData[] = [
   {
     id: "khang-an-badminton",
-    name: "Clb Cầu Lông Khang An",
+    name: "CLB Cầu Lông Khang An",
     location: "Thủ Đức, TP. HCM",
     distance: "1.2 km",
     rating: 4.9,
@@ -48,7 +48,7 @@ const BADMINTON_COURTS: CourtData[] = [
   },
   {
     id: "viettel-badminton",
-    name: "Sân Cầu Lông Viettel Hùng Vương",
+    name: "Sân Cầu Lông Viettel",
     location: "Quận 10, TP. HCM",
     distance: "4.8 km",
     rating: 4.9,
@@ -172,24 +172,23 @@ export function SportCourtsGrid({ sportName = "Cầu Lông" }: SportCourtsGridPr
   }, [isHovered, scroll]);
 
   return (
-    <section id="courts" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden border-b border-border/40 scroll-mt-24">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+    <section id="courts" className="w-full py-5 sm:py-6 bg-background text-foreground transition-colors overflow-hidden border-b border-border/40 scroll-mt-24">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/50 pb-4">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <span>Sân {sportName} Nổi Bật Gần Bạn</span>
+        <div className="flex items-center justify-between gap-4">
+          <div className="space-y-0.5 min-w-0">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2 truncate">
+              <MapPin className="w-5 h-5 text-primary shrink-0" />
+              <span>Sân {sportName} Gần Bạn</span>
             </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground pt-1">
-              Đặt lịch sân tiêu chuẩn, thảm êm, đầy đủ hệ thống đèn chiếu sáng & máy lạnh.
+            <p className="text-xs sm:text-sm text-muted-foreground font-normal line-clamp-1">
+              Sân thảm tiêu chuẩn, đầy đủ hệ thống đèn chiếu sáng & tiện ích.
             </p>
           </div>
 
-          {/* View All Link matching Home Page style */}
           <Link
-            href={sportName.toLowerCase().includes("pickleball") ? "/pickleball" : "/badminton/venue"}
-            className="group inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors shrink-0 self-start sm:self-auto"
+            href={sportName.toLowerCase().includes("pickleball") ? "/pickleball/venue" : "/badminton/venue"}
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0"
           >
             <span>Xem tất cả</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -209,16 +208,16 @@ export function SportCourtsGrid({ sportName = "Cầu Lông" }: SportCourtsGridPr
             type="button"
             onClick={() => scroll("left")}
             aria-label="Scroll left"
-            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
+            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
           {/* Continuous Infinite Horizontal Scroll List */}
           <div
             ref={scrollContainerRef}
             onScroll={handleScroll}
-            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-3 pb-3 px-1"
+            className="flex items-stretch overflow-x-auto scrollbar-none snap-x snap-mandatory gap-3 pt-1 pb-1 px-1"
           >
             {infiniteCourts.map((court, index) => (
               <div
@@ -235,16 +234,12 @@ export function SportCourtsGrid({ sportName = "Cầu Lông" }: SportCourtsGridPr
             type="button"
             onClick={() => scroll("right")}
             aria-label="Scroll right"
-            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100 sm:opacity-100"
+            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100 sm:opacity-100"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       </div>
     </section>
   );
 }
-
-
-
-

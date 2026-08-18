@@ -314,6 +314,93 @@ export function getFAQJsonLd(faqs: FAQItem[]) {
 }
 
 /**
+ * 10. SportsTournament Schema.org
+ */
+export function getTournamentJsonLd(tournament: {
+  id: string;
+  title: string;
+  shortTitle: string;
+  description: string;
+  bannerImage: string;
+  startDate: string;
+  endDate: string;
+  sportLabel: string;
+  totalPrizePool: string;
+  venueDetails: {
+    name: string;
+    address: string;
+    district: string;
+    city: string;
+    coordinates: { lat: number; lng: number };
+    phone: string;
+  };
+  organizer: {
+    name: string;
+    phone: string;
+    email: string;
+  };
+  divisions: {
+    name: string;
+    price: number;
+    formatLabel: string;
+    levelRating: string;
+    status: string;
+  }[];
+}, locale: string = "vi") {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["SportsEvent", "SportsTournament"],
+    "@id": `${SITE_URL}/${locale}/tournaments/${tournament.id}#tournament`,
+    name: tournament.title,
+    alternateName: tournament.shortTitle,
+    description: tournament.description,
+    url: `${SITE_URL}/${locale}/tournaments/${tournament.id}`,
+    image: [tournament.bannerImage],
+    startDate: tournament.startDate,
+    endDate: tournament.endDate,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    sport: tournament.sportLabel,
+    location: {
+      "@type": "Place",
+      name: tournament.venueDetails.name,
+      telephone: tournament.venueDetails.phone,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: tournament.venueDetails.address,
+        addressLocality: tournament.venueDetails.district,
+        addressRegion: tournament.venueDetails.city,
+        addressCountry: "VN",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: tournament.venueDetails.coordinates.lat,
+        longitude: tournament.venueDetails.coordinates.lng,
+      },
+    },
+    organizer: {
+      "@type": "SportsOrganization",
+      name: tournament.organizer.name,
+      url: SITE_URL,
+      telephone: tournament.organizer.phone,
+      email: tournament.organizer.email,
+    },
+    offers: tournament.divisions.map((div) => ({
+      "@type": "Offer",
+      name: div.name,
+      description: `Lệ phí thi đấu ${div.formatLabel} - ${div.levelRating}`,
+      price: div.price,
+      priceCurrency: "VND",
+      availability:
+        div.status === "sold_out"
+          ? "https://schema.org/SoldOut"
+          : "https://schema.org/InStock",
+      url: `${SITE_URL}/${locale}/tournaments/${tournament.id}`,
+    })),
+  };
+}
+
+/**
  * React Component for Rendering JSON-LD Script Tag
  */
 export function JsonLdScript({

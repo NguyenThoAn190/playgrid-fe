@@ -40,13 +40,13 @@ export function VenueRulesPolicies({ venue }: VenueRulesPoliciesProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       {/* Venue Rules Card */}
-      <Card className="rounded-3xl border border-border/80 bg-card p-4 sm:p-5 space-y-3 shadow-sm">
+      <Card className="rounded-2xl border border-border/80 bg-card p-4 sm:p-5 space-y-3 shadow-2xs">
         <div>
-          <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground flex items-center gap-2">
+          <h2 className="text-base sm:text-lg font-bold tracking-tight text-foreground flex items-center gap-2">
             <ShieldAlert className="size-5 text-amber-500" />
             {tRules("rules_title")}
-          </h3>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          </h2>
+          <p className="text-xs text-muted-foreground font-normal mt-0.5">
             {tRules("rules_subtitle")}
           </p>
         </div>
@@ -56,7 +56,7 @@ export function VenueRulesPolicies({ venue }: VenueRulesPoliciesProps) {
             const displayRule = isEn && RULES_EN_MAP[rule] ? RULES_EN_MAP[rule] : rule;
 
             return (
-              <li key={idx} className="flex items-start gap-2.5 text-xs text-foreground/90 leading-relaxed">
+              <li key={idx} className="flex items-start gap-2.5 text-xs text-foreground/90 font-normal leading-relaxed">
                 <span className="size-5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
                   {idx + 1}
                 </span>
@@ -68,13 +68,13 @@ export function VenueRulesPolicies({ venue }: VenueRulesPoliciesProps) {
       </Card>
 
       {/* Cancellation & Refund Policy Card */}
-      <Card className="rounded-3xl border border-border/80 bg-card p-4 sm:p-5 space-y-3 shadow-sm">
+      <Card className="rounded-2xl border border-border/80 bg-card p-4 sm:p-5 space-y-3 shadow-2xs">
         <div>
-          <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground flex items-center gap-2">
+          <h2 className="text-base sm:text-lg font-bold tracking-tight text-foreground flex items-center gap-2">
             <RefreshCw className="size-5 text-emerald-500" />
             {tRules("cancellation_title")}
-          </h3>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          </h2>
+          <p className="text-xs text-muted-foreground font-normal mt-0.5">
             {isEn
               ? "Free cancellation up to 6 hours before slot start time on PlayGrid"
               : venue.cancellationPolicy.description}
@@ -86,7 +86,7 @@ export function VenueRulesPolicies({ venue }: VenueRulesPoliciesProps) {
             const displayPoint = isEn && POLICY_EN_MAP[point] ? POLICY_EN_MAP[point] : point;
 
             return (
-              <li key={idx} className="flex items-start gap-2.5 text-xs text-foreground/90 leading-relaxed">
+              <li key={idx} className="flex items-start gap-2.5 text-xs text-foreground/90 font-normal leading-relaxed">
                 <CheckCircle2 className="size-4 text-emerald-500 shrink-0 mt-0.5" />
                 <span>{displayPoint}</span>
               </li>

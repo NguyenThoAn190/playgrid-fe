@@ -122,7 +122,7 @@ export function FeaturedCommunitySection() {
 
   return (
     <section className="w-full py-6 sm:py-8 bg-background text-foreground transition-colors border-t border-border/40 overflow-hidden">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
 
         {/* Header Row */}
         <div className="flex items-center justify-between">
@@ -133,7 +133,7 @@ export function FeaturedCommunitySection() {
 
           <Link
             href="/community"
-            className="group flex items-center gap-1 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors shrink-0"
+            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0"
           >
             <span>{getT("view_all", "Khám phá cộng đồng")}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -144,12 +144,12 @@ export function FeaturedCommunitySection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch">
 
           {/* FEATURED POST (#1 Large Card) */}
-          <div className="lg:col-span-7 rounded-2xl bg-card border border-border/80 p-5 sm:p-6 shadow-sm flex flex-col justify-between hover:border-border transition-all">
+          <div className="lg:col-span-7 rounded-2xl bg-card border border-border/80 p-5 sm:p-6 shadow-2xs flex flex-col justify-between hover:border-border transition-all">
             <div className="space-y-4">
               {/* Author Info */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border border-border">
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 border border-border/80">
                     <Image
                       src={featuredPost.authorAvatar}
                       alt={featuredPost.authorName}
@@ -164,10 +164,10 @@ export function FeaturedCommunitySection() {
                         {featuredPost.authorName}
                       </p>
                       {featuredPost.isVerified && (
-                        <CheckCircle2 className="w-4 h-4 text-blue-500 fill-blue-500/10 shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-primary fill-primary/10 shrink-0" />
                       )}
                     </div>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground font-normal">
                       {featuredPost.authorHandle} • {featuredPost.timeAgo}
                     </p>
                   </div>
@@ -176,10 +176,10 @@ export function FeaturedCommunitySection() {
 
               {/* Title & Body Content */}
               <div className="space-y-2">
-                <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer">
+                <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors cursor-pointer">
                   {featuredPost.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                <p className="text-xs sm:text-sm text-foreground/90 font-normal leading-relaxed">
                   {featuredPost.content}
                 </p>
               </div>
@@ -199,7 +199,7 @@ export function FeaturedCommunitySection() {
             </div>
 
             {/* Interaction Bar */}
-            <div className="flex items-center justify-between pt-4 mt-4 border-t border-border/50 text-xs sm:text-sm text-muted-foreground">
+            <div className="flex items-center justify-between pt-4 mt-4 border-t border-border/50 text-xs sm:text-sm text-muted-foreground font-medium">
               <div className="flex items-center gap-4 sm:gap-6">
                 {/* Like Button */}
                 <button
@@ -246,11 +246,11 @@ export function FeaturedCommunitySection() {
                 type="button"
                 aria-label="Lưu bài viết"
                 onClick={() => toggleSave(featuredPost.id)}
-                className={`p-1.5 rounded-lg hover:bg-muted transition-colors cursor-pointer ${savedPostIds[featuredPost.id] ? "text-blue-600 dark:text-blue-400" : ""
+                className={`p-1.5 rounded-lg hover:bg-muted transition-colors cursor-pointer ${savedPostIds[featuredPost.id] ? "text-primary" : ""
                   }`}
               >
                 <Bookmark
-                  className={`w-4 h-4 ${savedPostIds[featuredPost.id] ? "fill-blue-600 dark:fill-blue-400" : ""
+                  className={`w-4 h-4 ${savedPostIds[featuredPost.id] ? "fill-primary text-primary" : ""
                     }`}
                 />
               </button>
@@ -264,12 +264,12 @@ export function FeaturedCommunitySection() {
               return (
                 <div
                   key={post.id}
-                  className="group rounded-2xl bg-card border border-border/80 p-4 shadow-sm hover:border-border transition-all flex flex-col justify-between space-y-3"
+                  className="group rounded-2xl bg-card border border-border/80 p-4 shadow-2xs hover:border-border transition-all flex flex-col justify-between space-y-3"
                 >
                   {/* Top Author Info */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
-                      <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-border">
+                      <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-border/80">
                         <Image
                           src={post.authorAvatar}
                           alt={post.authorName}
@@ -282,7 +282,7 @@ export function FeaturedCommunitySection() {
                         <p className="text-xs font-bold text-foreground truncate">
                           {post.authorName}
                         </p>
-                        <p className="text-[11px] text-muted-foreground truncate">
+                        <p className="text-[11px] text-muted-foreground truncate font-normal">
                           {post.timeAgo}
                         </p>
                       </div>
@@ -292,10 +292,10 @@ export function FeaturedCommunitySection() {
                   {/* Body Content with Thumbnail */}
                   <div className="flex items-start gap-3 justify-between">
                     <div className="space-y-1 min-w-0 flex-1">
-                      <h3 className="text-xs sm:text-sm font-bold text-foreground line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <h3 className="text-xs sm:text-sm font-bold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
                         {post.title}
                       </h3>
-                      <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2">
+                      <p className="text-[11px] sm:text-xs text-muted-foreground font-normal line-clamp-2">
                         {post.content}
                       </p>
                     </div>
@@ -314,7 +314,7 @@ export function FeaturedCommunitySection() {
                   </div>
 
                   {/* Bottom Stats */}
-                  <div className="flex items-center justify-between pt-2 border-t border-border/40 text-xs text-muted-foreground">
+                  <div className="flex items-center justify-between pt-2 border-t border-border/40 text-xs text-muted-foreground font-medium">
                     <div className="flex items-center gap-4">
                       <button
                         type="button"
@@ -344,7 +344,7 @@ export function FeaturedCommunitySection() {
                       className="hover:text-foreground transition-colors cursor-pointer"
                     >
                       <Bookmark
-                        className={`w-3.5 h-3.5 ${savedPostIds[post.id] ? "fill-blue-600 dark:fill-blue-400 text-blue-600" : ""
+                        className={`w-3.5 h-3.5 ${savedPostIds[post.id] ? "fill-primary text-primary" : ""
                           }`}
                       />
                     </button>

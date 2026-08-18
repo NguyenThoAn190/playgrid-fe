@@ -102,7 +102,7 @@ export function MobileBottomNav() {
     { href: "/", label: t("home"), icon: Home, sectionId: undefined, isExternal: false },
     { href: "/#explore-sports", label: t("explore"), icon: Compass, sectionId: "explore-sports", isExternal: false },
     { href: "/badminton/venue", label: t("courts"), icon: MapPin, sectionId: undefined, isExternal: false },
-    { href: "/events", label: t("tournaments"), icon: Trophy, sectionId: undefined, isExternal: false },
+    { href: "/tournaments", label: t("tournaments"), icon: Trophy, sectionId: undefined, isExternal: false },
     { href: getPaymentUrl({ locale }), label: locale === "en" ? "PlayGrid Pay Hub" : "Cổng thanh toán", icon: CreditCard, sectionId: undefined, isExternal: true },
     { href: "/clubs", label: t("clubs"), icon: Users, sectionId: undefined, isExternal: false },
     { href: "/activities", label: t("activities"), icon: Activity, sectionId: undefined, isExternal: false },

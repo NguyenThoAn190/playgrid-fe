@@ -32,6 +32,7 @@ export interface EventData {
 export interface EventCardProps {
   event: EventData;
   className?: string;
+  href?: string;
 }
 
 export function formatDistanceDisplay(distanceText?: string, distances?: string[]): string | undefined {
@@ -41,7 +42,7 @@ export function formatDistanceDisplay(distanceText?: string, distances?: string[
   return `${distances[0]} - ${distances[distances.length - 1]} (${distances.length} cự ly)`;
 }
 
-export function EventCard({ event, className = "" }: EventCardProps) {
+export function EventCard({ event, className = "", href }: EventCardProps) {
   const tCommon = useTranslations("common");
   const locale = useLocale();
   const [isFavorite, setIsFavorite] = useState(event.isFavorite || false);
@@ -49,21 +50,21 @@ export function EventCard({ event, className = "" }: EventCardProps) {
   const formattedDistance = formatDistanceDisplay(event.distanceText, event.distances);
 
   const getEventTargetUrl = () => {
+    if (href) return href;
     const cat = event.category?.toLowerCase() || "";
     const id = event.id.toLowerCase();
-    if (id.startsWith("tourney-") || cat.includes("giải") || cat.includes("tournament")) {
-      return getPaymentUrl({
-        type: "tournament",
-        orderId: `PG-TRN-${id.replace(/\D/g, "") || "55812"}`,
-        locale,
-      });
-    }
-    if (cat.includes("concert") || cat.includes("âm nhạc") || id.startsWith("concert-")) {
-      return getPaymentUrl({
-        type: "concert",
-        orderId: `PG-CON-${id.replace(/\D/g, "") || "33910"}`,
-        locale,
-      });
+    if (
+      id.includes("hanoi-badminton-open") ||
+      id.includes("saigon-pickleball") ||
+      id.includes("vietnam-tennis") ||
+      id.startsWith("tourney-") ||
+      cat.includes("giải") ||
+      cat.includes("tournament")
+    ) {
+      if (id === "tourney-1" || id === "tourney-2" || id === "tourney-3") {
+        return `/tournaments/hanoi-badminton-open-2026`;
+      }
+      return `/tournaments/${event.id}`;
     }
     return `/events/${event.id}`;
   };
@@ -93,7 +94,7 @@ export function EventCard({ event, className = "" }: EventCardProps) {
             <div>
               {event.badge && (
                 <span
-                  className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-extrabold shadow-xs ${
+                  className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold shadow-xs ${
                     event.badge.type === "hot"
                       ? "bg-red-600 text-white"
                       : "bg-amber-500 text-slate-950"
@@ -134,13 +135,13 @@ export function EventCard({ event, className = "" }: EventCardProps) {
           {/* Distance Text / Tag Badge */}
           {formattedDistance ? (
             <div>
-              <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold ${sportTheme.tagBg}`}>
+              <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] sm:text-[11px] font-medium ${sportTheme.tagBg}`}>
                 {formattedDistance}
               </span>
             </div>
           ) : event.category && (
             <div>
-              <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold ${sportTheme.tagBg}`}>
+              <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[10px] sm:text-[11px] font-medium ${sportTheme.tagBg}`}>
                 {event.category}
               </span>
             </div>
@@ -149,26 +150,26 @@ export function EventCard({ event, className = "" }: EventCardProps) {
           {/* Title Row */}
           {isDirectCheckout ? (
             <a href={targetUrl} className="block min-h-[2.25rem] sm:min-h-[2.75rem]">
-              <h3 className="font-bold text-xs sm:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
+              <h3 className="font-semibold text-xs sm:text-sm md:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
                 {event.title}
               </h3>
             </a>
           ) : (
             <Link href={targetUrl} className="block min-h-[2.25rem] sm:min-h-[2.75rem]">
-              <h3 className="font-bold text-xs sm:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
+              <h3 className="font-semibold text-xs sm:text-sm md:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
                 {event.title}
               </h3>
             </Link>
           )}
 
           {/* Date Row */}
-          <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-muted-foreground font-medium">
+          <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-muted-foreground font-normal">
             <Calendar className="h-3.5 w-3.5 shrink-0 text-muted-foreground/80" />
             <span className="truncate">{event.date}</span>
           </div>
 
           {/* Location Row */}
-          <div className="flex items-start gap-1.5 text-[11px] sm:text-xs text-muted-foreground font-medium">
+          <div className="flex items-start gap-1.5 text-[11px] sm:text-xs text-muted-foreground font-normal">
             <MapPin className="h-3.5 w-3.5 shrink-0 text-muted-foreground/80 mt-0.5" />
             <span className="line-clamp-1">{event.location}</span>
           </div>
@@ -179,19 +180,21 @@ export function EventCard({ event, className = "" }: EventCardProps) {
       <div className="p-3 sm:p-3.5 pt-1 sm:pt-1 flex items-end justify-between gap-2">
         {/* Left Side: Price */}
         <div className="min-w-0">
-          <span className="text-[10px] sm:text-[11px] text-muted-foreground font-medium block leading-none mb-0.5">
+          <span className="text-[10px] sm:text-[11px] text-muted-foreground font-normal block leading-none mb-0.5">
             {event.priceSubtext || "Chỉ từ"}
           </span>
-          <span className="font-extrabold text-sm sm:text-lg text-foreground tracking-tight truncate block">
+          <span className="font-bold text-sm sm:text-base text-foreground tracking-tight truncate block">
             {event.price}
           </span>
         </div>
 
-        {/* Right Side: Blue Action Button */}
+        {/* Right Side: Primary Action Button */}
         {isDirectCheckout ? (
           <a href={targetUrl} className="shrink-0">
             <Button
-              className="h-8 sm:h-9 rounded-xl bg-[#002BCC] hover:bg-[#0022a3] active:bg-[#001a80] text-white font-bold text-[11px] sm:text-xs px-3 sm:px-5 transition-all cursor-pointer shadow-xs border-none"
+              variant="solid"
+              size="card"
+              className="whitespace-nowrap"
             >
               {event.buttonText || (targetUrl.includes("tournament") ? "Đăng ký" : "Mua vé")}
             </Button>
@@ -199,7 +202,9 @@ export function EventCard({ event, className = "" }: EventCardProps) {
         ) : (
           <Link href={targetUrl} className="shrink-0">
             <Button
-              className="h-8 sm:h-9 rounded-xl bg-[#002BCC] hover:bg-[#0022a3] active:bg-[#001a80] text-white font-bold text-[11px] sm:text-xs px-3 sm:px-5 transition-all cursor-pointer shadow-xs border-none"
+              variant="solid"
+              size="card"
+              className="whitespace-nowrap"
             >
               {event.buttonText || "Đăng ký"}
             </Button>

@@ -431,22 +431,22 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
 
   return (
     <section id="leaderboard" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors scroll-mt-24">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-              <BarChart3 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <span>Bảng Xếp Hạng Vận Động Viên {sportName}</span>
+        <div className="flex items-center justify-between gap-4">
+          <div className="space-y-0.5 min-w-0">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2 truncate">
+              <BarChart3 className="w-5 h-5 text-amber-500 shrink-0" />
+              <span>Bảng Xếp Hạng {sportName}</span>
             </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground pt-1">
-              Top các vận động viên và tay vợt phong trào có điểm số cao nhất trên PlayGrid.
+            <p className="text-xs sm:text-sm text-muted-foreground font-normal line-clamp-1">
+              Top các tay vợt phong trào có điểm số cao nhất trên hệ thống.
             </p>
           </div>
 
           <Link
             href="/leaderboard"
-            className="group flex items-center gap-1 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors shrink-0"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0"
           >
             <span>Xem BXH đầy đủ</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -456,7 +456,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
         {/* Main 3-Column Grid Layout matching Home Leaderboard */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch">
           {/* COLUMN 1: Top Ranking List & Category Tabs (Left) */}
-          <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-between rounded-2xl bg-card border border-border/80 p-4 sm:p-5 shadow-xs">
+          <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-between rounded-2xl bg-card border border-border/80 p-4 sm:p-5 shadow-2xs">
             {/* Category Filter Tabs (Tất cả, Đơn, Đôi, Đội / CLB) */}
             <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto pb-3 scrollbar-none border-b border-border/50">
               {CATEGORIES.map((cat) => {
@@ -466,16 +466,13 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
                     key={cat.key}
                     type="button"
                     onClick={() => setActiveCategory(cat.key)}
-                    className={`relative px-3 py-1.5 text-xs sm:text-sm font-medium whitespace-nowrap rounded-lg transition-all duration-200 cursor-pointer ${
+                    className={`relative px-3.5 py-1.5 text-xs sm:text-sm font-medium whitespace-nowrap rounded-xl transition-all duration-200 cursor-pointer ${
                       isActive
-                        ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 font-semibold"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                        ? "text-primary bg-primary/10 border border-primary/20 font-semibold shadow-2xs"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                     }`}
                   >
                     {cat.label}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full" />
-                    )}
                   </button>
                 );
               })}
@@ -485,7 +482,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
               {players.map((player) => (
                 <div
                   key={`${activeCategory}-${player.rank}`}
-                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl hover:bg-accent/40 transition-colors"
+                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl hover:bg-muted/60 transition-colors"
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     {/* Rank Badge */}
@@ -503,14 +500,14 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
                           3
                         </div>
                       ) : (
-                        <span className="text-sm font-semibold text-muted-foreground">
+                        <span className="text-xs font-semibold text-muted-foreground">
                           {player.rank}
                         </span>
                       )}
                     </div>
 
                     {/* Avatar */}
-                    <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 border border-border">
+                    <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 border border-border/80">
                       <Image
                         src={player.avatarUrl}
                         alt={player.name}
@@ -522,17 +519,17 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
 
                     {/* Info */}
                     <div className="min-w-0">
-                      <h4 className="text-sm font-semibold text-foreground truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <h4 className="text-xs sm:text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">
                         {player.name}
                       </h4>
-                      <p className="text-xs text-muted-foreground truncate">
+                      <p className="text-xs text-muted-foreground truncate font-normal">
                         {player.location}
                       </p>
                     </div>
                   </div>
 
                   {/* Points */}
-                  <div className="text-right shrink-0 font-bold text-sm sm:text-base text-blue-600 dark:text-blue-400 pl-2" suppressHydrationWarning>
+                  <div className="text-right shrink-0 font-bold text-xs sm:text-sm text-primary pl-2" suppressHydrationWarning>
                     {formatPoints(player.points)}
                   </div>
                 </div>
@@ -559,7 +556,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
             <div className="relative z-10 p-5 sm:p-6 flex flex-col justify-between flex-1">
               {/* Rank Tag Header */}
               <div className="flex justify-end">
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-amber-400/90 text-amber-950 font-extrabold text-sm shadow-xs">
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-amber-400/90 text-amber-950 font-extrabold text-xs shadow-xs">
                   #1
                 </span>
               </div>
@@ -570,7 +567,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
                   {topPlayer.name}
                 </h3>
 
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-300">
+                <div className="flex items-center gap-1.5 text-xs text-slate-300 font-normal">
                   <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                   <span>{topPlayer.location}</span>
                 </div>
@@ -579,7 +576,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
                   <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                     {formatPoints(topPlayer.points)}
                   </span>
-                  <span className="text-xs sm:text-sm font-medium text-slate-300">
+                  <span className="text-xs sm:text-sm font-normal text-slate-300">
                     điểm
                   </span>
                 </div>
@@ -589,12 +586,12 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
             {/* Bottom Achievements Box */}
             <div className="relative z-10 bg-slate-950/90 backdrop-blur-xs p-4 sm:p-5 border-t border-slate-800/80 space-y-4">
               <div>
-                <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
                   Thành tích nổi bật
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-2">
                   <div>
-                    <span className="text-xs text-slate-400 block">
+                    <span className="text-xs text-slate-400 block font-normal">
                       Giải đấu tham gia
                     </span>
                     <span className="text-lg sm:text-xl font-bold text-white">
@@ -602,7 +599,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
                     </span>
                   </div>
                   <div>
-                    <span className="text-xs text-slate-400 block">
+                    <span className="text-xs text-slate-400 block font-normal">
                       Tỷ lệ thắng
                     </span>
                     <span className="text-lg sm:text-xl font-bold text-emerald-400">
@@ -615,7 +612,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
               {/* Action Button */}
               <Link
                 href="/leaderboard"
-                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#0052FF] to-[#00E575] hover:opacity-95 text-white font-semibold text-xs sm:text-sm shadow-md transition-all text-center block cursor-pointer"
+                className="w-full h-9 sm:h-10 px-4 rounded-xl bg-gradient-primary hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-2xs transition-all text-center flex items-center justify-center active:scale-[0.98] cursor-pointer"
               >
                 Xem chi tiết
               </Link>
@@ -623,20 +620,20 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
           </div>
 
           {/* COLUMN 3: CTA Card "Cải thiện thứ hạng" (Right) */}
-          <div className="lg:col-span-3 xl:col-span-3 relative rounded-2xl bg-gradient-to-b from-blue-50/90 via-blue-50/50 to-blue-100/80 dark:from-slate-800/90 dark:via-slate-800/60 dark:to-slate-900/90 border border-blue-100 dark:border-slate-700/60 p-5 sm:p-6 flex flex-col justify-between overflow-hidden shadow-xs min-h-[320px] lg:min-h-[400px]">
+          <div className="lg:col-span-3 xl:col-span-3 relative rounded-2xl bg-card border border-border/80 p-5 sm:p-6 flex flex-col justify-between overflow-hidden shadow-2xs min-h-[320px] lg:min-h-[400px]">
             {/* Top Text Content */}
-            <div className="relative z-10 space-y-3">
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+            <div className="relative z-10 space-y-2.5">
+              <h3 className="text-base sm:text-lg font-bold text-foreground tracking-tight">
                 Cải thiện thứ hạng
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-muted-foreground font-normal leading-relaxed">
                 Tham gia các giải đấu {sportName} để tích điểm và nâng cao thứ hạng của bạn.
               </p>
 
               <div className="pt-1">
                 <Link
-                  href="/events"
-                  className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-colors w-full text-center cursor-pointer"
+                  href="/tournaments"
+                  className="inline-flex items-center justify-center h-9 sm:h-10 px-4 rounded-xl bg-gradient-primary text-white font-bold text-xs sm:text-sm shadow-2xs transition-all w-full text-center active:scale-[0.98] cursor-pointer"
                 >
                   Tham gia ngay
                 </Link>

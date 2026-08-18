@@ -171,10 +171,10 @@ export function VenueBookingSection({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5 border-b border-border/60 pb-3">
         <div>
           <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <Zap className="size-5 text-brand-blue dark:text-brand-green" />
+            <Zap className="size-5 text-primary" />
             {tBooking("title")}
           </h2>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5 font-normal">
             {tBooking("subtitle")}
           </p>
         </div>
@@ -184,10 +184,10 @@ export function VenueBookingSection({
           <button
             type="button"
             onClick={() => onSelectBookingType("single")}
-            className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
               bookingType === "single"
-                ? "bg-background text-foreground shadow-2xs"
-                : "text-muted-foreground hover:text-foreground"
+                ? "bg-primary text-primary-foreground shadow-2xs font-semibold"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
             }`}
           >
             {tBooking("modes.single")}
@@ -195,10 +195,10 @@ export function VenueBookingSection({
           <button
             type="button"
             onClick={() => onSelectBookingType("recurring")}
-            className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
               bookingType === "recurring"
-                ? "bg-background text-brand-blue dark:text-brand-green shadow-2xs"
-                : "text-muted-foreground hover:text-foreground"
+                ? "bg-primary text-primary-foreground shadow-2xs font-semibold"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
             }`}
           >
             <Repeat className="size-3" />
@@ -207,13 +207,13 @@ export function VenueBookingSection({
           <button
             type="button"
             onClick={handleSelectMatchmaking}
-            className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
               bookingType === "matchmaking"
-                ? "bg-background text-amber-500 shadow-2xs"
-                : "text-muted-foreground hover:text-foreground"
+                ? "bg-amber-500 text-white shadow-2xs font-bold"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
             }`}
           >
-            <Users className="size-3 text-amber-500" />
+            <Users className="size-3" />
             {tBooking("modes.matchmaking")}
           </button>
         </div>
@@ -223,12 +223,12 @@ export function VenueBookingSection({
       <div className="space-y-1.5">
         <div className="flex items-center justify-between text-xs">
           <span className="font-semibold text-xs text-foreground flex items-center gap-1.5">
-            <CalendarIcon className="size-3.5 text-brand-blue dark:text-brand-green" />
+            <CalendarIcon className="size-3.5 text-primary" />
             {tBooking("select_date")}
           </span>
           <span className="text-[11px] font-medium text-muted-foreground">
             {isEn ? "Selected: " : "Đang chọn: "}
-            <strong className="text-foreground">
+            <strong className="text-foreground font-semibold">
               {next14Days.find((d) => d.dateString === selectedDate)?.sublabel || ""}{" "}
               {selectedDate}
             </strong>
@@ -245,8 +245,8 @@ export function VenueBookingSection({
                 onClick={() => onSelectDate(item.dateString)}
                 className={`flex flex-col items-center justify-center min-w-[62px] sm:min-w-[70px] py-1.5 px-1 rounded-xl transition-all cursor-pointer shrink-0 outline-none focus:outline-none focus-visible:outline-none ${
                   isSelected
-                    ? "bg-gradient-primary text-white border-0 shadow-md scale-[1.02]"
-                    : "bg-background hover:bg-muted border border-border/80 text-foreground"
+                    ? "bg-gradient-primary text-white border-0 shadow-2xs scale-[1.02]"
+                    : "bg-card hover:bg-muted/60 border border-border/80 text-foreground"
                 }`}
               >
                 <span
@@ -266,11 +266,11 @@ export function VenueBookingSection({
       </div>
 
       {/* 3. COMPACT & SLEEK MATRIX GRID TABLE CONTAINER WITH DRAG-TO-SCROLL */}
-      <div className="relative border border-border/70 rounded-2xl bg-card overflow-hidden shadow-2xs">
+      <div className="relative border border-border/80 rounded-2xl bg-card overflow-hidden shadow-2xs">
         {/* Navigation Header */}
         <div className="flex items-center justify-between px-3 py-1.5 border-b border-border/60 bg-muted/30">
           <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-            <MoveHorizontal className="size-3.5 text-brand-blue dark:text-brand-green" />
+            <MoveHorizontal className="size-3.5 text-primary" />
             {tBooking("matrix_title")}
           </span>
           <div className="flex items-center gap-1">
@@ -278,7 +278,7 @@ export function VenueBookingSection({
               type="button"
               onClick={() => handleScroll("left")}
               aria-label="Scroll left"
-              className="p-1 rounded-md bg-background hover:bg-muted border border-border text-foreground transition-colors cursor-pointer"
+              className="p-1 rounded-lg bg-background hover:bg-muted border border-border/80 text-foreground transition-colors cursor-pointer"
             >
               <ChevronLeft className="size-3.5" />
             </button>
@@ -286,7 +286,7 @@ export function VenueBookingSection({
               type="button"
               onClick={() => handleScroll("right")}
               aria-label="Scroll right"
-              className="p-1 rounded-md bg-background hover:bg-muted border border-border text-foreground transition-colors cursor-pointer"
+              className="p-1 rounded-lg bg-background hover:bg-muted border border-border/80 text-foreground transition-colors cursor-pointer"
             >
               <ChevronRight className="size-3.5" />
             </button>
@@ -343,11 +343,11 @@ export function VenueBookingSection({
                   <tr key={court.id} className="hover:bg-muted/20 transition-colors">
                     <td className="py-2 px-3.5 sticky left-0 z-20 bg-card border-r border-border/60 shadow-2xs">
                       <div className="flex items-center gap-1.5 whitespace-nowrap">
-                        <span className="font-extrabold text-xs text-foreground tracking-tight">
+                        <span className="font-bold text-xs text-foreground tracking-tight">
                           {cleanName}
                         </span>
                         {isVip && (
-                          <span className="bg-amber-400 text-slate-950 font-black text-[8px] px-1 py-0.2 rounded-sm tracking-wider">
+                          <span className="bg-amber-400 text-slate-950 font-extrabold text-[8px] px-1 py-0.2 rounded-sm tracking-wider">
                             VIP
                           </span>
                         )}
@@ -395,16 +395,16 @@ export function VenueBookingSection({
                             }`}
                             className={`w-full h-8 rounded-lg text-xs font-bold transition-all flex items-center justify-center mx-auto border-0 outline-none focus:outline-none focus-visible:outline-none ${
                               past
-                                ? "bg-slate-100 dark:bg-slate-900/50 text-slate-400/50 cursor-not-allowed border-0"
+                                ? "bg-muted/60 text-muted-foreground/40 cursor-not-allowed border-0"
                                 : booked
                                 ? "bg-rose-500/10 text-rose-500 dark:text-rose-400 cursor-not-allowed border-0"
                                 : isSelected
-                                ? "bg-gradient-primary text-white shadow-xs scale-95 border-0"
-                                : "bg-blue-500/10 dark:bg-brand-green/15 text-brand-blue dark:text-brand-green hover:bg-gradient-primary hover:text-white hover:shadow-xs cursor-pointer border-0"
+                                ? "bg-gradient-primary text-white shadow-2xs scale-95 border-0"
+                                : "bg-primary/10 text-primary hover:bg-gradient-primary hover:text-white hover:shadow-2xs cursor-pointer border-0"
                             }`}
                           >
                             {past ? (
-                              <Clock className="size-3 text-slate-300 dark:text-slate-700" />
+                              <Clock className="size-3 text-muted-foreground/40" />
                             ) : booked ? (
                               <X className="size-3 stroke-[3]" />
                             ) : isSelected ? (
@@ -428,7 +428,7 @@ export function VenueBookingSection({
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 pt-1">
         <div className="flex flex-wrap items-center gap-2.5 text-[11px] font-semibold text-foreground/80 bg-muted/40 px-3 py-1.5 rounded-xl border border-border/50">
           <div className="flex items-center gap-1.5">
-            <span className="size-5 rounded-lg bg-blue-500/10 text-blue-600 dark:text-brand-green flex items-center justify-center">
+            <span className="size-5 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
               <Check className="size-3 stroke-[3]" />
             </span>
             <span>{tBooking("legend.available")}</span>
@@ -456,7 +456,7 @@ export function VenueBookingSection({
           </div>
 
           <div className="flex items-center gap-1.5">
-            <span className="size-5 rounded-lg bg-slate-100 dark:bg-slate-900 text-slate-400 flex items-center justify-center opacity-60">
+            <span className="size-5 rounded-lg bg-muted text-muted-foreground/60 flex items-center justify-center">
               <Clock className="size-3 stroke-[2]" />
             </span>
             <span className="text-muted-foreground/70">{tBooking("legend.past")}</span>

@@ -37,7 +37,7 @@ export function CheckoutHeader({
 
   return (
     <div className="w-full bg-card border-b border-border/80 shadow-2xs py-3.5">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
         {/* Title & Order ID */}
         <div className="space-y-1">
           <div className="flex items-center gap-2">

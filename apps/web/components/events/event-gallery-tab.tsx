@@ -132,19 +132,19 @@ export function EventGalleryTab() {
   });
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {/* 1. Header Filter & BIB Recognition Bar */}
-      <section className="bg-card border border-border/80 rounded-3xl p-4 sm:p-5 space-y-3.5">
-        <header className="flex items-center justify-between border-b border-border/60 pb-3">
+      <section className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-4 shadow-2xs">
+        <header className="flex items-center justify-between border-b border-border/50 pb-3 gap-3">
           <div className="flex items-center gap-2.5">
             <div className="size-8 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0">
-              <Camera className="size-4.5" />
+              <Camera className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="text-sm sm:text-base font-bold text-foreground">
-                {isEn ? "Event Official Photo Gallery" : "Thư Viện Hình Ảnh Giải Đấu"}
+              <h2 className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-foreground">
+                {isEn ? "Event Official Photo Gallery" : "Thư viện hình ảnh giải đấu"}
               </h2>
-              <p className="text-[11px] text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground font-normal leading-normal">
                 {isEn
                   ? "High-resolution photos captured by official photographers & AI BIB search"
                   : "Kho ảnh sắc nét chuẩn HD từ nhiếp ảnh gia chính thức & Hỗ trợ tìm ảnh theo số BIB"}
@@ -152,30 +152,30 @@ export function EventGalleryTab() {
             </div>
           </div>
 
-          <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold text-brand-blue dark:text-brand-green bg-brand-blue/10 px-2.5 py-1 rounded-full border border-brand-blue/20">
-            <Sparkles className="size-3.5" />
-            {isEn ? "AI BIB Search" : "Tìm ảnh AI"}
+          <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary bg-primary/10 px-2.5 py-0.5 rounded-lg border border-primary/20">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>{isEn ? "AI BIB Search" : "Tìm ảnh AI"}</span>
           </span>
         </header>
 
         {/* Search by BIB & Compact Album Selector */}
-        <div className="flex items-center gap-2">
-          <div className="relative flex-1">
-            <Search className="absolute left-3.5 top-2.5 size-4 text-muted-foreground pointer-events-none" />
+        <div className="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
+          <div className="relative flex-1 min-w-[200px]">
+            <Search className="absolute left-3.5 top-3 w-4 h-4 text-muted-foreground pointer-events-none" />
             <Input
               type="text"
               placeholder={isEn ? "Find photos by BIB number (e.g. 20188)..." : "Tìm ảnh của tôi theo số BIB (vd: 20188)..."}
               value={bibSearch}
               onChange={(e) => setBibSearch(e.target.value)}
-              className="h-9 pl-10 pr-8 rounded-xl text-xs sm:text-sm bg-background border-border/80 font-normal focus-visible:ring-2 focus-visible:ring-brand-blue/30"
+              className="h-10 pl-10 pr-8 rounded-xl text-xs sm:text-sm bg-background border-border/80 font-normal focus-visible:ring-2 focus-visible:ring-primary/30"
             />
             {bibSearch && (
               <button
                 type="button"
                 onClick={() => setBibSearch("")}
-                className="absolute right-2.5 top-2.5 text-muted-foreground hover:text-foreground cursor-pointer"
+                className="absolute right-2.5 top-3 text-muted-foreground hover:text-foreground cursor-pointer"
               >
-                <X className="size-3.5" />
+                <X className="w-4 h-4" />
               </button>
             )}
           </div>
@@ -184,7 +184,7 @@ export function EventGalleryTab() {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="h-9 px-3 rounded-xl border border-border/80 bg-background text-xs text-foreground font-normal cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+            className="h-10 px-3.5 rounded-xl border border-border/80 bg-background text-xs sm:text-sm text-foreground font-normal cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/30"
           >
             {albums.map((album) => (
               <option key={album.id} value={album.id}>
@@ -196,9 +196,9 @@ export function EventGalleryTab() {
       </section>
 
       {/* 2. Photo Grid Showcase */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
         {filteredPhotos.length === 0 ? (
-          <div className="col-span-full bg-card border border-border/80 rounded-3xl p-8 text-center text-xs text-muted-foreground">
+          <div className="col-span-full bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-8 text-center text-xs sm:text-sm text-muted-foreground font-normal">
             {isEn
               ? "No photos found matching your BIB number or album."
               : "Không tìm thấy hình ảnh nào phù hợp với số BIB hoặc album đã chọn."}
@@ -207,7 +207,7 @@ export function EventGalleryTab() {
           filteredPhotos.map((photo) => (
             <div
               key={photo.id}
-              className="group bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:border-brand-blue/60 transition-all space-y-2 relative"
+              className="group bg-card border border-border/80 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xs hover:border-primary/60 transition-all space-y-2 relative"
             >
               {/* Image Thumbnail with Overlay */}
               <div
@@ -223,8 +223,8 @@ export function EventGalleryTab() {
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-3">
-                  <span className="text-[11px] font-bold text-white flex items-center gap-1">
-                    <Eye className="size-3.5" />
+                  <span className="text-[11px] font-semibold text-white flex items-center gap-1">
+                    <Eye className="w-3.5 h-3.5" />
                     <span>{isEn ? "View Photo" : "Xem ảnh lớn"}</span>
                   </span>
 
@@ -237,24 +237,24 @@ export function EventGalleryTab() {
                     className="size-7.5 rounded-lg bg-white/20 hover:bg-white text-white hover:text-foreground flex items-center justify-center backdrop-blur-sm transition-all"
                     title="Tải ảnh gốc"
                   >
-                    <Download className="size-3.5" />
+                    <Download className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/60 text-white backdrop-blur-xs border border-white/10">
+                <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-black/60 text-white backdrop-blur-xs border border-white/10">
                   {photo.categoryName}
                 </div>
               </div>
 
               {/* Photo Meta */}
-              <div className="p-3 pt-1 space-y-1">
-                <h3 className="font-bold text-xs text-foreground line-clamp-1 group-hover:text-brand-blue transition-colors">
+              <div className="p-3.5 pt-1 space-y-1">
+                <h3 className="font-semibold text-xs sm:text-sm text-foreground line-clamp-1 group-hover:text-primary transition-colors">
                   {photo.title}
                 </h3>
-                <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+                <div className="flex items-center justify-between text-xs text-muted-foreground font-normal">
                   <span>📷 {photo.photographer}</span>
                   {photo.bibTagged && (
-                    <span className="font-mono text-brand-blue dark:text-brand-green font-semibold">
+                    <span className="font-mono text-primary font-semibold">
                       BIB: {photo.bibTagged.join(", ")}
                     </span>
                   )}
@@ -280,7 +280,7 @@ export function EventGalleryTab() {
               onClick={() => setPreviewPhoto(null)}
               className="absolute -top-10 right-0 size-8 rounded-full bg-white/20 hover:bg-white text-white hover:text-black flex items-center justify-center cursor-pointer transition-all"
             >
-              <X className="size-4" />
+              <X className="w-4 h-4" />
             </button>
 
             <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-white/20 bg-black shadow-2xl">
@@ -295,17 +295,17 @@ export function EventGalleryTab() {
 
             <div className="flex items-center justify-between w-full text-white px-2">
               <div>
-                <h3 className="font-bold text-sm">{previewPhoto.title}</h3>
-                <p className="text-xs text-white/70">Nhiếp ảnh gia: {previewPhoto.photographer}</p>
+                <h3 className="font-bold text-sm sm:text-base">{previewPhoto.title}</h3>
+                <p className="text-xs text-white/70 font-normal">Nhiếp ảnh gia: {previewPhoto.photographer}</p>
               </div>
 
               <a
                 href={previewPhoto.url}
                 target="_blank"
                 rel="noreferrer"
-                className="h-9 px-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all"
+                className="h-9 px-4 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs flex items-center gap-1.5 shadow-sm transition-all"
               >
-                <Download className="size-3.5" />
+                <Download className="w-3.5 h-3.5" />
                 <span>{isEn ? "Download HD" : "Tải ảnh gốc HD"}</span>
               </a>
             </div>

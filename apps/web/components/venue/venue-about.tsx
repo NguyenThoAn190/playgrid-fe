@@ -23,15 +23,15 @@ export function VenueAbout({ venue, contentHtml }: VenueAboutProps) {
     <article
       id="about-venue"
       aria-labelledby="about-venue-title"
-      className="rounded-3xl border border-border/80 bg-card p-4 sm:p-5 space-y-3.5 shadow-sm overflow-hidden"
+      className="rounded-2xl border border-border/80 bg-card p-4 sm:p-5 space-y-3.5 shadow-2xs overflow-hidden"
     >
       {/* Header */}
       <header className="flex items-center justify-between border-b border-border/60 pb-3">
         <h2
           id="about-venue-title"
-          className="text-base sm:text-lg font-bold tracking-tight text-foreground flex items-center gap-2"
+          className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2"
         >
-          <Info className="size-5 text-brand-blue dark:text-brand-green shrink-0" />
+          <Info className="size-5 text-primary shrink-0" />
           <span>{tAbout("title", { name: venue.shortName })}</span>
         </h2>
         <span className="text-[11px] font-semibold text-muted-foreground hidden sm:inline-flex items-center gap-1">
@@ -57,28 +57,28 @@ export function VenueAbout({ venue, contentHtml }: VenueAboutProps) {
           ) : isEn ? (
             <>
               {/* Lead Paragraph */}
-              <p className="text-foreground/90 font-medium text-xs sm:text-sm leading-relaxed">
+              <p className="text-foreground/90 font-normal text-xs sm:text-sm leading-relaxed">
                 {venue.description}
               </p>
 
               {/* Highlight Features Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                <div className="p-3.5 rounded-2xl bg-muted/30 border border-border/60 space-y-1.5">
+                <div className="p-3.5 rounded-xl bg-muted/30 border border-border/60 space-y-1.5">
                   <h3 className="font-bold text-xs sm:text-sm text-foreground flex items-center gap-1.5">
                     <Sparkles className="size-4 text-amber-500 shrink-0" />
                     BWF Standard Tournament Mats
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-normal">
+                  <p className="text-xs text-muted-foreground font-normal leading-normal">
                     100% of courts are fitted with 5.0mm professional shock-absorbing sports flooring, minimizing knee impact and offering top-tier traction.
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-muted/30 border border-border/60 space-y-1.5">
+                <div className="p-3.5 rounded-xl bg-muted/30 border border-border/60 space-y-1.5">
                   <h3 className="font-bold text-xs sm:text-sm text-foreground flex items-center gap-1.5">
-                    <Sparkles className="size-4 text-brand-blue shrink-0" />
+                    <Sparkles className="size-4 text-primary shrink-0" />
                     Anti-Glare LED Lighting System
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-normal">
+                  <p className="text-xs text-muted-foreground font-normal leading-normal">
                     Even 500-lux lateral LED lighting prevents glare during overhead smashes and defensive clears.
                   </p>
                 </div>
@@ -156,28 +156,28 @@ export function VenueAbout({ venue, contentHtml }: VenueAboutProps) {
           ) : (
             <>
               {/* Lead Paragraph */}
-              <p className="text-foreground/90 font-medium text-xs sm:text-sm leading-relaxed">
+              <p className="text-foreground/90 font-normal text-xs sm:text-sm leading-relaxed">
                 {venue.description}
               </p>
 
               {/* Highlight Features Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                <div className="p-3.5 rounded-2xl bg-muted/30 border border-border/60 space-y-1.5">
+                <div className="p-3.5 rounded-xl bg-muted/30 border border-border/60 space-y-1.5">
                   <h3 className="font-bold text-xs sm:text-sm text-foreground flex items-center gap-1.5">
                     <Sparkles className="size-4 text-amber-500 shrink-0" />
                     Thảm Yonex Tiêu Chuẩn BWF
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-normal">
+                  <p className="text-xs text-muted-foreground font-normal leading-normal">
                     100% sân được trang bị mặt thảm chuyên dụng 5.0mm có độ ma sát và đàn hồi cực tốt, giúp bảo vệ khớp gối và tăng độ bám khi di chuyển tốc độ cao.
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-muted/30 border border-border/60 space-y-1.5">
+                <div className="p-3.5 rounded-xl bg-muted/30 border border-border/60 space-y-1.5">
                   <h3 className="font-bold text-xs sm:text-sm text-foreground flex items-center gap-1.5">
-                    <Sparkles className="size-4 text-brand-blue shrink-0" />
+                    <Sparkles className="size-4 text-primary shrink-0" />
                     Đèn LED Chống Lóa Hiện Đại
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-normal">
+                  <p className="text-xs text-muted-foreground font-normal leading-normal">
                     Hệ thống đèn LED bố trí hai bên hông sân với độ sáng 500 Lux đồng đều, không gây chói mắt khi ngửa mặt đập cầu hoặc phòng thủ góc cao.
                   </p>
                 </div>
@@ -273,7 +273,7 @@ export function VenueAbout({ venue, contentHtml }: VenueAboutProps) {
           onClick={() => setIsExpanded(!isExpanded)}
           aria-expanded={isExpanded}
           aria-controls="venue-about-content"
-          className="h-8.5 px-4 rounded-xl border-border/80 text-xs font-bold text-brand-blue dark:text-brand-green hover:bg-muted/70 cursor-pointer transition-all shadow-2xs hover:border-brand-blue/40"
+          className="h-9 px-4 rounded-xl border-border/80 text-xs font-semibold text-primary hover:bg-muted cursor-pointer transition-all shadow-2xs hover:border-primary/40"
         >
           <span>{isExpanded ? tAbout("collapse") : tAbout("read_more")}</span>
           <ChevronDown

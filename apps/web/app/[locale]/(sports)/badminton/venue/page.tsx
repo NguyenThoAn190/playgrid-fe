@@ -689,7 +689,7 @@ export default function BadmintonVenuePage() {
 
       {/* Main Container Section */}
       <section className="w-full pt-6 sm:pt-8 pb-12 bg-background flex-1">
-        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-3">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-3">
           {/* Top Search & Controls Bar */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-card border border-border/80 rounded-2xl p-3 sm:p-4 shadow-2xs">
             {/* Search Input */}

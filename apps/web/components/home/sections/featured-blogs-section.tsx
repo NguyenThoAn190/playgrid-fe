@@ -73,19 +73,19 @@ export function FeaturedBlogsSection() {
 
   return (
     <section id="blogs" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden scroll-mt-20">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
         {/* Section Header */}
         <div className="flex items-center justify-between">
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-blue-500 shrink-0" />
+            <BookOpen className="w-5 h-5 text-primary shrink-0" />
             <span>{tHome("title")}</span>
           </h2>
           <Link
             href="/blog"
-            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors"
           >
             <span>{tCommon("view_all")}</span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -96,18 +96,18 @@ export function FeaturedBlogsSection() {
             type="button"
             onClick={() => scroll("left")}
             aria-label={tCommon("scroll_left")}
-            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
+            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
           <button
             type="button"
             onClick={() => scroll("right")}
             aria-label={tCommon("scroll_right")}
-            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
+            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Continuous Infinite Horizontal Scroll List */}

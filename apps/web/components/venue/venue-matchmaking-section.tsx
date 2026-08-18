@@ -144,20 +144,20 @@ export function VenueMatchmakingSection({
   };
 
   return (
-    <Card className="rounded-3xl border border-border/80 bg-card p-4 sm:p-5 space-y-4 shadow-sm" id="matchmaking-section">
+    <Card className="rounded-2xl border border-border/80 bg-card p-4 sm:p-5 space-y-4 shadow-2xs" id="matchmaking-section">
       {/* 1. Section Header & CTA Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border/60 pb-3.5">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground flex items-center gap-2">
-              <Users className="size-5 text-amber-500 shrink-0" />
+            <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
+              <Users className="size-5 text-orange-600 dark:text-orange-400 shrink-0" />
               <span>{tMatch("title")}</span>
-            </h3>
-            <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 text-xs font-bold border border-amber-500/20 shrink-0">
+            </h2>
+            <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 text-xs font-semibold border border-amber-500/20 shrink-0 shadow-2xs">
               {tMatch("matches_count", { count: MOCK_MATCHES.length })}
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+          <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 font-normal">
             {tMatch("subtitle")}
           </p>
         </div>
@@ -166,7 +166,7 @@ export function VenueMatchmakingSection({
           <Button
             type="button"
             onClick={onOpenCreateMatch}
-            className="h-9 px-3.5 sm:px-4 rounded-xl bg-gradient-primary text-white font-bold text-xs shadow-xs hover:opacity-95 active:scale-95 transition-all cursor-pointer shrink-0 flex items-center gap-1.5 border-0"
+            className="h-9 px-3.5 sm:px-4 rounded-xl bg-gradient-primary text-white font-bold text-xs shadow-2xs hover:opacity-95 active:scale-95 transition-all cursor-pointer shrink-0 flex items-center gap-1.5 border-0"
           >
             <UserPlus className="size-4 shrink-0" />
             <span>{tMatch("create_btn")}</span>
@@ -183,7 +183,7 @@ export function VenueMatchmakingSection({
           return (
             <div
               key={match.id}
-              className="p-3.5 rounded-2xl bg-card border border-border/80 hover:border-brand-blue/50 dark:hover:border-brand-green/50 transition-all space-y-2.5 shadow-2xs relative overflow-hidden flex flex-col justify-between w-full"
+              className="p-3.5 rounded-xl bg-card border border-border/80 hover:border-primary/50 transition-all space-y-2.5 shadow-2xs relative overflow-hidden flex flex-col justify-between w-full"
             >
               <div className="space-y-2.5">
                 {/* Host Info & Badge */}
@@ -192,10 +192,10 @@ export function VenueMatchmakingSection({
                     <img
                       src={match.hostAvatar}
                       alt={match.hostName}
-                      className="size-8.5 rounded-full object-cover border border-border shrink-0"
+                      className="size-8.5 rounded-full object-cover border border-border/80 shrink-0"
                     />
                     <div className="min-w-0">
-                      <h4 className="font-bold text-xs text-foreground truncate flex items-center gap-1">
+                      <h4 className="font-semibold text-xs text-foreground truncate flex items-center gap-1">
                         <span className="truncate">{match.hostName}</span>
                       </h4>
                       <span className="text-[10.5px] font-medium text-amber-600 dark:text-amber-400 flex items-center gap-0.5 truncate">
@@ -206,7 +206,7 @@ export function VenueMatchmakingSection({
                   </div>
 
                   {match.badge && (
-                    <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 text-[10px] font-bold border border-amber-500/20 shrink-0">
+                    <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 text-[10px] font-semibold border border-amber-500/20 shrink-0">
                       {match.badge}
                     </span>
                   )}
@@ -216,21 +216,21 @@ export function VenueMatchmakingSection({
                 <div className="p-2 rounded-xl bg-muted/30 border border-border/60 space-y-1.5 text-[11px]">
                   <div className="flex items-center justify-between gap-1">
                     <div className="flex items-center gap-1 text-foreground/90 min-w-0">
-                      <MapPin className="size-3 text-brand-blue shrink-0" />
+                      <MapPin className="size-3 text-primary shrink-0" />
                       <span className="truncate font-semibold">{match.courtName}</span>
                     </div>
                     <div className="flex items-center gap-1 text-foreground/90 shrink-0 font-medium">
-                      <Clock className="size-3 text-brand-green shrink-0" />
+                      <Clock className="size-3 text-muted-foreground shrink-0" />
                       <span>{match.time}</span>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between gap-1 pt-1 border-t border-border/40">
                     <div className="flex items-center gap-1 text-foreground/90 shrink-0">
-                      <UserCheck className="size-3 text-blue-500 shrink-0" />
+                      <UserCheck className="size-3 text-primary shrink-0" />
                       <span className="font-semibold">{match.currentPlayers}/{match.maxPlayers} {isEn ? "pls" : "người"}</span>
                     </div>
-                    <div className="font-bold text-brand-blue dark:text-brand-green shrink-0 text-right">
+                    <div className="font-bold text-primary shrink-0 text-right">
                       <span>{match.pricePerPlayer.toLocaleString(isEn ? "en-US" : "vi-VN")}đ/{isEn ? "p" : "người"}</span>
                     </div>
                   </div>
@@ -269,10 +269,10 @@ export function VenueMatchmakingSection({
                 <button
                   type="button"
                   onClick={() => handleToggleJoin(match.id)}
-                  className={`h-7.5 px-3 rounded-lg text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 ${
+                  className={`h-7.5 px-3 rounded-xl text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1 shrink-0 ${
                     isJoined
-                      ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
-                      : "bg-gradient-primary text-white shadow-xs hover:opacity-95 active:scale-95"
+                      ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 font-semibold"
+                      : "bg-gradient-primary text-white shadow-2xs hover:opacity-95 active:scale-95"
                   }`}
                 >
                   {isJoined ? (
@@ -301,7 +301,7 @@ export function VenueMatchmakingSection({
             variant="outline"
             size="sm"
             onClick={handleToggleExpand}
-            className="w-full sm:w-auto h-9 px-6 text-xs font-bold rounded-xl border-border/80 hover:bg-muted/70 cursor-pointer transition-all shadow-2xs hover:border-brand-blue/40 flex items-center justify-center gap-1.5"
+            className="w-full sm:w-auto h-9 px-6 text-xs font-semibold rounded-xl border-border/80 hover:bg-muted cursor-pointer transition-all shadow-2xs flex items-center justify-center gap-1.5"
           >
             {hasMore ? (
               <>
@@ -319,7 +319,7 @@ export function VenueMatchmakingSection({
       )}
 
       {/* 4. Trust & Policy Hint */}
-      <div className="flex items-center gap-2 p-2.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-700 dark:text-emerald-300">
+      <div className="flex items-center gap-2 p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-700 dark:text-emerald-300">
         <ShieldCheck className="size-4 text-emerald-500 shrink-0" />
         <span>
           {tMatch("trust_hint")}

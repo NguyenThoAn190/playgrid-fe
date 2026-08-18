@@ -70,9 +70,9 @@ export function HeroGreetingBadge() {
   return (
     <div
       suppressHydrationWarning
-      className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 dark:bg-blue-500/15 px-3.5 py-1 text-xs sm:text-sm font-bold text-[#0052FF] dark:text-blue-400 shadow-2xs backdrop-blur-xs"
+      className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs sm:text-sm font-semibold text-primary shadow-2xs backdrop-blur-xs"
     >
-      {mounted ? getGreetingIcon() : <Sparkles className="w-3.5 h-3.5 text-blue-500 shrink-0" />}
+      {mounted ? getGreetingIcon() : <Sparkles className="w-3.5 h-3.5 text-primary shrink-0" />}
       <span>{mounted ? getGreetingText() : "Chào mừng đến với PlayGrid thể thao!"}</span>
     </div>
   );

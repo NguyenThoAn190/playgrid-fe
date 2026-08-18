@@ -65,13 +65,13 @@ export function VenueAmenities({ venue }: VenueAmenitiesProps) {
   const isEn = locale === "en";
 
   return (
-    <Card className="rounded-3xl border border-border/80 bg-card p-4 sm:p-5 space-y-3 shadow-sm">
+    <Card className="rounded-2xl border border-border/80 bg-card p-4 sm:p-5 space-y-3 shadow-2xs">
       <div>
-        <h3 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
-          <Sparkles className="size-5 text-brand-blue dark:text-brand-green" />
+        <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
+          <Sparkles className="size-5 text-primary" />
           {tAmenities("title")}
-        </h3>
-        <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+        </h2>
+        <p className="text-xs sm:text-sm text-muted-foreground font-normal mt-0.5">
           {tAmenities("subtitle")}
         </p>
       </div>
@@ -87,17 +87,17 @@ export function VenueAmenities({ venue }: VenueAmenitiesProps) {
           return (
             <div
               key={item.id}
-              className="flex items-start gap-3 p-3.5 rounded-2xl bg-muted/25 border border-border/60 hover:bg-muted/40 transition-colors"
+              className="flex items-start gap-3 p-3.5 rounded-xl bg-muted/25 border border-border/60 hover:bg-muted/40 transition-colors"
             >
-              <div className="size-9.5 rounded-xl bg-brand-blue/10 dark:bg-brand-green/20 text-brand-blue dark:text-brand-green flex items-center justify-center shrink-0">
+              <div className="size-9.5 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
                 <IconComponent className="size-5" />
               </div>
               <div className="space-y-0.5 min-w-0">
-                <h4 className="font-bold text-xs sm:text-sm text-foreground leading-snug">
+                <h3 className="font-semibold text-xs sm:text-sm text-foreground leading-snug">
                   {label}
-                </h4>
+                </h3>
                 {description && (
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-muted-foreground font-normal leading-relaxed">
                     {description}
                   </p>
                 )}

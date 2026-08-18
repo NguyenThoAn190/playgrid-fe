@@ -38,7 +38,7 @@ export function BlogCard({ post, className = "" }: BlogCardProps) {
       : [];
 
   return (
-    <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/60 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-0 ${className}`}>
+    <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/60 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-0 ${className}`}>
       <div>
         {/* Cover Image - Strict 12/5 Aspect Ratio */}
         <div
@@ -76,7 +76,7 @@ export function BlogCard({ post, className = "" }: BlogCardProps) {
 
             {/* Title - Fixed min-height for uniform alignment */}
             <Link href={`/blog/${post.id}`} className="block min-h-[2.4rem] sm:min-h-[2.6rem]">
-              <h3 className="font-bold text-sm sm:text-base text-foreground line-clamp-2 group-hover:text-[#00A859] dark:group-hover:text-emerald-400 transition-colors leading-snug">
+              <h3 className="font-bold text-xs sm:text-sm md:text-base text-foreground line-clamp-2 group-hover:text-primary transition-colors leading-snug">
                 {post.title}
               </h3>
             </Link>

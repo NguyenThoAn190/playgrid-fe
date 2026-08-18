@@ -110,7 +110,7 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
 
   return (
     <div className="min-h-screen bg-background pb-32 lg:pb-20 pt-4 sm:pt-6">
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
         {/* 1. Header (Title, Badges, Metrics, Actions) */}
         <VenueHeader venue={venue} />
 
@@ -188,12 +188,12 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
         <div className="fixed bottom-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/80 px-4 py-2.5 shadow-2xl lg:hidden flex items-center justify-between animate-in slide-in-from-bottom duration-300">
           <div className="flex flex-col min-w-0 pr-2">
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <ShoppingBag className="size-3.5 text-brand-blue dark:text-brand-green shrink-0" />
-              <span className="font-bold text-foreground truncate">
+              <ShoppingBag className="size-4 text-primary shrink-0" />
+              <span className="font-semibold text-foreground truncate">
                 {tSidebar("mobile_bar_selected", { count: selectedSlots.length })}
               </span>
             </div>
-            <div className="text-sm font-extrabold text-foreground tracking-tight">
+            <div className="text-sm sm:text-base font-bold text-foreground tracking-tight">
               {totalSlotPrice.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
             </div>
           </div>
@@ -201,7 +201,7 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
           <Button
             type="button"
             onClick={handleProceedToPayment}
-            className="h-10 px-4 rounded-xl bg-gradient-primary text-white font-extrabold text-xs shadow-md border-0 outline-none focus:outline-none ring-0 shrink-0 flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all"
+            className="h-10 px-4 rounded-xl bg-gradient-primary text-white font-bold text-xs sm:text-sm shadow-2xs border-0 outline-none focus:outline-none ring-0 shrink-0 flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all"
           >
             <span>{tSidebar("mobile_book_now")}</span>
             <ArrowRight className="size-4" />

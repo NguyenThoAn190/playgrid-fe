@@ -251,30 +251,30 @@ export function EventRegistrationSidebar({
 
   return (
     <>
-      {/* 1. Desktop Registration Sidebar (Hidden on Mobile, Visible on lg+) */}
+      {/* 1. Desktop Registration Sidebar */}
       <div
         className={`hidden lg:block sticky ${
           isHeaderVisible ? "top-20" : "top-3"
-        } transition-[top] duration-300 ease-in-out bg-card border border-border/80 rounded-3xl p-4 space-y-3 shadow-sm`}
+        } transition-[top] duration-300 ease-in-out bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-4 sm:p-5 space-y-4 shadow-2xs`}
       >
         {/* Sidebar Header */}
-        <div className="border-b border-border/60 pb-3 space-y-1">
+        <div className="border-b border-border/50 pb-3 space-y-1">
           <div className="flex items-center justify-between gap-2">
             <h3 className="text-sm sm:text-base font-bold text-foreground flex items-center gap-1.5">
-              <Ticket className="size-4 text-brand-blue dark:text-brand-green" />
+              <Ticket className="w-4 h-4 text-primary" />
               <span>{isEn ? "Select Category & Tickets" : "Chọn cự ly & Đăng ký"}</span>
             </h3>
-            <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+            <span className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 px-2.5 py-0.5 rounded-lg border border-emerald-500/20">
               {isEn ? "Direct Ticket" : "Vé chính hãng"}
             </span>
           </div>
-          <p className="text-[11px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground font-normal">
             {isEn ? "Choose your distance and quantity below" : "Bấm chọn số lượng vé cho từng cự ly bên dưới"}
           </p>
         </div>
 
         {/* List of Distance Tiers with Embedded Quantity Selectors */}
-        <div className="space-y-2.5 max-h-[340px] overflow-y-auto pr-1">
+        <div className="space-y-3 max-h-[340px] overflow-y-auto pr-1">
           {tiers.map((tier) => {
             const qty = selectedQuantities[tier.id] || 0;
             const isSoldOut = tier.status === "sold_out";
@@ -282,9 +282,9 @@ export function EventRegistrationSidebar({
             return (
               <div
                 key={tier.id}
-                className={`p-3 rounded-2xl border transition-all space-y-2 bg-muted/20 ${
+                className={`p-3.5 rounded-xl sm:rounded-2xl border transition-all space-y-2.5 bg-muted/20 ${
                   qty > 0
-                    ? "border-brand-blue dark:border-brand-green bg-brand-blue/[0.03] ring-1 ring-brand-blue/30"
+                    ? "border-primary bg-primary/5 ring-1 ring-primary/30"
                     : "border-border/70 hover:border-border"
                 }`}
               >
@@ -293,32 +293,32 @@ export function EventRegistrationSidebar({
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span
-                        className={`inline-flex items-center px-1.5 py-0.2 rounded text-[9.5px] font-bold border ${getPhaseBadgeStyle(
+                        className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold border ${getPhaseBadgeStyle(
                           tier.phase
                         )}`}
                       >
                         {tier.phase}
                       </span>
-                      <span className="text-[10px] font-semibold text-muted-foreground">
+                      <span className="text-xs font-medium text-muted-foreground">
                         • {tier.distance}
                       </span>
                     </div>
-                    <h4 className="font-bold text-xs text-foreground leading-snug mt-0.5 line-clamp-1">
+                    <h4 className="font-bold text-xs sm:text-sm text-foreground leading-snug mt-1 line-clamp-1">
                       {tier.name}
                     </h4>
                   </div>
                 </div>
 
                 {/* Deadline & Price & Selector Row */}
-                <div className="flex items-center justify-between gap-2 pt-1 border-t border-border/40">
+                <div className="flex items-center justify-between gap-2 pt-2 border-t border-border/50">
                   <div>
-                    <div className="text-xs font-bold text-brand-blue dark:text-brand-green">
+                    <div className="text-sm font-bold text-primary">
                       {tier.price.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                     </div>
-                    <div className="text-[10.5px] text-muted-foreground flex items-center gap-1 mt-0.5">
-                      <Clock className="size-3 text-amber-500 shrink-0" />
+                    <div className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5 font-normal">
+                      <Clock className="w-3 h-3 text-amber-500 shrink-0" />
                       <span>
-                        {isEn ? "Reg deadline: " : "Hạn đăng ký: "}
+                        {isEn ? "Deadline: " : "Hạn: "}
                         <strong className="font-semibold text-foreground/90">{tier.regDeadline}</strong>
                       </span>
                     </div>
@@ -326,7 +326,7 @@ export function EventRegistrationSidebar({
 
                   {/* Quantity Controller */}
                   {isSoldOut ? (
-                    <span className="text-[10px] font-bold text-rose-500 bg-rose-500/10 px-2 py-0.5 rounded-md">
+                    <span className="text-[11px] font-semibold text-rose-500 bg-rose-500/10 px-2.5 py-0.5 rounded-md">
                       {isEn ? "Sold Out" : "Hết vé"}
                     </span>
                   ) : (
@@ -335,10 +335,10 @@ export function EventRegistrationSidebar({
                         type="button"
                         onClick={() => handleQuantityChange(tier.id, -1)}
                         disabled={qty === 0}
-                        className="size-6.5 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer transition-all"
+                        className="size-7 rounded-lg flex items-center justify-center text-foreground hover:bg-muted active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer transition-all"
                         aria-label="Decrease quantity"
                       >
-                        <Minus className="size-3" />
+                        <Minus className="w-3 h-3" />
                       </button>
 
                       <span className="w-6 text-center font-bold text-xs text-foreground">
@@ -349,10 +349,10 @@ export function EventRegistrationSidebar({
                         type="button"
                         onClick={() => handleQuantityChange(tier.id, 1, tier.availableSlots || 10)}
                         disabled={qty >= (tier.availableSlots || 10)}
-                        className="size-6.5 rounded-lg bg-gradient-primary text-white flex items-center justify-center hover:opacity-90 active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer transition-all shadow-2xs"
+                        className="size-7 rounded-lg bg-gradient-primary text-white flex items-center justify-center hover:opacity-90 active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer transition-all shadow-2xs"
                         aria-label="Increase quantity"
                       >
-                        <Plus className="size-3" />
+                        <Plus className="w-3 h-3" />
                       </button>
                     </div>
                   )}
@@ -363,30 +363,30 @@ export function EventRegistrationSidebar({
         </div>
 
         {/* Promo Code Input & Voucher Wallet Trigger */}
-        <div className="space-y-1.5 pt-1 border-t border-border/40">
+        <div className="space-y-2 pt-2 border-t border-border/50">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold text-foreground flex items-center gap-1">
-              <Tag className="size-3 text-brand-blue dark:text-brand-green" />
+            <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+              <Tag className="w-3.5 h-3.5 text-primary" />
               <span>{isEn ? "Voucher / Promo Code" : "Mã ưu đãi & Voucher"}</span>
             </span>
             <button
               type="button"
               onClick={() => setIsVoucherWalletOpen(true)}
-              className="text-[11px] font-bold text-brand-blue dark:text-brand-green hover:underline flex items-center gap-1 cursor-pointer transition-all active:scale-95"
+              className="text-xs font-semibold text-primary hover:underline flex items-center gap-1 cursor-pointer transition-all active:scale-95"
             >
-              <Gift className="size-3" />
+              <Gift className="w-3.5 h-3.5" />
               <span>{isEn ? `Wallet (${MOCK_USER_VOUCHERS.length})` : `Ví voucher (${MOCK_USER_VOUCHERS.length})`}</span>
             </button>
           </div>
 
-          <div className="flex gap-1.5">
+          <div className="flex gap-2">
             <div className="relative flex-1">
-              <Tag className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3 text-muted-foreground" />
+              <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
               <Input
                 placeholder={isEn ? "Enter code..." : "Nhập mã..."}
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
-                className="pl-7 h-8 rounded-xl text-[11px] uppercase placeholder:normal-case font-semibold"
+                className="pl-8 h-9 rounded-xl text-xs uppercase placeholder:normal-case font-semibold"
               />
             </div>
             <Button
@@ -394,7 +394,7 @@ export function EventRegistrationSidebar({
               variant="outline"
               size="sm"
               onClick={handleApplyPromo}
-              className="h-8 px-2.5 text-[11px] font-semibold rounded-xl"
+              className="h-9 px-3.5 text-xs font-semibold rounded-xl"
             >
               {isEn ? "Apply" : "Áp dụng"}
             </Button>
@@ -402,9 +402,9 @@ export function EventRegistrationSidebar({
 
           {/* Applied Voucher Pill */}
           {appliedDiscount > 0 && totalTickets > 0 && (
-            <div className="flex items-center justify-between px-2.5 py-1 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px]">
-              <span className="font-semibold flex items-center gap-1 truncate">
-                <CheckCircle2 className="size-3 shrink-0" />
+            <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs">
+              <span className="font-semibold flex items-center gap-1.5 truncate">
+                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                 <span className="truncate">{appliedVoucher ? appliedVoucher.title : promoCode}: -{appliedDiscount.toLocaleString(isEn ? "en-US" : "vi-VN")}đ</span>
               </span>
               <button
@@ -413,21 +413,21 @@ export function EventRegistrationSidebar({
                 className="size-4 rounded-full hover:bg-emerald-500/20 flex items-center justify-center cursor-pointer shrink-0 ml-1"
                 aria-label="Remove voucher"
               >
-                <X className="size-2.5" />
+                <X className="w-3 h-3" />
               </button>
             </div>
           )}
 
           {promoError && (
-            <p className="text-[10.5px] text-rose-500 flex items-center gap-1">
-              <AlertCircle className="size-3 shrink-0" />
+            <p className="text-xs text-rose-500 flex items-center gap-1 font-normal">
+              <AlertCircle className="w-3.5 h-3.5 shrink-0" />
               {promoError}
             </p>
           )}
         </div>
 
         {/* Price Calculation Box */}
-        <div className="space-y-1 pt-2 border-t border-border/50 text-[11.5px]">
+        <div className="space-y-1.5 pt-2 border-t border-border/50 text-xs">
           <div className="flex justify-between text-muted-foreground">
             <span>{isEn ? "Selected tickets" : "Số lượng vé"}:</span>
             <span className="font-semibold text-foreground">
@@ -436,7 +436,7 @@ export function EventRegistrationSidebar({
           </div>
 
           {totalAddonsCount > 0 && (
-            <div className="flex justify-between text-brand-blue dark:text-brand-green font-medium">
+            <div className="flex justify-between text-primary font-medium">
               <span>{isEn ? `Add-on services (${totalAddonsCount})` : `Dịch vụ bổ sung (${totalAddonsCount})`}:</span>
               <span>+{totalAddonsPrice.toLocaleString(isEn ? "en-US" : "vi-VN")}đ</span>
             </div>
@@ -448,28 +448,28 @@ export function EventRegistrationSidebar({
           </div>
 
           {appliedDiscount > 0 && (totalTickets > 0 || totalAddonsCount > 0) && (
-            <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-medium">
+            <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-semibold">
               <span>{isEn ? "Discount" : "Giảm giá"}:</span>
               <span>-{appliedDiscount.toLocaleString(isEn ? "en-US" : "vi-VN")}đ</span>
             </div>
           )}
 
-          <div className="flex justify-between items-baseline pt-1.5 border-t border-border/60">
+          <div className="flex justify-between items-baseline pt-2 border-t border-border/60">
             <span className="font-bold text-foreground text-xs sm:text-sm">
               {isEn ? "Total" : "Tổng thanh toán"}:
             </span>
-            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent">
+            <span className="text-xl sm:text-2xl font-bold text-foreground">
               {finalTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
             </span>
           </div>
         </div>
 
-        {/* Action Button: Navigate to Payment App */}
+        {/* Action Button */}
         <Button
           type="button"
           disabled={totalTickets === 0}
           onClick={handleProceedToEventPayment}
-          className="w-full h-10.5 rounded-xl bg-gradient-primary text-white font-bold text-xs sm:text-sm shadow-md hover:opacity-95 active:scale-98 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed border-0"
+          className="w-full h-11 rounded-2xl bg-gradient-primary text-white font-bold text-xs sm:text-sm shadow-md hover:opacity-95 active:scale-98 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed border-0"
         >
           {totalTickets === 0
             ? isEn
@@ -481,26 +481,26 @@ export function EventRegistrationSidebar({
         </Button>
 
         {/* Trust Badges */}
-        <div className="space-y-1 pt-1 text-[10.5px] text-muted-foreground">
+        <div className="space-y-1.5 pt-1 text-xs text-muted-foreground font-normal">
           <div className="flex items-center gap-1.5">
-            <CheckCircle2 className="size-3 text-emerald-500 shrink-0" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
             <span>{isEn ? "100% Guaranteed Athlete Slot" : "Đảm bảo 100% giữ slot thi đấu"}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <ShieldCheck className="size-3 text-blue-500 shrink-0" />
+            <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" />
             <span>{isEn ? "QR Code E-Ticket via email & SMS" : "Nhận vé điện tử QR Code tức thì"}</span>
           </div>
         </div>
       </div>
 
       {/* 2. Mobile Sticky Floating Bottom Bar (Visible on Mobile lg:hidden, positioned above bottom nav bottom-16) */}
-      <div className="fixed bottom-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/80 px-3.5 py-2 shadow-2xl lg:hidden flex items-center justify-between animate-in slide-in-from-bottom duration-300">
+      <div className="fixed bottom-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/80 px-4 py-2.5 shadow-2xl lg:hidden flex items-center justify-between animate-in slide-in-from-bottom duration-300 gap-3">
         <div
           className="flex flex-col min-w-0 pr-2 cursor-pointer"
           onClick={() => setIsMobileDrawerOpen(true)}
         >
-          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-            <Ticket className="size-3 text-brand-blue dark:text-brand-green shrink-0" />
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-normal">
+            <Ticket className="w-3.5 h-3.5 text-primary shrink-0" />
             <span className="font-semibold text-foreground truncate">
               {totalTickets > 0
                 ? isEn
@@ -511,7 +511,7 @@ export function EventRegistrationSidebar({
                 : "Giá vé từ"}
             </span>
           </div>
-          <div className="text-sm font-extrabold text-foreground tracking-tight leading-none mt-0.5">
+          <div className="text-sm sm:text-base font-bold text-foreground tracking-tight leading-none mt-0.5">
             {totalTickets > 0
               ? `${finalTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ`
               : event.price}
@@ -521,7 +521,7 @@ export function EventRegistrationSidebar({
         <Button
           type="button"
           onClick={() => setIsMobileDrawerOpen(true)}
-          className="h-8.5 px-3.5 rounded-xl bg-gradient-primary text-white font-bold text-[11.5px] shadow-sm border-0 outline-none shrink-0 flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all"
+          className="h-9 px-4 rounded-xl bg-gradient-primary text-white font-bold text-xs shadow-sm border-0 outline-none shrink-0 flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all"
         >
           <span>
             {totalTickets > 0
@@ -532,7 +532,7 @@ export function EventRegistrationSidebar({
               ? "Select Tier"
               : "Chọn cự ly"}
           </span>
-          <Sparkles className="size-3" />
+          <Sparkles className="w-3.5 h-3.5" />
         </Button>
       </div>
 
@@ -543,15 +543,15 @@ export function EventRegistrationSidebar({
           <div className="fixed inset-0 z-[999] bg-background flex flex-col lg:hidden animate-in slide-in-from-bottom duration-300">
             {/* Full Screen Header */}
             <div className="shrink-0 px-4 py-3 border-b border-border/80 bg-card flex items-center justify-between shadow-2xs">
-              <div className="flex items-center gap-2 min-w-0 pr-2">
-                <div className="size-8 rounded-xl bg-brand-blue/10 dark:bg-brand-green/10 flex items-center justify-center shrink-0">
-                  <Ticket className="size-4 text-brand-blue dark:text-brand-green" />
+              <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                <div className="size-8 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <Ticket className="w-4 h-4 text-primary" />
                 </div>
                 <div className="min-w-0">
                   <h3 className="font-bold text-sm sm:text-base text-foreground leading-tight truncate">
                     {isEn ? "Select Category & Tickets" : "Chọn cự ly & Hạng vé"}
                   </h3>
-                  <p className="text-[11px] text-muted-foreground truncate">
+                  <p className="text-xs text-muted-foreground truncate font-normal">
                     {event.title}
                   </p>
                 </div>
@@ -559,14 +559,14 @@ export function EventRegistrationSidebar({
               <button
                 type="button"
                 onClick={() => setIsMobileDrawerOpen(false)}
-                className="size-8.5 rounded-full bg-muted/70 hover:bg-muted flex items-center justify-center text-foreground cursor-pointer shrink-0 transition-transform active:scale-90"
+                className="size-8 rounded-full bg-muted/70 hover:bg-muted flex items-center justify-center text-foreground cursor-pointer shrink-0 transition-transform active:scale-90"
                 aria-label="Close"
               >
-                <X className="size-4.5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Scrollable Categories Body (Full-height scrollable list) */}
+            {/* Scrollable Categories Body */}
             <div className="overflow-y-auto overscroll-contain flex-1 min-h-0 p-4 space-y-3">
               {tiers.map((tier) => {
                 const qty = selectedQuantities[tier.id] || 0;
@@ -575,9 +575,9 @@ export function EventRegistrationSidebar({
                 return (
                   <div
                     key={tier.id}
-                    className={`p-3.5 rounded-2xl border transition-all space-y-2.5 bg-card/60 ${
+                    className={`p-3.5 rounded-xl sm:rounded-2xl border transition-all space-y-2.5 bg-card/60 ${
                       qty > 0
-                        ? "border-brand-blue dark:border-brand-green bg-brand-blue/[0.04] dark:bg-brand-green/[0.04] ring-1 ring-brand-blue/40"
+                        ? "border-primary bg-primary/5 ring-1 ring-primary/40"
                         : "border-border/80 shadow-2xs"
                     }`}
                   >
@@ -585,13 +585,13 @@ export function EventRegistrationSidebar({
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-1.5 flex-wrap">
                           <span
-                            className={`inline-flex items-center px-2 py-0.5 rounded text-[9.5px] font-bold border ${getPhaseBadgeStyle(
+                            className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold border ${getPhaseBadgeStyle(
                               tier.phase
                             )}`}
                           >
                             {tier.phase}
                           </span>
-                          <span className="text-[10.5px] font-semibold text-muted-foreground">
+                          <span className="text-xs font-medium text-muted-foreground">
                             • {tier.distance}
                           </span>
                         </div>
@@ -599,26 +599,26 @@ export function EventRegistrationSidebar({
                           {tier.name}
                         </h4>
                         {tier.description && (
-                          <p className="text-[11px] text-muted-foreground line-clamp-2 mt-1 leading-relaxed">
+                          <p className="text-xs text-muted-foreground line-clamp-2 mt-1 leading-relaxed font-normal">
                             {tier.description}
                           </p>
                         )}
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between gap-2 pt-2 border-t border-border/40">
+                    <div className="flex items-center justify-between gap-2 pt-2 border-t border-border/50">
                       <div>
-                        <div className="text-sm font-extrabold text-brand-blue dark:text-brand-green">
+                        <div className="text-sm font-bold text-primary">
                           {tier.price.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                         </div>
-                        <div className="text-[10px] text-muted-foreground flex items-center gap-1 mt-0.5">
-                          <Clock className="size-2.5 text-brand-green" />
+                        <div className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5 font-normal">
+                          <Clock className="w-3 h-3 text-amber-500" />
                           <span>{isEn ? "Deadline: " : "Hạn: "}{tier.regDeadline}</span>
                         </div>
                       </div>
 
                       {isSoldOut ? (
-                        <span className="text-[10.5px] font-bold text-rose-500 bg-rose-500/10 px-2.5 py-1 rounded-lg">
+                        <span className="text-[11px] font-semibold text-rose-500 bg-rose-500/10 px-2.5 py-0.5 rounded-md">
                           {isEn ? "Sold Out" : "Hết vé"}
                         </span>
                       ) : (
@@ -630,7 +630,7 @@ export function EventRegistrationSidebar({
                             className="size-7.5 rounded-lg bg-background flex items-center justify-center text-foreground hover:bg-muted active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer transition-all shadow-2xs border border-border/50"
                             aria-label="Decrease quantity"
                           >
-                            <Minus className="size-3.5" />
+                            <Minus className="w-3.5 h-3.5" />
                           </button>
 
                           <span className="w-7 text-center font-bold text-xs sm:text-sm text-foreground">
@@ -644,7 +644,7 @@ export function EventRegistrationSidebar({
                             className="size-7.5 rounded-lg bg-gradient-primary text-white flex items-center justify-center hover:opacity-90 active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer transition-all shadow-2xs"
                             aria-label="Increase quantity"
                           >
-                            <Plus className="size-3.5" />
+                            <Plus className="w-3.5 h-3.5" />
                           </button>
                         </div>
                       )}
@@ -655,27 +655,27 @@ export function EventRegistrationSidebar({
             </div>
 
             {/* Fixed Bottom Payment Bar */}
-            <div className="shrink-0 p-4 pb-safe pb-6 border-t border-border/80 bg-card space-y-2.5 shadow-lg">
+            <div className="shrink-0 p-4 pb-safe pb-6 border-t border-border/80 bg-card space-y-3 shadow-lg">
               {/* Promo Code Input & Voucher Wallet Trigger */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-semibold text-foreground flex items-center gap-1">
-                    <Tag className="size-3 text-brand-blue dark:text-brand-green" />
+                  <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                    <Tag className="w-3.5 h-3.5 text-primary" />
                     <span>{isEn ? "Voucher / Promo Code" : "Mã ưu đãi & Voucher"}</span>
                   </span>
                   <button
                     type="button"
                     onClick={() => setIsVoucherWalletOpen(true)}
-                    className="text-[11px] font-bold text-brand-blue dark:text-brand-green hover:underline flex items-center gap-1 cursor-pointer transition-all active:scale-95"
+                    className="text-xs font-semibold text-primary hover:underline flex items-center gap-1 cursor-pointer transition-all active:scale-95"
                   >
-                    <Gift className="size-3" />
+                    <Gift className="w-3.5 h-3.5" />
                     <span>{isEn ? `Wallet (${MOCK_USER_VOUCHERS.length})` : `Ví voucher (${MOCK_USER_VOUCHERS.length})`}</span>
                   </button>
                 </div>
 
                 <div className="flex gap-2">
                   <div className="relative flex-1">
-                    <Tag className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
+                    <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
                     <Input
                       placeholder={isEn ? "Enter code..." : "Nhập mã..."}
                       value={promoCode}
@@ -696,9 +696,9 @@ export function EventRegistrationSidebar({
 
                 {/* Applied Voucher Pill in Mobile */}
                 {appliedDiscount > 0 && totalTickets > 0 && (
-                  <div className="flex items-center justify-between px-2.5 py-1 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px]">
-                    <span className="font-semibold flex items-center gap-1 truncate">
-                      <CheckCircle2 className="size-3 shrink-0" />
+                  <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs">
+                    <span className="font-semibold flex items-center gap-1.5 truncate">
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                       <span className="truncate">{appliedVoucher ? appliedVoucher.title : promoCode}: -{appliedDiscount.toLocaleString(isEn ? "en-US" : "vi-VN")}đ</span>
                     </span>
                     <button
@@ -707,30 +707,30 @@ export function EventRegistrationSidebar({
                       className="size-4 rounded-full hover:bg-emerald-500/20 flex items-center justify-center cursor-pointer shrink-0 ml-1"
                       aria-label="Remove voucher"
                     >
-                      <X className="size-2.5" />
+                      <X className="w-3 h-3" />
                     </button>
                   </div>
                 )}
 
                 {promoError && (
-                  <p className="text-[10.5px] text-rose-500 flex items-center gap-1">
-                    <AlertCircle className="size-3 shrink-0" />
+                  <p className="text-xs text-rose-500 flex items-center gap-1 font-normal">
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                     {promoError}
                   </p>
                 )}
               </div>
 
               {/* Calculation Summary Row */}
-              <div className="flex items-center justify-between text-xs pt-1.5 border-t border-border/50">
+              <div className="flex items-center justify-between text-xs pt-2 border-t border-border/50">
                 <div className="text-muted-foreground">
                   <span>{isEn ? "Total (" : "Tổng ("}{totalTickets} {isEn ? "tickets):" : "vé):"} </span>
                   {appliedDiscount > 0 && totalTickets > 0 && (
-                    <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium ml-1">
+                    <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold ml-1">
                       (-{appliedDiscount.toLocaleString(isEn ? "en-US" : "vi-VN")}đ)
                     </span>
                   )}
                 </div>
-                <span className="text-lg sm:text-xl font-extrabold bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent">
+                <span className="text-xl sm:text-2xl font-bold text-foreground">
                   {finalTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                 </span>
               </div>
@@ -743,7 +743,7 @@ export function EventRegistrationSidebar({
                   setIsMobileDrawerOpen(false);
                   handleProceedToEventPayment();
                 }}
-                className="w-full h-11.5 rounded-xl bg-gradient-primary text-white font-bold text-xs sm:text-sm shadow-md active:scale-98 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed border-0"
+                className="w-full h-11 rounded-2xl bg-gradient-primary text-white font-bold text-xs sm:text-sm shadow-md active:scale-98 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed border-0"
               >
                 {totalTickets === 0
                   ? isEn
@@ -767,14 +767,14 @@ export function EventRegistrationSidebar({
         isModalOpen &&
         createPortal(
           <div className="fixed inset-0 z-[1000] bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
-            <div className="bg-card border border-border rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto overscroll-contain">
+            <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto overscroll-contain">
               {/* Modal Header */}
-              <div className="flex items-center justify-between border-b border-border/60 pb-3">
+              <div className="flex items-center justify-between border-b border-border/50 pb-3">
                 <div>
                   <h3 className="font-bold text-base sm:text-lg text-foreground">
                     {isEn ? "Athlete Registration Form" : "Thông tin Vận Động Viên"}
                   </h3>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-muted-foreground font-normal">
                     {event.title} • {totalTickets} {isEn ? "tickets" : "vé"}
                   </p>
                 </div>
@@ -783,19 +783,19 @@ export function EventRegistrationSidebar({
                   onClick={() => setIsModalOpen(false)}
                   className="size-8 rounded-full hover:bg-muted flex items-center justify-center text-muted-foreground cursor-pointer"
                 >
-                  <X className="size-4" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
               {isSubmitted ? (
                 <div className="py-8 text-center space-y-3">
                   <div className="size-14 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="size-8" />
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h4 className="font-bold text-lg text-foreground">
                     {isEn ? "Registration Successful!" : "Đăng Ký Thành Công!"}
                   </h4>
-                  <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+                  <p className="text-xs sm:text-sm text-muted-foreground max-w-sm mx-auto font-normal">
                     {isEn
                       ? "Your athlete slot has been reserved. Please check your email for QR code and race schedule."
                       : "Slot thi đấu của bạn đã được ghi nhận. Hệ thống đã gửi mã vé QR Code và lịch thi đấu chi tiết về email của bạn."}
@@ -821,33 +821,33 @@ export function EventRegistrationSidebar({
                   }}
                   toolname="confirm_event_booking"
                   tooldescription="Review and confirm event tickets, race add-ons, and athlete information before proceeding to payment."
-                  className="space-y-3 text-xs"
+                  className="space-y-3 text-xs sm:text-sm"
                 >
                   {/* Selected Tickets & Add-ons Summary in Modal */}
-                  <div className="p-3 rounded-2xl bg-muted/30 border border-border/60 space-y-1.5">
-                    <div className="font-bold text-foreground text-[11.5px] flex items-center justify-between">
+                  <div className="p-3.5 rounded-xl sm:rounded-2xl bg-muted/30 border border-border/60 space-y-2">
+                    <div className="font-bold text-foreground text-xs sm:text-sm flex items-center justify-between">
                       <span>{isEn ? "Order Summary:" : "Chi tiết đơn đăng ký:"}</span>
-                      <span className="font-extrabold text-brand-blue dark:text-brand-green text-xs">
+                      <span className="font-bold text-primary text-sm">
                         {finalTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                       </span>
                     </div>
 
                     {selectedTiersList.map(({ tier, qty, total }) => (
-                      <div key={tier.id} className="flex justify-between text-[11px] text-muted-foreground">
+                      <div key={tier.id} className="flex justify-between text-xs text-muted-foreground font-normal">
                         <span>{qty}x {tier.name}</span>
                         <span className="font-semibold text-foreground">{total.toLocaleString(isEn ? "en-US" : "vi-VN")}đ</span>
                       </div>
                     ))}
 
                     {selectedAddonsList.map(({ addon, qty, total }) => (
-                      <div key={addon.id} className="flex justify-between text-[11px] text-brand-blue dark:text-brand-green">
+                      <div key={addon.id} className="flex justify-between text-xs text-primary font-medium">
                         <span>+{qty}x {addon.name}</span>
                         <span className="font-semibold">+{total.toLocaleString(isEn ? "en-US" : "vi-VN")}đ</span>
                       </div>
                     ))}
 
                     {appliedDiscount > 0 && (
-                      <div className="flex justify-between text-[11px] text-emerald-600 dark:text-emerald-400 border-t border-border/40 pt-1 font-medium">
+                      <div className="flex justify-between text-xs text-emerald-600 dark:text-emerald-400 border-t border-border/40 pt-1.5 font-medium">
                         <span>{isEn ? "Voucher Discount" : "Giảm giá voucher"}:</span>
                         <span>-{appliedDiscount.toLocaleString(isEn ? "en-US" : "vi-VN")}đ</span>
                       </div>
@@ -856,11 +856,11 @@ export function EventRegistrationSidebar({
 
                   {/* Full name */}
                   <div className="space-y-1">
-                    <label htmlFor="sidebar-athlete-fullName" className="font-semibold text-foreground">
+                    <label htmlFor="sidebar-athlete-fullName" className="font-semibold text-foreground text-xs">
                       {isEn ? "Full Name (as in ID/Passport)" : "Họ và tên VĐV (theo CCCD/Hộ chiếu)"} *
                     </label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
                       <Input
                         id="sidebar-athlete-fullName"
                         name="fullName"
@@ -869,7 +869,7 @@ export function EventRegistrationSidebar({
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         toolparamdescription="Full legal name of the athlete"
-                        className="pl-9 h-9 rounded-xl uppercase"
+                        className="pl-9 h-10 rounded-xl uppercase text-xs sm:text-sm"
                       />
                     </div>
                   </div>
@@ -877,9 +877,9 @@ export function EventRegistrationSidebar({
                   {/* Email & Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
-                      <label htmlFor="sidebar-athlete-email" className="font-semibold text-foreground">Email *</label>
+                      <label htmlFor="sidebar-athlete-email" className="font-semibold text-foreground text-xs">Email *</label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
                         <Input
                           id="sidebar-athlete-email"
                           name="email"
@@ -889,17 +889,17 @@ export function EventRegistrationSidebar({
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           toolparamdescription="Athlete email address for notifications"
-                          className="pl-9 h-9 rounded-xl"
+                          className="pl-9 h-10 rounded-xl text-xs sm:text-sm"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1">
-                      <label htmlFor="sidebar-athlete-phone" className="font-semibold text-foreground">
+                      <label htmlFor="sidebar-athlete-phone" className="font-semibold text-foreground text-xs">
                         {isEn ? "Phone Number" : "Số điện thoại"} *
                       </label>
                       <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
+                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
                         <Input
                           id="sidebar-athlete-phone"
                           name="phone"
@@ -909,7 +909,7 @@ export function EventRegistrationSidebar({
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           toolparamdescription="Contact phone number"
-                          className="pl-9 h-9 rounded-xl"
+                          className="pl-9 h-10 rounded-xl text-xs sm:text-sm"
                         />
                       </div>
                     </div>
@@ -918,7 +918,7 @@ export function EventRegistrationSidebar({
                   {/* DOB & ID Number */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
-                      <label htmlFor="sidebar-athlete-dob" className="font-semibold text-foreground">
+                      <label htmlFor="sidebar-athlete-dob" className="font-semibold text-foreground text-xs">
                         {isEn ? "Date of Birth" : "Ngày sinh"} *
                       </label>
                       <Input
@@ -929,12 +929,12 @@ export function EventRegistrationSidebar({
                         value={formData.dob}
                         onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
                         toolparamdescription="Date of birth in YYYY-MM-DD"
-                        className="h-9 rounded-xl"
+                        className="h-10 rounded-xl text-xs sm:text-sm"
                       />
                     </div>
 
                     <div className="space-y-1">
-                      <label htmlFor="sidebar-athlete-idNumber" className="font-semibold text-foreground">
+                      <label htmlFor="sidebar-athlete-idNumber" className="font-semibold text-foreground text-xs">
                         {isEn ? "ID / Passport No." : "Số CCCD / Hộ chiếu"} *
                       </label>
                       <Input
@@ -945,7 +945,7 @@ export function EventRegistrationSidebar({
                         value={formData.idNumber}
                         onChange={(e) => setFormData({ ...formData, idNumber: e.target.value })}
                         toolparamdescription="National Citizen ID or Passport number"
-                        className="h-9 rounded-xl"
+                        className="h-10 rounded-xl text-xs sm:text-sm"
                       />
                     </div>
                   </div>
@@ -953,7 +953,7 @@ export function EventRegistrationSidebar({
                   {/* Gender & Shirt Size */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
-                      <label htmlFor="sidebar-athlete-gender" className="font-semibold text-foreground">
+                      <label htmlFor="sidebar-athlete-gender" className="font-semibold text-foreground text-xs">
                         {isEn ? "Gender" : "Giới tính"} *
                       </label>
                       <select
@@ -962,7 +962,7 @@ export function EventRegistrationSidebar({
                         value={formData.gender}
                         onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
                         toolparamdescription="Athlete gender ('male' or 'female')"
-                        className="w-full h-9 px-3 rounded-xl bg-background border border-border text-foreground text-xs"
+                        className="w-full h-10 px-3 rounded-xl bg-background border border-border text-foreground text-xs sm:text-sm cursor-pointer"
                       >
                         <option value="male">{isEn ? "Male" : "Nam"}</option>
                         <option value="female">{isEn ? "Female" : "Nữ"}</option>
@@ -970,8 +970,8 @@ export function EventRegistrationSidebar({
                     </div>
 
                     <div className="space-y-1">
-                      <label htmlFor="sidebar-athlete-shirtSize" className="font-semibold text-foreground flex items-center gap-1">
-                        <Shirt className="size-3.5 text-brand-blue" />
+                      <label htmlFor="sidebar-athlete-shirtSize" className="font-semibold text-foreground flex items-center gap-1 text-xs">
+                        <Shirt className="w-3.5 h-3.5 text-primary" />
                         <span>{isEn ? "Finisher Shirt Size" : "Size áo Finisher"} *</span>
                       </label>
                       <select
@@ -980,7 +980,7 @@ export function EventRegistrationSidebar({
                         value={formData.shirtSize}
                         onChange={(e) => setFormData({ ...formData, shirtSize: e.target.value })}
                         toolparamdescription="Running shirt size (XS, S, M, L, XL, 2XL)"
-                        className="w-full h-9 px-3 rounded-xl bg-background border border-border text-foreground text-xs font-semibold"
+                        className="w-full h-10 px-3 rounded-xl bg-background border border-border text-foreground text-xs sm:text-sm font-semibold cursor-pointer"
                       >
                         <option value="XS">XS (Dưới 50kg)</option>
                         <option value="S">S (50 - 58kg)</option>
@@ -994,7 +994,7 @@ export function EventRegistrationSidebar({
 
                   {/* Club */}
                   <div className="space-y-1">
-                    <label htmlFor="sidebar-athlete-clubName" className="font-semibold text-foreground">
+                    <label htmlFor="sidebar-athlete-clubName" className="font-semibold text-foreground text-xs">
                       {isEn ? "Club / Team (Optional)" : "Câu lạc bộ / Đội thi đấu (Không bắt buộc)"}
                     </label>
                     <Input
@@ -1004,17 +1004,17 @@ export function EventRegistrationSidebar({
                       value={formData.clubName}
                       onChange={(e) => setFormData({ ...formData, clubName: e.target.value })}
                       toolparamdescription="Club or team name"
-                      className="h-9 rounded-xl"
+                      className="h-10 rounded-xl text-xs sm:text-sm"
                     />
                   </div>
 
                   {/* Modal Footer */}
-                  <div className="pt-3 border-t border-border/60 flex items-center justify-between gap-3">
+                  <div className="pt-3 border-t border-border/50 flex items-center justify-between gap-3">
                     <div>
-                      <span className="text-[11px] text-muted-foreground block">
+                      <span className="text-xs text-muted-foreground block font-normal">
                         {isEn ? "Total Payment" : "Tổng thanh toán"}
                       </span>
-                      <span className="text-base font-bold text-brand-blue dark:text-brand-green">
+                      <span className="text-base font-bold text-primary">
                         {finalTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                       </span>
                     </div>
@@ -1025,14 +1025,14 @@ export function EventRegistrationSidebar({
                         variant="outline"
                         size="sm"
                         onClick={() => setIsModalOpen(false)}
-                        className="rounded-xl h-9"
+                        className="rounded-xl h-10 px-4 text-xs font-semibold"
                       >
                         {isEn ? "Cancel" : "Hủy"}
                       </Button>
                       <Button
                         type="submit"
                         size="sm"
-                        className="rounded-xl bg-gradient-primary text-white font-bold h-9 px-5 border-0"
+                        className="rounded-xl bg-gradient-primary text-white font-bold h-10 px-5 border-0 text-xs sm:text-sm"
                       >
                         {isEn ? "Confirm & Pay" : "Xác nhận & Thanh toán"}
                       </Button>

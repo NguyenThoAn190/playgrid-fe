@@ -131,7 +131,7 @@ export function EventFaqSection() {
     <section
       id="event-faq"
       aria-labelledby="event-faq-title"
-      className="bg-card border border-border/80 rounded-3xl p-4 sm:p-5 space-y-4"
+      className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-4 shadow-2xs"
     >
       {/* Inject Structured Data Schema JSON-LD for AI Search Engines & Google Bot (GEO / SEO) */}
       <script
@@ -140,22 +140,22 @@ export function EventFaqSection() {
       />
 
       {/* Header */}
-      <header className="flex items-center justify-between border-b border-border/60 pb-3">
+      <header className="flex items-center justify-between border-b border-border/50 pb-3 gap-3">
         <div className="flex items-center gap-2.5">
           <div className="size-8 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
-            <HelpCircle className="size-4.5" />
+            <HelpCircle className="w-4 h-4" />
           </div>
           <div>
             <h2
               id="event-faq-title"
-              className="text-sm sm:text-base font-semibold text-foreground flex items-center gap-2"
+              className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-foreground flex items-center gap-2 flex-wrap"
             >
-              <span>{isEn ? "Event FAQs & AI Knowledge Base" : "Hỏi Đáp Thường Gặp (Q&A)"}</span>
-              <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+              <span>{isEn ? "Event FAQs & Knowledge Base" : "Hỏi đáp thường gặp (Q&A)"}</span>
+              <span className="text-[11px] px-2.5 py-0.5 rounded-lg font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
                 GEO Optimized
               </span>
             </h2>
-            <p className="text-[11px] text-muted-foreground font-normal">
+            <p className="text-xs sm:text-sm text-muted-foreground font-normal leading-normal">
               {isEn
                 ? "Official verified information about Aqua Warriors Vân Đồn event"
                 : "Giải đáp chính xác về địa điểm di chuyển, nhận kit, an toàn đường bơi & lưu trú"}
@@ -163,26 +163,26 @@ export function EventFaqSection() {
           </div>
         </div>
 
-        <span className="hidden sm:inline-flex items-center gap-1 text-[10.5px] font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
-          <Sparkles className="size-3" />
-          {isEn ? "AI Verified" : "Dữ liệu xác thực"}
+        <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 px-2.5 py-0.5 rounded-lg border border-emerald-500/20">
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>{isEn ? "AI Verified" : "Dữ liệu xác thực"}</span>
         </span>
       </header>
 
       {/* Search & Category Filter Pills */}
-      <div className="space-y-2.5">
+      <div className="space-y-3">
         <div className="relative">
-          <Search className="absolute left-3.5 top-2.5 size-4 text-muted-foreground pointer-events-none" />
+          <Search className="absolute left-3.5 top-3 w-4 h-4 text-muted-foreground pointer-events-none" />
           <Input
             type="text"
             placeholder={isEn ? "Search questions (e.g. Race Kit, Location, Safety)..." : "Tìm nhanh câu hỏi (vd: Nhận Race Kit, Địa điểm, Phao bơi, Khách sạn)..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="h-9 pl-10 pr-3 rounded-xl text-xs sm:text-sm bg-background border-border/80 font-normal focus-visible:ring-2 focus-visible:ring-brand-blue/30"
+            className="h-10 pl-10 pr-3 rounded-xl text-xs sm:text-sm bg-background border-border/80 font-normal focus-visible:ring-2 focus-visible:ring-primary/30"
           />
         </div>
 
-        {/* Category Pills (Horizontal Scrollable) */}
+        {/* Category Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar scroll-smooth py-0.5">
           {categories.map((cat) => (
             <button
@@ -191,8 +191,8 @@ export function EventFaqSection() {
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-3 py-1.5 rounded-xl text-xs whitespace-nowrap transition-all cursor-pointer ${
                 selectedCategory === cat.id
-                  ? "bg-brand-blue text-white font-medium shadow-2xs"
-                  : "bg-muted/40 text-muted-foreground hover:text-foreground font-normal"
+                  ? "bg-primary text-primary-foreground font-semibold shadow-2xs"
+                  : "bg-muted/40 text-muted-foreground hover:text-foreground font-medium"
               }`}
             >
               {cat.label}
@@ -202,9 +202,9 @@ export function EventFaqSection() {
       </div>
 
       {/* FAQ Accordion List */}
-      <div className="space-y-2 pt-1">
+      <div className="space-y-2.5 pt-1">
         {filteredFaqs.length === 0 ? (
-          <div className="p-6 text-center text-xs text-muted-foreground bg-muted/15 rounded-2xl">
+          <div className="p-6 text-center text-xs sm:text-sm text-muted-foreground bg-muted/20 rounded-xl sm:rounded-2xl font-normal">
             {isEn
               ? "No matching questions found. You can submit your question below."
               : "Không tìm thấy câu hỏi phù hợp. Bạn có thể gửi câu hỏi mới đến Ban Tổ Chức bên dưới."}
@@ -216,35 +216,35 @@ export function EventFaqSection() {
             return (
               <div
                 key={faq.id}
-                className="rounded-2xl border border-border/60 bg-muted/15 overflow-hidden transition-all duration-200"
+                className="rounded-xl sm:rounded-2xl border border-border/70 bg-muted/20 overflow-hidden transition-all duration-200"
               >
                 <button
                   type="button"
                   onClick={() => setExpandedFaqId(isExpanded ? null : faq.id)}
-                  className="w-full text-left p-3.5 flex items-center justify-between gap-3 hover:bg-muted/30 cursor-pointer transition-colors"
+                  className="w-full text-left p-4 flex items-center justify-between gap-3 hover:bg-muted/30 cursor-pointer transition-colors"
                   aria-expanded={isExpanded}
                 >
                   <div className="flex items-start gap-2.5 min-w-0">
-                    <span className="size-5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="size-5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
                       ?
                     </span>
-                    <h3 className="font-semibold text-xs sm:text-[13px] text-foreground leading-snug">
+                    <h3 className="font-semibold text-xs sm:text-sm text-foreground leading-snug">
                       {faq.question}
                     </h3>
                   </div>
 
                   <ChevronDown
-                    className={`size-4 text-muted-foreground shrink-0 transition-transform duration-200 ${
-                      isExpanded ? "rotate-180 text-brand-blue" : ""
+                    className={`w-4 h-4 text-muted-foreground shrink-0 transition-transform duration-200 ${
+                      isExpanded ? "rotate-180 text-primary" : ""
                     }`}
                   />
                 </button>
 
                 {isExpanded && (
-                  <div className="px-3.5 pb-3.5 pt-0 pl-11 text-xs text-muted-foreground font-normal leading-relaxed border-t border-border/30 pt-2 animate-in fade-in-50 duration-150">
-                    <p className="text-foreground/90">{faq.answer}</p>
-                    <div className="flex items-center gap-2 mt-2 text-[10.5px] text-muted-foreground">
-                      <span className="px-2 py-0.5 rounded-md bg-muted/60 text-muted-foreground font-normal">
+                  <div className="px-4 pb-4 pt-1 pl-11 text-xs sm:text-sm text-muted-foreground font-normal leading-relaxed border-t border-border/30 animate-in fade-in-50 duration-150 space-y-2">
+                    <p className="text-foreground/90 leading-relaxed font-normal">{faq.answer}</p>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <span className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground font-medium">
                         📍 {faq.categoryLabel}
                       </span>
                       <span>• Nguồn: Ban Tổ Chức Aqua Warriors & PlayGrid</span>
@@ -267,10 +267,10 @@ export function EventFaqSection() {
         >
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-              <Sparkles className="size-3.5 text-brand-blue dark:text-brand-green" />
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
               <span>{isEn ? "Have other questions? Ask the Organizers" : "Bạn có thắc mắc khác? Gửi câu hỏi cho BTC"}</span>
             </span>
-            <span className="text-[10.5px] text-muted-foreground font-normal">
+            <span className="text-xs text-muted-foreground font-normal">
               Phản hồi trong 2 giờ
             </span>
           </div>
@@ -285,18 +285,18 @@ export function EventFaqSection() {
               onChange={(e) => setUserQuestion(e.target.value)}
               disabled={isSubmitting}
               toolparamdescription="Question or inquiry for the event organizers"
-              className="h-9 rounded-xl text-xs bg-background border-border/80 font-normal focus-visible:ring-2 focus-visible:ring-brand-blue/30"
+              className="h-10 rounded-xl text-xs sm:text-sm bg-background border-border/80 font-normal focus-visible:ring-2 focus-visible:ring-primary/30"
             />
             <Button
               type="submit"
               disabled={isSubmitting || !userQuestion.trim()}
-              className="h-9 px-4 rounded-xl bg-gradient-to-r from-brand-blue to-brand-green text-white font-medium text-xs gap-1.5 shrink-0 cursor-pointer shadow-xs border-0"
+              className="h-10 px-4 rounded-xl bg-gradient-primary text-white font-bold text-xs gap-1.5 shrink-0 cursor-pointer shadow-2xs border-0"
             >
               {isSubmitting ? (
                 <div className="size-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : (
                 <>
-                  <Send className="size-3.5" />
+                  <Send className="w-3.5 h-3.5" />
                   <span>{isEn ? "Send" : "Gửi"}</span>
                 </>
               )}
@@ -304,8 +304,8 @@ export function EventFaqSection() {
           </div>
 
           {submitSuccess && (
-            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-medium flex items-center gap-2">
-              <CheckCircle2 className="size-4 shrink-0" />
+            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-medium flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 shrink-0" />
               <span>Câu hỏi của bạn đã được gửi thành công! Ban Tổ Chức sẽ phản hồi qua email/tin nhắn.</span>
             </div>
           )}

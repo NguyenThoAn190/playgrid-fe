@@ -33,7 +33,7 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
   const sportTheme = getSportColor(club.sport);
 
   return (
-    <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/60 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-0 ${className}`}>
+    <Card className={`group relative overflow-hidden rounded-2xl bg-card text-card-foreground border border-border/60 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between p-0 ${className}`}>
       <div>
         {/* Top Cover Banner Image (12:5 ratio) */}
         <div
@@ -79,7 +79,7 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
             {/* Title & Verified Checkmark */}
             <Link href={`/clubs/${club.id}`} className="block">
               <div className="flex items-center gap-1.5 min-w-0">
-                <h3 className="font-bold text-sm sm:text-base text-foreground line-clamp-1 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                <h3 className="font-bold text-xs sm:text-sm md:text-base text-foreground line-clamp-1 group-hover:text-primary transition-colors">
                   {club.name}
                 </h3>
                 {club.isVerified !== false && (
@@ -110,11 +110,12 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
               <span className="truncate">{club.sport}</span>
             </div>
 
-            {/* Action Button with High Contrast text-emerald-700 */}
+            {/* Action Button: Secondary action Xem CLB */}
             <Link href={`/clubs/${club.id}`} className="shrink-0">
               <Button
                 variant="outline"
-                className="h-7.5 sm:h-8 rounded-xl border-emerald-600/30 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:text-emerald-800 font-bold text-xs px-3 sm:px-3.5 cursor-pointer transition-all shadow-2xs"
+                size="card"
+                className="whitespace-nowrap font-semibold"
               >
                 Xem CLB
               </Button>

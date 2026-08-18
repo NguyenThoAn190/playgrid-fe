@@ -280,7 +280,8 @@ export function HeroSearchBar({
             {/* Search Action Button */}
             <Button
               type="submit"
-              className="w-full md:w-auto h-11 md:h-12 px-6 rounded-xl bg-gradient-to-r from-[#0052FF] to-[#00E575] hover:opacity-95 active:scale-95 text-white font-bold text-sm shadow-md hover:shadow-blue-500/20 flex items-center justify-center gap-2 transition-all cursor-pointer shrink-0 border-0 mt-1 md:mt-0 md:mr-1"
+              size="hero"
+              className="w-full md:w-auto mt-1 md:mt-0 md:mr-1 shrink-0"
             >
               <Search className="h-4 w-4 stroke-[2.5]" />
               <span>{t("search_btn")}</span>

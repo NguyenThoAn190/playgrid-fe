@@ -7,66 +7,9 @@ import { ClubCard, ClubData } from "@/components/clubs/club-card";
 import { useTranslations } from "next-intl";
 import { useOptimizedCarousel } from "@/hooks/use-optimized-carousel";
 
-const MOCK_CLUBS: ClubData[] = [
-  {
-    id: "tada-badminton-club",
-    name: "Tada Badminton Club",
-    logoText: "TADA BADMINTON",
-    coverUrl: "/images/clubs/tada-club.png",
-    rating: 4.9,
-    reviewCount: 342,
-    memberCount: 1248,
-    location: "Quận 7, TP. HCM",
-    sport: "Cầu lông",
-    statusText: "Hoạt động hôm nay",
-    isVerified: true,
-    isVip: true,
-  },
-  {
-    id: "saigon-smash",
-    name: "Saigon Smash",
-    logoText: "SAIGON SMASH",
-    coverUrl: "/images/clubs/saigon-smash.png",
-    rating: 4.8,
-    reviewCount: 215,
-    memberCount: 856,
-    location: "Quận 1, TP. HCM",
-    sport: "Pickleball",
-    statusText: "Đang tuyển thành viên",
-    isVerified: true,
-    isVip: true,
-  },
-  {
-    id: "district-7-players",
-    name: "District 7 Players",
-    logoText: "D7 PLAYERS",
-    coverUrl: "/images/clubs/d7-players.png",
-    rating: 4.7,
-    reviewCount: 168,
-    memberCount: 432,
-    location: "Quận 7, TP. HCM",
-    sport: "Bóng đá",
-    statusText: "Hoạt động tích cực",
-    isVerified: true,
-    isVip: true,
-  },
-  {
-    id: "saigon-tennis-club",
-    name: "Saigon Tennis Club",
-    logoText: "SAIGON TENNIS",
-    coverUrl: "/images/clubs/saigon-tennis.png",
-    rating: 4.9,
-    reviewCount: 198,
-    memberCount: 620,
-    location: "Quận 2, TP. HCM",
-    sport: "Tennis",
-    statusText: "Hoạt động hàng tuần",
-    isVerified: true,
-    isVip: true,
-  },
-];
+import { CLUBS_DATA } from "@/lib/clubs-data";
 
-const INFINITE_CLUBS = MOCK_CLUBS;
+const INFINITE_CLUBS = CLUBS_DATA;
 
 export function FeaturedClubsSection() {
   const tHome = useTranslations("home.featured_clubs");
@@ -79,7 +22,7 @@ export function FeaturedClubsSection() {
 
   return (
     <section id="clubs" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden border-t border-border/40 scroll-mt-20">
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
         {/* Section Header */}
         <div className="flex items-center justify-between">
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
@@ -89,10 +32,10 @@ export function FeaturedClubsSection() {
 
           <Link
             href="/clubs"
-            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors"
+            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors"
           >
             <span>{tCommon("view_all")}</span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -103,9 +46,9 @@ export function FeaturedClubsSection() {
             type="button"
             onClick={() => scroll("left")}
             aria-label={tCommon("scroll_left")}
-            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
+            className="absolute -left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
           {/* Continuous Infinite Horizontal Scroll List */}
@@ -129,9 +72,9 @@ export function FeaturedClubsSection() {
             type="button"
             onClick={() => scroll("right")}
             aria-label={tCommon("scroll_right")}
-            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border shadow-lg text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100 sm:opacity-100"
+            className="absolute -right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/90 border border-border/80 shadow-2xs text-foreground transition-all hover:bg-muted active:scale-95 cursor-pointer backdrop-blur-xs opacity-0 group-hover/carousel:opacity-100 sm:opacity-100"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       </div>

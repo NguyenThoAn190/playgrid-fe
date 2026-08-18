@@ -53,21 +53,21 @@ export function VenueRelatedCourts() {
     <div className="space-y-3 pt-2">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <Compass className="size-5 text-brand-blue" />
+          <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground flex items-center gap-2">
+            <Compass className="size-5 text-primary" />
             {tRelated("title")}
-          </h3>
-          <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+          </h2>
+          <p className="text-xs sm:text-sm text-muted-foreground font-normal mt-0.5">
             {tRelated("subtitle")}
           </p>
         </div>
 
         <Link
           href="/badminton/venue"
-          className="flex items-center gap-1 text-xs font-bold text-brand-blue dark:text-brand-green hover:underline"
+          className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors"
         >
           <span>{tCommon("view_all")}</span>
-          <ChevronRight className="size-3.5" />
+          <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
         </Link>
       </div>
 

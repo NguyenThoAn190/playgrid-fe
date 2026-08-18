@@ -99,7 +99,7 @@ export default function BlogListingPage() {
   return (
     <div className="w-full min-h-screen bg-background text-foreground py-8 sm:py-12">
       <JsonLdScript data={[blogListSchema, breadcrumbSchema]} />
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-8">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Page Header */}
         <div className="space-y-3 text-center sm:text-left">
           <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 px-3.5 py-1 text-xs font-bold text-[#00A859] dark:text-emerald-400">

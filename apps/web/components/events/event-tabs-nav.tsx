@@ -161,19 +161,19 @@ export function EventTabsNav({
               aria-controls={`panel-${tab.key}`}
               type="button"
               onClick={(e) => handleTabClick(tab.key, e)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-[13px] whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 ${
                 isActive
-                  ? "bg-gradient-to-r from-brand-blue to-brand-green text-white font-semibold shadow-xs"
-                  : "bg-card border border-border/80 text-muted-foreground hover:text-foreground hover:bg-muted/40 hover:border-border font-medium"
+                  ? "bg-primary text-primary-foreground font-semibold shadow-2xs"
+                  : "bg-card border border-border/80 text-muted-foreground hover:text-foreground hover:bg-muted/40 font-medium"
               }`}
             >
               {tab.icon}
               <span>{tab.label}</span>
               {tab.count !== undefined && (
                 <span
-                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-medium ${
+                  className={`text-[11px] px-1.5 py-0.5 rounded-md font-semibold ${
                     isActive
-                      ? "bg-white/25 text-white"
+                      ? "bg-white/20 text-white"
                       : "bg-muted text-muted-foreground border border-border/60"
                   }`}
                 >
