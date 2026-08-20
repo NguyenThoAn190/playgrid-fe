@@ -386,7 +386,7 @@ export function EventRegistrationSidebar({
                 placeholder={isEn ? "Enter code..." : "Nhập mã..."}
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
-                className="pl-8 h-9 rounded-xl text-xs uppercase placeholder:normal-case font-semibold"
+                className="pl-8 h-9 rounded-xl text-xs placeholder:normal-case font-semibold"
               />
             </div>
             <Button
@@ -494,7 +494,7 @@ export function EventRegistrationSidebar({
       </div>
 
       {/* 2. Mobile Sticky Floating Bottom Bar (Visible on Mobile lg:hidden, positioned above bottom nav bottom-16) */}
-      <div className="fixed bottom-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/80 px-4 py-2.5 shadow-2xl lg:hidden flex items-center justify-between animate-in slide-in-from-bottom duration-300 gap-3">
+      <div className="fixed bottom-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/80 px-4 py-2.5 shadow-xs lg:hidden flex items-center justify-between animate-in slide-in-from-bottom duration-300 gap-3">
         <div
           className="flex flex-col min-w-0 pr-2 cursor-pointer"
           onClick={() => setIsMobileDrawerOpen(true)}
@@ -655,7 +655,7 @@ export function EventRegistrationSidebar({
             </div>
 
             {/* Fixed Bottom Payment Bar */}
-            <div className="shrink-0 p-4 pb-safe pb-6 border-t border-border/80 bg-card space-y-3 shadow-lg">
+            <div className="shrink-0 p-4 pb-safe pb-6 border-t border-border/80 bg-card space-y-3 shadow-xs">
               {/* Promo Code Input & Voucher Wallet Trigger */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
@@ -680,7 +680,7 @@ export function EventRegistrationSidebar({
                       placeholder={isEn ? "Enter code..." : "Nhập mã..."}
                       value={promoCode}
                       onChange={(e) => setPromoCode(e.target.value)}
-                      className="pl-8 h-9 rounded-xl text-xs uppercase placeholder:normal-case font-semibold"
+                      className="pl-8 h-9 rounded-xl text-xs placeholder:normal-case font-semibold"
                     />
                   </div>
                   <Button
@@ -767,7 +767,7 @@ export function EventRegistrationSidebar({
         isModalOpen &&
         createPortal(
           <div className="fixed inset-0 z-[1000] bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
-            <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto overscroll-contain">
+            <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-sm space-y-4 max-h-[90vh] overflow-y-auto overscroll-contain">
               {/* Modal Header */}
               <div className="flex items-center justify-between border-b border-border/50 pb-3">
                 <div>
@@ -869,7 +869,7 @@ export function EventRegistrationSidebar({
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         toolparamdescription="Full legal name of the athlete"
-                        className="pl-9 h-10 rounded-xl uppercase text-xs sm:text-sm"
+                        className="pl-9 h-10 rounded-xl text-xs sm:text-sm"
                       />
                     </div>
                   </div>

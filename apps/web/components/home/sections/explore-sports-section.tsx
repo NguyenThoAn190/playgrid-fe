@@ -60,7 +60,7 @@ export function ExploreSportsSection() {
 
   return (
     <section id="explore-sports" className="w-full py-6 sm:py-8 bg-background text-foreground transition-colors border-t border-border/40 overflow-hidden scroll-mt-20">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
         {/* Header Row */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>

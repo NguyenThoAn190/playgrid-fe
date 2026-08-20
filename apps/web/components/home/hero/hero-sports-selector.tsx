@@ -17,7 +17,7 @@ export function HeroSportsSelector({
   return (
     <div className="w-full pt-4 sm:pt-6 border-t border-border/50 mt-3 sm:mt-4 space-y-2.5 sm:space-y-3">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+        <span className="text-xs font-medium text-muted-foreground tracking-normal">
           {t("search_sport_label")}
         </span>
       </div>

@@ -190,7 +190,7 @@ export function VenueBookingSidebar({
                 onChange={(e) => setCouponCode(e.target.value)}
                 placeholder={tSidebar("coupon_placeholder")}
                 toolparamdescription="Discount voucher code string (e.g. PLAYGRID2026)"
-                className="h-8 pl-8 text-[11px] uppercase placeholder:normal-case rounded-xl border-border/80 font-semibold"
+                className="h-8 pl-8 text-[11px] rounded-xl border-border/80 font-semibold"
               />
             </div>
             <Button

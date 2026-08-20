@@ -254,7 +254,7 @@ export function EventRegistrationSection({ event }: EventRegistrationSectionProp
                   <div className="pt-2 border-t border-border/50 flex flex-wrap items-center justify-between gap-3">
                     {/* Price Display */}
                     <div className="flex items-baseline gap-2">
-                      <span className="text-lg sm:text-xl font-extrabold text-brand-blue dark:text-brand-green">
+                      <span className="text-lg sm:text-xl font-bold text-primary">
                         {tier.price.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                       </span>
                       {tier.originalPrice && tier.originalPrice > tier.price && (
@@ -307,7 +307,7 @@ export function EventRegistrationSection({ event }: EventRegistrationSectionProp
         <div className="lg:col-span-4 bg-muted/25 border border-border/80 rounded-3xl p-4 sm:p-5 space-y-4 shadow-sm sticky top-20">
           <div className="border-b border-border/60 pb-3">
             <h3 className="text-sm sm:text-base font-bold text-foreground flex items-center gap-2">
-              <Ticket className="size-4 text-brand-blue dark:text-brand-green" />
+              <Ticket className="size-4 text-primary" />
               <span>{isEn ? "Registration Summary" : "Tóm tắt đơn đăng ký"}</span>
             </h3>
             <p className="text-[11px] text-muted-foreground mt-0.5">
@@ -341,7 +341,7 @@ export function EventRegistrationSection({ event }: EventRegistrationSectionProp
                       {qty} x {tier.price.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                     </div>
                   </div>
-                  <div className="font-bold text-brand-blue dark:text-brand-green shrink-0">
+                  <div className="font-bold text-primary shrink-0">
                     {total.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                   </div>
                 </div>
@@ -358,7 +358,7 @@ export function EventRegistrationSection({ event }: EventRegistrationSectionProp
                   placeholder={isEn ? "Promo code (PLAYGRID50)" : "Mã ưu đãi (PLAYGRID50)"}
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
-                  className="pl-8 h-8.5 rounded-xl text-xs uppercase"
+                  className="pl-8 h-8.5 rounded-xl text-xs"
                 />
               </div>
               <Button
@@ -404,7 +404,7 @@ export function EventRegistrationSection({ event }: EventRegistrationSectionProp
             )}
             <div className="flex justify-between items-baseline pt-2 border-t border-border/60">
               <span className="font-bold text-foreground text-sm">{isEn ? "Total" : "Tổng thanh toán"}:</span>
-              <span className="text-xl font-extrabold bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent">
+              <span className="text-xl font-bold text-gradient-primary bg-clip-text text-transparent">
                 {finalTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
               </span>
             </div>
@@ -439,7 +439,7 @@ export function EventRegistrationSection({ event }: EventRegistrationSectionProp
       {/* 3. Athlete Registration Modal Form */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="bg-card border border-border rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+          <div className="bg-card border border-border rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-sm space-y-4 max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-border/60 pb-3">
               <div>
@@ -509,7 +509,7 @@ export function EventRegistrationSection({ event }: EventRegistrationSectionProp
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       toolparamdescription="Full legal name of the participating athlete matching government ID"
-                      className="pl-9 h-9 rounded-xl uppercase"
+                      className="pl-9 h-9 rounded-xl"
                     />
                   </div>
                 </div>
@@ -642,7 +642,7 @@ export function EventRegistrationSection({ event }: EventRegistrationSectionProp
                 <div className="pt-3 border-t border-border/60 flex items-center justify-between gap-3">
                   <div>
                     <span className="text-[11px] text-muted-foreground block">{isEn ? "Total Payment" : "Tổng thanh toán"}</span>
-                    <span className="text-base font-extrabold text-brand-blue dark:text-brand-green">
+                    <span className="text-base font-bold text-primary">
                       {finalTotal.toLocaleString(isEn ? "en-US" : "vi-VN")}đ
                     </span>
                   </div>

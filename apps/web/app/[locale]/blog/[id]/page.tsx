@@ -42,11 +42,11 @@ export default function BlogDetailPage() {
 
         {/* Article Header */}
         <div className="space-y-4 text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 rounded-lg bg-[#00A859] px-3 py-1 text-xs font-extrabold text-white uppercase tracking-wider shadow-xs">
+          <div className="inline-flex items-center gap-2 rounded-xl bg-accent border border-border/80 px-3 py-1 text-xs font-semibold text-accent-foreground">
             {post.category}
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight leading-tight text-foreground">
             {post.title}
           </h1>
 
@@ -98,7 +98,7 @@ export default function BlogDetailPage() {
 
         {/* Article Main Body Content */}
         <article className="prose dark:prose-invert max-w-none space-y-6 text-foreground text-sm sm:text-base leading-relaxed">
-          <p className="text-base sm:text-lg font-medium text-muted-foreground leading-relaxed border-l-4 border-[#00A859] pl-4 py-1">
+          <p className="text-base sm:text-lg font-medium text-muted-foreground leading-relaxed border-l-4 border-primary pl-4 py-1">
             {post.excerpt}
           </p>
 
@@ -136,7 +136,7 @@ export default function BlogDetailPage() {
 
           {/* Key Takeaways Highlight Box */}
           <div className="my-6 p-4 sm:p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 space-y-2">
-            <div className="flex items-center gap-2 font-bold text-[#00A859] dark:text-emerald-400">
+            <div className="flex items-center gap-2 font-bold text-primary">
               <Sparkles className="h-5 w-5" />
               <span>Lời khuyên từ Huấn luyện viên</span>
             </div>
@@ -150,7 +150,7 @@ export default function BlogDetailPage() {
         <div className="pt-10 border-t border-border/50 space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl sm:text-2xl font-bold">Bài viết liên quan</h2>
-            <Link href="/blog" className="text-xs sm:text-sm font-bold text-[#00A859] hover:underline">
+            <Link href="/blog" className="text-xs sm:text-sm font-bold text-primary hover:underline">
               Xem tất cả bài viết →
             </Link>
           </div>

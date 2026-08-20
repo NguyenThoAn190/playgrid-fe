@@ -84,8 +84,8 @@ export default function TournamentDetailPage({
       {/* 2. Top Hero Visual Banner */}
       <TournamentHeroBanner tournament={tournament} />
 
-      {/* Main Content Area (Aligned 100% with Navbar max-w-7xl) */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-20 space-y-6">
+      {/* Main Content Area (Aligned 100% with Navbar max-w-[1440px]) */}
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-20 space-y-6">
         {/* Header Key Info Card */}
         <TournamentHeaderCard tournament={tournament} />
 

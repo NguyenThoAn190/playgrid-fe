@@ -10,6 +10,7 @@ import {
   MapPin,
   Share2,
   Heart,
+  Flame,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getEventById } from "@/lib/events-data";
@@ -69,9 +70,9 @@ export default function EventDetailPage({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-black/40 to-black/60" />
 
-        {/* Floating Top Actions Bar Aligned with Navbar Container (max-w-7xl) */}
+        {/* Floating Top Actions Bar Aligned with Navbar Container (max-w-[1440px]) */}
         <div className="absolute top-4 sm:top-6 left-0 right-0 z-10">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <Link href="/events">
               <Button
                 variant="outline"
@@ -106,7 +107,7 @@ export default function EventDetailPage({
       </div>
 
       {/* 2. Main Detail Content Container */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-20 space-y-6">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-20 space-y-6">
         {/* Main 2-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Left Column: Event Tabs & Content (Span 8) */}
@@ -116,7 +117,7 @@ export default function EventDetailPage({
               {/* Category & Badges */}
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="inline-flex items-center gap-1 rounded-lg px-2.5 py-0.5 text-[11px] font-semibold bg-rose-500 text-white shadow-2xs">
-                  🔥 {event.badge?.text || (isEn ? "Featured" : "Nổi bật")}
+                  <Flame className="w-3 h-3" /> {event.badge?.text || (isEn ? "Featured" : "Nổi bật")}
                 </span>
                 <span className="inline-flex items-center rounded-lg px-2.5 py-0.5 text-[11px] font-semibold bg-muted text-muted-foreground border border-border/60">
                   {event.category}

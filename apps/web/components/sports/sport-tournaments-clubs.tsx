@@ -361,7 +361,7 @@ export function SportTournamentsClubs({ sportName = "Cầu Lông" }: SportTourna
   return (
     <div className="w-full py-5 sm:py-6 bg-background text-foreground transition-colors border-b border-border/40 space-y-8 sm:space-y-10 overflow-hidden">
       {/* TOURNAMENTS SECTION: 3-Card Standard */}
-      <section id="tournaments" className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4 scroll-mt-24">
+      <section id="tournaments" className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4 scroll-mt-24">
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-0.5 min-w-0">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2 truncate">
@@ -433,7 +433,7 @@ export function SportTournamentsClubs({ sportName = "Cầu Lông" }: SportTourna
       </section>
 
       {/* CLUBS SECTION: 4-Card Standard */}
-      <section id="clubs" className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4 scroll-mt-24">
+      <section id="clubs" className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4 scroll-mt-24">
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-0.5 min-w-0">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2 truncate">

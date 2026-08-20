@@ -1,0 +1,84 @@
+"use client";
+
+import React, { useState, useMemo } from "react";
+import { useLocale } from "next-intl";
+import { SportSubNav } from "@/components/sports/sport-sub-nav";
+import {
+  BADMINTON_LEADERBOARD_DATA,
+} from "@/lib/leaderboard-data";
+import { LeaderboardHeroHeader } from "@/components/leaderboard/leaderboard-hero-header";
+import { LeaderboardPodium } from "@/components/leaderboard/leaderboard-podium";
+import { LeaderboardFilterBar } from "@/components/leaderboard/leaderboard-filter-bar";
+import { LeaderboardTable } from "@/components/leaderboard/leaderboard-table";
+import { LeaderboardSidebar } from "@/components/leaderboard/leaderboard-sidebar";
+import { JsonLdScript, getBreadcrumbJsonLd } from "@/lib/seo/json-ld";
+
+export default function PickleballLeaderboardPage() {
+  const locale = useLocale();
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCity, setSelectedCity] = useState("Tất cả địa điểm");
+  const [selectedLevelTier, setSelectedLevelTier] = useState("all");
+  const [sortBy, setSortBy] = useState<"elo-desc" | "winrate-desc" | "matches-desc" | "trophies-desc">("elo-desc");
+
+  const handleReset = () => {
+    setSearchQuery("");
+    setSelectedCategory("all");
+    setSelectedCity("Tất cả địa điểm");
+    setSelectedLevelTier("all");
+    setSortBy("elo-desc");
+  };
+
+  const breadcrumbSchema = getBreadcrumbJsonLd([
+    { name: "Trang chủ", url: `/${locale}` },
+    { name: "Pickleball", url: `/${locale}/pickleball` },
+    { name: "Bảng xếp hạng DUPR Pickleball", url: `/${locale}/pickleball/leaderboard` },
+  ]);
+
+  return (
+    <main className="w-full flex flex-col min-h-screen bg-background text-foreground">
+      <JsonLdScript data={[breadcrumbSchema]} />
+      <SportSubNav currentSport="pickleball" />
+
+      <section className="w-full pt-5 sm:pt-7 pb-16 bg-background flex-1">
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5">
+          <LeaderboardHeroHeader
+            sportName="Pickleball"
+            totalPlayers={8900}
+            totalMatches={24500}
+            currentSeason="DUPR Master Series 2026"
+          />
+
+          <LeaderboardPodium
+            topPlayers={BADMINTON_LEADERBOARD_DATA}
+            categoryTitle="DUPR Rating Toàn Quốc"
+          />
+
+          <LeaderboardFilterBar
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+            selectedCity={selectedCity}
+            onCityChange={setSelectedCity}
+            selectedLevelTier={selectedLevelTier}
+            onLevelTierChange={setSelectedLevelTier}
+            sortBy={sortBy}
+            onSortByChange={setSortBy}
+            onReset={handleReset}
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+            <div className="lg:col-span-8 xl:col-span-9 space-y-4">
+              <LeaderboardTable players={BADMINTON_LEADERBOARD_DATA} />
+            </div>
+            <aside className="lg:col-span-4 xl:col-span-3 sticky top-4 space-y-4">
+              <LeaderboardSidebar sportSlug="pickleball" sportName="Pickleball" />
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

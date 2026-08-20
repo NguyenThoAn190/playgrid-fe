@@ -110,7 +110,7 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
 
   return (
     <div className="min-h-screen bg-background pb-32 lg:pb-20 pt-4 sm:pt-6">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">
         {/* 1. Header (Title, Badges, Metrics, Actions) */}
         <VenueHeader venue={venue} />
 
@@ -185,7 +185,7 @@ export function VenueDetailClient({ venue }: VenueDetailClientProps) {
 
       {/* 5. Sticky Floating Mobile Booking Bar (positioned right above mobile bottom navbar bottom-16) */}
       {selectedSlots.length > 0 && (
-        <div className="fixed bottom-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/80 px-4 py-2.5 shadow-2xl lg:hidden flex items-center justify-between animate-in slide-in-from-bottom duration-300">
+        <div className="fixed bottom-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/80 px-4 py-2.5 shadow-xs lg:hidden flex items-center justify-between animate-in slide-in-from-bottom duration-300">
           <div className="flex flex-col min-w-0 pr-2">
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <ShoppingBag className="size-4 text-primary shrink-0" />

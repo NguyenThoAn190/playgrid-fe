@@ -99,14 +99,14 @@ export default function BlogListingPage() {
   return (
     <div className="w-full min-h-screen bg-background text-foreground py-8 sm:py-12">
       <JsonLdScript data={[blogListSchema, breadcrumbSchema]} />
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Page Header */}
         <div className="space-y-3 text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 px-3.5 py-1 text-xs font-bold text-[#00A859] dark:text-emerald-400">
+          <div className="inline-flex items-center gap-2 rounded-full bg-accent border border-border/80 px-3.5 py-1 text-xs font-semibold text-accent-foreground">
             <Sparkles className="h-3.5 w-3.5" />
             <span>PlayGrid Blog & Kiến Thức</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
             Kỹ Năng & Kinh Nghiệm Thể Thao
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
@@ -123,8 +123,8 @@ export default function BlogListingPage() {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${selectedCategory === cat
-                    ? "bg-[#00A859] text-white shadow-xs"
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer ${selectedCategory === cat
+                    ? "bg-primary text-primary-foreground shadow-xs"
                     : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
               >
@@ -150,7 +150,7 @@ export default function BlogListingPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   toolparamdescription="Article keyword or topic to search"
-                  className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm rounded-xl border border-border/70 bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-[#00A859]/30 focus:border-[#00A859]"
+                  className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm rounded-xl border border-border/70 bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
                 />
               </div>
             </form>
@@ -159,7 +159,7 @@ export default function BlogListingPage() {
 
         {/* Hero Featured Article (Only visible when no search query and "Tất cả") */}
         {selectedCategory === "Tất cả" && !searchQuery && (
-          <div className="relative overflow-hidden rounded-3xl bg-card border border-border/60 shadow-md group hover:border-[#00A859]/40 transition-all duration-300">
+          <div className="relative overflow-hidden rounded-3xl bg-card border border-border/60 shadow-md group hover:border-primary/30 transition-all duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Cover Image 12:5 ratio container */}
               <div className="lg:col-span-7 relative aspect-[12/5] w-full overflow-hidden bg-muted">
@@ -171,8 +171,8 @@ export default function BlogListingPage() {
                   unoptimized
                 />
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="inline-flex items-center rounded-lg bg-[#00A859] px-3 py-1 text-xs font-extrabold text-white uppercase tracking-wider shadow-md">
-                    BÀI VIẾT NỔI BẬT
+                  <span className="inline-flex items-center rounded-xl bg-accent border border-border/80 px-3 py-1 text-xs font-semibold text-accent-foreground shadow-2xs">
+                    Bài Viết Nổi Bật
                   </span>
                 </div>
               </div>
@@ -180,11 +180,11 @@ export default function BlogListingPage() {
               {/* Text Info */}
               <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-4">
                 <div className="space-y-3">
-                  <span className="text-xs font-bold text-[#00A859] uppercase tracking-wider">
+                  <span className="text-xs font-medium text-primary">
                     {FEATURED_ARTICLE.category}
                   </span>
                   <Link href={`/blog/${FEATURED_ARTICLE.id}`}>
-                    <h2 className="text-xl sm:text-2xl font-extrabold text-foreground group-hover:text-[#00A859] transition-colors leading-tight">
+                    <h2 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
                       {FEATURED_ARTICLE.title}
                     </h2>
                   </Link>
@@ -207,7 +207,7 @@ export default function BlogListingPage() {
                   </div>
 
                   <Link href={`/blog/${FEATURED_ARTICLE.id}`}>
-                    <Button className="h-9 px-4 rounded-xl bg-[#00A859] hover:bg-[#008f4c] text-white font-bold text-xs shadow-xs cursor-pointer">
+                    <Button className="h-9 px-4 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-xs shadow-xs cursor-pointer">
                       <span>Đọc ngay</span>
                       <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
                     </Button>

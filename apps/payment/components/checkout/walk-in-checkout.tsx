@@ -85,7 +85,7 @@ export function WalkInCheckout({ orderId = "PG-WLK-99014" }: WalkInCheckoutProps
 
   return (
     <div className="min-h-screen bg-muted/20 pb-36 lg:pb-16 pt-3 sm:pt-6">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-3 sm:space-y-4">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-3 sm:space-y-4">
         {/* Top Header: Back Button & 1-Line Clean Countdown with LanguageSwitcher */}
         <div className="flex items-center justify-between gap-2 flex-wrap">
           <button

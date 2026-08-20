@@ -347,7 +347,7 @@ export function VenueBookingSection({
                           {cleanName}
                         </span>
                         {isVip && (
-                          <span className="bg-amber-400 text-slate-950 font-extrabold text-[8px] px-1 py-0.2 rounded-sm tracking-wider">
+                          <span className="bg-amber-400 text-slate-950 font-bold text-[8px] px-1 py-0.5 rounded-sm">
                             VIP
                           </span>
                         )}
@@ -438,7 +438,7 @@ export function VenueBookingSection({
             <span className="size-5 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center">
               <Flame className="size-3 fill-amber-500 text-amber-500" />
             </span>
-            <span className="text-amber-600 dark:text-amber-400 font-bold">{tBooking("legend.peak")} 🔥</span>
+            <span className="text-amber-600 dark:text-amber-400 font-bold">{tBooking("legend.peak")}</span>
           </div>
 
           <div className="flex items-center gap-1.5">

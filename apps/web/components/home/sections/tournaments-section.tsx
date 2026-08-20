@@ -44,17 +44,22 @@ export function TournamentsSection() {
 
   return (
     <section id="tournaments" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors overflow-hidden border-t border-border/40 scroll-mt-20">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
         {/* Section Header */}
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <Trophy className="w-5 h-5 text-amber-500 shrink-0" />
-            <span>{tHome("title")}</span>
-          </h2>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+              <Trophy className="w-5 h-5 text-amber-500 shrink-0" />
+              <span>{tHome("title")}</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground font-normal mt-0.5">
+              {tHome("subtitle")}
+            </p>
+          </div>
 
           <Link
             href="/tournaments"
-            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors cursor-pointer"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0 self-start sm:self-auto cursor-pointer"
           >
             <span>{tCommon("view_all")}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

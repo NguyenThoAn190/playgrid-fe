@@ -34,7 +34,7 @@ export function ContactMap() {
     <div className="space-y-6 pt-4">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-blue dark:text-brand-green">
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
             <Building2 className="size-3.5" />
             <span>Văn phòng đại diện</span>
           </div>

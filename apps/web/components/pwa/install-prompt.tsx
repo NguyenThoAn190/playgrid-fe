@@ -69,7 +69,7 @@ export function InstallPrompt() {
 
   return (
     <div className="fixed bottom-20 left-3 right-3 lg:bottom-6 lg:left-auto lg:right-6 z-40 m-auto max-w-sm sm:max-w-md animate-in fade-in slide-in-from-bottom-5 duration-300">
-      <div className="flex items-center justify-between gap-3 rounded-2xl border border-border/80 bg-background/95 p-3.5 sm:p-4 shadow-xl backdrop-blur-md supports-[backdrop-filter]:bg-background/90">
+      <div className="flex items-center justify-between gap-3 rounded-2xl border border-border/80 bg-background/95 p-3.5 sm:p-4 shadow-xs backdrop-blur-md supports-[backdrop-filter]:bg-background/90">
         <div className="flex items-center gap-3 min-w-0">
           <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-border/80 bg-muted">
             <Image

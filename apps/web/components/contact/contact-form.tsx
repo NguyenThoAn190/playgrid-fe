@@ -114,7 +114,7 @@ export function ContactForm() {
             <CheckCircle2 className="size-10 sm:size-12" />
           </div>
           <div className="space-y-2 max-w-md">
-            <h3 className="text-xl sm:text-2xl font-extrabold text-foreground tracking-tight">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground tracking-tight">
               {t("form.success_title")}
             </h3>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -145,7 +145,7 @@ export function ContactForm() {
 
           {/* Topic Selector Tabs */}
           <div className="space-y-2">
-            <label className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <label className="text-[11px] sm:text-xs font-medium text-muted-foreground">
               {t("form.topic_label")}
             </label>
             <div className="grid grid-cols-2 gap-2 sm:gap-2.5">

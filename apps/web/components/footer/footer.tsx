@@ -111,7 +111,7 @@ export function Footer() {
       {/* Top CTA / PWA Section */}
       {mounted && !isInstalled && (
         <div className="border-b border-border/40">
-          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+          <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
             <div className="relative rounded-3xl bg-gradient-to-r from-blue-50/90 via-card to-emerald-50/90 dark:from-blue-950/60 dark:via-slate-900/80 dark:to-emerald-950/60 border border-border/80 p-6 sm:p-8 lg:p-10 shadow-sm overflow-hidden backdrop-blur-md">
               {/* Background Decorative Grid */}
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#94a3b8_1px,transparent_1px),linear-gradient(to_bottom,#94a3b8_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-15 pointer-events-none" />
@@ -119,7 +119,7 @@ export function Footer() {
               <div className="relative z-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6">
                 {/* Text Area */}
                 <div className="space-y-2 max-w-2xl">
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-foreground tracking-tight">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground tracking-tight">
                     {getT("newsletter.title", "Sẵn sàng tham gia & nhận thông báo trận đấu mới nhất?")}
                   </h3>
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -156,7 +156,7 @@ export function Footer() {
                     <button
                       type="button"
                       onClick={handleInstallPWA}
-                      className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-xl bg-gradient-to-r from-[#0052FF] to-[#00E575] hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-md transition-all shrink-0 cursor-pointer active:scale-[0.98]"
+                      className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-xl bg-gradient-primary hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-2xs transition-all shrink-0 cursor-pointer active:scale-[0.98]"
                     >
                       <Download className="w-4 h-4" />
                       <span>{isInstalled ? getT("pwa.installed_btn", "Đã có app") : getT("pwa.install_btn", "Cài app ngay")}</span>
@@ -170,7 +170,7 @@ export function Footer() {
       )}
 
       {/* Main Footer Links Columns */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
           
           {/* COLUMN 1: Brand Info & Social (Lg: 4 cols) */}
@@ -323,7 +323,7 @@ export function Footer() {
 
       {/* Bottom Bar / Copyright */}
       <div className="border-t border-border/40 bg-muted/20 pt-6 pb-28 sm:pb-24 lg:pb-6">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs text-muted-foreground text-center sm:text-left">
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs text-muted-foreground text-center sm:text-left">
           <p className="inline-flex flex-wrap items-center justify-center sm:justify-start gap-1 leading-relaxed">
             <span>© 2026 PlayGrid. All rights reserved.</span>
             <span className="inline-flex items-center gap-1">

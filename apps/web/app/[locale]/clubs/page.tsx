@@ -35,13 +35,13 @@ export default function ClubsPage() {
       <JsonLdScript data={[breadcrumbSchema]} />
       {/* Page Header */}
       <div className="bg-muted/30 border-b border-border/40 py-8 sm:py-12">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/40 px-3.5 py-1 text-xs font-bold text-indigo-700 dark:text-indigo-400">
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">
+          <div className="inline-flex items-center gap-2 rounded-full bg-muted/60 border border-border/80 px-3.5 py-1 text-xs font-semibold text-foreground/80">
             <Shield className="h-3.5 w-3.5" />
             <span>Hệ Thống CLB Thể Thao PlayGrid</span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
             Câu Lạc Bộ Thể Thao Uy Tín
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
@@ -82,7 +82,7 @@ export default function ClubsPage() {
       </div>
 
       {/* Main Content Grid: 4-Card Master Grid Layout */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 pt-8">
         <div className="flex items-center justify-between pb-4">
           <h2 className="text-lg sm:text-xl font-bold">
             {selectedSport === "Tất cả" ? "Tất cả câu lạc bộ" : `Bộ môn: ${selectedSport}`}

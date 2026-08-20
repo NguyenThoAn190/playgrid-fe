@@ -25,17 +25,22 @@ export function FindPlayersSection() {
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-orange-500/5 rounded-full blur-[130px] pointer-events-none" />
 
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6 relative z-10">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6 relative z-10">
         {/* Section Header */}
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <Users className="w-5 h-5 text-orange-600 dark:text-orange-400 shrink-0" />
-            <span>{tHome("title")}</span>
-          </h2>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+              <Users className="w-5 h-5 text-orange-600 dark:text-orange-400 shrink-0" />
+              <span>{tHome("title")}</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground font-normal mt-0.5">
+              {tHome("subtitle")}
+            </p>
+          </div>
 
           <Link
             href="/activities"
-            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0 self-start sm:self-auto"
           >
             <span>{tCommon("view_all")}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

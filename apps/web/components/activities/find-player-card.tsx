@@ -77,7 +77,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
           {/* Top Row Badges: Sport Tag (Left) & Favorite Heart (Right) */}
           <div className="absolute top-2 left-2 right-2 flex items-center justify-between z-10">
             <span
-              className={`inline-flex items-center rounded-lg px-2.5 py-0.5 text-[11px] font-extrabold shadow-xs ${sportTheme.solidBg}`}
+              className={`inline-flex items-center rounded-lg px-2.5 py-0.5 text-[11px] font-bold shadow-xs ${sportTheme.solidBg}`}
             >
               {activity.sport || "Cầu lông"}
             </span>
@@ -110,7 +110,7 @@ export function FindPlayerCard({ activity, className = "" }: FindPlayerCardProps
           {/* Bottom Right Image Overlay Tag: Price */}
           {activity.price && (
             <div className="absolute bottom-1.5 right-2 z-10">
-              <span className="inline-flex items-center rounded-md bg-orange-700 backdrop-blur-md px-2 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
+              <span className="inline-flex items-center rounded-md bg-orange-700 backdrop-blur-md px-2 py-0.5 text-[10px] font-bold text-white shadow-xs">
                 {activity.price}
               </span>
             </div>

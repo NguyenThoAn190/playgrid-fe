@@ -101,7 +101,7 @@ export function TournamentVenueGeo({ venue }: TournamentVenueGeoProps) {
           <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1.5px,transparent_1.5px)] [background-size:20px_20px] opacity-30" />
 
           <div className="relative z-10 space-y-2 text-center my-auto">
-            <div className="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center mx-auto shadow-lg">
+            <div className="w-12 h-12 rounded-full bg-primary/10 text-primary border border-primary/20 flex items-center justify-center mx-auto shadow-xs">
               <MapPin className="w-6 h-6" />
             </div>
             <h4 className="text-white font-semibold text-sm sm:text-base">{venue.name}</h4>

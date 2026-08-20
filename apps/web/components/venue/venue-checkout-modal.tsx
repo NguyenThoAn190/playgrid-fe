@@ -101,7 +101,7 @@ export function VenueCheckoutModal({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg rounded-2xl bg-background border border-border shadow-2xl overflow-hidden my-6 animate-in zoom-in-95"
+        className="relative w-full max-w-lg rounded-2xl bg-background border border-border shadow-sm overflow-hidden my-6 animate-in zoom-in-95"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Close Button */}

@@ -50,7 +50,7 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
 
           {/* Top Right Crown Badge */}
           {club.isVip !== false && (
-            <div className="absolute top-2.5 right-2.5 z-10 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-[#FFB800] text-slate-950 shadow-md">
+            <div className="absolute top-2.5 right-2.5 z-10 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-amber-400 text-slate-950 shadow-md">
               <Crown className="h-4 w-4 fill-slate-950 text-slate-950" />
             </div>
           )}
@@ -67,7 +67,7 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
               className="object-cover"
             />
           ) : (
-            <div className="w-full h-full bg-muted text-foreground font-extrabold text-xs sm:text-sm flex items-center justify-center text-center p-1 leading-tight">
+            <div className="w-full h-full bg-muted text-foreground font-bold text-xs sm:text-sm flex items-center justify-center text-center p-1 leading-tight">
               {club.logoText || club.name.slice(0, 4)}
             </div>
           )}
@@ -90,7 +90,7 @@ export function ClubCard({ club, className = "" }: ClubCardProps) {
 
             {/* Rating & Reviews */}
             <div className="flex items-center gap-1 text-xs text-muted-foreground font-medium">
-              <Star className="h-3.5 w-3.5 fill-[#FFB800] text-[#FFB800]" />
+              <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
               <span className="font-bold text-foreground">{club.rating.toFixed(1)}</span>
               <span>({club.reviewCount} đánh giá)</span>
             </div>

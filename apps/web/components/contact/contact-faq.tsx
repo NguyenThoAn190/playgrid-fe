@@ -105,11 +105,11 @@ export function ContactFAQ() {
 
       {/* Header Section */}
       <div className="text-center space-y-2 max-w-3xl mx-auto px-4">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 dark:text-brand-green dark:bg-brand-green/10 border border-brand-blue/20 dark:border-brand-green/20 shadow-2xs">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-accent-foreground bg-accent border border-border/80 shadow-2xs">
           <HelpCircle className="size-3.5" />
           <span>{isEn ? "Knowledge Base & AI GEO FAQ" : "Trung Tâm Giải Đáp & Kiến Thức PlayGrid"}</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">
           {isEn ? "Frequently Asked Questions" : "Câu Hỏi Thường Gặp (FAQ)"}
         </h2>
         <p className="text-xs sm:text-sm text-muted-foreground font-normal max-w-2xl mx-auto leading-relaxed">
@@ -289,7 +289,7 @@ export function ContactFAQ() {
                       {index + 1}
                     </span>
                     <div className="space-y-1">
-                      <div className="text-[11px] font-semibold text-brand-blue dark:text-brand-green uppercase tracking-wide">
+                      <div className="text-[11px] font-medium text-primary">
                         {categoryLabel}
                       </div>
                       <span className={`text-xs sm:text-sm sm:leading-relaxed font-semibold transition-colors block ${

@@ -126,7 +126,7 @@ export function VoucherWalletModal({
       onClick={onClose}
     >
       <div
-        className="bg-card border-t sm:border border-border/80 rounded-t-3xl sm:rounded-3xl max-w-md w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden animate-in slide-in-from-bottom sm:zoom-in-95 duration-200"
+        className="bg-card border-t sm:border border-border/80 rounded-t-3xl sm:rounded-3xl max-w-md w-full max-h-[85vh] flex flex-col shadow-sm overflow-hidden animate-in slide-in-from-bottom sm:zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Drawer Pull Handle (Mobile) */}
@@ -141,7 +141,7 @@ export function VoucherWalletModal({
             <div>
               <h3 className="font-bold text-sm text-foreground flex items-center gap-1.5 leading-none">
                 <span>{isEn ? "PlayGrid Voucher Wallet" : "Ví Voucher PlayGrid"}</span>
-                <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-brand-blue/10 text-brand-blue dark:text-brand-green">
+                <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-primary/10 text-primary">
                   {eligibleVouchers.length} {isEn ? "available" : "khả dụng"}
                 </span>
               </h3>
@@ -177,7 +177,7 @@ export function VoucherWalletModal({
                 value={customCode}
                 onChange={(e) => setCustomCode(e.target.value)}
                 toolparamdescription="Voucher promo code string"
-                className="pl-8.5 h-10 rounded-xl text-xs uppercase placeholder:normal-case font-semibold bg-background shadow-2xs"
+                className="pl-8.5 h-10 rounded-xl text-xs placeholder:normal-case font-semibold bg-background shadow-2xs"
               />
             </div>
             <Button
@@ -217,7 +217,7 @@ export function VoucherWalletModal({
                 }}
                 className={`relative rounded-2xl border transition-all flex items-stretch cursor-pointer active:scale-[0.99] ${
                   isSelected
-                    ? "border-brand-blue dark:border-brand-green bg-brand-blue/[0.04] dark:bg-brand-green/[0.04] ring-1 ring-brand-blue/30"
+                    ? "border-primary/50 bg-primary/[0.03] ring-1 ring-primary/20"
                     : "border-border/80 bg-card hover:border-border hover:shadow-xs"
                 }`}
               >
@@ -225,7 +225,7 @@ export function VoucherWalletModal({
                 <div
                   className={`absolute -top-2 left-20 sm:left-22 -translate-x-1/2 size-4 rounded-full bg-card z-10 border-b transition-colors ${
                     isSelected
-                      ? "border-brand-blue dark:border-brand-green"
+                      ? "border-primary/50"
                       : "border-border/80"
                   }`}
                 />
@@ -239,14 +239,14 @@ export function VoucherWalletModal({
                 />
 
                 {/* Left Ticket Stub: Discount Tag */}
-                <div className="w-20 sm:w-22 bg-gradient-to-br from-brand-blue/15 to-brand-green/15 dark:from-brand-blue/25 dark:to-brand-green/25 border-r border-dashed border-border/70 p-2 flex flex-col items-center justify-center shrink-0 text-center relative rounded-l-[15px]">
-                  <span className="font-extrabold text-sm sm:text-base text-brand-blue dark:text-brand-green leading-none">
+                <div className="w-20 sm:w-22 bg-gradient-primary/10 border-r border-dashed border-border/70 p-2 flex flex-col items-center justify-center shrink-0 text-center relative rounded-l-[15px]">
+                  <span className="font-bold text-sm sm:text-base text-primary leading-none">
                     {voucher.discountType === "percentage"
                       ? `-${voucher.discountValue}%`
                       : `-${Math.round(voucher.discountValue / 1000)}k`}
                   </span>
-                  <span className="text-[9px] font-semibold text-muted-foreground mt-1">
-                    {voucher.discountType === "percentage" ? "GIẢM GIÁ" : "VOUCHER"}
+                  <span className="text-[9px] font-medium text-muted-foreground mt-1">
+                    {voucher.discountType === "percentage" ? "Giảm giá" : "Voucher"}
                   </span>
                 </div>
 
@@ -285,7 +285,7 @@ export function VoucherWalletModal({
                       className={`size-6 rounded-full flex items-center justify-center transition-all ${
                         isSelected
                           ? "bg-gradient-primary text-white shadow-2xs scale-105"
-                          : "border-2 border-muted-foreground/30 hover:border-brand-blue"
+                          : "border border-muted-foreground/30 hover:border-primary"
                       }`}
                     >
                       {isSelected && <Check className="size-3.5 stroke-[3]" />}

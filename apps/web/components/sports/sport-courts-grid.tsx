@@ -173,7 +173,7 @@ export function SportCourtsGrid({ sportName = "Cầu Lông" }: SportCourtsGridPr
 
   return (
     <section id="courts" className="w-full py-5 sm:py-6 bg-background text-foreground transition-colors overflow-hidden border-b border-border/40 scroll-mt-24">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">
         {/* Section Header */}
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-0.5 min-w-0">

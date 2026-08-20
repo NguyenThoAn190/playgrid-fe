@@ -35,13 +35,13 @@ export default function ActivitiesPage() {
       <JsonLdScript data={[breadcrumbSchema]} />
       {/* Page Header */}
       <div className="bg-muted/30 border-b border-border/40 py-8 sm:py-12">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full bg-orange-50 dark:bg-orange-950/40 border border-orange-200 dark:border-orange-800/40 px-3.5 py-1 text-xs font-bold text-orange-700 dark:text-orange-400">
             <Users className="h-3.5 w-3.5" />
             <span>Ghép Kèo & Tìm Bạn Chơi Cùng</span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
             Hoạt Động Thể Thao & Giao Lưu
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
@@ -82,7 +82,7 @@ export default function ActivitiesPage() {
       </div>
 
       {/* Main Content Grid: 4-Card Master Grid Layout */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 pt-8">
         <div className="flex items-center justify-between pb-4">
           <h2 className="text-lg sm:text-xl font-bold">
             {selectedSport === "Tất cả" ? "Tất cả trận đấu giao lưu" : `Môn: ${selectedSport}`}

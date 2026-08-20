@@ -25,7 +25,7 @@ export function HeroBanner({
       <div className="absolute bottom-0 left-0 w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-emerald-500/15 via-teal-500/10 to-transparent blur-[100px] pointer-events-none dark:from-emerald-600/20" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-sky-400/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid items-center gap-6 sm:gap-10 lg:grid-cols-12 lg:gap-8">
           {/* Left Column: Content */}
           <div className="flex flex-col items-start space-y-4 sm:space-y-6 lg:col-span-6 z-10">

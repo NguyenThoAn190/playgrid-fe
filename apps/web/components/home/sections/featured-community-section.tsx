@@ -122,18 +122,23 @@ export function FeaturedCommunitySection() {
 
   return (
     <section className="w-full py-6 sm:py-8 bg-background text-foreground transition-colors border-t border-border/40 overflow-hidden">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
 
         {/* Header Row */}
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <MessageSquare className="w-5 h-5 text-emerald-500 shrink-0" />
-            <span>{getT("title", "Cộng đồng PlayGrid")}</span>
-          </h2>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+              <MessageSquare className="w-5 h-5 text-emerald-500 shrink-0" />
+              <span>{getT("title", "Cộng đồng PlayGrid")}</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground font-normal mt-0.5">
+              {getT("subtitle", "Chia sẻ khoảnh khắc, kinh nghiệm và thảo luận thể thao sôi nổi")}
+            </p>
+          </div>
 
           <Link
             href="/community"
-            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0 self-start sm:self-auto"
           >
             <span>{getT("view_all", "Khám phá cộng đồng")}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

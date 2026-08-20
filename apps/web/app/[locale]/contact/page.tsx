@@ -34,7 +34,7 @@ export default async function ContactPage({
   return (
     <div className="w-full min-h-screen bg-background text-foreground py-6 sm:py-10">
       <JsonLdScript data={breadcrumbSchema} />
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         {/* 1. Hero & Trust Badges */}
         <ContactHero />
 

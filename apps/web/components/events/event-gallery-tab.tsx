@@ -283,7 +283,7 @@ export function EventGalleryTab() {
               <X className="w-4 h-4" />
             </button>
 
-            <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-white/20 bg-black shadow-2xl">
+            <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-white/20 bg-black shadow-sm">
               <Image
                 src={previewPhoto.url}
                 alt={previewPhoto.title}

@@ -402,7 +402,7 @@ export function TournamentRegistrationSidebar({
       </aside>
 
       {/* Mobile Sticky Bottom CTA Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border p-3 shadow-2xl">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-t border-border p-3 shadow-xs">
         <div className="flex items-center justify-between gap-3 max-w-[500px] mx-auto">
           <div>
             <span className="text-xs text-muted-foreground block font-normal">Tổng ({totalTickets} vé)</span>

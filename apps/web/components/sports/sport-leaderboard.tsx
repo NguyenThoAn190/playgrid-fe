@@ -431,7 +431,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
 
   return (
     <section id="leaderboard" className="w-full py-5 sm:py-7 bg-background text-foreground transition-colors scroll-mt-24">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">
         {/* Header */}
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-0.5 min-w-0">
@@ -488,7 +488,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
                     {/* Rank Badge */}
                     <div className="flex items-center justify-center shrink-0 w-7 h-7">
                       {player.rank === 1 ? (
-                        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 text-amber-950 font-extrabold text-xs flex items-center justify-center shadow-xs">
+                        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 text-amber-950 font-bold text-xs flex items-center justify-center shadow-xs">
                           1
                         </div>
                       ) : player.rank === 2 ? (
@@ -556,7 +556,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
             <div className="relative z-10 p-5 sm:p-6 flex flex-col justify-between flex-1">
               {/* Rank Tag Header */}
               <div className="flex justify-end">
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-amber-400/90 text-amber-950 font-extrabold text-xs shadow-xs">
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-amber-400/90 text-amber-950 font-bold text-xs shadow-xs">
                   #1
                 </span>
               </div>
@@ -573,7 +573,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
                 </div>
 
                 <div className="pt-2 flex items-baseline gap-1.5" suppressHydrationWarning>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                  <span className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                     {formatPoints(topPlayer.points)}
                   </span>
                   <span className="text-xs sm:text-sm font-normal text-slate-300">
@@ -586,7 +586,7 @@ export function SportLeaderboard({ sportName = "Cầu Lông" }: SportLeaderboard
             {/* Bottom Achievements Box */}
             <div className="relative z-10 bg-slate-950/90 backdrop-blur-xs p-4 sm:p-5 border-t border-slate-800/80 space-y-4">
               <div>
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <p className="text-xs font-medium text-slate-400">
                   Thành tích nổi bật
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-2">

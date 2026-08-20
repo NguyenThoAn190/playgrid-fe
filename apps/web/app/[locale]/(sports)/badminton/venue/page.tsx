@@ -467,14 +467,14 @@ export default function BadmintonVenuePage() {
         className="rounded-2xl border border-border/80 bg-card p-4 sm:p-5 space-y-5 shadow-2xs divide-y divide-border/50"
       >
         <div className="flex items-center justify-between pb-1">
-          <h3 className="font-extrabold text-sm sm:text-base text-foreground tracking-tight">
+          <h3 className="font-semibold text-sm sm:text-base text-foreground">
             {safeT("filter_title")}
           </h3>
           {activeFilterCount > 0 && (
             <button
               type="button"
               onClick={handleResetFilters}
-              className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1 cursor-pointer"
+              className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 cursor-pointer"
             >
               <RotateCcw className="w-3 h-3" />
               <span>{safeT("reset_filter")}</span>
@@ -689,7 +689,7 @@ export default function BadmintonVenuePage() {
 
       {/* Main Container Section */}
       <section className="w-full pt-6 sm:pt-8 pb-12 bg-background flex-1">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-3">
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-3">
           {/* Top Search & Controls Bar */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-card border border-border/80 rounded-2xl p-3 sm:p-4 shadow-2xs">
             {/* Search Input */}
@@ -716,12 +716,12 @@ export default function BadmintonVenuePage() {
               <button
                 type="button"
                 onClick={() => setIsMobileFilterOpen(true)}
-                className="lg:hidden flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-blue-50 dark:bg-blue-950/60 border border-blue-500/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 transition-colors cursor-pointer"
+                className="lg:hidden flex items-center gap-1.5 px-3 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-muted border border-border/80 text-muted-foreground hover:bg-muted/80 transition-colors cursor-pointer"
               >
                 <Filter className="w-4 h-4 shrink-0" />
                 <span>{safeT("filter_btn")}</span>
                 {activeFilterCount > 0 && (
-                  <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[10px] font-extrabold flex items-center justify-center">
+                   <span className="w-4 h-4 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
                     {activeFilterCount}
                   </span>
                 )}
@@ -779,14 +779,14 @@ export default function BadmintonVenuePage() {
               {/* Filter Results Counter Bar */}
               <div className="flex items-center justify-between px-1">
                 <span className="text-xs sm:text-sm font-bold text-foreground">
-                  {safeT("found_prefix")} <span className="text-blue-600 dark:text-blue-400 font-extrabold">{filteredCourts.length}</span> {safeT("found_suffix")}
+                   {safeT("found_prefix")} <span className="text-primary font-bold">{filteredCourts.length}</span> {safeT("found_suffix")}
                 </span>
 
                 {activeFilterCount > 0 && (
                   <button
                     type="button"
                     onClick={handleResetFilters}
-                    className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline lg:hidden cursor-pointer"
+                    className="text-xs font-semibold text-primary hover:underline lg:hidden cursor-pointer"
                   >
                     {safeT("reset_filter")} ({activeFilterCount})
                   </button>
@@ -871,10 +871,10 @@ export default function BadmintonVenuePage() {
           />
 
           {/* Drawer container */}
-          <div className="relative w-full max-w-xs bg-background h-full shadow-2xl z-10 flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-200">
+          <div className="relative w-full max-w-xs bg-background h-full shadow-xs z-10 flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-200">
             <div className="flex items-center justify-between p-4 border-b border-border/60 bg-card">
               <div className="flex items-center gap-2 font-bold text-sm text-foreground">
-                <SlidersHorizontal className="w-4 h-4 text-blue-600" />
+                <SlidersHorizontal className="w-4 h-4 text-primary" />
                 <span>{safeT("filter_btn")}</span>
               </div>
               <button

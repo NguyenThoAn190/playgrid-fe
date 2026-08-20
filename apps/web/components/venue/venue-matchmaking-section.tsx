@@ -13,6 +13,7 @@ import {
   ShieldCheck,
   ChevronDown,
   ChevronRight,
+  Zap,
 } from "lucide-react";
 import { Card } from "@workspace/ui/components/card";
 import { Button } from "@workspace/ui/components/button";
@@ -63,7 +64,7 @@ const MOCK_MATCHES: MatchmakingItem[] = [
     pricePerPlayer: 50000,
     format: "Đôi nam",
     note: "Cần tìm 1 bạn trình độ trung bình khá trở lên để giao lưu cọ xát cuối tuần.",
-    badge: "Sắp đủ người 🔥",
+    badge: "Sắp đủ người",
   },
   {
     id: "match-3",
@@ -78,7 +79,7 @@ const MOCK_MATCHES: MatchmakingItem[] = [
     pricePerPlayer: 60000,
     format: "Giao lưu tự do",
     note: "Kèo đánh nhiệt tình, cầu Victor Gold, người chơi có kinh nghiệm thi đấu phong trào.",
-    badge: "Kèo chất lượng ⭐",
+    badge: "Kèo chất lượng",
   },
   {
     id: "match-4",
@@ -206,7 +207,8 @@ export function VenueMatchmakingSection({
                   </div>
 
                   {match.badge && (
-                    <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 text-[10px] font-semibold border border-amber-500/20 shrink-0">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 text-[10px] font-semibold border border-amber-500/20 shrink-0">
+                      <Zap className="w-2.5 h-2.5" />
                       {match.badge}
                     </span>
                   )}

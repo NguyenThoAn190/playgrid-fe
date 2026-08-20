@@ -51,9 +51,9 @@ export function TournamentHeroBanner({ tournament }: TournamentHeroBannerProps) 
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-black/40 to-black/60" />
 
-      {/* Floating Top Actions Bar Aligned with Navbar Container (max-w-7xl) */}
+      {/* Floating Top Actions Bar Aligned with Navbar Container (max-w-[1440px]) */}
       <div className="absolute top-4 sm:top-6 left-0 right-0 z-10">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           <Link href="/tournaments">
             <Button
               variant="outline"

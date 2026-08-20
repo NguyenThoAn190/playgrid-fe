@@ -142,7 +142,7 @@ function PaymentContent() {
 
   return (
     <div className="min-h-screen bg-background py-10 sm:py-16">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Header Title */}
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider text-brand-blue bg-brand-blue/10 dark:text-brand-green dark:bg-brand-green/10 border border-brand-blue/20 dark:border-brand-green/20 shadow-2xs">

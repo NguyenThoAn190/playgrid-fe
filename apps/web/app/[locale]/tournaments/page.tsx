@@ -64,7 +64,7 @@ export default function TournamentsPage() {
 
       {/* Page Header */}
       <div className="bg-muted/30 border-b border-border/40 py-8 sm:py-12">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/40 px-3.5 py-1 text-xs font-semibold text-amber-700 dark:text-amber-400 shadow-2xs">
             <Trophy className="h-3.5 w-3.5" />
             <span>Hệ Thống Giải Đấu Thể Thao PlayGrid</span>
@@ -111,7 +111,7 @@ export default function TournamentsPage() {
       </div>
 
       {/* Main Content Grid: Master 3-Card Grid */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 pt-8">
         <div className="flex items-center justify-between pb-4">
           <h2 className="text-base sm:text-lg font-bold text-foreground">
             {selectedSport === "Tất cả" ? "Tất cả giải đấu đang mở" : `Bộ môn: ${selectedSport}`}

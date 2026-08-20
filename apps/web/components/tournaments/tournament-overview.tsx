@@ -282,7 +282,7 @@ export function TournamentOverview({ tournament }: TournamentOverviewProps) {
         {/* 3 Podium Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 items-stretch">
           {/* Hạng Nhất (#1) */}
-          <div className="bg-card border-2 border-amber-400/90 dark:border-amber-500/80 rounded-2xl sm:rounded-3xl p-4 sm:p-5 space-y-3 shadow-2xs relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-card border border-amber-400/70 dark:border-amber-500/50 bg-amber-50/30 dark:bg-amber-950/10 rounded-2xl sm:rounded-3xl p-4 sm:p-5 space-y-3 shadow-2xs relative overflow-hidden flex flex-col justify-between">
             <div className="absolute top-3 right-3 w-7 h-7 rounded-full bg-amber-400/20 flex items-center justify-center text-amber-600 dark:text-amber-400 font-bold text-xs">
               #1
             </div>

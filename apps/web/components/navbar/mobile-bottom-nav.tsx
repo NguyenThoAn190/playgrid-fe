@@ -202,7 +202,7 @@ export function MobileBottomNav() {
 
       {/* Drawer Container Panel */}
       <aside
-        className={`fixed inset-y-0 right-0 z-70 flex w-[85%] max-w-sm flex-col bg-background shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed inset-y-0 right-0 z-70 flex w-[85%] max-w-sm flex-col bg-background shadow-sm transition-transform duration-300 ease-in-out lg:hidden ${
           isDrawerOpen ? "translate-x-0" : "translate-x-full pointer-events-none"
         }`}
       >
@@ -294,7 +294,7 @@ export function MobileBottomNav() {
 
           {/* Quick Preferences & Tools Section */}
           <div className="space-y-3">
-            <h5 className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground px-1">
+            <h5 className="text-[11px] font-medium text-muted-foreground px-1">
               Cài đặt & Tiện ích
             </h5>
             <div className="rounded-2xl border border-border/80 bg-background overflow-hidden divide-y divide-border/50">
@@ -356,7 +356,7 @@ export function MobileBottomNav() {
 
           {/* Full Navigation Links */}
           <div className="space-y-3">
-            <h5 className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground px-1">
+            <h5 className="text-[11px] font-medium text-muted-foreground px-1">
               Khám phá PlayGrid
             </h5>
             <div className="rounded-2xl border border-border/80 bg-background overflow-hidden divide-y divide-border/50">

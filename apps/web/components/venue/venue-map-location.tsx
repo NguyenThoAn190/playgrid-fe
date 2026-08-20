@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { MapPin, Navigation, Copy, Check, Phone, Clock } from "lucide-react";
+import { MapPin, Navigation, Copy, Check, Phone, Clock, Info } from "lucide-react";
 import { Card } from "@workspace/ui/components/card";
 import { Button } from "@workspace/ui/components/button";
 import { VenueDetailData } from "@/lib/venue-data";
@@ -130,9 +130,10 @@ export function VenueMapLocation({ venue }: VenueMapLocationProps) {
           </div>
 
           <div className="pt-2 border-t border-border/60">
-            <p className="text-[11px] text-muted-foreground font-normal leading-relaxed">
-              💡 <strong>{tLoc("entrance_hint")}</strong> {tLoc("entrance_hint_desc")}
-            </p>
+              <p className="text-[11px] text-muted-foreground font-normal leading-relaxed flex items-start gap-1.5">
+                <Info className="w-3.5 h-3.5 shrink-0 mt-0.5 text-muted-foreground/70" />
+                <span><strong>{tLoc("entrance_hint")}</strong> {tLoc("entrance_hint_desc")}</span>
+              </p>
           </div>
         </div>
       </div>

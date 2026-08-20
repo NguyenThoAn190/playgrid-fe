@@ -244,8 +244,8 @@ export function EventFaqSection() {
                   <div className="px-4 pb-4 pt-1 pl-11 text-xs sm:text-sm text-muted-foreground font-normal leading-relaxed border-t border-border/30 animate-in fade-in-50 duration-150 space-y-2">
                     <p className="text-foreground/90 leading-relaxed font-normal">{faq.answer}</p>
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <span className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground font-medium">
-                        📍 {faq.categoryLabel}
+                      <span className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground font-medium flex items-center gap-1">
+                        <MapPin className="w-3 h-3 shrink-0" /> {faq.categoryLabel}
                       </span>
                       <span>• Nguồn: Ban Tổ Chức Aqua Warriors & PlayGrid</span>
                     </div>

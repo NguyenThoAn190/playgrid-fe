@@ -141,17 +141,22 @@ export function FeaturedLeaderboardSection() {
 
   return (
     <section id="leaderboard" className="w-full py-6 sm:py-8 bg-background text-foreground transition-colors border-t border-border/40 overflow-hidden scroll-mt-20">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <Crown className="w-5 h-5 text-amber-500 shrink-0" />
-            <span>{getT("title", "Bảng xếp hạng")}</span>
-          </h2>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
+              <Crown className="w-5 h-5 text-amber-500 shrink-0" />
+              <span>{getT("title", "Bảng xếp hạng")}</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground font-normal mt-0.5">
+              {getT("subtitle", "Vinh danh những tay vợt xuất sắc dẫn đầu trên hệ thống PlayGrid")}
+            </p>
+          </div>
 
           <Link
             href="/leaderboard"
-            className="group flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:underline transition-colors shrink-0 self-start sm:self-auto"
           >
             <span>{getT("view_full", "Xem bảng xếp hạng đầy đủ")}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -193,7 +198,7 @@ export function FeaturedLeaderboardSection() {
                     {/* Rank Badge */}
                     <div className="flex items-center justify-center shrink-0 w-7 h-7">
                       {player.rank === 1 ? (
-                        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 text-amber-950 font-extrabold text-xs flex items-center justify-center shadow-sm">
+                        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 text-amber-950 font-bold text-xs flex items-center justify-center shadow-xs">
                           1
                         </div>
                       ) : player.rank === 2 ? (
@@ -261,7 +266,7 @@ export function FeaturedLeaderboardSection() {
             <div className="relative z-10 p-5 sm:p-6 flex flex-col justify-between flex-1">
               {/* Rank Tag Header */}
               <div className="flex justify-end">
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-amber-400/90 text-amber-950 font-extrabold text-xs shadow">
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-amber-400/90 text-amber-950 font-bold text-xs shadow-xs">
                   #1
                 </span>
               </div>
@@ -278,7 +283,7 @@ export function FeaturedLeaderboardSection() {
                 </div>
 
                 <div className="pt-2 flex items-baseline gap-1.5" suppressHydrationWarning>
-                  <span className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                  <span className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                     {formatPoints(topPlayer.points)}
                   </span>
                   <span className="text-xs sm:text-sm font-normal text-slate-300">
@@ -291,7 +296,7 @@ export function FeaturedLeaderboardSection() {
             {/* Bottom Achievements Box */}
             <div className="relative z-10 bg-slate-950/90 backdrop-blur-sm p-4 sm:p-5 border-t border-slate-800/80 space-y-4">
               <div>
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <p className="text-xs font-medium text-slate-400">
                   {getT("highlight.achievements", "Thành tích")}
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-2">

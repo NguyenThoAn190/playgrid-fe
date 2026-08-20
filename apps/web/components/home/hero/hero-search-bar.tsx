@@ -6,7 +6,8 @@ import {
   Calendar,
   Search,
   ChevronDown,
-  Check
+  Check,
+  Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -47,9 +48,9 @@ export function HeroSearchBar({
   const currentSport = externalSport !== undefined ? externalSport : internalSport;
 
   const sportsOptions = [
-    { value: "Cầu lông", label: t("sports.badminton"), status: "⚡" },
-    { value: "Pickleball", label: t("sports.pickleball"), status: "⚡" },
-    { value: "Tất cả môn", label: t("sports.all"), status: "" },
+    { value: "Cầu lông", label: t("sports.badminton"), hot: true },
+    { value: "Pickleball", label: t("sports.pickleball"), hot: true },
+    { value: "Tất cả môn", label: t("sports.all"), hot: false },
   ];
 
   const locationOptions = [
@@ -147,7 +148,7 @@ export function HeroSearchBar({
                     <Image src="/images/herobanner/gily-badminton.avif" alt={getSportDisplayLabel(currentSport)} width={36} height={36} className="h-full w-full object-contain" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="block text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                    <span className="block text-[11px] font-medium text-muted-foreground">
                       {t("search_sport_label")}
                     </span>
                     <span className="block text-sm font-bold text-foreground truncate">
@@ -157,8 +158,8 @@ export function HeroSearchBar({
                   <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" side="bottom" className="w-60 p-1.5 rounded-2xl shadow-2xl border-border bg-background/95 backdrop-blur-md">
-                <DropdownMenuLabel className="text-[11px] font-bold text-muted-foreground uppercase px-2 py-1">
+              <DropdownMenuContent align="start" side="bottom" className="w-60 p-1.5 rounded-2xl shadow-sm border-border bg-background/95 backdrop-blur-md">
+                <DropdownMenuLabel className="text-[11px] font-semibold text-muted-foreground px-2 py-1">
                   {t("search_sport_label")}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -175,10 +176,8 @@ export function HeroSearchBar({
                       {isSelected ? (
                         <Check className="h-4 w-4 text-primary" />
                       ) : (
-                        item.status && (
-                          <span className="text-[10px] font-normal text-muted-foreground">
-                            {item.status}
-                          </span>
+                        item.hot && (
+                          <Zap className="w-3 h-3 text-amber-500" />
                         )
                       )}
                     </DropdownMenuItem>
@@ -196,11 +195,11 @@ export function HeroSearchBar({
                   type="button"
                   className="flex items-center gap-3.5 px-3.5 py-2.5 sm:py-2 rounded-xl hover:bg-muted/60 transition-colors cursor-pointer w-full text-left outline-none bg-transparent border-0"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-border/60">
-                    <MapPin className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted border border-border/60">
+                    <MapPin className="h-5 w-5 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="block text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                    <span className="block text-[11px] font-medium text-muted-foreground">
                       {t("search_location_label")}
                     </span>
                     <span className="block text-sm font-bold text-foreground truncate">
@@ -210,8 +209,8 @@ export function HeroSearchBar({
                   <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" side="bottom" className="w-56 p-1.5 rounded-2xl shadow-2xl border-border bg-background/95 backdrop-blur-md">
-                <DropdownMenuLabel className="text-[11px] font-bold text-muted-foreground uppercase px-2 py-1">
+              <DropdownMenuContent align="start" side="bottom" className="w-56 p-1.5 rounded-2xl shadow-sm border-border bg-background/95 backdrop-blur-md">
+                <DropdownMenuLabel className="text-[11px] font-semibold text-muted-foreground px-2 py-1">
                   {t("search_location_label")}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -221,11 +220,11 @@ export function HeroSearchBar({
                     <DropdownMenuItem
                       key={loc.key}
                       onClick={() => setSelectedLocationKey(loc.key)}
-                      className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold cursor-pointer ${isSelected ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold" : ""
+                      className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold cursor-pointer ${isSelected ? "bg-emerald-500/10 text-primary font-bold" : ""
                         }`}
                     >
                       <span>{loc.label}</span>
-                      {isSelected && <Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />}
+                      {isSelected && <Check className="h-4 w-4 text-primary" />}
                     </DropdownMenuItem>
                   );
                 })}
@@ -241,11 +240,11 @@ export function HeroSearchBar({
                   type="button"
                   className="flex items-center gap-3.5 px-3.5 py-2.5 sm:py-2 rounded-xl hover:bg-muted/60 transition-colors cursor-pointer w-full text-left outline-none bg-transparent border-0 flex-1 min-w-0"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-border/60">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted border border-border/60">
                     <Calendar className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="block text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                    <span className="block text-[11px] font-medium text-muted-foreground">
                       {t("search_time_label")}
                     </span>
                     <span className="block text-sm font-bold text-foreground truncate">
@@ -255,8 +254,8 @@ export function HeroSearchBar({
                   <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" side="bottom" className="w-52 p-1.5 rounded-2xl shadow-2xl border-border bg-background/95 backdrop-blur-md">
-                <DropdownMenuLabel className="text-[11px] font-bold text-muted-foreground uppercase px-2 py-1">
+              <DropdownMenuContent align="start" side="bottom" className="w-52 p-1.5 rounded-2xl shadow-sm border-border bg-background/95 backdrop-blur-md">
+                <DropdownMenuLabel className="text-[11px] font-semibold text-muted-foreground px-2 py-1">
                   {t("search_time_label")}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />

@@ -368,7 +368,7 @@ export function TournamentPartnerFindingTab({
       {/* 4. Modal: Create Partner Request */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 w-full max-w-lg space-y-4 shadow-xl relative max-h-[90vh] overflow-y-auto">
+          <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 w-full max-w-lg space-y-4 shadow-sm relative max-h-[90vh] overflow-y-auto">
             {/* Close Button */}
             <button
               type="button"

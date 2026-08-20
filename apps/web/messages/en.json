@@ -77,22 +77,28 @@
       }
     },
     "featured_courts": {
-      "title": "Courts near you"
+      "title": "Courts near you",
+      "subtitle": "Book courts instantly at top-tier venues closest to you"
     },
     "find_players": {
-      "title": "Find players"
+      "title": "Find players",
+      "subtitle": "Join exciting matches and connect with the sports community"
     },
     "tournaments": {
-      "title": "Tournaments & Events"
+      "title": "Tournaments & Events",
+      "subtitle": "Compete in exciting community and professional sports tournaments"
     },
     "featured_clubs": {
-      "title": "Featured Clubs"
+      "title": "Featured Clubs",
+      "subtitle": "Join reputable sports clubs for regular training and activities"
     },
     "featured_blogs": {
-      "title": "Featured Skills & Articles"
+      "title": "Featured Skills & Articles",
+      "subtitle": "Technical guides, training tips, and in-depth sports knowledge"
     },
     "leaderboard": {
       "title": "Leaderboard",
+      "subtitle": "Honoring top players leading the PlayGrid sports rankings",
       "view_full": "View full leaderboard",
       "sports": {
         "badminton": "Badminton",
@@ -123,6 +129,7 @@
     },
     "community": {
       "title": "PlayGrid Community",
+      "subtitle": "Share moments, tips, and join vibrant sports discussions",
       "badge": "Trending Today",
       "view_all": "Explore community",
       "create_post": "Create post",

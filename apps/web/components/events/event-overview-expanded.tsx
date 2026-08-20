@@ -15,6 +15,7 @@ import {
   Download,
   Sparkles,
   CheckCircle2,
+  MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EventData, EventContentSection } from "@/lib/events-data";
@@ -160,8 +161,8 @@ export function EventOverviewExpanded({ event }: EventOverviewExpandedProps) {
                                 {item.note}
                               </div>
                             )}
-                            <div className="sm:hidden text-[10.5px] text-muted-foreground mt-0.5">
-                              📍 {item.location}
+                            <div className="sm:hidden text-[10.5px] text-muted-foreground mt-0.5 flex items-center gap-1">
+                              <MapPin className="w-3 h-3 shrink-0" /> {item.location}
                             </div>
                           </td>
                           <td className="p-2.5 sm:px-3.5 text-muted-foreground align-top hidden sm:table-cell">

@@ -150,13 +150,13 @@ export function EventCard({ event, className = "", href }: EventCardProps) {
           {/* Title Row */}
           {isDirectCheckout ? (
             <a href={targetUrl} className="block min-h-[2.25rem] sm:min-h-[2.75rem]">
-              <h3 className="font-semibold text-xs sm:text-sm md:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
+              <h3 className="font-semibold text-xs sm:text-sm md:text-base text-foreground line-clamp-2 group-hover:text-primary transition-colors leading-snug">
                 {event.title}
               </h3>
             </a>
           ) : (
             <Link href={targetUrl} className="block min-h-[2.25rem] sm:min-h-[2.75rem]">
-              <h3 className="font-semibold text-xs sm:text-sm md:text-base text-foreground line-clamp-2 group-hover:text-[#002BCC] dark:group-hover:text-blue-400 transition-colors leading-snug">
+              <h3 className="font-semibold text-xs sm:text-sm md:text-base text-foreground line-clamp-2 group-hover:text-primary transition-colors leading-snug">
                 {event.title}
               </h3>
             </Link>

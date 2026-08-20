@@ -12,6 +12,7 @@ import {
   Sparkles,
   CheckCircle2,
   ChevronDown,
+  MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EventContentSection } from "@/lib/events-data";
@@ -102,8 +103,8 @@ export function EventDynamicSections({ sections = [] }: EventDynamicSectionsProp
                                 {item.note}
                               </div>
                             )}
-                            <div className="sm:hidden text-xs text-muted-foreground font-normal mt-0.5">
-                              📍 {item.location}
+                            <div className="sm:hidden text-xs text-muted-foreground font-normal mt-0.5 flex items-center gap-1">
+                              <MapPin className="w-3 h-3 shrink-0" /> {item.location}
                             </div>
                           </td>
                           <td className="py-2.5 px-3.5 text-muted-foreground font-normal align-top hidden sm:table-cell text-xs">

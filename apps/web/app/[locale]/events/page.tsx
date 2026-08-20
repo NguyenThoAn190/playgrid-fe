@@ -45,8 +45,8 @@ export default function EventsPage() {
       <JsonLdScript data={[eventListSchema, breadcrumbSchema]} />
       {/* Page Header */}
       <div className="bg-muted/30 border-b border-border/40 py-8 sm:py-12">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+        <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 space-y-4">
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
             Giải đấu & Sự kiện
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
@@ -84,7 +84,7 @@ export default function EventsPage() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold shrink-0 transition-all cursor-pointer ${
                     selectedCategory === cat
-                      ? "bg-[#002BCC] text-white shadow-xs"
+                      ? "bg-primary text-primary-foreground shadow-xs"
                       : "bg-background border border-border/80 text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
@@ -97,7 +97,7 @@ export default function EventsPage() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 pt-8">
         {filteredEvents.length > 0 ? (
           <div className="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredEvents.map((event) => (

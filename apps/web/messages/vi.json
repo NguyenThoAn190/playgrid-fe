@@ -77,22 +77,28 @@
       }
     },
     "featured_courts": {
-      "title": "Sân gần bạn"
+      "title": "Sân gần bạn",
+      "subtitle": "Đặt sân nhanh chóng tại các cụm sân chất lượng cao gần bạn nhất"
     },
     "find_players": {
-      "title": "Tìm người chơi cùng"
+      "title": "Tìm người chơi cùng",
+      "subtitle": "Tham gia các trận giao lưu sôi nổi và kết nối cùng cộng đồng"
     },
     "tournaments": {
-      "title": "Giải đấu & Sự kiện"
+      "title": "Giải đấu & Sự kiện",
+      "subtitle": "Thử sức tại các giải đấu phong trào và chuyên nghiệp hấp dẫn"
     },
     "featured_clubs": {
-      "title": "Câu lạc bộ nổi bật"
+      "title": "Câu lạc bộ nổi bật",
+      "subtitle": "Gia nhập các câu lạc bộ uy tín để sinh hoạt và tập luyện định kỳ"
     },
     "featured_blogs": {
-      "title": "Kỹ năng nổi bật"
+      "title": "Kỹ năng nổi bật",
+      "subtitle": "Cẩm nang kỹ thuật, mẹo tập luyện và kiến thức thể thao chuyên sâu"
     },
     "leaderboard": {
       "title": "Bảng xếp hạng",
+      "subtitle": "Vinh danh những tay vợt xuất sắc dẫn đầu trên hệ thống PlayGrid",
       "view_full": "Xem bảng xếp hạng đầy đủ",
       "sports": {
         "badminton": "Cầu lông",
@@ -123,6 +129,7 @@
     },
     "community": {
       "title": "Cộng đồng PlayGrid",
+      "subtitle": "Chia sẻ khoảnh khắc, kinh nghiệm và thảo luận thể thao sôi nổi",
       "badge": "Nổi bật hôm nay",
       "view_all": "Khám phá cộng đồng",
       "create_post": "Tạo bài viết",
